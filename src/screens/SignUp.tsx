@@ -6,7 +6,7 @@ import { Stack } from "@/components/ui/stack";
 
 export function SignUp() {
   return (
-    <Card.Root variant="outline" className="w-full max-w-sm">
+    <Card.Root className="w-full max-w-sm">
       <Card.Header>
         <Card.Title>Sign up</Card.Title>
         <Card.Description>

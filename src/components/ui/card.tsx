@@ -17,15 +17,15 @@ const variantClasses: Record<CardVariant, string> = {
 };
 
 const headerPadding: Record<CardSize, string> = {
-  sm: "px-4 pt-6 pb-2",
-  md: "px-6 pt-8 pb-2",
-  lg: "px-8 pt-10 pb-2",
+  sm: "px-4 pt-4 pb-1",
+  md: "px-6 pt-6 pb-2",
+  lg: "px-8 pt-8 pb-2",
 };
 
 const bodyPadding: Record<CardSize, string> = {
-  sm: "px-4 py-4",
-  md: "px-6 py-6",
-  lg: "px-8 py-8",
+  sm: "px-4 pt-2 pb-4",
+  md: "px-6 pt-4 pb-6",
+  lg: "px-8 pt-4 pb-8",
 };
 
 const footerPadding: Record<CardSize, string> = {
@@ -40,7 +40,7 @@ type RootProps = DivProps & {
 };
 
 function Root({
-  variant = "elevated",
+  variant = "outline",
   size = "md",
   className,
   ...props
