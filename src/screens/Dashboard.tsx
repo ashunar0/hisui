@@ -7,6 +7,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { TeamSwitcher } from "@/components/team-switcher";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Sidebar } from "@/components/ui/sidebar";
 import { UserMenu } from "@/components/user-menu";
 
@@ -73,7 +74,17 @@ export function Dashboard() {
           <UserMenu name="あさひ" email="asahi@example.com" />
         </Sidebar.Footer>
       </Sidebar.Root>
-      <main className="flex-1" />
+      <main className="flex flex-1 flex-col">
+        <header className="flex h-14 items-center border-b border-neutral-200 px-6">
+          <Breadcrumb
+            items={[
+              { label: "ホーム", href: "#" },
+              { label: "顧客", href: "#" },
+              { label: "Acme Inc" },
+            ]}
+          />
+        </header>
+      </main>
     </div>
   );
 }
