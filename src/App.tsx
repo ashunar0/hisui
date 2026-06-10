@@ -1,11 +1,7 @@
-import { Login } from "@/screens/Login";
+import { Dashboard } from "@/screens/Dashboard";
 
 function App() {
-  return (
-    <main className="min-h-screen p-8 flex items-center justify-center">
-      <Login />
-    </main>
-  );
+  return <Dashboard />;
 }
 
 export default App;
