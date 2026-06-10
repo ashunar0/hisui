@@ -15,12 +15,22 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { TeamSwitcher } from "@/components/team-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Chart } from "@/components/ui/chart";
 import { IconButton } from "@/components/ui/icon-button";
 import { Select, createListCollection } from "@/components/ui/select";
 import { Sidebar } from "@/components/ui/sidebar";
@@ -84,6 +94,24 @@ const STATS: Stat[] = [
   { label: "新規顧客", value: "284", delta: 8.2, isPositive: true },
   { label: "完了案件", value: "47", delta: -3.1, isPositive: false },
   { label: "平均応答時間", value: "1.4h", delta: -18.7, isPositive: true },
+];
+
+const REVENUE_TREND = [
+  { date: "6/4", value: 162000 },
+  { date: "6/5", value: 178000 },
+  { date: "6/6", value: 169000 },
+  { date: "6/7", value: 184000 },
+  { date: "6/8", value: 173000 },
+  { date: "6/9", value: 195000 },
+  { date: "6/10", value: 208000 },
+];
+
+const CHANNEL_REVENUE = [
+  { channel: "Direct", value: 482000 },
+  { channel: "Google", value: 318000 },
+  { channel: "SNS", value: 187000 },
+  { channel: "Email", value: 96000 },
+  { channel: "紹介", value: 64000 },
 ];
 
 export function Dashboard() {
@@ -179,7 +207,10 @@ export function Dashboard() {
                   </Button>
                 </div>
               </div>
-              <Tabs.Content value="overview" className="pt-6">
+              <Tabs.Content
+                value="overview"
+                className="flex flex-col gap-4 pt-6"
+              >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
                   {STATS.map((stat) => {
                     const TrendIcon =
@@ -206,6 +237,99 @@ export function Dashboard() {
                       </Card.Root>
                     );
                   })}
+                </div>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <Card.Root>
+                  <div className="flex flex-col gap-4 p-5">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-fg text-md">
+                        売上推移
+                      </h3>
+                      <p className="text-fg-muted text-xs">直近 7 日間</p>
+                    </div>
+                    <Chart.Container aspect={16 / 9}>
+                      <AreaChart
+                        data={REVENUE_TREND}
+                        margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
+                      >
+                        <CartesianGrid
+                          stroke="var(--color-border)"
+                          vertical={false}
+                        />
+                        <XAxis
+                          dataKey="date"
+                          axisLine={false}
+                          tickLine={false}
+                          stroke="var(--color-fg-muted)"
+                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
+                        />
+                        <YAxis
+                          axisLine={false}
+                          tickLine={false}
+                          stroke="var(--color-fg-muted)"
+                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
+                          tickFormatter={(v: number) =>
+                            `¥${(v / 1000).toFixed(0)}k`
+                          }
+                        />
+                        <Chart.Tooltip />
+                        <Area
+                          dataKey="value"
+                          name="売上"
+                          type="monotone"
+                          stroke="var(--color-emerald-600)"
+                          fill="var(--color-emerald-500)"
+                          fillOpacity={0.15}
+                          strokeWidth={2}
+                        />
+                      </AreaChart>
+                    </Chart.Container>
+                  </div>
+                </Card.Root>
+                <Card.Root>
+                  <div className="flex flex-col gap-4 p-5">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-fg text-md">
+                        チャネル別売上
+                      </h3>
+                      <p className="text-fg-muted text-xs">直近 7 日間</p>
+                    </div>
+                    <Chart.Container aspect={16 / 9}>
+                      <BarChart
+                        data={CHANNEL_REVENUE}
+                        margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
+                      >
+                        <CartesianGrid
+                          stroke="var(--color-border)"
+                          vertical={false}
+                        />
+                        <XAxis
+                          dataKey="channel"
+                          axisLine={false}
+                          tickLine={false}
+                          stroke="var(--color-fg-muted)"
+                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
+                        />
+                        <YAxis
+                          axisLine={false}
+                          tickLine={false}
+                          stroke="var(--color-fg-muted)"
+                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
+                          tickFormatter={(v: number) =>
+                            `¥${(v / 1000).toFixed(0)}k`
+                          }
+                        />
+                        <Chart.Tooltip />
+                        <Bar
+                          dataKey="value"
+                          name="売上"
+                          fill="var(--color-sky-500)"
+                          radius={[4, 4, 0, 0]}
+                        />
+                      </BarChart>
+                    </Chart.Container>
+                  </div>
+                </Card.Root>
                 </div>
               </Tabs.Content>
               <Tabs.Content value="customers" className="pt-6 text-fg-soft">
