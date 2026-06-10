@@ -137,7 +137,7 @@ export function ChatSidebar() {
       <Sidebar.Footer className="flex flex-col gap-2">
         <button
           type="button"
-          className="flex w-full items-start gap-3 rounded-full border border-border bg-surface p-3 text-left transition-colors hover:bg-hover"
+          className="flex w-full items-center gap-3 rounded-full border border-border bg-surface p-3 text-left transition-colors hover:bg-hover"
         >
           <Sparkles className="mt-0.5 size-4 text-amber-500" />
           <div className="flex flex-col gap-0.5">
