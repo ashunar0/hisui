@@ -143,6 +143,41 @@ function MenuButton({
   );
 }
 
+function MenuItem({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn("group/menu-item relative", className)}
+      {...props}
+    />
+  );
+}
+
+type MenuActionProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  asChild?: boolean;
+};
+
+function MenuAction({
+  asChild = false,
+  className,
+  type = "button",
+  ...props
+}: MenuActionProps) {
+  const Comp = asChild ? Slot : "button";
+  return (
+    <Comp
+      type={asChild ? undefined : type}
+      className={cn(
+        "-translate-y-1/2 absolute top-1/2 right-1 inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-fg-soft opacity-0 transition-opacity",
+        "hover:bg-hover",
+        "group-hover/menu-item:opacity-100 group-focus-within/menu-item:opacity-100",
+        "data-[state=open]:opacity-100",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 export const Sidebar = {
   Provider,
   Root,
@@ -151,5 +186,7 @@ export const Sidebar = {
   Content,
   Footer,
   Group,
+  MenuItem,
   MenuButton,
+  MenuAction,
 };
