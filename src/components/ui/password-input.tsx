@@ -1,65 +1,51 @@
-import { type InputHTMLAttributes, useState } from "react";
-import { Input } from "@/components/ui/input";
+import { PasswordInput as ArkPasswordInput } from "@ark-ui/react/password-input";
+import { Eye, EyeOff } from "lucide-react";
+import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-type PasswordInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
-  variant?: "outline" | "subtle" | "flushed";
+type PasswordInputVariant = "outline" | "subtle" | "flushed";
+
+type PasswordInputProps = ComponentProps<typeof ArkPasswordInput.Root> & {
+  variant?: PasswordInputVariant;
+  placeholder?: string;
+  inputClassName?: string;
 };
 
-function PasswordInput({ className, variant, ...props }: PasswordInputProps) {
-  const [visible, setVisible] = useState(false);
+const variantClasses: Record<PasswordInputVariant, string> = {
+  outline:
+    "rounded-sm border border-border bg-surface px-3 focus:ring-2 focus:ring-fg-subtle",
+  subtle:
+    "rounded-sm border border-transparent bg-hover px-3 focus:bg-surface focus:ring-2 focus:ring-fg-subtle",
+  flushed:
+    "rounded-none border-b border-border bg-transparent px-0 focus:border-fg-soft",
+};
+
+function PasswordInput({
+  variant = "outline",
+  placeholder,
+  inputClassName,
+  className,
+  ...props
+}: PasswordInputProps) {
   return (
-    <div className="relative w-full">
-      <Input
-        type={visible ? "text" : "password"}
-        variant={variant}
-        className={cn("pr-10", className)}
-        {...props}
-      />
-      <button
-        type="button"
-        onClick={() => setVisible((v) => !v)}
-        aria-label={visible ? "パスワードを隠す" : "パスワードを表示"}
-        className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-3 text-fg-subtle hover:text-fg-soft"
-      >
-        {visible ? <EyeOffIcon /> : <EyeIcon />}
-      </button>
-    </div>
+    <ArkPasswordInput.Root className={cn("w-full", className)} {...props}>
+      <ArkPasswordInput.Control className="relative w-full">
+        <ArkPasswordInput.Input
+          placeholder={placeholder}
+          className={cn(
+            "flex h-10 w-full py-2 pr-10 text-sm text-fg placeholder:text-fg-subtle focus:outline-none",
+            variantClasses[variant],
+            inputClassName,
+          )}
+        />
+        <ArkPasswordInput.VisibilityTrigger className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-3 text-fg-subtle hover:text-fg-soft">
+          <ArkPasswordInput.Indicator fallback={<Eye className="size-4" />}>
+            <EyeOff className="size-4" />
+          </ArkPasswordInput.Indicator>
+        </ArkPasswordInput.VisibilityTrigger>
+      </ArkPasswordInput.Control>
+    </ArkPasswordInput.Root>
   );
 }
-
-const EyeIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const EyeOffIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
-    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
-    <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
-    <line x1="2" x2="22" y1="2" y2="22" />
-  </svg>
-);
 
 export { PasswordInput };

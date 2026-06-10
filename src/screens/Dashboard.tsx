@@ -80,7 +80,7 @@ export function Dashboard() {
           </Sidebar.Footer>
         </Sidebar.Root>
         <main className="flex flex-1 flex-col">
-          <header className="flex h-14 items-center gap-3 border-b border-border px-6">
+          <header className="flex h-14 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
             <Breadcrumb
               items={[
