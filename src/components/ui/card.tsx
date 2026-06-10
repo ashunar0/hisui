@@ -1,4 +1,5 @@
 import { createContext, type HTMLAttributes, useContext } from "react";
+import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
 
 type DivProps = HTMLAttributes<HTMLDivElement>;
@@ -37,17 +38,20 @@ const footerPadding: Record<CardSize, string> = {
 type RootProps = DivProps & {
   variant?: CardVariant;
   size?: CardSize;
+  asChild?: boolean;
 };
 
 function Root({
   variant = "outline",
   size = "md",
+  asChild = false,
   className,
   ...props
 }: RootProps) {
+  const Comp = asChild ? Slot : "div";
   return (
     <CardContext.Provider value={{ size }}>
-      <div
+      <Comp
         className={cn("rounded-lg", variantClasses[variant], className)}
         {...props}
       />

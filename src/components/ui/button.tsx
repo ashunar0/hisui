@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
+import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
 
 type Variant = "solid" | "outline";
@@ -7,6 +8,7 @@ type Size = "sm" | "md" | "lg";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: Variant;
   size?: Size;
+  asChild?: boolean;
 };
 
 const variantClasses: Record<Variant, string> = {
@@ -24,19 +26,21 @@ const sizeClasses: Record<Size, string> = {
 function Button({
   variant = "solid",
   size = "md",
+  asChild = false,
   className,
-  type = "button",
+  type,
   ...props
 }: ButtonProps) {
+  const Comp = asChild ? Slot : "button";
   return (
-    <button
-      type={type}
+    <Comp
       className={cn(
         "inline-flex items-center justify-center rounded-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],
         sizeClasses[size],
         className,
       )}
+      {...(asChild ? {} : { type: type ?? "button" })}
       {...props}
     />
   );
