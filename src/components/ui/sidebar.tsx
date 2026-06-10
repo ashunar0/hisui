@@ -90,7 +90,7 @@ function Header({ className, ...props }: HTMLAttributes<HTMLElement>) {
 function Content({ className, ...props }: HTMLAttributes<HTMLElement>) {
   return (
     <nav
-      className={cn("flex flex-1 flex-col gap-4 p-4", className)}
+      className={cn("flex min-h-0 flex-1 flex-col gap-4 p-4", className)}
       {...props}
     />
   );
