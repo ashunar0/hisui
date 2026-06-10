@@ -11,7 +11,8 @@ const GoogleIcon = () => (
 
 export function Login() {
   return (
-    <Card.Root className="w-full max-w-sm">
+    <div className="flex min-h-svh items-center justify-center bg-canvas px-4">
+      <Card.Root className="w-full max-w-sm">
       <Card.Header className="items-center">
         <Card.Title>ログイン</Card.Title>
       </Card.Header>
@@ -52,6 +53,7 @@ export function Login() {
           </a>
         </p>
       </Card.Footer>
-    </Card.Root>
+      </Card.Root>
+    </div>
   );
 }

@@ -6,7 +6,8 @@ import { Stack } from "@/components/ui/stack";
 
 export function SignUp() {
   return (
-    <Card.Root className="w-full max-w-sm">
+    <div className="flex min-h-svh items-center justify-center bg-canvas px-4">
+      <Card.Root className="w-full max-w-sm">
       <Card.Header>
         <Card.Title>Sign up</Card.Title>
         <Card.Description>
@@ -29,6 +30,7 @@ export function SignUp() {
         <Button variant="outline">Cancel</Button>
         <Button variant="solid">Sign in</Button>
       </Card.Footer>
-    </Card.Root>
+      </Card.Root>
+    </div>
   );
 }

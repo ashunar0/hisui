@@ -5,8 +5,6 @@ const screens = [
   { to: "/mail", label: "Mail" },
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },
-  { to: "/card-sizes", label: "Card sizes" },
-  { to: "/card-variants", label: "Card variants" },
 ];
 
 export function Home() {
