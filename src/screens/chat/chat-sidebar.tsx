@@ -4,11 +4,13 @@ import {
   MessageSquare,
   PenLine,
   Search,
+  Sparkles,
   SquarePen,
 } from "lucide-react";
 import { IconButton } from "@/components/ui/icon-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sidebar } from "@/components/ui/sidebar";
+import { UserMenu } from "@/components/user-menu";
 
 const RECENT_CHATS = [
   "React Server Components の使いどころ",
@@ -95,6 +97,18 @@ export function ChatSidebar() {
           </ScrollArea.Root>
         </div>
       </Sidebar.Content>
+      <Sidebar.Footer className="flex flex-col gap-2">
+        <button
+          type="button"
+          className="flex w-full items-start gap-3 rounded-full border border-border bg-surface p-3 text-left transition-colors hover:bg-hover"
+        >
+          <Sparkles className="mt-0.5 size-4 text-amber-500" />
+          <div className="flex flex-col gap-0.5">
+            <span className="text-sm font-medium">Pro にアップグレード</span>
+          </div>
+        </button>
+        <UserMenu name="あさひ" email="asahi@example.com" />
+      </Sidebar.Footer>
     </Sidebar.Root>
   );
 }
