@@ -15,14 +15,10 @@ export function Chat() {
               React Server Components の使いどころ
             </h1>
             <div className="ml-auto flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-sky-600 hover:bg-sky-50 hover:text-sky-700 dark:text-sky-400 dark:hover:bg-sky-950/40 dark:hover:text-sky-300"
-              >
+              <Button variant="solid" size="sm">
                 Proにアップグレード
               </Button>
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button variant="subtle" size="sm" className="gap-2">
                 <Upload className="size-4" />
                 共有する
               </Button>
