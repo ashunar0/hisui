@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
 import { ACTIVE_MAIL_ID, MAILS } from "@/screens/mail/data";
 
 export function MailList() {
@@ -11,13 +11,12 @@ export function MailList() {
       <div className="flex flex-col gap-3 border-b border-border px-4 pt-4 pb-3">
         <div className="flex items-center justify-between gap-2">
           <h2 className="font-semibold text-fg text-lg">Inbox</h2>
-          <Tabs.Root defaultValue="all">
-            <Tabs.List>
-              <Tabs.Trigger value="all">All</Tabs.Trigger>
-              <Tabs.Trigger value="unread">Unreads</Tabs.Trigger>
-              <Tabs.Indicator />
-            </Tabs.List>
-          </Tabs.Root>
+          <Switch.Root>
+            <Switch.Label>Unreads</Switch.Label>
+            <Switch.Control>
+              <Switch.Thumb />
+            </Switch.Control>
+          </Switch.Root>
         </div>
         <div className="relative">
           <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-fg-muted" />
