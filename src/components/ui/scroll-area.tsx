@@ -38,7 +38,8 @@ function Scrollbar({
     <ArkScrollArea.Scrollbar
       orientation={orientation}
       className={cn(
-        "flex touch-none select-none p-0.5",
+        "flex touch-none select-none p-0.5 opacity-0 transition-opacity duration-150",
+        "data-scrolling:opacity-100 data-hover:opacity-100",
         orientation === "vertical" && "h-full w-2",
         orientation === "horizontal" && "h-2 w-full flex-col",
         className,
