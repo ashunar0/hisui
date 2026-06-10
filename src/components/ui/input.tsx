@@ -9,18 +9,18 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const variantClasses: Record<InputVariant, string> = {
   outline:
-    "rounded-sm border border-neutral-200 bg-white px-3 focus:ring-2 focus:ring-neutral-400",
+    "rounded-sm border border-border bg-surface px-3 focus:ring-2 focus:ring-fg-subtle",
   subtle:
-    "rounded-sm border border-transparent bg-neutral-100 px-3 focus:bg-white focus:ring-2 focus:ring-neutral-400",
+    "rounded-sm border border-transparent bg-hover px-3 focus:bg-surface focus:ring-2 focus:ring-fg-subtle",
   flushed:
-    "rounded-none border-b border-neutral-300 bg-transparent px-0 focus:border-neutral-700",
+    "rounded-none border-b border-border bg-transparent px-0 focus:border-fg-soft",
 };
 
 function Input({ variant = "outline", className, ...props }: InputProps) {
   return (
     <input
       className={cn(
-        "flex h-10 w-full py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none",
+        "flex h-10 w-full py-2 text-sm text-fg placeholder:text-fg-subtle focus:outline-none",
         variantClasses[variant],
         className,
       )}

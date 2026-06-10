@@ -20,7 +20,7 @@ function Content({
       <ArkMenu.Positioner>
         <ArkMenu.Content
           className={cn(
-            "min-w-56 rounded-md border border-neutral-200 bg-white p-1 shadow-md focus:outline-none",
+            "min-w-56 rounded-md border border-border bg-surface p-1 shadow-md focus:outline-none",
             "data-[state=open]:animate-menu-open",
             className,
           )}
@@ -35,7 +35,7 @@ function Item({ className, ...props }: ComponentProps<typeof ArkMenu.Item>) {
   return (
     <ArkMenu.Item
       className={cn(
-        "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-neutral-700 outline-none data-highlighted:bg-neutral-100 data-highlighted:text-neutral-900",
+        "flex cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-fg-soft outline-none data-highlighted:bg-hover data-highlighted:text-fg",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function Separator({
 }: ComponentProps<typeof ArkMenu.Separator>) {
   return (
     <ArkMenu.Separator
-      className={cn("my-1 border-t border-neutral-200", className)}
+      className={cn("my-1 border-t border-border-muted", className)}
       {...props}
     />
   );

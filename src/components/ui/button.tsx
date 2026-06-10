@@ -12,9 +12,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClasses: Record<Variant, string> = {
-  solid: "bg-neutral-900 text-white hover:bg-neutral-800",
-  outline:
-    "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50",
+  solid: "bg-fg text-bg hover:bg-fg-soft",
+  outline: "border border-border bg-surface text-fg hover:bg-hover",
 };
 
 const sizeClasses: Record<Size, string> = {

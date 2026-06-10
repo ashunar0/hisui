@@ -20,7 +20,7 @@ function PasswordInput({ className, variant, ...props }: PasswordInputProps) {
         type="button"
         onClick={() => setVisible((v) => !v)}
         aria-label={visible ? "パスワードを隠す" : "パスワードを表示"}
-        className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-3 text-neutral-400 hover:text-neutral-600"
+        className="absolute inset-y-0 right-0 flex cursor-pointer items-center px-3 text-fg-subtle hover:text-fg-soft"
       >
         {visible ? <EyeOffIcon /> : <EyeIcon />}
       </button>

@@ -14,7 +14,7 @@ function Root({ className, ...props }: ComponentProps<typeof ArkField.Root>) {
 function Label({ className, ...props }: ComponentProps<typeof ArkField.Label>) {
   return (
     <ArkField.Label
-      className={cn("text-sm font-medium text-neutral-700", className)}
+      className={cn("text-sm font-medium text-fg-soft", className)}
       {...props}
     />
   );

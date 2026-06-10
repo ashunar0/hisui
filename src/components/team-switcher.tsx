@@ -13,15 +13,15 @@ export function TeamSwitcher({ teams, current }: TeamSwitcherProps) {
       <Menu.Trigger asChild>
         <button
           type="button"
-          className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-neutral-100"
+          className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-hover"
         >
           <Avatar.Root size="sm" shape="rounded">
             <Avatar.Fallback name={current} />
           </Avatar.Root>
-          <span className="flex-1 text-left text-sm font-medium text-neutral-900">
+          <span className="flex-1 text-left text-sm font-medium text-fg">
             {current}
           </span>
-          <ChevronsUpDown className="size-4 text-neutral-400" />
+          <ChevronsUpDown className="size-4 text-fg-subtle" />
         </button>
       </Menu.Trigger>
       <Menu.Content>

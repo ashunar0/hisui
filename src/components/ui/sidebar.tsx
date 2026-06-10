@@ -8,6 +8,7 @@ import {
   useContext,
   useState,
 } from "react";
+import { IconButton } from "@/components/ui/icon-button";
 import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
 
@@ -47,7 +48,7 @@ function Root({ className, ...props }: HTMLAttributes<HTMLElement>) {
   return (
     <aside
       className={cn(
-        "flex w-64 flex-col border-r border-neutral-200 bg-neutral-50",
+        "flex w-64 flex-col border-r border-border bg-surface-muted",
         "transition-[margin-left] duration-200 ease-out",
         !open && "-ml-64",
         className,
@@ -57,24 +58,16 @@ function Root({ className, ...props }: HTMLAttributes<HTMLElement>) {
   );
 }
 
-function Trigger({
-  className,
-  ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+function Trigger(props: ButtonHTMLAttributes<HTMLButtonElement>) {
   const { open, toggle } = useSidebar();
   return (
-    <button
-      type="button"
+    <IconButton
+      {...props}
       onClick={toggle}
       aria-label={open ? "サイドバーを閉じる" : "サイドバーを開く"}
-      className={cn(
-        "inline-flex size-8 cursor-pointer items-center justify-center rounded-md text-neutral-600 hover:bg-neutral-100",
-        className,
-      )}
-      {...props}
     >
       <PanelLeft className="size-4" />
-    </button>
+    </IconButton>
   );
 }
 
@@ -103,7 +96,7 @@ function Group({ label, className, children, ...props }: GroupProps) {
   return (
     <div className={cn("flex flex-col gap-1", className)} {...props}>
       {label && (
-        <h2 className="px-3 pb-1 text-xs font-medium text-neutral-500">
+        <h2 className="px-3 pb-1 text-xs font-medium text-fg-muted">
           {label}
         </h2>
       )}
@@ -129,8 +122,8 @@ function MenuButton({
       className={cn(
         "flex items-center gap-3 rounded-md px-3 py-2 text-sm",
         active
-          ? "bg-neutral-200 font-semibold text-neutral-900 [&_svg]:stroke-[2.5]"
-          : "text-neutral-700 hover:bg-neutral-100",
+          ? "bg-active font-semibold text-fg [&_svg]:stroke-[2.5]"
+          : "text-fg-soft hover:bg-hover",
         className,
       )}
       {...props}

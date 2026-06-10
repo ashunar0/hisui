@@ -13,18 +13,16 @@ export function UserMenu({ name, email }: UserMenuProps) {
       <Menu.Trigger asChild>
         <button
           type="button"
-          className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-neutral-100"
+          className="flex w-full cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-hover"
         >
           <Avatar.Root size="sm">
             <Avatar.Fallback name={name} />
           </Avatar.Root>
           <div className="min-w-0 flex-1 text-left">
-            <p className="truncate text-sm font-medium text-neutral-900">
-              {name}
-            </p>
-            <p className="truncate text-xs text-neutral-500">{email}</p>
+            <p className="truncate text-sm font-medium text-fg">{name}</p>
+            <p className="truncate text-xs text-fg-muted">{email}</p>
           </div>
-          <ChevronsUpDown className="size-4 shrink-0 text-neutral-400" />
+          <ChevronsUpDown className="size-4 shrink-0 text-fg-subtle" />
         </button>
       </Menu.Trigger>
       <Menu.Content>

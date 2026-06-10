@@ -29,7 +29,7 @@ function Heading({
   return (
     <Tag
       className={cn(
-        "font-semibold text-neutral-900",
+        "font-semibold text-fg",
         sizeClasses[size],
         className,
       )}

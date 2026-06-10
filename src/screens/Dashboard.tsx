@@ -1,13 +1,17 @@
 import {
   BarChart3,
+  Bell,
   Briefcase,
   Home,
+  Search,
   Settings,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import { TeamSwitcher } from "@/components/team-switcher";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { IconButton } from "@/components/ui/icon-button";
 import { Sidebar } from "@/components/ui/sidebar";
 import { UserMenu } from "@/components/user-menu";
 
@@ -76,7 +80,7 @@ export function Dashboard() {
           </Sidebar.Footer>
         </Sidebar.Root>
         <main className="flex flex-1 flex-col">
-          <header className="flex h-14 items-center gap-3 border-b border-neutral-200 px-6">
+          <header className="flex h-14 items-center gap-3 border-b border-border px-6">
             <Sidebar.Trigger className="-ml-2" />
             <Breadcrumb
               items={[
@@ -85,6 +89,15 @@ export function Dashboard() {
                 { label: "Acme Inc" },
               ]}
             />
+            <div className="ml-auto flex items-center gap-1">
+              <IconButton aria-label="検索">
+                <Search className="size-4" />
+              </IconButton>
+              <IconButton aria-label="通知">
+                <Bell className="size-4" />
+              </IconButton>
+              <ThemeToggle />
+            </div>
           </header>
         </main>
       </div>

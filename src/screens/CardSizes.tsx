@@ -12,7 +12,7 @@ export function CardSizes() {
           <Card.Header>
             <Heading size="md">Card - {size}</Heading>
           </Card.Header>
-          <Card.Body className="text-neutral-500">
+          <Card.Body className="text-fg-muted">
             This is the card body. Lorem ipsum dolor sit amet, consectetur
             adipiscing elit.
           </Card.Body>

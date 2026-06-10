@@ -33,16 +33,16 @@ export function Login() {
       </Card.Body>
       <Card.Footer className="flex-col gap-4">
         <Button className="w-full rounded-lg">ログイン</Button>
-        <div className="flex w-full items-center gap-3 text-sm text-neutral-500">
-          <div className="h-px flex-1 bg-neutral-200" />
+        <div className="flex w-full items-center gap-3 text-sm text-fg-muted">
+          <div className="h-px flex-1 bg-border" />
           <span>or</span>
-          <div className="h-px flex-1 bg-neutral-200" />
+          <div className="h-px flex-1 bg-border" />
         </div>
         <Button variant="outline" className="w-full gap-2 rounded-lg">
           <GoogleIcon />
           Google でログイン
         </Button>
-        <p className="mt-2 text-sm text-neutral-500">
+        <p className="mt-2 text-sm text-fg-muted">
           アカウントをお持ちでない方は
           <a
             href="/signup"

@@ -12,9 +12,9 @@ const useCardContext = () => useContext(CardContext);
 
 const variantClasses: Record<CardVariant, string> = {
   elevated:
-    "bg-white border border-neutral-100 shadow-[0_1px_0_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.06),0_0_4px_rgba(0,0,0,0.03)]",
-  outline: "bg-white border border-neutral-200",
-  subtle: "bg-neutral-50",
+    "bg-surface border border-border-muted shadow-[0_1px_0_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.06),0_0_4px_rgba(0,0,0,0.03)]",
+  outline: "bg-surface border border-border",
+  subtle: "bg-surface-muted",
 };
 
 const headerPadding: Record<CardSize, string> = {
@@ -72,7 +72,7 @@ function Header({ className, ...props }: DivProps) {
 function Title({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-lg font-semibold text-neutral-700", className)}
+      className={cn("text-lg font-semibold text-fg-soft", className)}
       {...props}
     />
   );
@@ -84,7 +84,7 @@ function Description({
 }: HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={cn("text-sm leading-normal text-neutral-500", className)}
+      className={cn("text-sm leading-normal text-fg-muted", className)}
       {...props}
     />
   );

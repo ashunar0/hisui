@@ -34,7 +34,7 @@ function Root({
   return (
     <ArkAvatar.Root
       className={cn(
-        "inline-flex items-center justify-center overflow-hidden bg-neutral-200 font-medium text-neutral-600 select-none",
+        "inline-flex items-center justify-center overflow-hidden bg-active font-medium text-fg-soft select-none",
         sizeClasses[size],
         shapeClasses[shape],
         className,
