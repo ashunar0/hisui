@@ -49,42 +49,45 @@ const CURRENT_TEAM = "Acme Inc";
 
 export function Dashboard() {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar.Root>
-        <Sidebar.Header>
-          <TeamSwitcher teams={TEAMS} current={CURRENT_TEAM} />
-        </Sidebar.Header>
-        <Sidebar.Content>
-          {NAV_GROUPS.map((group, i) => (
-            <Sidebar.Group key={group.label ?? i} label={group.label}>
-              {group.items.map(({ label, icon: Icon }) => (
-                <Sidebar.MenuButton
-                  key={label}
-                  href="#"
-                  active={label === ACTIVE}
-                >
-                  <Icon className="size-4" />
-                  {label}
-                </Sidebar.MenuButton>
-              ))}
-            </Sidebar.Group>
-          ))}
-        </Sidebar.Content>
-        <Sidebar.Footer>
-          <UserMenu name="あさひ" email="asahi@example.com" />
-        </Sidebar.Footer>
-      </Sidebar.Root>
-      <main className="flex flex-1 flex-col">
-        <header className="flex h-14 items-center border-b border-neutral-200 px-6">
-          <Breadcrumb
-            items={[
-              { label: "ホーム", href: "#" },
-              { label: "顧客", href: "#" },
-              { label: "Acme Inc" },
-            ]}
-          />
-        </header>
-      </main>
-    </div>
+    <Sidebar.Provider>
+      <div className="flex min-h-screen">
+        <Sidebar.Root>
+          <Sidebar.Header>
+            <TeamSwitcher teams={TEAMS} current={CURRENT_TEAM} />
+          </Sidebar.Header>
+          <Sidebar.Content>
+            {NAV_GROUPS.map((group, i) => (
+              <Sidebar.Group key={group.label ?? i} label={group.label}>
+                {group.items.map(({ label, icon: Icon }) => (
+                  <Sidebar.MenuButton
+                    key={label}
+                    href="#"
+                    active={label === ACTIVE}
+                  >
+                    <Icon className="size-4" />
+                    {label}
+                  </Sidebar.MenuButton>
+                ))}
+              </Sidebar.Group>
+            ))}
+          </Sidebar.Content>
+          <Sidebar.Footer>
+            <UserMenu name="あさひ" email="asahi@example.com" />
+          </Sidebar.Footer>
+        </Sidebar.Root>
+        <main className="flex flex-1 flex-col">
+          <header className="flex h-14 items-center gap-3 border-b border-neutral-200 px-6">
+            <Sidebar.Trigger className="-ml-2" />
+            <Breadcrumb
+              items={[
+                { label: "ホーム", href: "#" },
+                { label: "顧客", href: "#" },
+                { label: "Acme Inc" },
+              ]}
+            />
+          </header>
+        </main>
+      </div>
+    </Sidebar.Provider>
   );
 }

@@ -1,16 +1,80 @@
-import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
+import { PanelLeft } from "lucide-react";
+import {
+  createContext,
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+  type HTMLAttributes,
+  type ReactNode,
+  useContext,
+  useState,
+} from "react";
 import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
 
+type SidebarContextValue = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  toggle: () => void;
+};
+
+const SidebarContext = createContext<SidebarContextValue | null>(null);
+
+export function useSidebar() {
+  const ctx = useContext(SidebarContext);
+  if (!ctx) {
+    throw new Error("useSidebar must be used within Sidebar.Provider");
+  }
+  return ctx;
+}
+
+type ProviderProps = {
+  children: ReactNode;
+  defaultOpen?: boolean;
+};
+
+function Provider({ children, defaultOpen = true }: ProviderProps) {
+  const [open, setOpen] = useState(defaultOpen);
+  const toggle = () => setOpen((v) => !v);
+  return (
+    <SidebarContext.Provider value={{ open, setOpen, toggle }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+}
+
 function Root({ className, ...props }: HTMLAttributes<HTMLElement>) {
+  const { open } = useSidebar();
   return (
     <aside
       className={cn(
         "flex w-64 flex-col border-r border-neutral-200 bg-neutral-50",
+        "transition-[margin-left] duration-200 ease-out",
+        !open && "-ml-64",
         className,
       )}
       {...props}
     />
+  );
+}
+
+function Trigger({
+  className,
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
+  const { open, toggle } = useSidebar();
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={open ? "サイドバーを閉じる" : "サイドバーを開く"}
+      className={cn(
+        "inline-flex size-8 cursor-pointer items-center justify-center rounded-md text-neutral-600 hover:bg-neutral-100",
+        className,
+      )}
+      {...props}
+    >
+      <PanelLeft className="size-4" />
+    </button>
   );
 }
 
@@ -75,7 +139,9 @@ function MenuButton({
 }
 
 export const Sidebar = {
+  Provider,
   Root,
+  Trigger,
   Header,
   Content,
   Footer,
