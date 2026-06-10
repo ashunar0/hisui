@@ -1,14 +1,7 @@
 import { ArrowUp, Check, ChevronDown, Plus } from "lucide-react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Menu } from "@/components/ui/menu";
-
-const MODELS = [
-  { value: "opus", label: "Claude Opus 4.7", desc: "最も高度なタスクに" },
-  { value: "sonnet", label: "Claude Sonnet 4.6", desc: "バランス重視 (推奨)" },
-  { value: "haiku", label: "Claude Haiku 4.5", desc: "高速・軽量" },
-];
-
-const CURRENT_MODEL = "sonnet";
+import { CURRENT_MODEL, MODELS } from "@/screens/chat/data";
 
 export function ChatInput() {
   return (
