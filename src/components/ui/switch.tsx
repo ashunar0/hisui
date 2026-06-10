@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 function Root({
   className,
+  children,
   ...props
 }: ComponentProps<typeof ArkSwitch.Root>) {
   return (
@@ -14,7 +15,10 @@ function Root({
         className,
       )}
       {...props}
-    />
+    >
+      <ArkSwitch.HiddenInput />
+      {children}
+    </ArkSwitch.Root>
   );
 }
 
