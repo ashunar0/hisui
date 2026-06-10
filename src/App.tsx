@@ -1,7 +1,7 @@
-import { Dashboard } from "@/screens/Dashboard";
+import { Mail } from "@/screens/Mail";
 
 function App() {
-  return <Dashboard />;
+  return <Mail />;
 }
 
 export default App;
