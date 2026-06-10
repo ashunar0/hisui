@@ -1,4 +1,5 @@
 import { Upload } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/components/ui/sidebar";
 import { ChatSidebar } from "@/screens/chat/chat-sidebar";
@@ -22,6 +23,7 @@ export function Chat() {
                 <Upload className="size-4" />
                 共有する
               </Button>
+              <ThemeToggle />
             </div>
           </header>
           <div className="flex-1 overflow-y-auto px-6 py-4">
