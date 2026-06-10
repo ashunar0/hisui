@@ -21,6 +21,7 @@ import { Sidebar } from "@/components/ui/sidebar";
 import { Tabs } from "@/components/ui/tabs";
 import { UserMenu } from "@/components/user-menu";
 import { ChannelChart } from "@/screens/dashboard/channel-chart";
+import { RecentDeals } from "@/screens/dashboard/recent-deals";
 import { RevenueChart } from "@/screens/dashboard/revenue-chart";
 
 type NavItem = {
@@ -69,7 +70,7 @@ const STATS: StatCardProps[] = [
 export function Dashboard() {
   return (
     <Sidebar.Provider>
-      <div className="flex min-h-screen">
+      <div className="flex h-screen">
         <Sidebar.Root>
           <Sidebar.Header>
             <TeamSwitcher teams={TEAMS} current={CURRENT_TEAM} />
@@ -94,8 +95,8 @@ export function Dashboard() {
             <UserMenu name="あさひ" email="asahi@example.com" />
           </Sidebar.Footer>
         </Sidebar.Root>
-        <main className="flex flex-1 flex-col bg-canvas">
-          <header className="flex h-14 items-center gap-3 px-6">
+        <main className="flex flex-1 flex-col overflow-hidden bg-canvas">
+          <header className="flex h-14 shrink-0 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
             <Breadcrumb
               items={[
@@ -114,7 +115,7 @@ export function Dashboard() {
               <ThemeToggle />
             </div>
           </header>
-          <div className="flex-1 px-6 py-4">
+          <div className="flex-1 overflow-y-auto px-6 py-4">
             <Tabs.Root defaultValue="overview">
               <div className="flex flex-wrap items-center gap-y-2">
                 <Tabs.List>
@@ -148,6 +149,7 @@ export function Dashboard() {
                   <RevenueChart />
                   <ChannelChart />
                 </div>
+                <RecentDeals />
               </Tabs.Content>
               <Tabs.Content value="customers" className="pt-6 text-fg-soft">
                 顧客のコンテンツ
