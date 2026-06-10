@@ -3,8 +3,8 @@ import { useTheme } from "@/components/theme-provider";
 import { IconButton } from "@/components/ui/icon-button";
 
 export function ThemeToggle() {
-  const { theme, toggle } = useTheme();
-  const isDark = theme === "dark";
+  const { resolvedTheme, toggle } = useTheme();
+  const isDark = resolvedTheme === "dark";
   return (
     <IconButton
       onClick={toggle}
