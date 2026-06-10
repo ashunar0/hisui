@@ -1,10 +1,8 @@
-import { Check, ChevronDown, Filter, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Select, createListCollection } from "@/components/ui/select";
 import { Table, useTableSort } from "@/components/ui/table";
+import { RecentDealsToolbar } from "@/screens/dashboard/recent-deals-toolbar";
 
 type Status = "完了" | "進行中" | "保留";
 
@@ -68,15 +66,6 @@ const STATUS_VARIANT: Record<Status, "success" | "info" | "warning"> = {
 
 const parseAmount = (amount: string) => Number(amount.replace(/[^\d]/g, ""));
 
-const STATUS_FILTER = createListCollection({
-  items: [
-    { label: "すべて", value: "all" },
-    { label: "完了", value: "完了" },
-    { label: "進行中", value: "進行中" },
-    { label: "保留", value: "保留" },
-  ],
-});
-
 export function RecentDeals() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState<string>("all");
@@ -110,43 +99,12 @@ export function RecentDeals() {
           <h3 className="font-semibold text-fg text-md">最近の案件</h3>
           <p className="text-fg-muted text-xs">直近の取引</p>
         </div>
-        <div className="flex flex-wrap items-center gap-2 pb-4">
-          <div className="relative max-w-xs flex-1">
-            <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-fg-muted" />
-            <Input
-              placeholder="顧客名 or 案件名で検索"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="h-8 pl-8"
-            />
-          </div>
-          <Select.Root
-            collection={STATUS_FILTER}
-            value={[status]}
-            onValueChange={(d) => setStatus(d.value[0])}
-            positioning={{ placement: "bottom-start" }}
-          >
-            <Select.Trigger>
-              <div className="flex items-center gap-2">
-                <Filter className="size-4 text-fg-muted" />
-                <Select.ValueText placeholder="ステータス" />
-              </div>
-              <Select.Indicator>
-                <ChevronDown className="size-4" />
-              </Select.Indicator>
-            </Select.Trigger>
-            <Select.Content>
-              {STATUS_FILTER.items.map((item) => (
-                <Select.Item key={item.value} item={item}>
-                  <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator>
-                    <Check className="size-4" />
-                  </Select.ItemIndicator>
-                </Select.Item>
-              ))}
-            </Select.Content>
-          </Select.Root>
-        </div>
+        <RecentDealsToolbar
+          search={search}
+          onSearchChange={setSearch}
+          status={status}
+          onStatusChange={setStatus}
+        />
         <Table.Root>
           <Table.Header>
             <Table.Row>
