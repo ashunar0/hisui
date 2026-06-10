@@ -2,7 +2,12 @@ import {
   BarChart3,
   Bell,
   Briefcase,
+  Calendar,
+  Check,
+  ChevronDown,
+  Download,
   Home,
+  RefreshCw,
   Search,
   Settings,
   Users,
@@ -11,8 +16,11 @@ import {
 import { TeamSwitcher } from "@/components/team-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
+import { Select, createListCollection } from "@/components/ui/select";
 import { Sidebar } from "@/components/ui/sidebar";
+import { Tabs } from "@/components/ui/tabs";
 import { UserMenu } from "@/components/user-menu";
 
 type NavItem = {
@@ -51,6 +59,15 @@ const ACTIVE = "ホーム";
 const TEAMS = ["Acme Inc", "Beta Co", "Delta Labs"];
 const CURRENT_TEAM = "Acme Inc";
 
+const periodCollection = createListCollection({
+  items: [
+    { label: "日", value: "day" },
+    { label: "週", value: "week" },
+    { label: "月", value: "month" },
+    { label: "年", value: "year" },
+  ],
+});
+
 export function Dashboard() {
   return (
     <Sidebar.Provider>
@@ -79,7 +96,7 @@ export function Dashboard() {
             <UserMenu name="あさひ" email="asahi@example.com" />
           </Sidebar.Footer>
         </Sidebar.Root>
-        <main className="flex flex-1 flex-col">
+        <main className="flex flex-1 flex-col bg-canvas">
           <header className="flex h-14 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
             <Breadcrumb
@@ -99,6 +116,65 @@ export function Dashboard() {
               <ThemeToggle />
             </div>
           </header>
+          <div className="flex-1 px-6 py-4">
+            <Tabs.Root defaultValue="overview">
+              <div className="flex items-center">
+                <Tabs.List>
+                  <Tabs.Trigger value="overview">概要</Tabs.Trigger>
+                  <Tabs.Trigger value="customers">顧客</Tabs.Trigger>
+                  <Tabs.Trigger value="activity">アクティビティ</Tabs.Trigger>
+                  <Tabs.Trigger value="settings">設定</Tabs.Trigger>
+                  <Tabs.Indicator />
+                </Tabs.List>
+                <div className="ml-auto flex items-center gap-2">
+                  <IconButton aria-label="リフレッシュ">
+                    <RefreshCw className="size-4" />
+                  </IconButton>
+                  <Select.Root
+                    collection={periodCollection}
+                    defaultValue={["week"]}
+                    positioning={{ placement: "bottom-end" }}
+                  >
+                    <Select.Trigger className="border-transparent bg-surface-sunken hover:bg-surface-sunken-hover">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="size-4 text-fg-muted" />
+                        <Select.ValueText placeholder="期間" />
+                      </div>
+                      <Select.Indicator>
+                        <ChevronDown className="size-4" />
+                      </Select.Indicator>
+                    </Select.Trigger>
+                    <Select.Content>
+                      {periodCollection.items.map((item) => (
+                        <Select.Item key={item.value} item={item}>
+                          <Select.ItemText>{item.label}</Select.ItemText>
+                          <Select.ItemIndicator>
+                            <Check className="size-4" />
+                          </Select.ItemIndicator>
+                        </Select.Item>
+                      ))}
+                    </Select.Content>
+                  </Select.Root>
+                  <Button size="sm" className="gap-2">
+                    <Download className="size-4" />
+                    ダウンロード
+                  </Button>
+                </div>
+              </div>
+              <Tabs.Content value="overview" className="pt-6 text-fg-soft">
+                概要のコンテンツ
+              </Tabs.Content>
+              <Tabs.Content value="customers" className="pt-6 text-fg-soft">
+                顧客のコンテンツ
+              </Tabs.Content>
+              <Tabs.Content value="activity" className="pt-6 text-fg-soft">
+                アクティビティのコンテンツ
+              </Tabs.Content>
+              <Tabs.Content value="settings" className="pt-6 text-fg-soft">
+                設定のコンテンツ
+              </Tabs.Content>
+            </Tabs.Root>
+          </div>
         </main>
       </div>
     </Sidebar.Provider>

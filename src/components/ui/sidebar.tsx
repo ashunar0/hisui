@@ -122,7 +122,7 @@ function MenuButton({
       className={cn(
         "flex items-center gap-3 rounded-md px-3 py-2 text-sm",
         active
-          ? "bg-active font-semibold text-fg [&_svg]:stroke-[2.5]"
+          ? "bg-surface-sunken font-semibold text-fg [&_svg]:stroke-[2.5]"
           : "text-fg-soft hover:bg-hover",
         className,
       )}

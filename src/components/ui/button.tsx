@@ -34,7 +34,7 @@ function Button({
   return (
     <Comp
       className={cn(
-        "cursor-pointer inline-flex items-center justify-center rounded-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+        "cursor-pointer inline-flex items-center justify-center rounded-md font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],
         sizeClasses[size],
         className,
