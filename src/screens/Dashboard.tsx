@@ -2,40 +2,26 @@ import {
   BarChart3,
   Bell,
   Briefcase,
-  Calendar,
-  Check,
-  ChevronDown,
   Download,
   Home,
   RefreshCw,
   Search,
   Settings,
-  TrendingDown,
-  TrendingUp,
   Users,
   type LucideIcon,
 } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { PeriodSelect } from "@/components/period-select";
+import { StatCard, type StatCardProps } from "@/components/stat-card";
 import { TeamSwitcher } from "@/components/team-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Badge } from "@/components/ui/badge";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Chart } from "@/components/ui/chart";
 import { IconButton } from "@/components/ui/icon-button";
-import { Select, createListCollection } from "@/components/ui/select";
 import { Sidebar } from "@/components/ui/sidebar";
 import { Tabs } from "@/components/ui/tabs";
 import { UserMenu } from "@/components/user-menu";
+import { ChannelChart } from "@/screens/dashboard/channel-chart";
+import { RevenueChart } from "@/screens/dashboard/revenue-chart";
 
 type NavItem = {
   label: string;
@@ -73,45 +59,11 @@ const ACTIVE = "ホーム";
 const TEAMS = ["Acme Inc", "Beta Co", "Delta Labs"];
 const CURRENT_TEAM = "Acme Inc";
 
-const periodCollection = createListCollection({
-  items: [
-    { label: "日", value: "day" },
-    { label: "週", value: "week" },
-    { label: "月", value: "month" },
-    { label: "年", value: "year" },
-  ],
-});
-
-type Stat = {
-  label: string;
-  value: string;
-  delta: number;
-  isPositive: boolean;
-};
-
-const STATS: Stat[] = [
+const STATS: StatCardProps[] = [
   { label: "総売上", value: "¥1,234,567", delta: 12.5, isPositive: true },
   { label: "新規顧客", value: "284", delta: 8.2, isPositive: true },
   { label: "完了案件", value: "47", delta: -3.1, isPositive: false },
   { label: "平均応答時間", value: "1.4h", delta: -18.7, isPositive: true },
-];
-
-const REVENUE_TREND = [
-  { date: "6/4", value: 162000 },
-  { date: "6/5", value: 178000 },
-  { date: "6/6", value: 169000 },
-  { date: "6/7", value: 184000 },
-  { date: "6/8", value: 173000 },
-  { date: "6/9", value: 195000 },
-  { date: "6/10", value: 208000 },
-];
-
-const CHANNEL_REVENUE = [
-  { channel: "Direct", value: 482000 },
-  { channel: "Google", value: 318000 },
-  { channel: "SNS", value: 187000 },
-  { channel: "Email", value: 96000 },
-  { channel: "紹介", value: 64000 },
 ];
 
 export function Dashboard() {
@@ -176,31 +128,7 @@ export function Dashboard() {
                   <IconButton aria-label="リフレッシュ">
                     <RefreshCw className="size-4" />
                   </IconButton>
-                  <Select.Root
-                    collection={periodCollection}
-                    defaultValue={["week"]}
-                    positioning={{ placement: "bottom-end" }}
-                  >
-                    <Select.Trigger className="border-transparent bg-surface-sunken hover:bg-surface-sunken-hover">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="size-4 text-fg-muted" />
-                        <Select.ValueText placeholder="期間" />
-                      </div>
-                      <Select.Indicator>
-                        <ChevronDown className="size-4" />
-                      </Select.Indicator>
-                    </Select.Trigger>
-                    <Select.Content>
-                      {periodCollection.items.map((item) => (
-                        <Select.Item key={item.value} item={item}>
-                          <Select.ItemText>{item.label}</Select.ItemText>
-                          <Select.ItemIndicator>
-                            <Check className="size-4" />
-                          </Select.ItemIndicator>
-                        </Select.Item>
-                      ))}
-                    </Select.Content>
-                  </Select.Root>
+                  <PeriodSelect />
                   <Button size="sm" className="gap-2">
                     <Download className="size-4" />
                     ダウンロード
@@ -212,124 +140,13 @@ export function Dashboard() {
                 className="flex flex-col gap-4 pt-6"
               >
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                  {STATS.map((stat) => {
-                    const TrendIcon =
-                      stat.delta > 0 ? TrendingUp : TrendingDown;
-                    return (
-                      <Card.Root key={stat.label}>
-                        <div className="flex flex-col gap-3 p-5">
-                          <span className="text-sm text-fg-muted">
-                            {stat.label}
-                          </span>
-                          <div className="flex items-baseline justify-between gap-2">
-                            <span className="font-semibold text-2xl text-fg tabular-nums">
-                              {stat.value}
-                            </span>
-                            <Badge
-                              variant={stat.isPositive ? "success" : "danger"}
-                              className="tabular-nums"
-                            >
-                              <TrendIcon className="size-3" />
-                              {Math.abs(stat.delta).toFixed(1)}%
-                            </Badge>
-                          </div>
-                        </div>
-                      </Card.Root>
-                    );
-                  })}
+                  {STATS.map((stat) => (
+                    <StatCard key={stat.label} {...stat} />
+                  ))}
                 </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <Card.Root>
-                  <div className="flex flex-col gap-4 p-5">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-fg text-md">
-                        売上推移
-                      </h3>
-                      <p className="text-fg-muted text-xs">直近 7 日間</p>
-                    </div>
-                    <Chart.Container aspect={16 / 9}>
-                      <AreaChart
-                        data={REVENUE_TREND}
-                        margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
-                      >
-                        <CartesianGrid
-                          stroke="var(--color-border)"
-                          vertical={false}
-                        />
-                        <XAxis
-                          dataKey="date"
-                          axisLine={false}
-                          tickLine={false}
-                          stroke="var(--color-fg-muted)"
-                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
-                        />
-                        <YAxis
-                          axisLine={false}
-                          tickLine={false}
-                          stroke="var(--color-fg-muted)"
-                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
-                          tickFormatter={(v: number) =>
-                            `¥${(v / 1000).toFixed(0)}k`
-                          }
-                        />
-                        <Chart.Tooltip />
-                        <Area
-                          dataKey="value"
-                          name="売上"
-                          type="monotone"
-                          stroke="var(--color-emerald-600)"
-                          fill="var(--color-emerald-500)"
-                          fillOpacity={0.15}
-                          strokeWidth={2}
-                        />
-                      </AreaChart>
-                    </Chart.Container>
-                  </div>
-                </Card.Root>
-                <Card.Root>
-                  <div className="flex flex-col gap-4 p-5">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-fg text-md">
-                        チャネル別売上
-                      </h3>
-                      <p className="text-fg-muted text-xs">直近 7 日間</p>
-                    </div>
-                    <Chart.Container aspect={16 / 9}>
-                      <BarChart
-                        data={CHANNEL_REVENUE}
-                        margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
-                      >
-                        <CartesianGrid
-                          stroke="var(--color-border)"
-                          vertical={false}
-                        />
-                        <XAxis
-                          dataKey="channel"
-                          axisLine={false}
-                          tickLine={false}
-                          stroke="var(--color-fg-muted)"
-                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
-                        />
-                        <YAxis
-                          axisLine={false}
-                          tickLine={false}
-                          stroke="var(--color-fg-muted)"
-                          tick={{ fill: "var(--color-fg-muted)", fontSize: 12 }}
-                          tickFormatter={(v: number) =>
-                            `¥${(v / 1000).toFixed(0)}k`
-                          }
-                        />
-                        <Chart.Tooltip />
-                        <Bar
-                          dataKey="value"
-                          name="売上"
-                          fill="var(--color-sky-500)"
-                          radius={[4, 4, 0, 0]}
-                        />
-                      </BarChart>
-                    </Chart.Container>
-                  </div>
-                </Card.Root>
+                  <RevenueChart />
+                  <ChannelChart />
                 </div>
               </Tabs.Content>
               <Tabs.Content value="customers" className="pt-6 text-fg-soft">
