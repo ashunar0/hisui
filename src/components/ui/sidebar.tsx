@@ -6,11 +6,14 @@ import {
   type HTMLAttributes,
   type ReactNode,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
+
+const SIDEBAR_MEDIA_QUERY = "(min-width: 1024px)";
 
 type SidebarContextValue = {
   open: boolean;
@@ -30,11 +33,20 @@ export function useSidebar() {
 
 type ProviderProps = {
   children: ReactNode;
-  defaultOpen?: boolean;
 };
 
-function Provider({ children, defaultOpen = true }: ProviderProps) {
-  const [open, setOpen] = useState(defaultOpen);
+function Provider({ children }: ProviderProps) {
+  const [open, setOpen] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia(SIDEBAR_MEDIA_QUERY).matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(SIDEBAR_MEDIA_QUERY);
+    const handler = (e: MediaQueryListEvent) => setOpen(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const toggle = () => setOpen((v) => !v);
   return (
     <SidebarContext.Provider value={{ open, setOpen, toggle }}>

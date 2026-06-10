@@ -10,13 +10,17 @@ import {
   RefreshCw,
   Search,
   Settings,
+  TrendingDown,
+  TrendingUp,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import { TeamSwitcher } from "@/components/team-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Badge } from "@/components/ui/badge";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { IconButton } from "@/components/ui/icon-button";
 import { Select, createListCollection } from "@/components/ui/select";
 import { Sidebar } from "@/components/ui/sidebar";
@@ -68,6 +72,20 @@ const periodCollection = createListCollection({
   ],
 });
 
+type Stat = {
+  label: string;
+  value: string;
+  delta: number;
+  isPositive: boolean;
+};
+
+const STATS: Stat[] = [
+  { label: "総売上", value: "¥1,234,567", delta: 12.5, isPositive: true },
+  { label: "新規顧客", value: "284", delta: 8.2, isPositive: true },
+  { label: "完了案件", value: "47", delta: -3.1, isPositive: false },
+  { label: "平均応答時間", value: "1.4h", delta: -18.7, isPositive: true },
+];
+
 export function Dashboard() {
   return (
     <Sidebar.Provider>
@@ -118,7 +136,7 @@ export function Dashboard() {
           </header>
           <div className="flex-1 px-6 py-4">
             <Tabs.Root defaultValue="overview">
-              <div className="flex items-center">
+              <div className="flex flex-wrap items-center gap-y-2">
                 <Tabs.List>
                   <Tabs.Trigger value="overview">概要</Tabs.Trigger>
                   <Tabs.Trigger value="customers">顧客</Tabs.Trigger>
@@ -161,8 +179,34 @@ export function Dashboard() {
                   </Button>
                 </div>
               </div>
-              <Tabs.Content value="overview" className="pt-6 text-fg-soft">
-                概要のコンテンツ
+              <Tabs.Content value="overview" className="pt-6">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                  {STATS.map((stat) => {
+                    const TrendIcon =
+                      stat.delta > 0 ? TrendingUp : TrendingDown;
+                    return (
+                      <Card.Root key={stat.label}>
+                        <div className="flex flex-col gap-3 p-5">
+                          <span className="text-sm text-fg-muted">
+                            {stat.label}
+                          </span>
+                          <div className="flex items-baseline justify-between gap-2">
+                            <span className="font-semibold text-2xl text-fg tabular-nums">
+                              {stat.value}
+                            </span>
+                            <Badge
+                              variant={stat.isPositive ? "success" : "danger"}
+                              className="tabular-nums"
+                            >
+                              <TrendIcon className="size-3" />
+                              {Math.abs(stat.delta).toFixed(1)}%
+                            </Badge>
+                          </div>
+                        </div>
+                      </Card.Root>
+                    );
+                  })}
+                </div>
               </Tabs.Content>
               <Tabs.Content value="customers" className="pt-6 text-fg-soft">
                 顧客のコンテンツ
