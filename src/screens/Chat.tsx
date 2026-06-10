@@ -2,6 +2,7 @@ import { Upload } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/components/ui/sidebar";
+import { ChatInput } from "@/screens/chat/chat-input";
 import { ChatMessages } from "@/screens/chat/chat-messages";
 import { ChatSidebar } from "@/screens/chat/chat-sidebar";
 
@@ -30,6 +31,7 @@ export function Chat() {
           <div className="flex-1 overflow-y-auto">
             <ChatMessages />
           </div>
+          <ChatInput />
         </main>
       </div>
     </Sidebar.Provider>

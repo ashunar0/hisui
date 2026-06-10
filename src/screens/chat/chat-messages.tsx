@@ -1,3 +1,6 @@
+import { Copy, RotateCcw, ThumbsDown, ThumbsUp } from "lucide-react";
+import { IconButton } from "@/components/ui/icon-button";
+
 type Message = {
   role: "user" | "assistant";
   content: string;
@@ -112,11 +115,36 @@ export function ChatMessages() {
             {m.content}
           </div>
         ) : (
-          <div
-            key={i}
-            className="whitespace-pre-wrap text-sm leading-relaxed text-fg"
-          >
-            {m.content}
+          <div key={i} className="flex flex-col gap-2">
+            <div className="whitespace-pre-wrap text-sm leading-relaxed text-fg">
+              {m.content}
+            </div>
+            <div className="flex items-center gap-0.5">
+              <IconButton
+                aria-label="コピー"
+                className="size-7 text-fg-muted hover:text-fg-soft"
+              >
+                <Copy className="size-3.5" />
+              </IconButton>
+              <IconButton
+                aria-label="グッド"
+                className="size-7 text-fg-muted hover:text-fg-soft"
+              >
+                <ThumbsUp className="size-3.5" />
+              </IconButton>
+              <IconButton
+                aria-label="バッド"
+                className="size-7 text-fg-muted hover:text-fg-soft"
+              >
+                <ThumbsDown className="size-3.5" />
+              </IconButton>
+              <IconButton
+                aria-label="再生成"
+                className="size-7 text-fg-muted hover:text-fg-soft"
+              >
+                <RotateCcw className="size-3.5" />
+              </IconButton>
+            </div>
           </div>
         ),
       )}
