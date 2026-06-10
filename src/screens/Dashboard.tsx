@@ -1,64 +1,16 @@
-import {
-  BarChart3,
-  Bell,
-  Briefcase,
-  Download,
-  Home,
-  RefreshCw,
-  Search,
-  Settings,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { Bell, Download, RefreshCw, Search } from "lucide-react";
+import { AppSidebar } from "@/components/app-sidebar";
 import { PeriodSelect } from "@/components/period-select";
 import { StatCard, type StatCardProps } from "@/components/stat-card";
-import { TeamSwitcher } from "@/components/team-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
 import { Sidebar } from "@/components/ui/sidebar";
 import { Tabs } from "@/components/ui/tabs";
-import { UserMenu } from "@/components/user-menu";
 import { ChannelChart } from "@/screens/dashboard/channel-chart";
 import { RecentDeals } from "@/screens/dashboard/recent-deals";
 import { RevenueChart } from "@/screens/dashboard/revenue-chart";
-
-type NavItem = {
-  label: string;
-  icon: LucideIcon;
-};
-
-type NavGroup = {
-  label?: string;
-  items: NavItem[];
-};
-
-const NAV_GROUPS: NavGroup[] = [
-  {
-    items: [{ label: "ホーム", icon: Home }],
-  },
-  {
-    label: "ワークスペース",
-    items: [
-      { label: "顧客", icon: Users },
-      { label: "案件", icon: Briefcase },
-    ],
-  },
-  {
-    label: "分析",
-    items: [{ label: "レポート", icon: BarChart3 }],
-  },
-  {
-    label: "アカウント",
-    items: [{ label: "設定", icon: Settings }],
-  },
-];
-
-const ACTIVE = "ホーム";
-
-const TEAMS = ["Acme Inc", "Beta Co", "Delta Labs"];
-const CURRENT_TEAM = "Acme Inc";
 
 const STATS: StatCardProps[] = [
   { label: "総売上", value: "¥1,234,567", delta: 12.5, isPositive: true },
@@ -71,30 +23,7 @@ export function Dashboard() {
   return (
     <Sidebar.Provider>
       <div className="flex h-screen">
-        <Sidebar.Root>
-          <Sidebar.Header>
-            <TeamSwitcher teams={TEAMS} current={CURRENT_TEAM} />
-          </Sidebar.Header>
-          <Sidebar.Content>
-            {NAV_GROUPS.map((group, i) => (
-              <Sidebar.Group key={group.label ?? i} label={group.label}>
-                {group.items.map(({ label, icon: Icon }) => (
-                  <Sidebar.MenuButton
-                    key={label}
-                    href="#"
-                    active={label === ACTIVE}
-                  >
-                    <Icon className="size-4" />
-                    {label}
-                  </Sidebar.MenuButton>
-                ))}
-              </Sidebar.Group>
-            ))}
-          </Sidebar.Content>
-          <Sidebar.Footer>
-            <UserMenu name="あさひ" email="asahi@example.com" />
-          </Sidebar.Footer>
-        </Sidebar.Root>
+        <AppSidebar active="ホーム" />
         <main className="flex flex-1 flex-col overflow-hidden bg-canvas">
           <header className="flex h-14 shrink-0 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
