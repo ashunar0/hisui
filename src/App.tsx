@@ -1,9 +1,9 @@
-import { CardSizes } from "@/screens/CardSizes";
+import { Login } from "@/screens/Login";
 
 function App() {
   return (
     <main className="min-h-screen p-8 flex items-center justify-center">
-      <CardSizes />
+      <Login />
     </main>
   );
 }
