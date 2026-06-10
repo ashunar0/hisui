@@ -3,6 +3,7 @@ import { Link } from "react-router";
 const screens = [
   { to: "/dashboard", label: "Dashboard" },
   { to: "/mail", label: "Mail" },
+  { to: "/settings", label: "Settings" },
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },
 ];
