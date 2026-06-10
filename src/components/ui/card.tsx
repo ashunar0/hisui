@@ -18,7 +18,7 @@ const variantClasses: Record<CardVariant, string> = {
 };
 
 const headerPadding: Record<CardSize, string> = {
-  sm: "px-4 pt-4 pb-1",
+  sm: "px-4 pt-6 pb-1",
   md: "px-6 pt-6 pb-2",
   lg: "px-8 pt-8 pb-2",
 };

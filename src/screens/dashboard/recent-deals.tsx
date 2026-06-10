@@ -78,7 +78,7 @@ export function RecentDeals() {
 
   return (
     <Card.Root>
-      <div className="flex flex-col px-5 py-4">
+      <div className="flex flex-col px-5 py-7">
         <div className="flex items-center gap-2 pb-4">
           <h3 className="font-semibold text-fg text-md">最近の案件</h3>
           <p className="text-fg-muted text-xs">直近の取引</p>

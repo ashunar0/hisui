@@ -13,7 +13,7 @@ const DATA = [
 export function ChannelChart() {
   return (
     <Card.Root>
-      <div className="flex flex-col gap-4 p-5">
+      <div className="flex flex-col gap-4 px-5 py-7">
         <div className="flex items-center gap-2">
           <h3 className="font-semibold text-fg text-md">チャネル別売上</h3>
           <p className="text-fg-muted text-xs">直近 7 日間</p>

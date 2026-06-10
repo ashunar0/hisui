@@ -128,7 +128,7 @@ type Accessor<T> = (row: T) => string | number;
 
 type UseTableSortOptions<T, K extends string> = {
   accessors: Record<K, Accessor<T>>;
-  defaultKey?: K;
+  defaultKey?: NoInfer<K>;
   defaultDirection?: SortDirection;
 };
 
