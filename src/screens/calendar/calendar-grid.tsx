@@ -65,11 +65,7 @@ export function CalendarGrid({ current }: Props) {
               </div>
               <div className="flex flex-col gap-0.5">
                 {dayEvents.slice(0, 3).map((ev) => (
-                  <EventPill
-                    key={ev.id}
-                    accent={ev.accent}
-                    title={ev.title}
-                  />
+                  <EventPill key={ev.id} event={ev} />
                 ))}
               </div>
             </div>
