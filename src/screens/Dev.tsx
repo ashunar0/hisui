@@ -18,6 +18,7 @@ import { Field } from "@/components/ui/field";
 import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
 import { NumberInput } from "@/components/ui/number-input";
+import { PinInput } from "@/components/ui/pin-input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
 import { Steps } from "@/components/ui/steps";
@@ -130,6 +131,13 @@ export function Dev() {
       >
         <TagsInputDemo />
       </Section>
+
+      <Section
+        title="Pin Input"
+        description="OTP / 2FA 用。各桁 box、focus 自動移動、paste 対応。otp / numeric variant。"
+      >
+        <PinInputDemo />
+      </Section>
     </div>
   );
 }
@@ -207,6 +215,30 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function PinInputDemo() {
+  return (
+    <div className="flex flex-col gap-6">
+      <PinInput.Root otp>
+        <PinInput.Label>One-time code (6 digits)</PinInput.Label>
+        <PinInput.Control>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <PinInput.Input key={i} index={i} />
+          ))}
+        </PinInput.Control>
+      </PinInput.Root>
+
+      <PinInput.Root mask>
+        <PinInput.Label>PIN (4 digits, masked)</PinInput.Label>
+        <PinInput.Control>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <PinInput.Input key={i} index={i} />
+          ))}
+        </PinInput.Control>
+      </PinInput.Root>
+    </div>
   );
 }
 
