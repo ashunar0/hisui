@@ -5,6 +5,7 @@ const screens = [
   { to: "/mail", label: "Mail" },
   { to: "/chat", label: "Chat" },
   { to: "/calendar", label: "Calendar" },
+  { to: "/booking", label: "Booking" },
   { to: "/settings", label: "Settings" },
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },

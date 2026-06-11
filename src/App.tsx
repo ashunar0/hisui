@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
+import { Booking } from "@/screens/Booking";
 import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/mail" element={<Mail />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/booking" element={<Booking />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
