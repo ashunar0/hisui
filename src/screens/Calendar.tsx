@@ -3,23 +3,37 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Sidebar } from "@/components/ui/sidebar";
+import { Tabs } from "@/components/ui/tabs";
 import { CalendarGrid } from "@/screens/calendar/calendar-grid";
 import { CalendarToolbar } from "@/screens/calendar/calendar-toolbar";
+import { WeekGrid } from "@/screens/calendar/week-grid";
+import { WeekToolbar } from "@/screens/calendar/week-toolbar";
+
+type View = "month" | "week";
 
 export function Calendar() {
-  const [current, setCurrent] = useState(() => {
-    const now = new Date();
-    return new Date(now.getFullYear(), now.getMonth(), 1);
-  });
+  const [view, setView] = useState<View>("month");
+  const [current, setCurrent] = useState(() => new Date());
 
-  const goPrev = () =>
-    setCurrent(new Date(current.getFullYear(), current.getMonth() - 1, 1));
-  const goNext = () =>
-    setCurrent(new Date(current.getFullYear(), current.getMonth() + 1, 1));
-  const goToday = () => {
-    const now = new Date();
-    setCurrent(new Date(now.getFullYear(), now.getMonth(), 1));
+  const goPrev = () => {
+    if (view === "month") {
+      setCurrent(new Date(current.getFullYear(), current.getMonth() - 1, 1));
+    } else {
+      const d = new Date(current);
+      d.setDate(d.getDate() - 7);
+      setCurrent(d);
+    }
   };
+  const goNext = () => {
+    if (view === "month") {
+      setCurrent(new Date(current.getFullYear(), current.getMonth() + 1, 1));
+    } else {
+      const d = new Date(current);
+      d.setDate(d.getDate() + 7);
+      setCurrent(d);
+    }
+  };
+  const goToday = () => setCurrent(new Date());
 
   return (
     <Sidebar.Provider>
@@ -34,22 +48,39 @@ export function Calendar() {
             </div>
           </header>
           <div className="flex-1 overflow-y-auto px-6 py-4">
-            <div className="flex flex-col gap-1">
-              <h1 className="text-2xl font-semibold tracking-tight">
-                カレンダー
-              </h1>
-              <p className="text-sm text-fg-muted">
-                予定とタスクを月単位で見渡す
-              </p>
-            </div>
             <div className="mt-8 flex flex-col gap-4">
-              <CalendarToolbar
-                current={current}
-                onPrev={goPrev}
-                onNext={goNext}
-                onToday={goToday}
-              />
-              <CalendarGrid current={current} />
+              <Tabs.Root
+                value={view}
+                onValueChange={(d) => setView(d.value as View)}
+              >
+                <Tabs.List className="w-fit">
+                  <Tabs.Trigger value="month">月</Tabs.Trigger>
+                  <Tabs.Trigger value="week">週</Tabs.Trigger>
+                  <Tabs.Indicator />
+                </Tabs.List>
+              </Tabs.Root>
+
+              {view === "month" ? (
+                <>
+                  <CalendarToolbar
+                    current={current}
+                    onPrev={goPrev}
+                    onNext={goNext}
+                    onToday={goToday}
+                  />
+                  <CalendarGrid current={current} />
+                </>
+              ) : (
+                <>
+                  <WeekToolbar
+                    current={current}
+                    onPrev={goPrev}
+                    onNext={goNext}
+                    onToday={goToday}
+                  />
+                  <WeekGrid current={current} />
+                </>
+              )}
             </div>
           </div>
         </main>
