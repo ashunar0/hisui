@@ -7,6 +7,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
 import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
+import { RadioGroup } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { toaster } from "@/components/ui/toast";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -58,6 +59,13 @@ export function Dev() {
         description="Checked / indeterminate / disabled。Tooltip と同じ bg-fg + text-bg の世界観。"
       >
         <CheckboxDemo />
+      </Section>
+
+      <Section
+        title="Radio Group"
+        description="checked 時 ring が黒くなって中に小さな dot。Checkbox と統一感。"
+      >
+        <RadioGroupDemo />
       </Section>
     </div>
   );
@@ -136,6 +144,44 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function RadioGroupDemo() {
+  return (
+    <div className="flex flex-col gap-6">
+      <RadioGroup.Root defaultValue="comfortable">
+        <RadioGroup.Label>Density</RadioGroup.Label>
+        {[
+          { value: "compact", text: "Compact" },
+          { value: "comfortable", text: "Comfortable" },
+          { value: "spacious", text: "Spacious" },
+        ].map((opt) => (
+          <RadioGroup.Item key={opt.value} value={opt.value}>
+            <RadioGroup.ItemControl />
+            <RadioGroup.ItemText>{opt.text}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        ))}
+      </RadioGroup.Root>
+
+      <RadioGroup.Root defaultValue="email">
+        <RadioGroup.Label>Notification (1 disabled)</RadioGroup.Label>
+        {[
+          { value: "email", text: "Email" },
+          { value: "sms", text: "SMS", disabled: true },
+          { value: "push", text: "Push" },
+        ].map((opt) => (
+          <RadioGroup.Item
+            key={opt.value}
+            value={opt.value}
+            disabled={opt.disabled}
+          >
+            <RadioGroup.ItemControl />
+            <RadioGroup.ItemText>{opt.text}</RadioGroup.ItemText>
+          </RadioGroup.Item>
+        ))}
+      </RadioGroup.Root>
+    </div>
   );
 }
 
