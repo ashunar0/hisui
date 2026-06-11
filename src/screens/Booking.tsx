@@ -1,17 +1,13 @@
-import { ArrowLeft, Calendar, Check, Clock } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BookingConfirmation } from "@/screens/booking/booking-confirmation";
 import { BookingForm } from "@/screens/booking/booking-form";
-import { EVENT } from "@/screens/booking/data";
+import { BookingSummary } from "@/screens/booking/booking-summary";
 import { EventInfoPanel } from "@/screens/booking/event-info-panel";
 import { MonthPicker } from "@/screens/booking/month-picker";
 import { SlotList } from "@/screens/booking/slot-list";
-import {
-  formatDateKey,
-  formatLongDate,
-} from "@/screens/calendar/data";
 
 type Step = "datetime" | "form" | "confirmed";
 
@@ -44,30 +40,13 @@ export function Booking() {
       </header>
       <main className="flex flex-1 items-center justify-center px-4 pb-12">
         <div className="w-full max-w-5xl rounded-lg border border-border bg-surface shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06),0_0_4px_rgba(0,0,0,0.03)]">
-          {isConfirmed ? (
-            <div className="flex flex-col items-center gap-4 py-16 text-center">
-              <div className="flex size-12 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-950/50">
-                <Check className="size-6 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <h2 className="text-xl font-semibold text-fg">
-                予約が完了しました
-              </h2>
-              {selectedDate && selectedTime && (
-                <p className="max-w-sm text-sm leading-relaxed text-fg-muted">
-                  {formatLongDate(formatDateKey(selectedDate))} の{" "}
-                  {selectedTime} に予約しました。
-                  {confirmedEmail && (
-                    <>
-                      <br />
-                      確認メールを {confirmedEmail} 宛に送信しました。
-                    </>
-                  )}
-                </p>
-              )}
-              <Button variant="outline" size="md" onClick={reset}>
-                新しい予約を作る
-              </Button>
-            </div>
+          {isConfirmed && selectedDate && selectedTime ? (
+            <BookingConfirmation
+              date={selectedDate}
+              time={selectedTime}
+              email={confirmedEmail}
+              onReset={reset}
+            />
           ) : (
             <div
               className={cn(
@@ -89,20 +68,7 @@ export function Booking() {
                 )}
                 <EventInfoPanel />
                 {isForm && selectedDate && selectedTime && (
-                  <div className="flex flex-col gap-2 border-t border-border pt-4 text-sm text-fg-soft">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="size-4 text-fg-muted" />
-                      <span>
-                        {formatLongDate(formatDateKey(selectedDate))}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="size-4 text-fg-muted" />
-                      <span>
-                        {selectedTime} ({EVENT.duration} 分)
-                      </span>
-                    </div>
-                  </div>
+                  <BookingSummary date={selectedDate} time={selectedTime} />
                 )}
               </div>
 

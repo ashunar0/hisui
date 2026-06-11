@@ -106,139 +106,141 @@ const gridCellCls = cn(
   "focus:outline-none focus-visible:ring-2 focus-visible:ring-fg/20",
 );
 
+function ViewHeader() {
+  return (
+    <ArkDatePicker.ViewControl className="flex items-center justify-between">
+      <ArkDatePicker.PrevTrigger className={navTriggerCls}>
+        <ChevronLeft className="size-4" />
+      </ArkDatePicker.PrevTrigger>
+      <ArkDatePicker.ViewTrigger className={viewTriggerCls}>
+        <ArkDatePicker.RangeText />
+      </ArkDatePicker.ViewTrigger>
+      <ArkDatePicker.NextTrigger className={navTriggerCls}>
+        <ChevronRight className="size-4" />
+      </ArkDatePicker.NextTrigger>
+    </ArkDatePicker.ViewControl>
+  );
+}
+
+function DayView() {
+  return (
+    <ArkDatePicker.View view="day" className="flex flex-col gap-3">
+      <ViewHeader />
+      <ArkDatePicker.Table className="border-collapse">
+        <ArkDatePicker.TableHead>
+          <ArkDatePicker.TableRow>
+            <ArkDatePicker.Context>
+              {(api) =>
+                api.weekDays.map((day) => (
+                  <ArkDatePicker.TableHeader
+                    key={day.short}
+                    className="py-1 text-center text-xs font-medium text-fg-muted"
+                  >
+                    {day.narrow}
+                  </ArkDatePicker.TableHeader>
+                ))
+              }
+            </ArkDatePicker.Context>
+          </ArkDatePicker.TableRow>
+        </ArkDatePicker.TableHead>
+        <ArkDatePicker.TableBody>
+          <ArkDatePicker.Context>
+            {(api) =>
+              api.weeks.map((week, i) => (
+                <ArkDatePicker.TableRow key={i}>
+                  {week.map((day, j) => (
+                    <ArkDatePicker.TableCell
+                      key={j}
+                      value={day}
+                      className="p-0"
+                    >
+                      <ArkDatePicker.TableCellTrigger className={dayCellCls}>
+                        <span className={dayCellInnerCls}>{day.day}</span>
+                      </ArkDatePicker.TableCellTrigger>
+                    </ArkDatePicker.TableCell>
+                  ))}
+                </ArkDatePicker.TableRow>
+              ))
+            }
+          </ArkDatePicker.Context>
+        </ArkDatePicker.TableBody>
+      </ArkDatePicker.Table>
+    </ArkDatePicker.View>
+  );
+}
+
+function MonthView() {
+  return (
+    <ArkDatePicker.View view="month" className="flex flex-col gap-3">
+      <ViewHeader />
+      <ArkDatePicker.Table className="border-collapse">
+        <ArkDatePicker.TableBody>
+          <ArkDatePicker.Context>
+            {(api) =>
+              api
+                .getMonthsGrid({ columns: 4, format: "short" })
+                .map((months, i) => (
+                  <ArkDatePicker.TableRow key={i}>
+                    {months.map((month, j) => (
+                      <ArkDatePicker.TableCell
+                        key={j}
+                        value={month.value}
+                        className="p-0"
+                      >
+                        <ArkDatePicker.TableCellTrigger
+                          className={gridCellCls}
+                        >
+                          {month.label}
+                        </ArkDatePicker.TableCellTrigger>
+                      </ArkDatePicker.TableCell>
+                    ))}
+                  </ArkDatePicker.TableRow>
+                ))
+            }
+          </ArkDatePicker.Context>
+        </ArkDatePicker.TableBody>
+      </ArkDatePicker.Table>
+    </ArkDatePicker.View>
+  );
+}
+
+function YearView() {
+  return (
+    <ArkDatePicker.View view="year" className="flex flex-col gap-3">
+      <ViewHeader />
+      <ArkDatePicker.Table className="border-collapse">
+        <ArkDatePicker.TableBody>
+          <ArkDatePicker.Context>
+            {(api) =>
+              api.getYearsGrid({ columns: 4 }).map((years, i) => (
+                <ArkDatePicker.TableRow key={i}>
+                  {years.map((year, j) => (
+                    <ArkDatePicker.TableCell
+                      key={j}
+                      value={year.value}
+                      className="p-0"
+                    >
+                      <ArkDatePicker.TableCellTrigger className={gridCellCls}>
+                        {year.label}
+                      </ArkDatePicker.TableCellTrigger>
+                    </ArkDatePicker.TableCell>
+                  ))}
+                </ArkDatePicker.TableRow>
+              ))
+            }
+          </ArkDatePicker.Context>
+        </ArkDatePicker.TableBody>
+      </ArkDatePicker.Table>
+    </ArkDatePicker.View>
+  );
+}
+
 function Calendar() {
   return (
     <>
-      <ArkDatePicker.View view="day" className="flex flex-col gap-3">
-        <ArkDatePicker.ViewControl className="flex items-center justify-between">
-          <ArkDatePicker.PrevTrigger className={navTriggerCls}>
-            <ChevronLeft className="size-4" />
-          </ArkDatePicker.PrevTrigger>
-          <ArkDatePicker.ViewTrigger className={viewTriggerCls}>
-            <ArkDatePicker.RangeText />
-          </ArkDatePicker.ViewTrigger>
-          <ArkDatePicker.NextTrigger className={navTriggerCls}>
-            <ChevronRight className="size-4" />
-          </ArkDatePicker.NextTrigger>
-        </ArkDatePicker.ViewControl>
-        <ArkDatePicker.Table className="border-collapse">
-          <ArkDatePicker.TableHead>
-            <ArkDatePicker.TableRow>
-              <ArkDatePicker.Context>
-                {(api) =>
-                  api.weekDays.map((day) => (
-                    <ArkDatePicker.TableHeader
-                      key={day.short}
-                      className="py-1 text-center text-xs font-medium text-fg-muted"
-                    >
-                      {day.narrow}
-                    </ArkDatePicker.TableHeader>
-                  ))
-                }
-              </ArkDatePicker.Context>
-            </ArkDatePicker.TableRow>
-          </ArkDatePicker.TableHead>
-          <ArkDatePicker.TableBody>
-            <ArkDatePicker.Context>
-              {(api) =>
-                api.weeks.map((week, i) => (
-                  <ArkDatePicker.TableRow key={i}>
-                    {week.map((day, j) => (
-                      <ArkDatePicker.TableCell
-                        key={j}
-                        value={day}
-                        className="p-0"
-                      >
-                        <ArkDatePicker.TableCellTrigger className={dayCellCls}>
-                          <span className={dayCellInnerCls}>{day.day}</span>
-                        </ArkDatePicker.TableCellTrigger>
-                      </ArkDatePicker.TableCell>
-                    ))}
-                  </ArkDatePicker.TableRow>
-                ))
-              }
-            </ArkDatePicker.Context>
-          </ArkDatePicker.TableBody>
-        </ArkDatePicker.Table>
-      </ArkDatePicker.View>
-
-      <ArkDatePicker.View view="month" className="flex flex-col gap-3">
-        <ArkDatePicker.ViewControl className="flex items-center justify-between">
-          <ArkDatePicker.PrevTrigger className={navTriggerCls}>
-            <ChevronLeft className="size-4" />
-          </ArkDatePicker.PrevTrigger>
-          <ArkDatePicker.ViewTrigger className={viewTriggerCls}>
-            <ArkDatePicker.RangeText />
-          </ArkDatePicker.ViewTrigger>
-          <ArkDatePicker.NextTrigger className={navTriggerCls}>
-            <ChevronRight className="size-4" />
-          </ArkDatePicker.NextTrigger>
-        </ArkDatePicker.ViewControl>
-        <ArkDatePicker.Table className="border-collapse">
-          <ArkDatePicker.TableBody>
-            <ArkDatePicker.Context>
-              {(api) =>
-                api
-                  .getMonthsGrid({ columns: 4, format: "short" })
-                  .map((months, i) => (
-                    <ArkDatePicker.TableRow key={i}>
-                      {months.map((month, j) => (
-                        <ArkDatePicker.TableCell
-                          key={j}
-                          value={month.value}
-                          className="p-0"
-                        >
-                          <ArkDatePicker.TableCellTrigger
-                            className={gridCellCls}
-                          >
-                            {month.label}
-                          </ArkDatePicker.TableCellTrigger>
-                        </ArkDatePicker.TableCell>
-                      ))}
-                    </ArkDatePicker.TableRow>
-                  ))
-              }
-            </ArkDatePicker.Context>
-          </ArkDatePicker.TableBody>
-        </ArkDatePicker.Table>
-      </ArkDatePicker.View>
-
-      <ArkDatePicker.View view="year" className="flex flex-col gap-3">
-        <ArkDatePicker.ViewControl className="flex items-center justify-between">
-          <ArkDatePicker.PrevTrigger className={navTriggerCls}>
-            <ChevronLeft className="size-4" />
-          </ArkDatePicker.PrevTrigger>
-          <ArkDatePicker.ViewTrigger className={viewTriggerCls}>
-            <ArkDatePicker.RangeText />
-          </ArkDatePicker.ViewTrigger>
-          <ArkDatePicker.NextTrigger className={navTriggerCls}>
-            <ChevronRight className="size-4" />
-          </ArkDatePicker.NextTrigger>
-        </ArkDatePicker.ViewControl>
-        <ArkDatePicker.Table className="border-collapse">
-          <ArkDatePicker.TableBody>
-            <ArkDatePicker.Context>
-              {(api) =>
-                api.getYearsGrid({ columns: 4 }).map((years, i) => (
-                  <ArkDatePicker.TableRow key={i}>
-                    {years.map((year, j) => (
-                      <ArkDatePicker.TableCell
-                        key={j}
-                        value={year.value}
-                        className="p-0"
-                      >
-                        <ArkDatePicker.TableCellTrigger className={gridCellCls}>
-                          {year.label}
-                        </ArkDatePicker.TableCellTrigger>
-                      </ArkDatePicker.TableCell>
-                    ))}
-                  </ArkDatePicker.TableRow>
-                ))
-              }
-            </ArkDatePicker.Context>
-          </ArkDatePicker.TableBody>
-        </ArkDatePicker.Table>
-      </ArkDatePicker.View>
+      <DayView />
+      <MonthView />
+      <YearView />
     </>
   );
 }
