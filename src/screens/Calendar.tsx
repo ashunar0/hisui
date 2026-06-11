@@ -43,23 +43,22 @@ export function Calendar() {
           <header className="flex h-14 shrink-0 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
             <Breadcrumb items={[{ label: "カレンダー" }]} />
-            <div className="ml-auto flex items-center gap-1">
-              <ThemeToggle />
-            </div>
-          </header>
-          <div className="flex-1 overflow-y-auto px-6 py-4">
-            <div className="mt-8 flex flex-col gap-4">
+            <div className="ml-auto flex items-center gap-3">
               <Tabs.Root
                 value={view}
                 onValueChange={(d) => setView(d.value as View)}
               >
-                <Tabs.List className="w-fit">
+                <Tabs.List>
                   <Tabs.Trigger value="month">月</Tabs.Trigger>
                   <Tabs.Trigger value="week">週</Tabs.Trigger>
                   <Tabs.Indicator />
                 </Tabs.List>
               </Tabs.Root>
-
+              <ThemeToggle />
+            </div>
+          </header>
+          <div className="flex-1 overflow-y-auto px-6 py-4">
+            <div className="mt-8 flex flex-col gap-4">
               {view === "month" ? (
                 <>
                   <CalendarToolbar
