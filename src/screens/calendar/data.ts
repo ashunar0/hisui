@@ -31,12 +31,20 @@ export const DOT_CLASSES: Record<EventAccent, string> = {
 
 export const BLOCK_CLASSES: Record<EventAccent, string> = {
   emerald:
-    "border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300",
-  rose: "border-rose-500 bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300",
-  sky: "border-sky-500 bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300",
+    "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300",
+  rose: "bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300",
+  sky: "bg-sky-50 text-sky-700 dark:bg-sky-950/50 dark:text-sky-300",
   amber:
-    "border-amber-500 bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300",
-  neutral: "border-fg-muted bg-surface-sunken text-fg-soft",
+    "bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300",
+  neutral: "bg-surface-sunken text-fg-soft",
+};
+
+export const BORDER_CLASSES: Record<EventAccent, string> = {
+  emerald: "border-emerald-500",
+  rose: "border-rose-500",
+  sky: "border-sky-500",
+  amber: "border-amber-500",
+  neutral: "border-fg-muted",
 };
 
 export const EVENTS: CalendarEvent[] = [
