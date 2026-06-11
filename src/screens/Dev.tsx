@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { Bold, Italic, Link2, Underline } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
 import { IconButton } from "@/components/ui/icon-button";
@@ -50,6 +51,13 @@ export function Dev() {
         description="Hover で出る短いヒント。bg-fg + text-bg の反転コントラスト。"
       >
         <TooltipDemo />
+      </Section>
+
+      <Section
+        title="Checkbox"
+        description="Checked / indeterminate / disabled。Tooltip と同じ bg-fg + text-bg の世界観。"
+      >
+        <CheckboxDemo />
       </Section>
     </div>
   );
@@ -128,6 +136,33 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function CheckboxDemo() {
+  return (
+    <div className="flex flex-col gap-3">
+      <Checkbox.Root>
+        <Checkbox.Control />
+        <Checkbox.Label>Subscribe to newsletter</Checkbox.Label>
+      </Checkbox.Root>
+      <Checkbox.Root defaultChecked>
+        <Checkbox.Control />
+        <Checkbox.Label>Remember me on this device</Checkbox.Label>
+      </Checkbox.Root>
+      <Checkbox.Root checked="indeterminate">
+        <Checkbox.Control />
+        <Checkbox.Label>Select all (3 of 5 selected)</Checkbox.Label>
+      </Checkbox.Root>
+      <Checkbox.Root disabled>
+        <Checkbox.Control />
+        <Checkbox.Label>Disabled option</Checkbox.Label>
+      </Checkbox.Root>
+      <Checkbox.Root disabled defaultChecked>
+        <Checkbox.Control />
+        <Checkbox.Label>Disabled checked</Checkbox.Label>
+      </Checkbox.Root>
+    </div>
   );
 }
 
