@@ -15,11 +15,13 @@ function Root({
 }
 
 function Viewport({
+  ref,
   className,
   ...props
 }: ComponentProps<typeof ArkScrollArea.Viewport>) {
   return (
     <ArkScrollArea.Viewport
+      ref={ref}
       className={cn(
         "h-full w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className,

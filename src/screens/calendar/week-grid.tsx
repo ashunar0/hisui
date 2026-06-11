@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import {
   type CalendarEvent,
@@ -27,10 +28,10 @@ export function WeekGrid({ current }: Props) {
   const weekDays = getWeekDays(weekStart);
   const nowMinutes = today.getHours() * 60 + today.getMinutes();
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = Math.max(
+    if (viewportRef.current) {
+      viewportRef.current.scrollTop = Math.max(
         0,
         (nowMinutes - 60) * MINUTE_HEIGHT,
       );
@@ -48,7 +49,7 @@ export function WeekGrid({ current }: Props) {
 
   return (
     <div className="overflow-hidden rounded-md border border-border bg-surface">
-      <div className="grid grid-cols-[64px_repeat(7,1fr)] border-b border-border">
+      <div className="grid grid-cols-[64px_repeat(7,1fr)_8px] border-b border-border">
         <div />
         {weekDays.map((date) => {
           const isToday = isSameDay(date, today);
@@ -72,9 +73,10 @@ export function WeekGrid({ current }: Props) {
             </div>
           );
         })}
+        <div />
       </div>
 
-      <div className="grid grid-cols-[64px_repeat(7,1fr)] border-b border-border">
+      <div className="grid grid-cols-[64px_repeat(7,1fr)_8px] border-b border-border">
         <div className="px-2 py-2 text-right text-xs text-fg-muted">終日</div>
         {weekDays.map((date) => {
           const allDay = (eventsByDate[formatDateKey(date)] ?? []).filter(
@@ -91,53 +93,60 @@ export function WeekGrid({ current }: Props) {
             </div>
           );
         })}
+        <div />
       </div>
 
-      <div ref={scrollRef} className="max-h-[600px] overflow-y-auto">
-        <div className="grid grid-cols-[64px_repeat(7,1fr)]">
-          <div>
-            {HOURS.map((h) => (
-              <div
-                key={h}
-                style={{ height: HOUR_HEIGHT }}
-                className="border-b border-border-muted pr-2 pt-1 text-right text-xs text-fg-muted"
-              >
-                {h.toString().padStart(2, "0")}:00
-              </div>
-            ))}
+      <ScrollArea.Root className="h-[600px]">
+        <ScrollArea.Viewport ref={viewportRef}>
+          <div className="grid grid-cols-[64px_repeat(7,1fr)_8px]">
+            <div>
+              {HOURS.map((h) => (
+                <div
+                  key={h}
+                  style={{ height: HOUR_HEIGHT }}
+                  className="border-b border-border-muted pr-2 pt-1 text-right text-xs text-fg-muted"
+                >
+                  {h.toString().padStart(2, "0")}:00
+                </div>
+              ))}
+            </div>
+            {weekDays.map((date) => {
+              const dayEvents = eventsByDate[formatDateKey(date)] ?? [];
+              const laidOut = layoutDayEvents(dayEvents);
+              const isTodayCol = isSameDay(date, today);
+              return (
+                <div
+                  key={date.toISOString()}
+                  className="relative border-l border-border-muted"
+                >
+                  {HOURS.map((h) => (
+                    <div
+                      key={h}
+                      style={{ height: HOUR_HEIGHT }}
+                      className="border-b border-border-muted"
+                    />
+                  ))}
+                  {laidOut.map((laid) => (
+                    <WeekEventBlock key={laid.event.id} laid={laid} />
+                  ))}
+                  {isTodayCol && (
+                    <div
+                      className="pointer-events-none absolute right-0 left-0 z-10 border-t border-rose-500"
+                      style={{ top: `${nowMinutes * MINUTE_HEIGHT}px` }}
+                    >
+                      <div className="absolute -top-1 -left-1 size-2 rounded-full bg-rose-500" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <div />
           </div>
-          {weekDays.map((date) => {
-            const dayEvents = eventsByDate[formatDateKey(date)] ?? [];
-            const laidOut = layoutDayEvents(dayEvents);
-            const isTodayCol = isSameDay(date, today);
-            return (
-              <div
-                key={date.toISOString()}
-                className="relative border-l border-border-muted"
-              >
-                {HOURS.map((h) => (
-                  <div
-                    key={h}
-                    style={{ height: HOUR_HEIGHT }}
-                    className="border-b border-border-muted"
-                  />
-                ))}
-                {laidOut.map((laid) => (
-                  <WeekEventBlock key={laid.event.id} laid={laid} />
-                ))}
-                {isTodayCol && (
-                  <div
-                    className="pointer-events-none absolute right-0 left-0 z-10 border-t border-rose-500"
-                    style={{ top: `${nowMinutes * MINUTE_HEIGHT}px` }}
-                  >
-                    <div className="absolute -top-1 -left-1 size-2 rounded-full bg-rose-500" />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar>
+          <ScrollArea.Thumb />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
     </div>
   );
 }
