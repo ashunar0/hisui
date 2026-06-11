@@ -1,6 +1,13 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { Bold, Check, ChevronDown, Italic, Link2, Underline } from "lucide-react";
+import {
+  Bold,
+  Check,
+  ChevronDown,
+  Italic,
+  Link2,
+  Underline,
+} from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { NumberInput } from "@/components/ui/number-input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
+import { Steps } from "@/components/ui/steps";
 import { Textarea } from "@/components/ui/textarea";
 import { toaster } from "@/components/ui/toast";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -107,6 +115,13 @@ export function Dev() {
       >
         <SliderDemo />
       </Section>
+
+      <Section
+        title="Steps"
+        description="multi-step wizard。current は border-fg、complete は bg-fg + check。"
+      >
+        <StepsDemo />
+      </Section>
     </div>
   );
 }
@@ -184,6 +199,69 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+const WIZARD_STEPS = [
+  { title: "Account", description: "Email & password" },
+  { title: "Profile", description: "Tell us about you" },
+  { title: "Confirm", description: "Review and submit" },
+];
+
+function StepsDemo() {
+  return (
+    <div className="w-full max-w-xl">
+      <Steps.Root count={WIZARD_STEPS.length}>
+        <Steps.List>
+          {WIZARD_STEPS.map((step, i) => (
+            <Steps.Item key={step.title} index={i}>
+              <Steps.Trigger>
+                <Steps.Indicator>
+                  <Steps.CompleteIndicator />
+                  <span className="group-data-complete:hidden">{i + 1}</span>
+                </Steps.Indicator>
+                <div className="flex flex-col items-start">
+                  <span className="text-sm font-medium text-fg">
+                    {step.title}
+                  </span>
+                  <span className="text-xs text-fg-muted">
+                    {step.description}
+                  </span>
+                </div>
+              </Steps.Trigger>
+              {i < WIZARD_STEPS.length - 1 && <Steps.Separator />}
+            </Steps.Item>
+          ))}
+        </Steps.List>
+
+        {WIZARD_STEPS.map((step, i) => (
+          <Steps.Content key={step.title} index={i}>
+            <h3 className="text-base font-semibold text-fg">{step.title}</h3>
+            <p className="mt-1 text-sm text-fg-muted">{step.description}</p>
+            <p className="mt-4 text-sm text-fg-soft">
+              Step {i + 1} の中身ダミー。実際はフォームが入る。
+            </p>
+          </Steps.Content>
+        ))}
+        <Steps.CompletedContent>
+          <h3 className="text-base font-semibold text-fg">All set! 🎉</h3>
+          <p className="mt-1 text-sm text-fg-muted">
+            Wizard finished. Reset to try again.
+          </p>
+        </Steps.CompletedContent>
+
+        <div className="flex justify-between gap-2">
+          <Steps.PrevTrigger asChild>
+            <Button variant="outline" size="sm">
+              Back
+            </Button>
+          </Steps.PrevTrigger>
+          <Steps.NextTrigger asChild>
+            <Button size="sm">Next</Button>
+          </Steps.NextTrigger>
+        </div>
+      </Steps.Root>
+    </div>
   );
 }
 
@@ -292,10 +370,7 @@ function ProgressDemo() {
         <p className="text-xs text-fg-muted">Circular</p>
         <div className="flex items-center gap-6">
           {[25, 50, 75, 100, null].map((value, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-2"
-            >
+            <div key={i} className="flex flex-col items-center gap-2">
               <Progress.Root value={value}>
                 <Progress.Circle>
                   <Progress.CircleTrack />
