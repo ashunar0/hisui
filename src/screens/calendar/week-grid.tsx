@@ -85,7 +85,7 @@ export function WeekGrid({ current }: Props) {
           return (
             <div
               key={date.toISOString()}
-              className="flex min-h-[36px] flex-col gap-0.5 border-l border-border-muted p-1"
+              className="flex min-h-9 flex-col gap-0.5 border-l border-border-muted p-1"
             >
               {allDay.map((ev) => (
                 <EventPill key={ev.id} event={ev} />
@@ -96,7 +96,7 @@ export function WeekGrid({ current }: Props) {
         <div />
       </div>
 
-      <ScrollArea.Root className="h-[600px]">
+      <ScrollArea.Root className="h-150">
         <ScrollArea.Viewport ref={viewportRef}>
           <div className="grid grid-cols-[64px_repeat(7,1fr)_8px]">
             <div>
