@@ -2,7 +2,7 @@ import type { ComponentProps, HTMLAttributes, ReactElement } from "react";
 import {
   ResponsiveContainer,
   Tooltip as RechartsTooltip,
-  type TooltipProps,
+  type TooltipContentProps,
 } from "recharts";
 import { cn } from "@/lib/utils";
 
@@ -25,8 +25,6 @@ function Container({
     </div>
   );
 }
-
-type TooltipContentProps = TooltipProps<number | string, string>;
 
 function TooltipContent({ active, payload, label }: TooltipContentProps) {
   if (!active || !payload?.length) return null;
@@ -65,7 +63,7 @@ function Tooltip(props: ComponentProps<typeof RechartsTooltip>) {
         fill: "var(--color-fg)",
         fillOpacity: 0.04,
       }}
-      content={<TooltipContent />}
+      content={TooltipContent}
       {...props}
     />
   );
