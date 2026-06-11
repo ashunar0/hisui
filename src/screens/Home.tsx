@@ -9,6 +9,7 @@ const screens = [
   { to: "/settings", label: "Settings" },
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },
+  { to: "/dev", label: "Dev sandbox" },
 ];
 
 export function Home() {

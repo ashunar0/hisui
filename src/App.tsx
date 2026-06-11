@@ -3,6 +3,7 @@ import { Booking } from "@/screens/Booking";
 import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
+import { Dev } from "@/screens/Dev";
 import { Home } from "@/screens/Home";
 import { Login } from "@/screens/Login";
 import { Mail } from "@/screens/Mail";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/dev" element={<Dev />} />
       </Routes>
     </BrowserRouter>
   );
