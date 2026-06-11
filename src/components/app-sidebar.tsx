@@ -1,6 +1,7 @@
 import {
   BarChart3,
   Briefcase,
+  Calendar,
   Home,
   Settings as SettingsIcon,
   Users,
@@ -29,6 +30,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: "顧客", icon: Users },
       { label: "案件", icon: Briefcase },
+      { label: "カレンダー", icon: Calendar },
     ],
   },
   {

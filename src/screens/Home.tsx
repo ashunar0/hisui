@@ -4,6 +4,7 @@ const screens = [
   { to: "/dashboard", label: "Dashboard" },
   { to: "/mail", label: "Mail" },
   { to: "/chat", label: "Chat" },
+  { to: "/calendar", label: "Calendar" },
   { to: "/settings", label: "Settings" },
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },
