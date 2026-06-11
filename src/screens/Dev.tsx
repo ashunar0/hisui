@@ -12,6 +12,7 @@ import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
 import { NumberInput } from "@/components/ui/number-input";
 import { RadioGroup } from "@/components/ui/radio-group";
+import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
 import { toaster } from "@/components/ui/toast";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -99,6 +100,13 @@ export function Dev() {
       >
         <NumberInputDemo />
       </Section>
+
+      <Section
+        title="Slider"
+        description="単一値 / range (2 thumb) / disabled。Track は Progress と統一感、Thumb は outline ring 型。"
+      >
+        <SliderDemo />
+      </Section>
     </div>
   );
 }
@@ -176,6 +184,49 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function SliderDemo() {
+  return (
+    <div className="flex w-80 flex-col gap-8">
+      <Slider.Root defaultValue={[50]}>
+        <div className="flex items-center justify-between">
+          <Slider.Label>Volume</Slider.Label>
+          <Slider.ValueText />
+        </div>
+        <Slider.Control>
+          <Slider.Track>
+            <Slider.Range />
+          </Slider.Track>
+          <Slider.Thumb index={0} />
+        </Slider.Control>
+      </Slider.Root>
+
+      <Slider.Root defaultValue={[20, 80]} min={0} max={100}>
+        <div className="flex items-center justify-between">
+          <Slider.Label>Price range</Slider.Label>
+          <Slider.ValueText />
+        </div>
+        <Slider.Control>
+          <Slider.Track>
+            <Slider.Range />
+          </Slider.Track>
+          <Slider.Thumb index={0} />
+          <Slider.Thumb index={1} />
+        </Slider.Control>
+      </Slider.Root>
+
+      <Slider.Root defaultValue={[30]} disabled>
+        <Slider.Label>Disabled</Slider.Label>
+        <Slider.Control>
+          <Slider.Track>
+            <Slider.Range />
+          </Slider.Track>
+          <Slider.Thumb index={0} />
+        </Slider.Control>
+      </Slider.Root>
+    </div>
   );
 }
 
