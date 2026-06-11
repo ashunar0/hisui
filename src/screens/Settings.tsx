@@ -1,9 +1,10 @@
-import { Bell, Check, ChevronDown, Search } from "lucide-react";
+import { Bell, Calendar, Check, ChevronDown, Search } from "lucide-react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SettingsRow } from "@/components/settings-row";
 import { type Theme, useTheme } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { DatePicker } from "@/components/ui/date-picker";
 import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
 import { Select, createListCollection } from "@/components/ui/select";
@@ -72,6 +73,30 @@ export function Settings() {
                     Verified
                   </p>
                 </div>
+              </SettingsRow>
+              <SettingsRow
+                title="生年月日"
+                description="表示用。公開はされません"
+                htmlFor="dob"
+              >
+                <DatePicker.Root
+                  locale="ja-JP"
+                  startOfWeek={0}
+                  positioning={{ placement: "bottom-end" }}
+                >
+                  <DatePicker.Control className="md:w-72">
+                    <DatePicker.Input
+                      id="dob"
+                      placeholder="YYYY-MM-DD"
+                    />
+                    <DatePicker.Trigger>
+                      <Calendar className="size-4" />
+                    </DatePicker.Trigger>
+                  </DatePicker.Control>
+                  <DatePicker.Content>
+                    <DatePicker.Calendar />
+                  </DatePicker.Content>
+                </DatePicker.Root>
               </SettingsRow>
               <SettingsRow title="言語" description="UI の表示言語">
                 <Select.Root
