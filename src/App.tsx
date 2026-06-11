@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
+import { Toaster } from "@/components/ui/toast";
 import { Booking } from "@/screens/Booking";
 import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
@@ -12,20 +13,23 @@ import { SignUp } from "@/screens/SignUp";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/mail" element={<Mail />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/dev" element={<Dev />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/mail" element={<Mail />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/dev" element={<Dev />} />
+        </Routes>
+      </BrowserRouter>
+      <Toaster />
+    </>
   );
 }
 
