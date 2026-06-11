@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { Field } from "@/components/ui/field";
 import { IconButton } from "@/components/ui/icon-button";
 import { Input } from "@/components/ui/input";
+import { NumberInput } from "@/components/ui/number-input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { toaster } from "@/components/ui/toast";
@@ -91,6 +92,13 @@ export function Dev() {
       >
         <ProgressDemo />
       </Section>
+
+      <Section
+        title="Number Input"
+        description="入力 + 縦並び stepper。min/max/step 対応、disabled もサポート。"
+      >
+        <NumberInputDemo />
+      </Section>
     </div>
   );
 }
@@ -168,6 +176,36 @@ function DestructiveDialog() {
         </div>
       </Dialog.Content>
     </Dialog.Root>
+  );
+}
+
+function NumberInputDemo() {
+  return (
+    <div className="flex flex-wrap gap-6">
+      <NumberInput.Root defaultValue="1">
+        <NumberInput.Label>Quantity</NumberInput.Label>
+        <NumberInput.Control>
+          <NumberInput.Input />
+          <NumberInput.Stepper />
+        </NumberInput.Control>
+      </NumberInput.Root>
+
+      <NumberInput.Root defaultValue="50" min={0} max={100} step={5}>
+        <NumberInput.Label>Percent (0-100, step 5)</NumberInput.Label>
+        <NumberInput.Control>
+          <NumberInput.Input />
+          <NumberInput.Stepper />
+        </NumberInput.Control>
+      </NumberInput.Root>
+
+      <NumberInput.Root defaultValue="3" disabled>
+        <NumberInput.Label>Disabled</NumberInput.Label>
+        <NumberInput.Control>
+          <NumberInput.Input />
+          <NumberInput.Stepper />
+        </NumberInput.Control>
+      </NumberInput.Root>
+    </div>
   );
 }
 
