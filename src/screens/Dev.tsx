@@ -14,6 +14,7 @@ import { ProgressDemo } from "./dev/progress-demo";
 import { RadioGroupDemo } from "./dev/radio-group-demo";
 import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
+import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
@@ -176,6 +177,13 @@ export function Dev() {
         description="inline rename。Preview と Input が状態で切替、Edit/Submit/Cancel trigger を Control に並べる。"
       >
         <EditableDemo />
+      </Section>
+
+      <Section
+        title="Segment Group"
+        description="iOS 風 sliding indicator 付き segmented control。ToggleGroup single の代替、Tabs と同じ CSS var で indicator 移動。"
+      >
+        <SegmentGroupDemo />
       </Section>
     </div>
   );
