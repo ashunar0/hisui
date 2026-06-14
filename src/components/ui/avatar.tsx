@@ -78,8 +78,13 @@ function Fallback({ name, children, className, ...props }: FallbackProps) {
   );
 }
 
+const Context = ArkAvatar.Context;
+const RootProvider = ArkAvatar.RootProvider;
+
 export const Avatar = {
   Root,
+  RootProvider,
   Image,
   Fallback,
+  Context,
 };

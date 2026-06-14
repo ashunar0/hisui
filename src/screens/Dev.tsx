@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
+import { AvatarDemo } from "./dev/avatar-demo";
 import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
 import { ClipboardDemo } from "./dev/clipboard-demo";
@@ -151,6 +152,13 @@ export function Dev() {
         description="Indicator が --top/--left/--width/--height CSS var で sliding。pill (Calendar 風) / with icon + count Badge (Inbox 12) / vertical (Settings 左 nav 風) の 3 パターン。"
       >
         <TabsDemo />
+      </Section>
+
+      <Section
+        title="Avatar"
+        description="Image + Fallback の組み合わせ。sizes (xs〜2xl) / shapes (circle / rounded / square) + fallback (initials / icon child / broken src) / avatar group (-space-x-2 + ring で重ね合わせ、+N more)。"
+      >
+        <AvatarDemo />
       </Section>
 
       <Section
