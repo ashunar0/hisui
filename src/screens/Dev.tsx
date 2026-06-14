@@ -17,6 +17,7 @@ import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
 import { ToggleGroupDemo } from "./dev/toggle-group-demo";
 import { TooltipDemo } from "./dev/tooltip-demo";
+import { TreeViewDemo } from "./dev/tree-view-demo";
 
 export function Dev() {
   return (
@@ -144,6 +145,13 @@ export function Dev() {
         description="星 5 段階。allowHalf で 0.5 刻み、ItemContext で highlighted / half を受け取り fill 切替。"
       >
         <RatingGroupDemo />
+      </Section>
+
+      <Section
+        title="Tree View"
+        description="フォルダ風 nav。createTreeCollection + 再帰 renderNode、BranchIndicator は data-[state=open]:rotate-90 で chevron 回転。"
+      >
+        <TreeViewDemo />
       </Section>
     </div>
   );
