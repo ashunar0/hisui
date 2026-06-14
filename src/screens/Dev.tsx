@@ -240,7 +240,7 @@ export function Dev() {
 
       <Section
         title="Segment Group"
-        description="iOS 風 sliding indicator 付き segmented control。ToggleGroup single の代替、Tabs と同じ CSS var で indicator 移動。"
+        description="iOS 風 sliding indicator 付き segmented control。Label / Context / ItemContext / RootProvider も dot-namespace に export、Item で ItemHiddenInput auto mount。period selector (horizontal) / view type with icons (Grid/List/Calendar) / vertical + Label (orientation=vertical で縦並び、Enterprise disabled) の 3 パターン。"
       >
         <SegmentGroupDemo />
       </Section>

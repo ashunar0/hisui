@@ -11,8 +11,21 @@ function Root({
       className={cn(
         "relative inline-flex w-fit items-center gap-1 rounded-lg bg-surface-sunken p-1",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch",
         className,
       )}
+      {...props}
+    />
+  );
+}
+
+function Label({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSegmentGroup.Label>) {
+  return (
+    <ArkSegmentGroup.Label
+      className={cn("text-sm font-medium text-fg-soft", className)}
       {...props}
     />
   );
@@ -38,6 +51,7 @@ function Indicator({
 
 function Item({
   className,
+  children,
   ...props
 }: ComponentProps<typeof ArkSegmentGroup.Item>) {
   return (
@@ -51,7 +65,10 @@ function Item({
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+      <ArkSegmentGroup.ItemHiddenInput />
+    </ArkSegmentGroup.Item>
   );
 }
 
@@ -64,12 +81,19 @@ function ItemText({
 
 const ItemControl = ArkSegmentGroup.ItemControl;
 const ItemHiddenInput = ArkSegmentGroup.ItemHiddenInput;
+const Context = ArkSegmentGroup.Context;
+const ItemContext = ArkSegmentGroup.ItemContext;
+const RootProvider = ArkSegmentGroup.RootProvider;
 
 export const SegmentGroup = {
   Root,
+  RootProvider,
+  Label,
   Indicator,
   Item,
   ItemText,
   ItemControl,
   ItemHiddenInput,
+  Context,
+  ItemContext,
 };
