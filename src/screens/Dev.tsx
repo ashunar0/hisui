@@ -191,7 +191,7 @@ export function Dev() {
 
       <Section
         title="Pin Input"
-        description="OTP / 2FA 用。各桁 box、focus 自動移動、paste 対応。otp / numeric variant。"
+        description="Context / RootProvider も dot-namespace に export。OTP 6 digits (otp prop で autocomplete) / masked PIN 4 digits (mask で •) / with submit (Context render-prop で全桁埋まるまで Verify を disable + counter 表示) の 3 パターン。"
       >
         <PinInputDemo />
       </Section>

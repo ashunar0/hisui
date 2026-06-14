@@ -51,6 +51,7 @@ function Input({
         "focus:border-fg focus:ring-2 focus:ring-fg/20",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         "data-complete:border-fg",
+        "data-invalid:border-red-500 data-invalid:focus:ring-red-500/20",
         className,
       )}
       {...props}
@@ -59,11 +60,15 @@ function Input({
 }
 
 const HiddenInput = ArkPinInput.HiddenInput;
+const Context = ArkPinInput.Context;
+const RootProvider = ArkPinInput.RootProvider;
 
 export const PinInput = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,
   HiddenInput,
+  Context,
 };
