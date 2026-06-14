@@ -14,6 +14,7 @@ import { SliderDemo } from "./dev/slider-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
+import { ToggleGroupDemo } from "./dev/toggle-group-demo";
 import { TooltipDemo } from "./dev/tooltip-demo";
 
 export function Dev() {
@@ -128,6 +129,13 @@ export function Dev() {
         description="Prev/Next + 番号 + ellipsis。current は bg-fg + text-bg、disabled は opacity-50。"
       >
         <PaginationDemo />
+      </Section>
+
+      <Section
+        title="Toggle Group"
+        description="segmented button group。single (排他) と multiple (複数選択)。pressed は bg-fg + text-bg。"
+      >
+        <ToggleGroupDemo />
       </Section>
     </div>
   );
