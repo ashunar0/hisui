@@ -77,7 +77,7 @@ function ShareMenu() {
       <Menu.Content>
         <Menu.Item value="rename">Rename…</Menu.Item>
         <Menu.Item value="duplicate">Duplicate</Menu.Item>
-        <Menu.Root positioning={{ placement: "right-start", gutter: 4 }}>
+        <Menu.Root>
           <Menu.TriggerItem>
             <span className="flex-1">Share</span>
             <ChevronRight className="size-4" />
