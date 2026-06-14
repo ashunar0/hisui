@@ -17,8 +17,29 @@ const PRESET_COLORS = [
   "#F8FAFC",
 ];
 
+const BRAND_SWATCHES = [
+  "#0EA5E9",
+  "#10B981",
+  "#F59E0B",
+  "#EF4444",
+  "#8B5CF6",
+  "#EC4899",
+  "#14B8A6",
+  "#F97316",
+  "#6366F1",
+  "#22C55E",
+];
+
 interface SliderProps {
-  channel: "hue" | "saturation" | "lightness" | "brightness" | "red" | "green" | "blue" | "alpha";
+  channel:
+    | "hue"
+    | "saturation"
+    | "lightness"
+    | "brightness"
+    | "red"
+    | "green"
+    | "blue"
+    | "alpha";
   label: string;
   transparency?: boolean;
   eyeDropper?: boolean;
@@ -28,7 +49,9 @@ function Slider({ channel, label, transparency, eyeDropper }: SliderProps) {
   return (
     <ColorPicker.ChannelSlider channel={channel}>
       <div className="flex items-center justify-between">
-        <ColorPicker.ChannelSliderLabel>{label}</ColorPicker.ChannelSliderLabel>
+        <ColorPicker.ChannelSliderLabel>
+          {label}
+        </ColorPicker.ChannelSliderLabel>
         <ColorPicker.ChannelSliderValueText />
       </div>
       <div className="flex items-center gap-2">
@@ -46,7 +69,7 @@ function Slider({ channel, label, transparency, eyeDropper }: SliderProps) {
   );
 }
 
-export function ColorPickerDemo() {
+function FullDemo() {
   const [color, setColor] = useState<Color>(() =>
     parseColor("#10B981").toFormat("hsla"),
   );
@@ -122,6 +145,104 @@ export function ColorPickerDemo() {
         </ColorPicker.Positioner>
         <ColorPicker.HiddenInput />
       </ColorPicker.Root>
+    </div>
+  );
+}
+
+function SwatchesDemo() {
+  const [color, setColor] = useState<Color>(() => parseColor("#0EA5E9"));
+
+  return (
+    <div className="w-72">
+      <ColorPicker.Root
+        value={color}
+        onValueChange={(d) => setColor(d.value)}
+      >
+        <ColorPicker.Label>Brand color</ColorPicker.Label>
+        <ColorPicker.Control>
+          <ColorPicker.Trigger>
+            <ColorPicker.ValueSwatch />
+          </ColorPicker.Trigger>
+          <ColorPicker.ValueText />
+        </ColorPicker.Control>
+        <ColorPicker.Positioner>
+          <ColorPicker.Content className="w-fit">
+            <ColorPicker.SwatchGroup className="grid grid-cols-5 gap-1.5">
+              {BRAND_SWATCHES.map((c) => (
+                <ColorPicker.SwatchTrigger key={c} value={c}>
+                  <ColorPicker.Swatch value={c}>
+                    <ColorPicker.SwatchIndicator>
+                      <Check className="size-3.5" strokeWidth={3} />
+                    </ColorPicker.SwatchIndicator>
+                  </ColorPicker.Swatch>
+                </ColorPicker.SwatchTrigger>
+              ))}
+            </ColorPicker.SwatchGroup>
+          </ColorPicker.Content>
+        </ColorPicker.Positioner>
+        <ColorPicker.HiddenInput />
+      </ColorPicker.Root>
+    </div>
+  );
+}
+
+function InlineDemo() {
+  const [color, setColor] = useState<Color>(() =>
+    parseColor("#8B5CF6").toFormat("hsla"),
+  );
+
+  return (
+    <div className="w-72">
+      <ColorPicker.Root
+        value={color}
+        onValueChange={(d) => setColor(d.value)}
+        format="hsla"
+        className="gap-3 rounded-md border border-border bg-surface p-3"
+      >
+        <div className="flex items-center justify-between">
+          <ColorPicker.Label>Background color</ColorPicker.Label>
+          <ColorPicker.ValueText />
+        </div>
+        <ColorPicker.Area>
+          <ColorPicker.AreaBackground />
+          <ColorPicker.AreaThumb />
+        </ColorPicker.Area>
+        <div className="flex flex-col gap-3">
+          <Slider channel="hue" label="Hue" />
+          <Slider channel="alpha" label="Alpha" transparency />
+        </div>
+        <ColorPicker.Control>
+          <ColorPicker.ChannelInput channel="hex" className="h-8 text-xs" />
+        </ColorPicker.Control>
+        <ColorPicker.HiddenInput />
+      </ColorPicker.Root>
+    </div>
+  );
+}
+
+export function ColorPickerDemo() {
+  return (
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-2">
+        <span className="text-xs text-fg-muted">
+          full picker (popover + Area + Hue/Alpha + Swatches + FormatTrigger)
+        </span>
+        <FullDemo />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <span className="text-xs text-fg-muted">
+          swatches only (Trigger → popover で SwatchGroup grid)
+        </span>
+        <SwatchesDemo />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <span className="text-xs text-fg-muted">
+          inline (popover 無し、Area + Slider を settings panel 風に展開)
+        </span>
+        <InlineDemo />
+      </div>
     </div>
   );
 }

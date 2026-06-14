@@ -355,9 +355,11 @@ function Swatch({
 
 const HiddenInput = ArkColorPicker.HiddenInput;
 const Context = ArkColorPicker.Context;
+const RootProvider = ArkColorPicker.RootProvider;
 
 export const ColorPicker = {
   Root,
+  RootProvider,
   Label,
   Control,
   ChannelInput,

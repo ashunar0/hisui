@@ -100,7 +100,7 @@ export function Dev() {
 
       <Section
         title="Color Picker"
-        description="Hex input + Trigger で popover、Area で saturation/value、Hue slider、preset swatches。Brand color 設定で使う。"
+        description="RootProvider も dot-namespace に export。full popover (Area + Hue/Alpha + SwatchGroup + FormatTrigger で hsla/rgba/hsba 切替、 controlled value + onFormatChange で toFormat 同期) / swatches only (Trigger → popover で SwatchGroup grid のみ、 brand color picker 用) / inline (popover 無し、 Area + Slider を Root 直下で settings panel 風に展開) の 3 パターン。"
       >
         <ColorPickerDemo />
       </Section>
