@@ -9,6 +9,7 @@ import { PaginationDemo } from "./dev/pagination-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
 import { ProgressDemo } from "./dev/progress-demo";
 import { RadioGroupDemo } from "./dev/radio-group-demo";
+import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
 import { SliderDemo } from "./dev/slider-demo";
 import { StepsDemo } from "./dev/steps-demo";
@@ -136,6 +137,13 @@ export function Dev() {
         description="segmented button group。single (排他) と multiple (複数選択)。pressed は bg-fg + text-bg。"
       >
         <ToggleGroupDemo />
+      </Section>
+
+      <Section
+        title="Rating Group"
+        description="星 5 段階。allowHalf で 0.5 刻み、ItemContext で highlighted / half を受け取り fill 切替。"
+      >
+        <RatingGroupDemo />
       </Section>
     </div>
   );
