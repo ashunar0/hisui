@@ -177,7 +177,7 @@ export function Dev() {
 
       <Section
         title="Combobox"
-        description="入力で絞り込める select。useListCollection で filter logic を委譲。"
+        description="入力で絞り込める select。Positioner / List / ItemGroup / ItemGroupLabel / Context / ItemContext / RootProvider も dot-namespace に export。basic single (Empty fallback) / grouped (国別 ItemGroup + ClearTrigger) / multiple (Context render-prop で選択数表示) の 3 パターン。"
       >
         <ComboboxDemo />
       </Section>

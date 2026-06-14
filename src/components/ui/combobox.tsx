@@ -14,7 +14,7 @@ function Label({
 }: ComponentProps<typeof ArkCombobox.Label>) {
   return (
     <ArkCombobox.Label
-      className={cn("text-sm font-medium text-fg-soft", className)}
+      className={cn("block text-sm font-medium text-fg-soft", className)}
       {...props}
     />
   );
@@ -83,24 +83,38 @@ function ClearTrigger({
   );
 }
 
+function Positioner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.Positioner>) {
+  return <ArkCombobox.Positioner className={cn(className)} {...props} />;
+}
+
 function Content({
   className,
   ...props
 }: ComponentProps<typeof ArkCombobox.Content>) {
   return (
     <Portal>
-      <ArkCombobox.Positioner>
+      <Positioner>
         <ArkCombobox.Content
           className={cn(
-            "max-h-72 min-w-[var(--reference-width)] overflow-auto rounded-md border border-border bg-surface p-1 shadow-md focus:outline-none",
+            "max-h-72 min-w-[var(--reference-width)] overflow-auto rounded-md border border-border bg-surface p-1 shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_0_4px_rgba(0,0,0,0.03)] focus:outline-none",
             "data-[state=open]:animate-menu-open",
             className,
           )}
           {...props}
         />
-      </ArkCombobox.Positioner>
+      </Positioner>
     </Portal>
   );
+}
+
+function List({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.List>) {
+  return <ArkCombobox.List className={cn(className)} {...props} />;
 }
 
 function Empty({
@@ -109,10 +123,7 @@ function Empty({
 }: ComponentProps<typeof ArkCombobox.Empty>) {
   return (
     <ArkCombobox.Empty
-      className={cn(
-        "px-2 py-3 text-center text-xs text-fg-muted",
-        className,
-      )}
+      className={cn("px-2 py-3 text-center text-xs text-fg-muted", className)}
       {...props}
     />
   );
@@ -127,6 +138,7 @@ function Item({
       className={cn(
         "flex cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm text-fg-soft outline-none",
         "data-highlighted:bg-hover data-highlighted:text-fg",
+        "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
       {...props}
@@ -134,21 +146,78 @@ function Item({
   );
 }
 
-const ItemText = ArkCombobox.ItemText;
-const ItemIndicator = ArkCombobox.ItemIndicator;
+function ItemText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.ItemText>) {
+  return <ArkCombobox.ItemText className={cn(className)} {...props} />;
+}
+
+function ItemIndicator({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.ItemIndicator>) {
+  return (
+    <ArkCombobox.ItemIndicator
+      className={cn("text-fg", className)}
+      {...props}
+    />
+  );
+}
+
+function ItemGroup({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.ItemGroup>) {
+  return (
+    <ArkCombobox.ItemGroup
+      className={cn(
+        "flex flex-col [&:not(:first-child)]:mt-1 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-border-muted [&:not(:first-child)]:pt-1",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function ItemGroupLabel({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCombobox.ItemGroupLabel>) {
+  return (
+    <ArkCombobox.ItemGroupLabel
+      className={cn(
+        "px-2 py-1 text-[11px] font-medium uppercase tracking-wider text-fg-muted",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+const Context = ArkCombobox.Context;
+const ItemContext = ArkCombobox.ItemContext;
+const RootProvider = ArkCombobox.RootProvider;
 
 export const Combobox = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,
   Trigger,
   ClearTrigger,
+  Positioner,
   Content,
+  List,
   Empty,
   Item,
   ItemText,
   ItemIndicator,
+  ItemGroup,
+  ItemGroupLabel,
+  Context,
+  ItemContext,
 };
 
 export { useListCollection };
