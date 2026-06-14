@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
+import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
@@ -160,6 +161,13 @@ export function Dev() {
         description="Show more / advanced options。height アニメは accordion と同じ keyframes (--animate-accordion-down/up) 流用。"
       >
         <CollapsibleDemo />
+      </Section>
+
+      <Section
+        title="Clipboard"
+        description="Copy ボタン。copied prop で copied 時 icon 差替 (Copy → Check)、timeout で表示時間調整。"
+      >
+        <ClipboardDemo />
       </Section>
     </div>
   );
