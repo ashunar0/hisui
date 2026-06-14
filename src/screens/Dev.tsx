@@ -212,7 +212,7 @@ export function Dev() {
 
       <Section
         title="QR Code"
-        description="Share URL / 2FA setup 用。basic と overlay (中央ロゴ) + download trigger。encoding.ecc で誤り訂正レベル選択。"
+        description="RootProvider も dot-namespace に export。Center wrapper で Overlay 中央配置 (DownloadTrigger と同居しても center ズレない)。basic share URL (size-48 + URL text) / logo overlay + download (encoding.ecc=H で誤り訂正、 2FA setup 風 + Download PNG) / compact inline ticket (size-24 small QR + 横に event info) の 3 パターン。"
       >
         <QrCodeDemo />
       </Section>

@@ -70,9 +70,11 @@ function DownloadTrigger(
 }
 
 const Context = ArkQrCode.Context;
+const RootProvider = ArkQrCode.RootProvider;
 
 export const QrCode = {
   Root,
+  RootProvider,
   Center,
   Frame,
   Pattern,
