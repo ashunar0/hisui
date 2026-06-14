@@ -18,6 +18,35 @@ function CloseTrigger(props: ComponentProps<typeof ArkDrawer.CloseTrigger>) {
   return <ArkDrawer.CloseTrigger {...props} />;
 }
 
+function Backdrop({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDrawer.Backdrop>) {
+  return (
+    <ArkDrawer.Backdrop
+      className={cn(
+        "fixed inset-0 z-40 bg-black/40",
+        "data-[state=open]:animate-fade-in",
+        "data-[state=closed]:animate-fade-out",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function Positioner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDrawer.Positioner>) {
+  return (
+    <ArkDrawer.Positioner
+      className={cn("fixed inset-0 z-50", className)}
+      {...props}
+    />
+  );
+}
+
 function Content({
   className,
   children,
@@ -25,14 +54,8 @@ function Content({
 }: ComponentProps<typeof ArkDrawer.Content>) {
   return (
     <Portal>
-      <ArkDrawer.Backdrop
-        className={cn(
-          "fixed inset-0 z-40 bg-black/40",
-          "data-[state=open]:animate-fade-in",
-          "data-[state=closed]:animate-fade-out",
-        )}
-      />
-      <ArkDrawer.Positioner className="fixed inset-0 z-50">
+      <Backdrop />
+      <Positioner>
         <ArkDrawer.Content
           className={cn(
             "fixed flex flex-col border border-border bg-surface shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.12),0_0_4px_rgba(0,0,0,0.03)] focus:outline-none",
@@ -50,7 +73,7 @@ function Content({
         >
           {children}
         </ArkDrawer.Content>
-      </ArkDrawer.Positioner>
+      </Positioner>
     </Portal>
   );
 }
@@ -108,10 +131,14 @@ function GrabberIndicator({
 }
 
 const Context = ArkDrawer.Context;
+const RootProvider = ArkDrawer.RootProvider;
 
 export const Drawer = {
   Root,
+  RootProvider,
   Trigger,
+  Backdrop,
+  Positioner,
   Content,
   Title,
   Description,

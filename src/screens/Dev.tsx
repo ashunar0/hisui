@@ -128,7 +128,7 @@ export function Dev() {
 
       <Section
         title="Drawer"
-        description="Slide-over panel。swipeDirection で right / left / up / down、data-swipe-direction で位置と animation を切替。"
+        description="Slide-over panel。Backdrop / Positioner / RootProvider も dot-namespace に export。right (default、 Settings + body + footer) / left (mobile nav) / bottom sheet (Grabber + GrabberIndicator で iOS 風、スワイプダウンで閉じる) の 3 パターン。swipeDirection で位置と animation を切替。"
       >
         <DrawerDemo />
       </Section>
