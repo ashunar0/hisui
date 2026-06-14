@@ -32,6 +32,7 @@ import { SplitterDemo } from "./dev/splitter-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { SwitchDemo } from "./dev/switch-demo";
 import { StepsDemo } from "./dev/steps-demo";
+import { TabsDemo } from "./dev/tabs-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
 import { ToggleGroupDemo } from "./dev/toggle-group-demo";
@@ -143,6 +144,13 @@ export function Dev() {
         description="VisibilityTrigger で表示 / 非表示切替、Indicator (Eye / EyeOff) を data-state で fallback と差替。Basic / With Label + HelperText / Variants (outline / subtle / flushed) の 3 パターン。"
       >
         <PasswordInputDemo />
+      </Section>
+
+      <Section
+        title="Tabs"
+        description="Indicator が --top/--left/--width/--height CSS var で sliding。pill (Calendar 風) / with icon + count Badge (Inbox 12) / vertical (Settings 左 nav 風) の 3 パターン。"
+      >
+        <TabsDemo />
       </Section>
 
       <Section

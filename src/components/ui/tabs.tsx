@@ -67,10 +67,15 @@ function Content({
   );
 }
 
+const Context = ArkTabs.Context;
+const RootProvider = ArkTabs.RootProvider;
+
 export const Tabs = {
   Root,
+  RootProvider,
   List,
   Indicator,
   Trigger,
   Content,
+  Context,
 };
