@@ -254,7 +254,7 @@ export function Dev() {
 
       <Section
         title="Slider"
-        description="単一値 / range (2 thumb) / disabled。Track は Progress と統一感、Thumb は outline ring 型。"
+        description="MarkerGroup / Marker / DraggingIndicator / HiddenInput / Context / RootProvider も dot-namespace に export、Thumb で HiddenInput auto mount。volume (single + disabled) / price range + markers (2 thumb + $0/$25/.../$100 tick) / with DraggingIndicator (drag 中に値 bubble) の 3 パターン。"
       >
         <SliderDemo />
       </Section>

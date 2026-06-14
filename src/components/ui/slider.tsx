@@ -101,12 +101,62 @@ function Thumb({
   );
 }
 
+function MarkerGroup({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSlider.MarkerGroup>) {
+  return (
+    <ArkSlider.MarkerGroup className={cn(className)} {...props} />
+  );
+}
+
+function Marker({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSlider.Marker>) {
+  return (
+    <ArkSlider.Marker
+      className={cn(
+        "text-[10px] tabular-nums text-fg-muted",
+        "data-[state=under-value]:text-fg-soft",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function DraggingIndicator({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSlider.DraggingIndicator>) {
+  return (
+    <ArkSlider.DraggingIndicator
+      className={cn(
+        "rounded-md bg-fg px-2 py-1 text-[11px] font-medium tabular-nums text-bg shadow-md",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+const HiddenInput = ArkSlider.HiddenInput;
+const Context = ArkSlider.Context;
+const RootProvider = ArkSlider.RootProvider;
+
 export const Slider = {
   Root,
+  RootProvider,
   Label,
   ValueText,
   Control,
   Track,
   Range,
   Thumb,
+  HiddenInput,
+  MarkerGroup,
+  Marker,
+  DraggingIndicator,
+  Context,
 };
