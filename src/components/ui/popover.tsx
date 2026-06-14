@@ -31,8 +31,13 @@ function Content({
   );
 }
 
+function CloseTrigger(props: ComponentProps<typeof ArkPopover.CloseTrigger>) {
+  return <ArkPopover.CloseTrigger {...props} />;
+}
+
 export const Popover = {
   Root,
   Trigger,
   Content,
+  CloseTrigger,
 };
