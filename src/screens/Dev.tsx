@@ -79,7 +79,7 @@ export function Dev() {
 
       <Section
         title="Hover Card"
-        description="Hover で出る非モーダル overlay。@mention の user profile / link preview / 用語の inline help。openDelay/closeDelay 調整可能。"
+        description="Hover で出る非モーダル overlay。Positioner / Arrow / ArrowTip / Context / RootProvider も dot-namespace に export。@mention user profile / link preview (p-0 flush) / inline help (Arrow + ArrowTip で trigger を指す、placement=top) の 3 パターン。"
       >
         <HoverCardDemo />
       </Section>
