@@ -1,5 +1,6 @@
 import { Check, Copy, Filter, Plus, Share2 } from "lucide-react";
 import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
@@ -77,9 +78,9 @@ function FilterPopover() {
           <Filter className="size-4" />
           Status
           {selected.length > 0 && (
-            <span className="ml-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-fg px-1 text-[10px] font-medium text-bg">
+            <Badge className="h-4 min-w-4 justify-center rounded-full p-0 text-[10px] leading-none">
               {selected.length}
-            </span>
+            </Badge>
           )}
         </Button>
       </Popover.Trigger>
