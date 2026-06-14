@@ -72,7 +72,7 @@ export function Dev() {
 
       <Section
         title="Tooltip"
-        description="Hover で出る短いヒント。bg-fg + text-bg の反転コントラスト。"
+        description="Hover で出るヒント。Positioner / Arrow / ArrowTip / Context / RootProvider も dot-namespace に export。simple hint / toolbar (icon-only button に label + shortcut) / with Arrow (help icon + positioning prop で右配置) の 3 パターン。"
       >
         <TooltipDemo />
       </Section>
