@@ -86,7 +86,7 @@ export function Dev() {
 
       <Section
         title="Popover"
-        description="Click 型 overlay。Quick add form / Filter (Checkbox + count badge) / Share link (URL + Copy)。CloseTrigger で閉じる、HoverCard より複雑な inline 操作向け。"
+        description="Click 型 overlay。Anchor / Positioner / Arrow / ArrowTip / Title / Description / Indicator も dot-namespace に export。quick add (Title+Description+Arrow) / filter (Trigger Indicator で chevron 回転) / share link の 3 パターン。"
       >
         <PopoverDemo />
       </Section>
