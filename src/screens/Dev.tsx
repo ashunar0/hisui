@@ -13,6 +13,7 @@ import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
 import { ProgressDemo } from "./dev/progress-demo";
+import { QrCodeDemo } from "./dev/qr-code-demo";
 import { RadioGroupDemo } from "./dev/radio-group-demo";
 import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
@@ -208,6 +209,13 @@ export function Dev() {
         description="Hero slider / image gallery。Prev/Next を overlay、Indicator は current で長方形に伸びる。loop + autoplay で auto cycle。"
       >
         <CarouselDemo />
+      </Section>
+
+      <Section
+        title="QR Code"
+        description="Share URL / 2FA setup 用。basic と overlay (中央ロゴ) + download trigger。encoding.ecc で誤り訂正レベル選択。"
+      >
+        <QrCodeDemo />
       </Section>
     </div>
   );
