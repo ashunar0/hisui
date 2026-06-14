@@ -58,7 +58,7 @@ export function Dev() {
 
       <Section
         title="Dialog"
-        description="Modal overlay with backdrop, title, description."
+        description="Modal overlay。basic confirmation / destructive (Context render-prop で title に対象名 embed) / form (Field + Input + Textarea) の 3 パターン。Backdrop と Positioner も dot-namespace に export 済み。"
       >
         <DialogDemo />
       </Section>
