@@ -6,6 +6,7 @@ import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
+import { EditableDemo } from "./dev/editable-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
@@ -168,6 +169,13 @@ export function Dev() {
         description="Copy ボタン。copied prop で copied 時 icon 差替 (Copy → Check)、timeout で表示時間調整。"
       >
         <ClipboardDemo />
+      </Section>
+
+      <Section
+        title="Editable"
+        description="inline rename。Preview と Input が状態で切替、Edit/Submit/Cancel trigger を Control に並べる。"
+      >
+        <EditableDemo />
       </Section>
     </div>
   );
