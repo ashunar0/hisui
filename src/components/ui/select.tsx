@@ -8,6 +8,30 @@ import { cn } from "@/lib/utils";
 
 const Root = ArkSelect.Root;
 
+function Label({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.Label>) {
+  return (
+    <ArkSelect.Label
+      className={cn("text-sm font-medium text-fg", className)}
+      {...props}
+    />
+  );
+}
+
+function Control({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.Control>) {
+  return (
+    <ArkSelect.Control
+      className={cn("relative inline-flex items-center", className)}
+      {...props}
+    />
+  );
+}
+
 function Trigger({
   className,
   ...props
@@ -19,6 +43,7 @@ function Trigger({
         "hover:bg-hover",
         "focus-visible:ring-2 focus-visible:ring-fg/20",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "data-placeholder-shown:text-fg-muted",
         className,
       )}
       {...props}
@@ -26,7 +51,14 @@ function Trigger({
   );
 }
 
-const ValueText = ArkSelect.ValueText;
+function ValueText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.ValueText>) {
+  return (
+    <ArkSelect.ValueText className={cn("truncate", className)} {...props} />
+  );
+}
 
 function Indicator({
   className,
@@ -41,6 +73,25 @@ function Indicator({
       {...props}
     />
   );
+}
+
+function ClearTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.ClearTrigger>) {
+  return (
+    <ArkSelect.ClearTrigger
+      className={cn(
+        "inline-flex size-5 cursor-pointer items-center justify-center rounded text-fg-muted hover:bg-hover hover:text-fg",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function Positioner(props: ComponentProps<typeof ArkSelect.Positioner>) {
+  return <ArkSelect.Positioner {...props} />;
 }
 
 function Content({
@@ -63,11 +114,38 @@ function Content({
   );
 }
 
-function Item({ className, ...props }: ComponentProps<typeof ArkSelect.Item>) {
+function List({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.List>) {
   return (
-    <ArkSelect.Item
+    <ArkSelect.List
+      className={cn("flex flex-col gap-0.5", className)}
+      {...props}
+    />
+  );
+}
+
+function ItemGroup({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.ItemGroup>) {
+  return (
+    <ArkSelect.ItemGroup
+      className={cn("flex flex-col gap-0.5", className)}
+      {...props}
+    />
+  );
+}
+
+function ItemGroupLabel({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.ItemGroupLabel>) {
+  return (
+    <ArkSelect.ItemGroupLabel
       className={cn(
-        "flex cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm text-fg-soft outline-none data-highlighted:bg-hover data-highlighted:text-fg",
+        "px-2 pt-1.5 pb-1 text-[11px] font-medium tracking-wide text-fg-muted uppercase",
         className,
       )}
       {...props}
@@ -75,18 +153,53 @@ function Item({ className, ...props }: ComponentProps<typeof ArkSelect.Item>) {
   );
 }
 
-const ItemText = ArkSelect.ItemText;
+function Item({ className, ...props }: ComponentProps<typeof ArkSelect.Item>) {
+  return (
+    <ArkSelect.Item
+      className={cn(
+        "flex cursor-pointer items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm text-fg-soft outline-none data-highlighted:bg-hover data-highlighted:text-fg data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function ItemText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.ItemText>) {
+  return (
+    <ArkSelect.ItemText className={cn("truncate", className)} {...props} />
+  );
+}
+
 const ItemIndicator = ArkSelect.ItemIndicator;
+const HiddenSelect = ArkSelect.HiddenSelect;
+const Context = ArkSelect.Context;
+const ItemContext = ArkSelect.ItemContext;
+const RootProvider = ArkSelect.RootProvider;
 
 export const Select = {
   Root,
+  RootProvider,
+  Label,
+  Control,
   Trigger,
   ValueText,
   Indicator,
+  ClearTrigger,
+  Positioner,
   Content,
+  List,
+  ItemGroup,
+  ItemGroupLabel,
   Item,
   ItemText,
   ItemIndicator,
+  HiddenSelect,
+  Context,
+  ItemContext,
 };
 
 export { createListCollection };

@@ -22,6 +22,7 @@ import { RadioGroupDemo } from "./dev/radio-group-demo";
 import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
+import { SelectDemo } from "./dev/select-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { StepsDemo } from "./dev/steps-demo";
@@ -87,6 +88,13 @@ export function Dev() {
         description="Dropdown menu。Item + shortcut + disabled + destructive / Submenu (TriggerItem) / ItemGroup + Label + RadioItemGroup + CheckboxItem の 3 パターン。"
       >
         <MenuDemo />
+      </Section>
+
+      <Section
+        title="Select"
+        description="Dropdown select。Basic (single + Label + Indicator + ItemIndicator) / Grouped (ItemGroup + ItemGroupLabel で region 別) / Clearable + form (ClearTrigger + HiddenSelect で form submit 対応)。"
+      >
+        <SelectDemo />
       </Section>
 
       <Section
