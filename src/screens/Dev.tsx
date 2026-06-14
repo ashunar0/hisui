@@ -219,7 +219,7 @@ export function Dev() {
 
       <Section
         title="Radio Group"
-        description="checked 時 ring が黒くなって中に小さな dot。Checkbox と統一感。"
+        description="Indicator / ItemHiddenInput / Context / ItemContext / RootProvider も dot-namespace に export。basic vertical (default dot + disabled) / plan cards (Item を card 化、 data-[state=checked]:border-fg + bg-active で選択 highlight) / segmented horizontal (Indicator で sliding 選択、Tabs と同じ CSS var) の 3 パターン。"
       >
         <RadioGroupDemo />
       </Section>

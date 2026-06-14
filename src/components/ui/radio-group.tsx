@@ -14,6 +14,36 @@ function Root({
   );
 }
 
+function Label({
+  className,
+  ...props
+}: ComponentProps<typeof ArkRadioGroup.Label>) {
+  return (
+    <ArkRadioGroup.Label
+      className={cn("text-sm font-medium text-fg-soft", className)}
+      {...props}
+    />
+  );
+}
+
+function Indicator({
+  className,
+  ...props
+}: ComponentProps<typeof ArkRadioGroup.Indicator>) {
+  return (
+    <ArkRadioGroup.Indicator
+      className={cn(
+        "absolute top-[var(--top)] left-[var(--left)] h-[var(--height)] w-[var(--width)] rounded-md bg-surface",
+        "shadow-[0_1px_0_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.06),0_0_4px_rgba(0,0,0,0.03)]",
+        "dark:shadow-[0_1px_0_rgba(0,0,0,0.4),0_4px_8px_rgba(0,0,0,0.4),0_0_4px_rgba(0,0,0,0.2)]",
+        "transition-[left,top,width,height] duration-200 ease-out",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function Item({
   className,
   children,
@@ -64,22 +94,20 @@ function ItemText({
   );
 }
 
-function Label({
-  className,
-  ...props
-}: ComponentProps<typeof ArkRadioGroup.Label>) {
-  return (
-    <ArkRadioGroup.Label
-      className={cn("text-sm font-medium text-fg-soft", className)}
-      {...props}
-    />
-  );
-}
+const ItemHiddenInput = ArkRadioGroup.ItemHiddenInput;
+const Context = ArkRadioGroup.Context;
+const ItemContext = ArkRadioGroup.ItemContext;
+const RootProvider = ArkRadioGroup.RootProvider;
 
 export const RadioGroup = {
   Root,
+  RootProvider,
+  Label,
+  Indicator,
   Item,
   ItemControl,
   ItemText,
-  Label,
+  ItemHiddenInput,
+  Context,
+  ItemContext,
 };
