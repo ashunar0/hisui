@@ -69,9 +69,11 @@ function ResizeTriggerIndicator({
 }
 
 const Context = ArkSplitter.Context;
+const RootProvider = ArkSplitter.RootProvider;
 
 export const Splitter = {
   Root,
+  RootProvider,
   Panel,
   ResizeTrigger,
   ResizeTriggerIndicator,

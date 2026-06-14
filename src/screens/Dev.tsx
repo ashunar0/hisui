@@ -261,7 +261,7 @@ export function Dev() {
 
       <Section
         title="Splitter"
-        description="Resizable panes。horizontal / vertical、min/max 制約付き。trigger を hover/drag で highlight。"
+        description="RootProvider も dot-namespace に export。親 div に高さを持たせると Root の inline style height:100% が効く。horizontal sidebar + main (sidebar minSize/maxSize 制約) / vertical 3-panel (editor + preview + console) / nested IDE 風 (horizontal sidebar + 右が vertical で main + terminal に分割、 内側 Splitter は border-0 で外枠と一体化) の 3 パターン。"
       >
         <SplitterDemo />
       </Section>
