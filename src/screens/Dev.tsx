@@ -5,6 +5,7 @@ import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
 import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
+import { ColorPickerDemo } from "./dev/color-picker-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
@@ -216,6 +217,13 @@ export function Dev() {
         description="Share URL / 2FA setup 用。basic と overlay (中央ロゴ) + download trigger。encoding.ecc で誤り訂正レベル選択。"
       >
         <QrCodeDemo />
+      </Section>
+
+      <Section
+        title="Color Picker"
+        description="Hex input + Trigger で popover、Area で saturation/value、Hue slider、preset swatches。Brand color 設定で使う。"
+      >
+        <ColorPickerDemo />
       </Section>
     </div>
   );
