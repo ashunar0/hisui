@@ -6,6 +6,7 @@ import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
+import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
@@ -192,6 +193,13 @@ export function Dev() {
         description="Resizable panes。horizontal / vertical、min/max 制約付き。trigger を hover/drag で highlight。"
       >
         <SplitterDemo />
+      </Section>
+
+      <Section
+        title="Drawer"
+        description="Slide-over panel。swipeDirection で right / left / up / down、data-swipe-direction で位置と animation を切替。"
+      >
+        <DrawerDemo />
       </Section>
     </div>
   );
