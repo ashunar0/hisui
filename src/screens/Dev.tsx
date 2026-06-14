@@ -268,7 +268,7 @@ export function Dev() {
 
       <Section
         title="Steps"
-        description="multi-step wizard。current は border-fg、complete は bg-fg + check。"
+        description="Progress / Context / ItemContext / RootProvider も dot-namespace に export。Root / List / Item / Separator に orientation=vertical 対応。horizontal wizard (Account / Profile / Confirm + CompletedContent) / compact + counter (number only + Context で step N / total) / vertical sidebar (onboarding 左 nav 風) の 3 パターン。"
       >
         <StepsDemo />
       </Section>

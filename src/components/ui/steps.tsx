@@ -9,7 +9,10 @@ function Root({
 }: ComponentProps<typeof ArkSteps.Root>) {
   return (
     <ArkSteps.Root
-      className={cn("flex flex-col gap-6", className)}
+      className={cn(
+        "flex flex-col gap-6 data-[orientation=vertical]:flex-row",
+        className,
+      )}
       {...props}
     />
   );
@@ -21,7 +24,11 @@ function List({
 }: ComponentProps<typeof ArkSteps.List>) {
   return (
     <ArkSteps.List
-      className={cn("flex items-center gap-2", className)}
+      className={cn(
+        "flex items-center gap-2",
+        "data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch",
+        className,
+      )}
       {...props}
     />
   );
@@ -33,7 +40,11 @@ function Item({
 }: ComponentProps<typeof ArkSteps.Item>) {
   return (
     <ArkSteps.Item
-      className={cn("flex flex-1 items-center gap-2", className)}
+      className={cn(
+        "flex flex-1 items-center gap-2",
+        "data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start",
+        className,
+      )}
       {...props}
     />
   );
@@ -93,6 +104,7 @@ function Separator({
       className={cn(
         "h-px flex-1 bg-border transition-colors",
         "data-[complete]:bg-fg",
+        "data-[orientation=vertical]:h-auto data-[orientation=vertical]:w-px data-[orientation=vertical]:flex-none data-[orientation=vertical]:self-stretch",
         className,
       )}
       {...props}
@@ -130,11 +142,27 @@ function CompletedContent({
   );
 }
 
+function Progress({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSteps.Progress>) {
+  return (
+    <ArkSteps.Progress
+      className={cn("text-xs tabular-nums text-fg-muted", className)}
+      {...props}
+    />
+  );
+}
+
 const NextTrigger = ArkSteps.NextTrigger;
 const PrevTrigger = ArkSteps.PrevTrigger;
+const Context = ArkSteps.Context;
+const ItemContext = ArkSteps.ItemContext;
+const RootProvider = ArkSteps.RootProvider;
 
 export const Steps = {
   Root,
+  RootProvider,
   List,
   Item,
   Trigger,
@@ -145,4 +173,7 @@ export const Steps = {
   CompletedContent,
   NextTrigger,
   PrevTrigger,
+  Progress,
+  Context,
+  ItemContext,
 };
