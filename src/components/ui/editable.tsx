@@ -133,9 +133,11 @@ function CancelTrigger({
 }
 
 const Context = ArkEditable.Context;
+const RootProvider = ArkEditable.RootProvider;
 
 export const Editable = {
   Root,
+  RootProvider,
   Label,
   Area,
   Preview,

@@ -135,7 +135,7 @@ export function Dev() {
 
       <Section
         title="Editable"
-        description="inline rename。Preview と Input が状態で切替、Edit/Submit/Cancel trigger を Control に並べる。"
+        description="RootProvider も dot-namespace に export。focus mode (click → edit、 blur で auto save) / with Edit / Submit / Cancel trigger (Ark が editing 状態で自動 swap) / dblclick + Context (Context render-prop で editing を判別、 heading style + 右に edit pencil button + helper text を editing 状態で出し分け) の 3 パターン。"
       >
         <EditableDemo />
       </Section>
