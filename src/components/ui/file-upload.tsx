@@ -3,6 +3,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 const Root = ArkFileUpload.Root;
+const RootProvider = ArkFileUpload.RootProvider;
 const HiddenInput = ArkFileUpload.HiddenInput;
 const Label = ArkFileUpload.Label;
 const Context = ArkFileUpload.Context;
@@ -41,6 +42,7 @@ function Dropzone({
 
 export const FileUpload = {
   Root,
+  RootProvider,
   HiddenInput,
   Trigger,
   Dropzone,

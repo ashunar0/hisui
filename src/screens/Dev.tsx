@@ -11,6 +11,7 @@ import { DatePickerDemo } from "./dev/date-picker-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
+import { FileUploadDemo } from "./dev/file-upload-demo";
 import { HoverCardDemo } from "./dev/hover-card-demo";
 import { MenuDemo } from "./dev/menu-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
@@ -119,6 +120,13 @@ export function Dev() {
         description="ja-JP locale で日付選択。single / range (numOfMonths=2、Input 2 つ + ClearTrigger) / multiple (Context render-prop で選択数表示)。Calendar compound は Day → Month → Year view 全部入り。"
       >
         <DatePickerDemo />
+      </Section>
+
+      <Section
+        title="File Upload"
+        description="Dropzone (画像複数 + ItemPreview + ItemSizeText + ItemDeleteTrigger + ClearTrigger) / Document (PDF 1 つ、Button trigger + 選択 file 名表示) / Avatar (画像 1 枚 + Avatar.Image preview)。"
+      >
+        <FileUploadDemo />
       </Section>
 
       <Section
