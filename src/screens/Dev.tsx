@@ -79,7 +79,7 @@ export function Dev() {
 
       <Section
         title="Checkbox"
-        description="Checked / indeterminate / disabled。Tooltip と同じ bg-fg + text-bg の世界観。"
+        description="Group / GroupProvider / Indicator / HiddenInput / Context / RootProvider も dot-namespace に export。states (default / checked / indeterminate / disabled) / Group (newsletter category) / select all (parent が indeterminate ↔ all、TODO list で checked 時 strikethrough) の 3 パターン。"
       >
         <CheckboxDemo />
       </Section>

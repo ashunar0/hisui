@@ -24,6 +24,7 @@ function Root({
 
 function Control({
   className,
+  children,
   ...props
 }: ComponentProps<typeof ArkCheckbox.Control>) {
   return (
@@ -36,12 +37,16 @@ function Control({
       )}
       {...props}
     >
-      <ArkCheckbox.Indicator>
-        <Check className="size-3" strokeWidth={3} />
-      </ArkCheckbox.Indicator>
-      <ArkCheckbox.Indicator indeterminate>
-        <Minus className="size-3" strokeWidth={3} />
-      </ArkCheckbox.Indicator>
+      {children ?? (
+        <>
+          <ArkCheckbox.Indicator>
+            <Check className="size-3" strokeWidth={3} />
+          </ArkCheckbox.Indicator>
+          <ArkCheckbox.Indicator indeterminate>
+            <Minus className="size-3" strokeWidth={3} />
+          </ArkCheckbox.Indicator>
+        </>
+      )}
     </ArkCheckbox.Control>
   );
 }
@@ -58,8 +63,32 @@ function Label({
   );
 }
 
+function Group({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCheckbox.Group>) {
+  return (
+    <ArkCheckbox.Group
+      className={cn("flex flex-col gap-2", className)}
+      {...props}
+    />
+  );
+}
+
+const Indicator = ArkCheckbox.Indicator;
+const HiddenInput = ArkCheckbox.HiddenInput;
+const Context = ArkCheckbox.Context;
+const RootProvider = ArkCheckbox.RootProvider;
+const GroupProvider = ArkCheckbox.GroupProvider;
+
 export const Checkbox = {
   Root,
+  RootProvider,
+  Group,
+  GroupProvider,
   Control,
+  Indicator,
   Label,
+  HiddenInput,
+  Context,
 };
