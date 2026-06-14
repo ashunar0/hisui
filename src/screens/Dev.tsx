@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
+import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
 import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
@@ -200,6 +201,13 @@ export function Dev() {
         description="Slide-over panel。swipeDirection で right / left / up / down、data-swipe-direction で位置と animation を切替。"
       >
         <DrawerDemo />
+      </Section>
+
+      <Section
+        title="Carousel"
+        description="Hero slider / image gallery。Prev/Next を overlay、Indicator は current で長方形に伸びる。loop + autoplay で auto cycle。"
+      >
+        <CarouselDemo />
       </Section>
     </div>
   );
