@@ -11,6 +11,7 @@ import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
 import { HoverCardDemo } from "./dev/hover-card-demo";
+import { MenuDemo } from "./dev/menu-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
 import { PopoverDemo } from "./dev/popover-demo";
@@ -79,6 +80,13 @@ export function Dev() {
         description="Click 型 overlay。Quick add form / Filter (Checkbox + count badge) / Share link (URL + Copy)。CloseTrigger で閉じる、HoverCard より複雑な inline 操作向け。"
       >
         <PopoverDemo />
+      </Section>
+
+      <Section
+        title="Menu"
+        description="Dropdown menu。Item + shortcut + disabled + destructive / Submenu (TriggerItem) / ItemGroup + Label + RadioItemGroup + CheckboxItem の 3 パターン。"
+      >
+        <MenuDemo />
       </Section>
 
       <Section
