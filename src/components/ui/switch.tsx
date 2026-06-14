@@ -66,9 +66,16 @@ function Label({
   );
 }
 
+const HiddenInput = ArkSwitch.HiddenInput;
+const Context = ArkSwitch.Context;
+const RootProvider = ArkSwitch.RootProvider;
+
 export const Switch = {
   Root,
+  RootProvider,
   Control,
   Thumb,
   Label,
+  HiddenInput,
+  Context,
 };

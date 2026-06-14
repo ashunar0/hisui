@@ -25,6 +25,7 @@ import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SelectDemo } from "./dev/select-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
 import { SliderDemo } from "./dev/slider-demo";
+import { SwitchDemo } from "./dev/switch-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
@@ -95,6 +96,13 @@ export function Dev() {
         description="Dropdown select。Basic (single + Label + Indicator + ItemIndicator) / Grouped (ItemGroup + ItemGroupLabel で region 別) / Clearable + form (ClearTrigger + HiddenSelect で form submit 対応)。"
       >
         <SelectDemo />
+      </Section>
+
+      <Section
+        title="Switch"
+        description="ON/OFF toggle。Basic (default / checked / disabled / disabled+checked) と Settings list (divide-y で title + description + 右 Switch の row pattern)。"
+      >
+        <SwitchDemo />
       </Section>
 
       <Section
