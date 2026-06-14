@@ -139,7 +139,7 @@ function AreaThumb({
   return (
     <ArkColorPicker.AreaThumb
       className={cn(
-        "size-4 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.4)] outline-none",
+        "size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.4)] outline-none",
         "focus-visible:ring-2 focus-visible:ring-fg/30",
         className,
       )}
@@ -182,7 +182,7 @@ function ChannelSliderThumb({
   return (
     <ArkColorPicker.ChannelSliderThumb
       className={cn(
-        "size-4 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.4)] outline-none",
+        "size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.4)] outline-none",
         "focus-visible:ring-2 focus-visible:ring-fg/30",
         className,
       )}
