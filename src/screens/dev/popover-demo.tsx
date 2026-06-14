@@ -28,9 +28,7 @@ function QuickAddPopover() {
       <Popover.Content className="w-72 p-0">
         <div className="border-b border-border px-4 py-3">
           <h4 className="text-sm font-semibold text-fg">Add task</h4>
-          <p className="text-xs text-fg-muted">
-            Enter a title and press Save.
-          </p>
+          <p className="text-xs text-fg-muted">Enter a title and press Save.</p>
         </div>
         <form
           className="flex flex-col gap-4 p-4"
@@ -69,9 +67,7 @@ function FilterPopover() {
   const [selected, setSelected] = useState<string[]>(["todo", "in-progress"]);
   const toggle = (value: string) => {
     setSelected((prev) =>
-      prev.includes(value)
-        ? prev.filter((v) => v !== value)
-        : [...prev, value],
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
     );
   };
   return (
@@ -157,9 +153,7 @@ function SharePopover() {
               )}
             </Button>
           </div>
-          <p className="text-xs text-fg-muted">
-            Link expires in 24 hours.
-          </p>
+          <p className="text-xs text-fg-muted">Link expires in 24 hours.</p>
         </div>
       </Popover.Content>
     </Popover.Root>
