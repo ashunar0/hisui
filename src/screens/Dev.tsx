@@ -289,7 +289,7 @@ export function Dev() {
 
       <Section
         title="Tags Input"
-        description="Enter で tag 追加、× で削除。Context render-prop で items を iterate。"
+        description="RootProvider / ItemContext / ClearTrigger / HiddenInput も dot-namespace に export。Skills (default + ClearTrigger、 Context render-prop で items iterate) / email recipients + validate (validate callback で email 形式チェック、 invalid な文字列は Enter しても無視) / max=5 + Context counter (上限到達で Input が data-disabled、 Context で count / max 表示) の 3 パターン。"
       >
         <TagsInputDemo />
       </Section>

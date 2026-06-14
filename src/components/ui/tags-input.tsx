@@ -122,10 +122,32 @@ function ItemInput({
   );
 }
 
+function ClearTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkTagsInput.ClearTrigger>) {
+  return (
+    <ArkTagsInput.ClearTrigger
+      className={cn(
+        "inline-flex h-7 cursor-pointer items-center gap-1 rounded-md px-2 text-xs font-medium text-fg-muted outline-none transition-colors",
+        "hover:bg-hover hover:text-fg",
+        "focus-visible:ring-2 focus-visible:ring-fg/30",
+        "data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:hover:bg-transparent data-disabled:hover:text-fg-muted",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 const Context = ArkTagsInput.Context;
+const ItemContext = ArkTagsInput.ItemContext;
+const RootProvider = ArkTagsInput.RootProvider;
+const HiddenInput = ArkTagsInput.HiddenInput;
 
 export const TagsInput = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,
@@ -134,5 +156,8 @@ export const TagsInput = {
   ItemText,
   ItemDeleteTrigger,
   ItemInput,
+  ClearTrigger,
+  HiddenInput,
   Context,
+  ItemContext,
 };
