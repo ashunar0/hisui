@@ -28,7 +28,15 @@ export function Login() {
           </Field.Root>
           <Field.Root className="gap-0">
             <Field.Label>パスワード</Field.Label>
-            <PasswordInput variant="flushed" placeholder="8文字以上" />
+            <PasswordInput.Root>
+              <PasswordInput.Control>
+                <PasswordInput.Input
+                  placeholder="8文字以上"
+                  className="rounded-none border-0 border-b bg-transparent focus:border-fg-soft focus:ring-0"
+                />
+                <PasswordInput.VisibilityTrigger />
+              </PasswordInput.Control>
+            </PasswordInput.Root>
           </Field.Root>
         </Stack>
       </Card.Body>

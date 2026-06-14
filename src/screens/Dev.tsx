@@ -17,6 +17,7 @@ import { HoverCardDemo } from "./dev/hover-card-demo";
 import { MenuDemo } from "./dev/menu-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
+import { PasswordInputDemo } from "./dev/password-input-demo";
 import { PopoverDemo } from "./dev/popover-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
 import { ProgressDemo } from "./dev/progress-demo";
@@ -135,6 +136,13 @@ export function Dev() {
         description="Form field wrapper。required (RequiredIndicator + HelperText) / invalid (ErrorText + aria-invalid で border 赤) / Textarea + Select (disabled state)。Ark UI が a11y attribute (aria-describedby / aria-invalid / aria-required) を自動配線。"
       >
         <FieldDemo />
+      </Section>
+
+      <Section
+        title="Password Input"
+        description="VisibilityTrigger で表示 / 非表示切替、Indicator (Eye / EyeOff) を data-state で fallback と差替。Basic / With Label + HelperText / Variants (outline / subtle / flushed) の 3 パターン。"
+      >
+        <PasswordInputDemo />
       </Section>
 
       <Section
