@@ -303,7 +303,7 @@ export function Dev() {
 
       <Section
         title="Toggle Group"
-        description="segmented button group。single (排他) と multiple (複数選択)。pressed は bg-fg + text-bg。"
+        description="segmented button group。Context / RootProvider も dot-namespace に export。view switcher (single 排他、 icon + text) / text align (single icons + aria-label) / text style (multiple、 Bold+Italic 同時 on) の 3 パターン。pressed は bg-fg + text-bg。"
       >
         <ToggleGroupDemo />
       </Section>

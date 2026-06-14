@@ -37,7 +37,12 @@ function Item({
   );
 }
 
+const Context = ArkToggleGroup.Context;
+const RootProvider = ArkToggleGroup.RootProvider;
+
 export const ToggleGroup = {
   Root,
+  RootProvider,
   Item,
+  Context,
 };
