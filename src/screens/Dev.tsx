@@ -184,7 +184,7 @@ export function Dev() {
 
       <Section
         title="Accordion"
-        description="border-bottom 区切りの折りたたみ。multiple で複数同時展開も可能。"
+        description="border-bottom 区切りの折りたたみ。Context / ItemContext / RootProvider も dot-namespace に export。single (chevron) / multiple (左 icon + 設定 group) / plus-minus (ItemContext render-prop で open に応じて Plus を 45° 回転) の 3 パターン。"
       >
         <AccordionDemo />
       </Section>

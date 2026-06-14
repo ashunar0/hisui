@@ -24,10 +24,7 @@ function Item({
 }: ComponentProps<typeof ArkAccordion.Item>) {
   return (
     <ArkAccordion.Item
-      className={cn(
-        "border-b border-border-muted last:border-b-0",
-        className,
-      )}
+      className={cn("border-b border-border-muted last:border-b-0", className)}
       {...props}
     />
   );
@@ -52,6 +49,7 @@ function ItemTrigger({
 
 function ItemIndicator({
   className,
+  children,
   ...props
 }: ComponentProps<typeof ArkAccordion.ItemIndicator>) {
   return (
@@ -62,7 +60,7 @@ function ItemIndicator({
       )}
       {...props}
     >
-      <ChevronDown className="size-4" />
+      {children ?? <ChevronDown className="size-4" />}
     </ArkAccordion.ItemIndicator>
   );
 }
@@ -87,10 +85,17 @@ function ItemContent({
   );
 }
 
+const Context = ArkAccordion.Context;
+const ItemContext = ArkAccordion.ItemContext;
+const RootProvider = ArkAccordion.RootProvider;
+
 export const Accordion = {
   Root,
+  RootProvider,
   Item,
   ItemTrigger,
   ItemIndicator,
   ItemContent,
+  Context,
+  ItemContext,
 };
