@@ -16,6 +16,7 @@ import { FieldDemo } from "./dev/field-demo";
 import { FieldsetDemo } from "./dev/fieldset-demo";
 import { FileUploadDemo } from "./dev/file-upload-demo";
 import { HoverCardDemo } from "./dev/hover-card-demo";
+import { ListboxDemo } from "./dev/listbox-demo";
 import { MenuDemo } from "./dev/menu-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
@@ -168,6 +169,13 @@ export function Dev() {
         description="Hover で出る非モーダル overlay。Positioner / Arrow / ArrowTip / Context / RootProvider も dot-namespace に export。@mention user profile / link preview (p-0 flush) / inline help (Arrow + ArrowTip で trigger を指す、placement=top) の 3 パターン。"
       >
         <HoverCardDemo />
+      </Section>
+
+      <Section
+        title="Listbox"
+        description="Select の素で popover 無しで常に展開して表示される list 選択。Root / RootProvider / Label / Input / Content / Empty / ItemGroup / ItemGroupLabel / Item / ItemText / ItemIndicator / ValueText / Context / ItemContext を dot-namespace に export。collection は createListCollection で作る。single select (defaultValue + ItemIndicator で checkmark) / search filterable (Input で query 絞り込み、 0 件で Empty fallback) / multi-select grouped (selectionMode=multiple + ItemGroup x 3 で region 別) の 3 パターン。"
+      >
+        <ListboxDemo />
       </Section>
 
       <Section
