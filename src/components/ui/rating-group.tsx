@@ -50,7 +50,7 @@ function Item({
   return (
     <ArkRatingGroup.Item
       className={cn(
-        "relative inline-flex cursor-pointer text-fg-subtle outline-none transition-colors",
+        "group relative inline-flex cursor-pointer text-fg-subtle outline-none",
         "focus-visible:ring-2 focus-visible:ring-fg/30 focus-visible:ring-offset-2",
         "data-disabled:cursor-not-allowed",
         "data-readonly:cursor-default",
@@ -58,22 +58,15 @@ function Item({
       )}
       {...props}
     >
-      <ArkRatingGroup.ItemContext>
-        {(item) => (
-          <>
-            <Star className="size-6" strokeWidth={1.5} />
-            {item.highlighted && (
-              <Star
-                className="absolute inset-0 size-6 fill-fg text-fg"
-                strokeWidth={1.5}
-                style={
-                  item.half ? { clipPath: "inset(0 50% 0 0)" } : undefined
-                }
-              />
-            )}
-          </>
+      <Star className="size-6" strokeWidth={1.5} />
+      <Star
+        className={cn(
+          "absolute inset-0 size-6 fill-fg text-fg opacity-0 transition-opacity duration-300 ease-out",
+          "group-data-highlighted:opacity-100",
+          "group-data-half:[clip-path:inset(0_50%_0_0)]",
         )}
-      </ArkRatingGroup.ItemContext>
+        strokeWidth={1.5}
+      />
     </ArkRatingGroup.Item>
   );
 }
