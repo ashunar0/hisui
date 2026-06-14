@@ -67,9 +67,35 @@ function Thumb({
   );
 }
 
+function Content({
+  className,
+  ...props
+}: ComponentProps<typeof ArkScrollArea.Content>) {
+  return <ArkScrollArea.Content className={cn(className)} {...props} />;
+}
+
+function Corner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkScrollArea.Corner>) {
+  return (
+    <ArkScrollArea.Corner
+      className={cn("bg-surface-sunken", className)}
+      {...props}
+    />
+  );
+}
+
+const Context = ArkScrollArea.Context;
+const RootProvider = ArkScrollArea.RootProvider;
+
 export const ScrollArea = {
   Root,
+  RootProvider,
   Viewport,
+  Content,
   Scrollbar,
   Thumb,
+  Corner,
+  Context,
 };

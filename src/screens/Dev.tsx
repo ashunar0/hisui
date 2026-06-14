@@ -21,6 +21,7 @@ import { QrCodeDemo } from "./dev/qr-code-demo";
 import { RadioGroupDemo } from "./dev/radio-group-demo";
 import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
+import { ScrollAreaDemo } from "./dev/scroll-area-demo";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SelectDemo } from "./dev/select-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
@@ -103,6 +104,13 @@ export function Dev() {
         description="ON/OFF toggle。Basic (default / checked / disabled / disabled+checked) と Settings list (divide-y で title + description + 右 Switch の row pattern)。"
       >
         <SwitchDemo />
+      </Section>
+
+      <Section
+        title="Scroll Area"
+        description="OS の scrollbar を hide してテーマ追従の細バー。vertical (long text) / horizontal (chip rail) / both axes (table + Corner)。"
+      >
+        <ScrollAreaDemo />
       </Section>
 
       <Section
