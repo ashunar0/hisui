@@ -245,12 +245,98 @@ function Calendar() {
   );
 }
 
+function ClearTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDatePicker.ClearTrigger>) {
+  return (
+    <ArkDatePicker.ClearTrigger
+      className={cn(
+        "inline-flex size-5 cursor-pointer items-center justify-center rounded text-fg-muted hover:bg-hover hover:text-fg",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function PresetTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDatePicker.PresetTrigger>) {
+  return (
+    <ArkDatePicker.PresetTrigger
+      className={cn(
+        "cursor-pointer rounded-md px-2 py-1 text-left text-sm text-fg-soft hover:bg-hover hover:text-fg",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function ValueText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDatePicker.ValueText>) {
+  return (
+    <ArkDatePicker.ValueText
+      className={cn("text-sm text-fg", className)}
+      {...props}
+    />
+  );
+}
+
+const Context = ArkDatePicker.Context;
+const RootProvider = ArkDatePicker.RootProvider;
+const Positioner = ArkDatePicker.Positioner;
+const View = ArkDatePicker.View;
+const ViewControl = ArkDatePicker.ViewControl;
+const ViewTrigger = ArkDatePicker.ViewTrigger;
+const NextTrigger = ArkDatePicker.NextTrigger;
+const PrevTrigger = ArkDatePicker.PrevTrigger;
+const RangeText = ArkDatePicker.RangeText;
+const Table = ArkDatePicker.Table;
+const TableHead = ArkDatePicker.TableHead;
+const TableHeader = ArkDatePicker.TableHeader;
+const TableBody = ArkDatePicker.TableBody;
+const TableRow = ArkDatePicker.TableRow;
+const TableCell = ArkDatePicker.TableCell;
+const TableCellTrigger = ArkDatePicker.TableCellTrigger;
+const MonthSelect = ArkDatePicker.MonthSelect;
+const YearSelect = ArkDatePicker.YearSelect;
+const WeekNumberHeaderCell = ArkDatePicker.WeekNumberHeaderCell;
+const WeekNumberCell = ArkDatePicker.WeekNumberCell;
+
 export const DatePicker = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,
   Trigger,
+  ClearTrigger,
+  PresetTrigger,
+  ValueText,
+  Positioner,
   Content,
   Calendar,
+  View,
+  ViewControl,
+  ViewTrigger,
+  PrevTrigger,
+  NextTrigger,
+  RangeText,
+  Table,
+  TableHead,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableCellTrigger,
+  MonthSelect,
+  YearSelect,
+  WeekNumberHeaderCell,
+  WeekNumberCell,
+  Context,
 };

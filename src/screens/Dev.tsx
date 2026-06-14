@@ -7,6 +7,7 @@ import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ColorPickerDemo } from "./dev/color-picker-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
+import { DatePickerDemo } from "./dev/date-picker-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
@@ -111,6 +112,13 @@ export function Dev() {
         description="OS の scrollbar を hide してテーマ追従の細バー。vertical (long text) / horizontal (chip rail) / both axes (table + Corner)。"
       >
         <ScrollAreaDemo />
+      </Section>
+
+      <Section
+        title="Date Picker"
+        description="ja-JP locale で日付選択。single / range (numOfMonths=2、Input 2 つ + ClearTrigger) / multiple (Context render-prop で選択数表示)。Calendar compound は Day → Month → Year view 全部入り。"
+      >
+        <DatePickerDemo />
       </Section>
 
       <Section
