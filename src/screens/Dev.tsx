@@ -10,6 +10,7 @@ import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
+import { HoverCardDemo } from "./dev/hover-card-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
@@ -63,6 +64,13 @@ export function Dev() {
         description="Hover で出る短いヒント。bg-fg + text-bg の反転コントラスト。"
       >
         <TooltipDemo />
+      </Section>
+
+      <Section
+        title="Hover Card"
+        description="Hover で出る非モーダル overlay。@mention の user profile / link preview / 用語の inline help。openDelay/closeDelay 調整可能。"
+      >
+        <HoverCardDemo />
       </Section>
 
       <Section
