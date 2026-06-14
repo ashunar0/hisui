@@ -1,5 +1,5 @@
 import { TreeView as ArkTreeView } from "@ark-ui/react/tree-view";
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight, Minus } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
@@ -141,22 +141,107 @@ function ItemText({
   );
 }
 
+function ItemIndicator({
+  className,
+  ...props
+}: ComponentProps<typeof ArkTreeView.ItemIndicator>) {
+  return (
+    <ArkTreeView.ItemIndicator
+      className={cn(
+        "inline-flex size-1.5 shrink-0 rounded-full bg-fg",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function BranchTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkTreeView.BranchTrigger>) {
+  return (
+    <ArkTreeView.BranchTrigger
+      className={cn(
+        "inline-flex cursor-pointer items-center justify-center rounded outline-none",
+        "focus-visible:ring-2 focus-visible:ring-fg/30",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function NodeCheckbox({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof ArkTreeView.NodeCheckbox>) {
+  return (
+    <ArkTreeView.NodeCheckbox
+      className={cn(
+        "group inline-flex size-4 shrink-0 cursor-pointer items-center justify-center rounded-sm border border-border bg-surface text-bg outline-none transition-colors",
+        "hover:border-fg-muted",
+        "focus-visible:ring-2 focus-visible:ring-fg/30",
+        "data-[state=checked]:border-fg data-[state=checked]:bg-fg",
+        "data-[state=indeterminate]:border-fg data-[state=indeterminate]:bg-fg",
+        "data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? <NodeCheckboxIndicator />}
+    </ArkTreeView.NodeCheckbox>
+  );
+}
+
+function NodeCheckboxIndicator({
+  className,
+  ...props
+}: ComponentProps<typeof ArkTreeView.NodeCheckboxIndicator>) {
+  return (
+    <ArkTreeView.NodeCheckboxIndicator
+      className={cn("inline-flex items-center justify-center", className)}
+      {...props}
+    >
+      <Check
+        className="hidden size-3 group-data-[state=checked]:block"
+        strokeWidth={3}
+      />
+      <Minus
+        className="hidden size-3 group-data-[state=indeterminate]:block"
+        strokeWidth={3}
+      />
+    </ArkTreeView.NodeCheckboxIndicator>
+  );
+}
+
 const Branch = ArkTreeView.Branch;
 const NodeProvider = ArkTreeView.NodeProvider;
+const NodeContext = ArkTreeView.NodeContext;
+const NodeRenameInput = ArkTreeView.NodeRenameInput;
 const Context = ArkTreeView.Context;
+const RootProvider = ArkTreeView.RootProvider;
 
 export const TreeView = {
   Root,
+  RootProvider,
   Label,
   Tree,
   Branch,
   BranchControl,
+  BranchTrigger,
   BranchIndicator,
   BranchText,
   BranchContent,
   BranchIndentGuide,
   Item,
   ItemText,
+  ItemIndicator,
   NodeProvider,
+  NodeContext,
+  NodeCheckbox,
+  NodeCheckboxIndicator,
+  NodeRenameInput,
   Context,
 };

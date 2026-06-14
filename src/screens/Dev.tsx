@@ -317,7 +317,7 @@ export function Dev() {
 
       <Section
         title="Tree View"
-        description="フォルダ風 nav。createTreeCollection + 再帰 renderNode、BranchIndicator は data-[state=open]:rotate-90 で chevron 回転。"
+        description="RootProvider / BranchTrigger / ItemIndicator / NodeCheckbox / NodeCheckboxIndicator / NodeContext / NodeRenameInput も dot-namespace に export。NodeCheckbox は group + data-[state=checked]/indeterminate で fill 切替、 NodeCheckboxIndicator 内で Check / Minus を出し分け。file explorer (selected highlight、 BranchIndicator で chevron 回転) / checkbox tree (selectionMode=multiple、 parent が子状態に応じて indeterminate ↔ checked) / sidebar nav + ItemIndicator (selected leaf に右 dot) の 3 パターン。"
       >
         <TreeViewDemo />
       </Section>
