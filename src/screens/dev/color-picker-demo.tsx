@@ -1,4 +1,5 @@
 import { parseColor } from "@ark-ui/react/color-picker";
+import { Pipette } from "lucide-react";
 import { ColorPicker } from "@/components/ui/color-picker";
 
 const PRESET_COLORS = [
@@ -31,10 +32,15 @@ export function ColorPickerDemo() {
               <ColorPicker.AreaBackground />
               <ColorPicker.AreaThumb />
             </ColorPicker.Area>
-            <ColorPicker.ChannelSlider channel="hue">
-              <ColorPicker.ChannelSliderTrack />
-              <ColorPicker.ChannelSliderThumb />
-            </ColorPicker.ChannelSlider>
+            <div className="flex items-center gap-2">
+              <ColorPicker.ChannelSlider channel="hue" className="flex-1">
+                <ColorPicker.ChannelSliderTrack />
+                <ColorPicker.ChannelSliderThumb />
+              </ColorPicker.ChannelSlider>
+              <ColorPicker.EyeDropperTrigger aria-label="Pick from screen">
+                <Pipette className="size-4" strokeWidth={2} />
+              </ColorPicker.EyeDropperTrigger>
+            </div>
             <ColorPicker.SwatchGroup>
               {PRESET_COLORS.map((color) => (
                 <ColorPicker.SwatchTrigger key={color} value={color}>

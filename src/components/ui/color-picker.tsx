@@ -148,6 +148,23 @@ function AreaThumb({
   );
 }
 
+function EyeDropperTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkColorPicker.EyeDropperTrigger>) {
+  return (
+    <ArkColorPicker.EyeDropperTrigger
+      className={cn(
+        "inline-flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-fg-soft outline-none transition-colors",
+        "hover:bg-hover hover:text-fg",
+        "focus-visible:ring-2 focus-visible:ring-fg/30",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function ChannelSlider({
   className,
   ...props
@@ -248,6 +265,7 @@ export const ColorPicker = {
   Area,
   AreaBackground,
   AreaThumb,
+  EyeDropperTrigger,
   ChannelSlider,
   ChannelSliderTrack,
   ChannelSliderThumb,
