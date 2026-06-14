@@ -5,6 +5,7 @@ import { CheckboxDemo } from "./dev/checkbox-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
+import { PaginationDemo } from "./dev/pagination-demo";
 import { PinInputDemo } from "./dev/pin-input-demo";
 import { ProgressDemo } from "./dev/progress-demo";
 import { RadioGroupDemo } from "./dev/radio-group-demo";
@@ -120,6 +121,13 @@ export function Dev() {
         description="OTP / 2FA 用。各桁 box、focus 自動移動、paste 対応。otp / numeric variant。"
       >
         <PinInputDemo />
+      </Section>
+
+      <Section
+        title="Pagination"
+        description="Prev/Next + 番号 + ellipsis。current は bg-fg + text-bg、disabled は opacity-50。"
+      >
+        <PaginationDemo />
       </Section>
     </div>
   );
