@@ -14,7 +14,7 @@ function Label({
 }: ComponentProps<typeof ArkSelect.Label>) {
   return (
     <ArkSelect.Label
-      className={cn("text-sm font-medium text-fg", className)}
+      className={cn("block text-sm font-medium text-fg", className)}
       {...props}
     />
   );
