@@ -9,12 +9,19 @@ function Root({
   return (
     <ArkQrCode.Root
       className={cn(
-        "relative inline-flex w-fit flex-col items-center gap-3 rounded-lg border border-border bg-surface p-4",
+        "inline-flex w-fit flex-col items-center gap-3 rounded-lg border border-border bg-surface p-4",
         className,
       )}
       {...props}
     />
   );
+}
+
+function Center({
+  className,
+  ...props
+}: ComponentProps<"div">) {
+  return <div className={cn("relative", className)} {...props} />;
 }
 
 function Frame({
@@ -66,6 +73,7 @@ const Context = ArkQrCode.Context;
 
 export const QrCode = {
   Root,
+  Center,
   Frame,
   Pattern,
   Overlay,
