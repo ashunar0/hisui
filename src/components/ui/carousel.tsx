@@ -1,5 +1,5 @@
 import { Carousel as ArkCarousel } from "@ark-ui/react/carousel";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
@@ -132,10 +132,60 @@ function Indicator({
   );
 }
 
+function AutoplayTrigger({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof ArkCarousel.AutoplayTrigger>) {
+  return (
+    <ArkCarousel.AutoplayTrigger
+      className={cn(
+        "inline-flex size-8 cursor-pointer items-center justify-center rounded-full border border-border bg-surface/90 text-fg outline-none backdrop-blur transition-colors",
+        "hover:bg-surface",
+        "focus-visible:ring-2 focus-visible:ring-fg/30",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? <Carousel.AutoplayIndicator />}
+    </ArkCarousel.AutoplayTrigger>
+  );
+}
+
+function AutoplayIndicator({
+  className,
+  fallback,
+  ...props
+}: ComponentProps<typeof ArkCarousel.AutoplayIndicator>) {
+  return (
+    <ArkCarousel.AutoplayIndicator
+      className={cn("inline-flex items-center justify-center", className)}
+      fallback={fallback ?? <Play className="size-3.5" strokeWidth={2.25} />}
+      {...props}
+    >
+      <Pause className="size-3.5" strokeWidth={2.25} />
+    </ArkCarousel.AutoplayIndicator>
+  );
+}
+
+function ProgressText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkCarousel.ProgressText>) {
+  return (
+    <ArkCarousel.ProgressText
+      className={cn("text-xs tabular-nums text-fg-muted", className)}
+      {...props}
+    />
+  );
+}
+
 const Context = ArkCarousel.Context;
+const RootProvider = ArkCarousel.RootProvider;
 
 export const Carousel = {
   Root,
+  RootProvider,
   ItemGroup,
   Item,
   Control,
@@ -143,5 +193,8 @@ export const Carousel = {
   NextTrigger,
   IndicatorGroup,
   Indicator,
+  AutoplayTrigger,
+  AutoplayIndicator,
+  ProgressText,
   Context,
 };

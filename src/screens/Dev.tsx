@@ -72,7 +72,7 @@ export function Dev() {
 
       <Section
         title="Carousel"
-        description="Hero slider / image gallery。Prev/Next を overlay、Indicator は current で長方形に伸びる。loop + autoplay で auto cycle。"
+        description="RootProvider / AutoplayTrigger / AutoplayIndicator / ProgressText も dot-namespace に export。hero slider (4 枚、Prev/Next + Indicator) / image gallery + ProgressText counter (2 / 4 表示) / autoplay + AutoplayTrigger (AutoplayIndicator で Play/Pause icon 切替、loop=true で auto cycle) の 3 パターン。Indicator は data-current で長方形に伸びる。"
       >
         <CarouselDemo />
       </Section>
