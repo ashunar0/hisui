@@ -226,7 +226,7 @@ export function Dev() {
 
       <Section
         title="Rating Group"
-        description="星 5 段階。allowHalf で 0.5 刻み、ItemContext で highlighted / half を受け取り fill 切替。"
+        description="RootProvider / ItemContext も dot-namespace に export。Item は内部で group-data-highlighted / group-data-half を見て Star の fill / clip-path を切替。interactive + Context (api.value / count を tabular text 表示) / allowHalf + larger (Item の Star を size-8 に上書き、 大きい value text) / readOnly + disabled (state demo を 2 つ並べる) の 3 パターン。"
       >
         <RatingGroupDemo />
       </Section>

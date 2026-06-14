@@ -72,13 +72,17 @@ function Item({
 }
 
 const Context = ArkRatingGroup.Context;
+const ItemContext = ArkRatingGroup.ItemContext;
+const RootProvider = ArkRatingGroup.RootProvider;
 const HiddenInput = ArkRatingGroup.HiddenInput;
 
 export const RatingGroup = {
   Root,
+  RootProvider,
   Label,
   Control,
   Item,
   Context,
+  ItemContext,
   HiddenInput,
 };
