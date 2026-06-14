@@ -13,7 +13,7 @@ const variantClasses: Record<InputVariant, string> = {
   subtle:
     "rounded-sm border border-transparent bg-hover px-3 focus:bg-surface focus:ring-2 focus:ring-fg-subtle",
   flushed:
-    "rounded-none border-b border-border bg-transparent px-0 focus:border-fg-soft",
+    "rounded-none border-b border-border bg-transparent px-3 focus:border-fg-soft",
 };
 
 function Input({ variant = "outline", className, ...props }: InputProps) {

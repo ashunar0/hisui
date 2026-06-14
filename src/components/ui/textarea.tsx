@@ -13,7 +13,7 @@ const variantClasses: Record<TextareaVariant, string> = {
   subtle:
     "rounded-sm border border-transparent bg-hover px-3 focus:bg-surface focus:ring-2 focus:ring-fg-subtle",
   flushed:
-    "rounded-none border-b border-border bg-transparent px-0 focus:border-fg-soft",
+    "rounded-none border-b border-border bg-transparent px-3 focus:border-fg-soft",
 };
 
 function Textarea({ variant = "outline", className, ...props }: TextareaProps) {
