@@ -27,22 +27,29 @@ function Indicator({
   );
 }
 
+function Positioner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkMenu.Positioner>) {
+  return <ArkMenu.Positioner className={cn(className)} {...props} />;
+}
+
 function Content({
   className,
   ...props
 }: ComponentProps<typeof ArkMenu.Content>) {
   return (
     <Portal>
-      <ArkMenu.Positioner>
+      <Positioner>
         <ArkMenu.Content
           className={cn(
-            "min-w-56 rounded-md border border-border bg-surface p-1 shadow-md focus:outline-none",
+            "min-w-56 rounded-md border border-border bg-surface p-1 shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_0_4px_rgba(0,0,0,0.03)] focus:outline-none",
             "data-[state=open]:animate-menu-open",
             className,
           )}
           {...props}
         />
-      </ArkMenu.Positioner>
+      </Positioner>
     </Portal>
   );
 }
@@ -59,10 +66,7 @@ function ItemText({
   ...props
 }: ComponentProps<typeof ArkMenu.ItemText>) {
   return (
-    <ArkMenu.ItemText
-      className={cn("flex-1 truncate", className)}
-      {...props}
-    />
+    <ArkMenu.ItemText className={cn("flex-1 truncate", className)} {...props} />
   );
 }
 
@@ -181,29 +185,22 @@ function ArrowTip({
   className,
   ...props
 }: ComponentProps<typeof ArkMenu.ArrowTip>) {
-  return (
-    <ArkMenu.ArrowTip
-      className={cn("border-l border-t border-border", className)}
-      {...props}
-    />
-  );
+  return <ArkMenu.ArrowTip className={cn(className)} {...props} />;
 }
 
-function ContextTrigger(
-  props: ComponentProps<typeof ArkMenu.ContextTrigger>,
-) {
-  return <ArkMenu.ContextTrigger {...props} />;
-}
-
-function Context(props: ComponentProps<typeof ArkMenu.Context>) {
-  return <ArkMenu.Context {...props} />;
-}
+const ContextTrigger = ArkMenu.ContextTrigger;
+const Context = ArkMenu.Context;
+const ItemContext = ArkMenu.ItemContext;
+const RootProvider = ArkMenu.RootProvider;
 
 export const Menu = {
   Root,
+  RootProvider,
   Trigger,
+  ContextTrigger,
   TriggerItem,
   Indicator,
+  Positioner,
   Content,
   Item,
   ItemText,
@@ -216,6 +213,6 @@ export const Menu = {
   Separator,
   Arrow,
   ArrowTip,
-  ContextTrigger,
   Context,
+  ItemContext,
 };

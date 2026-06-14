@@ -163,7 +163,7 @@ export function Dev() {
 
       <Section
         title="Menu"
-        description="Dropdown menu。Item + shortcut + disabled + destructive / Submenu (TriggerItem) / ItemGroup + Label + RadioItemGroup + CheckboxItem の 3 パターン。"
+        description="Dropdown menu。Positioner / ContextTrigger / ItemContext / RootProvider も dot-namespace に export、ArrowTip の border 削除 (Vercel/Linear 風 fill のみ)。edit menu (Item + shortcut + disabled + destructive) / share submenu (TriggerItem で nested Menu.Root) / view options (RadioItemGroup + CheckboxItem + ItemGroupLabel + closeOnSelect=false) の 3 パターン。"
       >
         <MenuDemo />
       </Section>
