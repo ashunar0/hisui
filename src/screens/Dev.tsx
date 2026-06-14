@@ -93,7 +93,7 @@ export function Dev() {
 
       <Section
         title="Collapsible"
-        description="Show more / advanced options。height アニメは accordion と同じ keyframes (--animate-accordion-down/up) 流用。"
+        description="Context / RootProvider も dot-namespace に export。show more (Context render-prop で Trigger ラベルを Show more ↔ Show less に swap) / advanced options (filter panel 風 chevron + bordered content) / disabled (data-disabled で opacity-50) の 3 パターン。height アニメは --animate-accordion-down/up 流用。"
       >
         <CollapsibleDemo />
       </Section>

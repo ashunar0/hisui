@@ -69,9 +69,14 @@ function Content({
   );
 }
 
+const Context = ArkCollapsible.Context;
+const RootProvider = ArkCollapsible.RootProvider;
+
 export const Collapsible = {
   Root,
+  RootProvider,
   Trigger,
   Indicator,
   Content,
+  Context,
 };
