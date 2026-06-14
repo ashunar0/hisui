@@ -6,9 +6,9 @@ import { IconButton } from "@/components/ui/icon-button";
 export function DrawerDemo() {
   return (
     <div className="flex flex-wrap gap-2">
-      <Drawer.Root swipeDirection="end">
+      <Drawer.Root>
         <Drawer.Trigger asChild>
-          <Button variant="outline" size="sm">Right (end)</Button>
+          <Button variant="outline" size="sm">Right (default)</Button>
         </Drawer.Trigger>
         <Drawer.Content>
           <div className="flex items-center justify-between border-b border-border px-5 py-4">

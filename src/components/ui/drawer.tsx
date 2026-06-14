@@ -3,8 +3,11 @@ import { Portal } from "@ark-ui/react/portal";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-function Root(props: ComponentProps<typeof ArkDrawer.Root>) {
-  return <ArkDrawer.Root {...props} />;
+function Root({
+  swipeDirection = "end",
+  ...props
+}: ComponentProps<typeof ArkDrawer.Root>) {
+  return <ArkDrawer.Root swipeDirection={swipeDirection} {...props} />;
 }
 
 function Trigger(props: ComponentProps<typeof ArkDrawer.Trigger>) {
