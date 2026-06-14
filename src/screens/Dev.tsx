@@ -296,7 +296,7 @@ export function Dev() {
 
       <Section
         title="Toast"
-        description="Bottom-right notifications. Icon色で type を表現。"
+        description="Bottom-right notifications。Toast (Root / Title / Description / ActionTrigger / CloseTrigger / Context) も dot-namespace に export、 Toaster 内部もそれを使うように refactor。types (6 種) / with action (ActionTrigger で Undo) / promise (loading → success/error を 1 toast で遷移) の 3 パターン。"
       >
         <ToastDemo />
       </Section>
