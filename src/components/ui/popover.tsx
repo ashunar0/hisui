@@ -61,12 +61,7 @@ function ArrowTip({
   className,
   ...props
 }: ComponentProps<typeof ArkPopover.ArrowTip>) {
-  return (
-    <ArkPopover.ArrowTip
-      className={cn("border border-border", className)}
-      {...props}
-    />
-  );
+  return <ArkPopover.ArrowTip className={cn(className)} {...props} />;
 }
 
 function Title({

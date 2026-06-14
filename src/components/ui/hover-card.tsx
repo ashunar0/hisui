@@ -67,12 +67,7 @@ function ArrowTip({
   className,
   ...props
 }: ComponentProps<typeof ArkHoverCard.ArrowTip>) {
-  return (
-    <ArkHoverCard.ArrowTip
-      className={cn("border border-border", className)}
-      {...props}
-    />
-  );
+  return <ArkHoverCard.ArrowTip className={cn(className)} {...props} />;
 }
 
 const Context = ArkHoverCard.Context;
