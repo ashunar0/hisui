@@ -15,6 +15,7 @@ import { RadioGroupDemo } from "./dev/radio-group-demo";
 import { RatingGroupDemo } from "./dev/rating-group-demo";
 import { Section } from "./dev/section";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
+import { SplitterDemo } from "./dev/splitter-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
@@ -184,6 +185,13 @@ export function Dev() {
         description="iOS 風 sliding indicator 付き segmented control。ToggleGroup single の代替、Tabs と同じ CSS var で indicator 移動。"
       >
         <SegmentGroupDemo />
+      </Section>
+
+      <Section
+        title="Splitter"
+        description="Resizable panes。horizontal / vertical、min/max 制約付き。trigger を hover/drag で highlight。"
+      >
+        <SplitterDemo />
       </Section>
     </div>
   );
