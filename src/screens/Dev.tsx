@@ -205,7 +205,7 @@ export function Dev() {
 
       <Section
         title="Progress"
-        description="Linear と Circular。indeterminate も対応 (value={null})。"
+        description="View / Context / RootProvider も dot-namespace に export。linear (file upload + indeterminate) / big circle + center label (Apple Watch 風) / state View (loading ↔ complete で content swap、 100% で ✓ Done) の 3 パターン。"
       >
         <ProgressDemo />
       </Section>

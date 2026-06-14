@@ -75,10 +75,7 @@ function Circle({
 }: ComponentProps<typeof ArkProgress.Circle>) {
   return (
     <ArkProgress.Circle
-      className={cn(
-        "size-12 [--size:48px] [--thickness:4px]",
-        className,
-      )}
+      className={cn("size-12 [--size:48px] [--thickness:4px]", className)}
       {...props}
     />
   );
@@ -112,8 +109,13 @@ function CircleRange({
   );
 }
 
+const View = ArkProgress.View;
+const Context = ArkProgress.Context;
+const RootProvider = ArkProgress.RootProvider;
+
 export const Progress = {
   Root,
+  RootProvider,
   Label,
   ValueText,
   Track,
@@ -121,4 +123,6 @@ export const Progress = {
   Circle,
   CircleTrack,
   CircleRange,
+  View,
+  Context,
 };
