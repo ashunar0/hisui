@@ -107,9 +107,11 @@ function ValueText({
 }
 
 const Context = ArkClipboard.Context;
+const RootProvider = ArkClipboard.RootProvider;
 
 export const Clipboard = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,

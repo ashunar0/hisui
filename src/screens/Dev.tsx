@@ -86,7 +86,7 @@ export function Dev() {
 
       <Section
         title="Clipboard"
-        description="Copy ボタン。copied prop で copied 時 icon 差替 (Copy → Check)、timeout で表示時間調整。"
+        description="RootProvider も dot-namespace に export。Indicator は default で Copy → Check の icon 差替を内蔵。install command (Label + Input + Trigger) / inline URL pill (Trigger を size-6 border-0 で minimal 化) / code block + ValueText (Label + ValueText で full text 表示 + 下に Copy text button) の 3 パターン。"
       >
         <ClipboardDemo />
       </Section>
