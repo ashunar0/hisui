@@ -177,7 +177,7 @@ export function Dev() {
 
       <Section
         title="Pagination"
-        description="Prev/Next + 番号 + ellipsis。current は bg-fg + text-bg、disabled は opacity-50。"
+        description="RootProvider / FirstTrigger / LastTrigger も dot-namespace に export。default (count=100、 Prev + numbers + ellipsis + Next) / with First / Last trigger (ChevronsLeft / ChevronsRight 内蔵、count=500 large dataset) / compact (Context render-prop で api.page / totalPages / count を text 表示、 table footer 風に Prev/Next icon button のみ) の 3 パターン。current は bg-fg + text-bg。"
       >
         <PaginationDemo />
       </Section>

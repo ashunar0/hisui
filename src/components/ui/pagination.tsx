@@ -1,5 +1,10 @@
 import { Pagination as ArkPagination } from "@ark-ui/react/pagination";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +67,36 @@ function NextTrigger({
   );
 }
 
+function FirstTrigger({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof ArkPagination.FirstTrigger>) {
+  return (
+    <ArkPagination.FirstTrigger
+      className={cn(itemStyles, className)}
+      {...props}
+    >
+      {children ?? <ChevronsLeft className="size-4" strokeWidth={2.25} />}
+    </ArkPagination.FirstTrigger>
+  );
+}
+
+function LastTrigger({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof ArkPagination.LastTrigger>) {
+  return (
+    <ArkPagination.LastTrigger
+      className={cn(itemStyles, className)}
+      {...props}
+    >
+      {children ?? <ChevronsRight className="size-4" strokeWidth={2.25} />}
+    </ArkPagination.LastTrigger>
+  );
+}
+
 function Ellipsis({
   className,
   children,
@@ -81,12 +116,16 @@ function Ellipsis({
 }
 
 const Context = ArkPagination.Context;
+const RootProvider = ArkPagination.RootProvider;
 
 export const Pagination = {
   Root,
+  RootProvider,
   Item,
   PrevTrigger,
   NextTrigger,
+  FirstTrigger,
+  LastTrigger,
   Ellipsis,
   Context,
 };
