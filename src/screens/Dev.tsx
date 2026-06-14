@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
+import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
@@ -152,6 +153,13 @@ export function Dev() {
         description="フォルダ風 nav。createTreeCollection + 再帰 renderNode、BranchIndicator は data-[state=open]:rotate-90 で chevron 回転。"
       >
         <TreeViewDemo />
+      </Section>
+
+      <Section
+        title="Collapsible"
+        description="Show more / advanced options。height アニメは accordion と同じ keyframes (--animate-accordion-down/up) 流用。"
+      >
+        <CollapsibleDemo />
       </Section>
     </div>
   );
