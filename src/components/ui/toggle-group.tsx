@@ -9,7 +9,7 @@ function Root({
   return (
     <ArkToggleGroup.Root
       className={cn(
-        "inline-flex items-center overflow-hidden rounded-md border border-border bg-surface",
+        "inline-flex w-fit items-center overflow-hidden rounded-md border border-border bg-surface",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
