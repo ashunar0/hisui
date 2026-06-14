@@ -170,7 +170,7 @@ export function Dev() {
 
       <Section
         title="Number Input"
-        description="入力 + 縦並び stepper。min/max/step 対応、disabled もサポート。"
+        description="IncrementTrigger / DecrementTrigger / Scrubber / ValueText / Context / RootProvider も dot-namespace に export。quantity (default vertical stepper、 min/max/step/disabled) / cart style (− Input + 横並び) / scrubbable (Label に Scrubber 被せて drag で値変更、 ValueText で current 表示) の 3 パターン。"
       >
         <NumberInputDemo />
       </Section>

@@ -59,6 +59,62 @@ function Input({
   );
 }
 
+function IncrementTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkNumberInput.IncrementTrigger>) {
+  return (
+    <ArkNumberInput.IncrementTrigger
+      className={cn(
+        "flex cursor-pointer items-center justify-center text-fg-muted hover:bg-hover hover:text-fg",
+        "data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent data-disabled:hover:text-fg-muted",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function DecrementTrigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkNumberInput.DecrementTrigger>) {
+  return (
+    <ArkNumberInput.DecrementTrigger
+      className={cn(
+        "flex cursor-pointer items-center justify-center text-fg-muted hover:bg-hover hover:text-fg",
+        "data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent data-disabled:hover:text-fg-muted",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function Scrubber({
+  className,
+  ...props
+}: ComponentProps<typeof ArkNumberInput.Scrubber>) {
+  return (
+    <ArkNumberInput.Scrubber
+      className={cn("cursor-ew-resize select-none", className)}
+      {...props}
+    />
+  );
+}
+
+function ValueText({
+  className,
+  ...props
+}: ComponentProps<typeof ArkNumberInput.ValueText>) {
+  return (
+    <ArkNumberInput.ValueText
+      className={cn("text-sm tabular-nums text-fg", className)}
+      {...props}
+    />
+  );
+}
+
 function Stepper({ className }: { className?: string }) {
   return (
     <div
@@ -67,30 +123,29 @@ function Stepper({ className }: { className?: string }) {
         className,
       )}
     >
-      <ArkNumberInput.IncrementTrigger
-        className={cn(
-          "flex flex-1 cursor-pointer items-center justify-center text-fg-muted hover:bg-hover hover:text-fg",
-          "data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent data-disabled:hover:text-fg-muted",
-        )}
-      >
+      <IncrementTrigger className="flex-1">
         <ChevronUp className="size-3" />
-      </ArkNumberInput.IncrementTrigger>
-      <ArkNumberInput.DecrementTrigger
-        className={cn(
-          "flex flex-1 cursor-pointer items-center justify-center text-fg-muted hover:bg-hover hover:text-fg",
-          "data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent data-disabled:hover:text-fg-muted",
-        )}
-      >
+      </IncrementTrigger>
+      <DecrementTrigger className="flex-1">
         <ChevronDown className="size-3" />
-      </ArkNumberInput.DecrementTrigger>
+      </DecrementTrigger>
     </div>
   );
 }
 
+const Context = ArkNumberInput.Context;
+const RootProvider = ArkNumberInput.RootProvider;
+
 export const NumberInput = {
   Root,
+  RootProvider,
   Label,
   Control,
   Input,
+  IncrementTrigger,
+  DecrementTrigger,
   Stepper,
+  Scrubber,
+  ValueText,
+  Context,
 };
