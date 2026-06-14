@@ -36,6 +36,7 @@ import { SwitchDemo } from "./dev/switch-demo";
 import { TabsDemo } from "./dev/tabs-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
+import { ToggleDemo } from "./dev/toggle-demo";
 import { ToggleGroupDemo } from "./dev/toggle-group-demo";
 import { TooltipDemo } from "./dev/tooltip-demo";
 import { TreeViewDemo } from "./dev/tree-view-demo";
@@ -299,6 +300,13 @@ export function Dev() {
         description="Bottom-right notifications。Toast (Root / Title / Description / ActionTrigger / CloseTrigger / Context) も dot-namespace に export、 Toaster 内部もそれを使うように refactor。types (6 種) / with action (ActionTrigger で Undo) / promise (loading → success/error を 1 toast で遷移) の 3 パターン。"
       >
         <ToastDemo />
+      </Section>
+
+      <Section
+        title="Toggle"
+        description="single press toggle button (ToggleGroup の単独版)。Root / Indicator / Context を dot-namespace に export。pressed は data-[state=on]:bg-fg + text-bg。text label (default / pressed / disabled の 3 並び) / Indicator で icon swap (defaultPressed=true で Bell、 off で BellOff、 Notifications) / icon-only formatting buttons (Bold / Italic / Underline を toolbar 風に並べる、 size-8 border-0、 aria-label) の 3 パターン。"
+      >
+        <ToggleDemo />
       </Section>
 
       <Section
