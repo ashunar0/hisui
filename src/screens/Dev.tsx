@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
+import { AlertDemo } from "./dev/alert-demo";
 import { AvatarDemo } from "./dev/avatar-demo";
 import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
@@ -65,6 +66,13 @@ export function Dev() {
         description="border-bottom 区切りの折りたたみ。Context / ItemContext / RootProvider も dot-namespace に export。single (chevron) / multiple (左 icon + 設定 group) / plus-minus (ItemContext render-prop で open に応じて Plus を 45° 回転) の 3 パターン。"
       >
         <AccordionDemo />
+      </Section>
+
+      <Section
+        title="Alert"
+        description="Inline message banner (Ark UI 非依存、HTML+CSS のみ)。Root / Icon / Title / Description / Actions を dot-namespace に export。variant は Badge と揃えて neutral / success / danger / warning / info の 5 種。grid [1.25rem 1fr] で左 icon + 右本文、 Actions は本文の下に折り返し。"
+      >
+        <AlertDemo />
       </Section>
 
       <Section
