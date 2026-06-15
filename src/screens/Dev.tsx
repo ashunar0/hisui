@@ -33,6 +33,7 @@ import { ScrollAreaDemo } from "./dev/scroll-area-demo";
 import { Section } from "./dev/section";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SelectDemo } from "./dev/select-demo";
+import { SkeletonDemo } from "./dev/skeleton-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
 import { StepsDemo } from "./dev/steps-demo";
@@ -283,6 +284,13 @@ export function Dev() {
         description="Dropdown select。Basic (single + Label + Indicator + ItemIndicator) / Grouped (ItemGroup + ItemGroupLabel で region 別) / Clearable + form (ClearTrigger + HiddenSelect で form submit 対応)。"
       >
         <SelectDemo />
+      </Section>
+
+      <Section
+        title="Skeleton"
+        description="loading placeholder (Ark UI 非依存、 animate-pulse + bg-surface-sunken)。size / 形状は className で自由指定 (size-12 rounded-full で avatar、 h-3 w-40 で 1 行 text 等)。profile card (avatar + name + bio 2 行 + button) / table rows (5 行 + header、 width をずらして揺らぎ) / dashboard stat grid (4 widget、 label + 数字 + 補足) の 3 パターン。"
+      >
+        <SkeletonDemo />
       </Section>
 
       <Section
