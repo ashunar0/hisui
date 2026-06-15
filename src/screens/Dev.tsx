@@ -13,10 +13,12 @@ import { DatePickerDemo } from "./dev/date-picker-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
 import { EditableDemo } from "./dev/editable-demo";
+import { EmptyDemo } from "./dev/empty-demo";
 import { FieldDemo } from "./dev/field-demo";
 import { FieldsetDemo } from "./dev/fieldset-demo";
 import { FileUploadDemo } from "./dev/file-upload-demo";
 import { HoverCardDemo } from "./dev/hover-card-demo";
+import { KbdDemo } from "./dev/kbd-demo";
 import { ListboxDemo } from "./dev/listbox-demo";
 import { MenuDemo } from "./dev/menu-demo";
 import { NavigationMenuDemo } from "./dev/navigation-menu-demo";
@@ -36,6 +38,7 @@ import { SelectDemo } from "./dev/select-demo";
 import { SeparatorDemo } from "./dev/separator-demo";
 import { SkeletonDemo } from "./dev/skeleton-demo";
 import { SliderDemo } from "./dev/slider-demo";
+import { SpinnerDemo } from "./dev/spinner-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { SwitchDemo } from "./dev/switch-demo";
@@ -155,6 +158,13 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Empty"
+        description="空状態 (Ark UI 非依存、 border-dashed の card + 中央寄せ)。Root / Icon (size-12 rounded-full bg-surface-sunken) / Title / Description / Actions を dot-namespace に export。no results (SearchX + 検索クエリ + Clear) / empty list (Inbox + 2 CTA + import) / minimal (icon + title のみ、 p-6 compact) の 3 パターン。"
+      >
+        <EmptyDemo />
+      </Section>
+
+      <Section
         title="Field"
         description="Form field wrapper。required (RequiredIndicator + HelperText) / invalid (ErrorText + aria-invalid で border 赤) / Textarea + Select (disabled state)。Ark UI が a11y attribute (aria-describedby / aria-invalid / aria-required) を自動配線。"
       >
@@ -180,6 +190,13 @@ export function Dev() {
         description="Hover で出る非モーダル overlay。Positioner / Arrow / ArrowTip / Context / RootProvider も dot-namespace に export。@mention user profile / link preview (p-0 flush) / inline help (Arrow + ArrowTip で trigger を指す、placement=top) の 3 パターン。"
       >
         <HoverCardDemo />
+      </Section>
+
+      <Section
+        title="Kbd"
+        description="Keyboard shortcut の見た目 (Ark UI 非依存、 <kbd> + border + 1px の下 shadow で実物っぽく)。 ⌘ や ⇧ のような symbol も Shift Alt 等の word も同じ高さ (h-5 min-w-5)。Search input の右に ⌘K / Menu row の右側 shortcut / 本文中の inline combo (⇧+⌘+P / Esc 等) の 3 パターン。"
+      >
+        <KbdDemo />
       </Section>
 
       <Section
@@ -306,6 +323,13 @@ export function Dev() {
         description="MarkerGroup / Marker / DraggingIndicator / HiddenInput / Context / RootProvider も dot-namespace に export、Thumb で HiddenInput auto mount。volume (single + disabled) / price range + markers (2 thumb + $0/$25/.../$100 tick) / with DraggingIndicator (drag 中に値 bubble) の 3 パターン。"
       >
         <SliderDemo />
+      </Section>
+
+      <Section
+        title="Spinner"
+        description="loading spinner (lucide-react の Loader2 を animate-spin で回す薄ラッパー、 role=status + aria-label=Loading)。size は className の size-N で上書き、 色は text-N で追従。sizes (xs/sm/md/lg) / inline + text (banner と center placeholder) / button loading (各 variant で disabled state + Spinner で色追従) の 3 パターン。"
+      >
+        <SpinnerDemo />
       </Section>
 
       <Section
