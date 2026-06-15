@@ -3,6 +3,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
 import { AlertDemo } from "./dev/alert-demo";
 import { AlertDialogDemo } from "./dev/alert-dialog-demo";
+import { AspectRatioDemo } from "./dev/aspect-ratio-demo";
 import { AvatarDemo } from "./dev/avatar-demo";
 import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
@@ -48,6 +49,7 @@ import { TagsInputDemo } from "./dev/tags-input-demo";
 import { ToastDemo } from "./dev/toast-demo";
 import { ToggleDemo } from "./dev/toggle-demo";
 import { ToggleGroupDemo } from "./dev/toggle-group-demo";
+import { ToolbarDemo } from "./dev/toolbar-demo";
 import { TooltipDemo } from "./dev/tooltip-demo";
 import { TreeViewDemo } from "./dev/tree-view-demo";
 
@@ -86,6 +88,13 @@ export function Dev() {
         description="不可逆 / 警戒系の確認モーダル (Ark UI Dialog primitive に role=alertdialog を渡したラッパー、 Dialog の sub-component を全 inherit)。delete account (Trigger / Confirm が rose 系 destructive class) / discard changes (Title 左に amber warning icon row) / sign out everywhere (非破壊だが警戒系、 confirm は solid default) の 3 パターン。"
       >
         <AlertDialogDemo />
+      </Section>
+
+      <Section
+        title="Aspect Ratio"
+        description="比率固定箱 (Ark UI 非依存、 inline style の aspect-ratio CSS だけ)。中身は absolute 配置できる relative container。common ratios (16:9 / 1:1 / 4:3 / 21:9 を grid で並べて比較) / video embed 風 (16:9 + center Play button + 下に title overlay gradient) の 2 パターン。"
+      >
+        <AspectRatioDemo />
       </Section>
 
       <Section
@@ -394,6 +403,13 @@ export function Dev() {
         description="segmented button group。Context / RootProvider も dot-namespace に export。view switcher (single 排他、 icon + text) / text align (single icons + aria-label) / text style (multiple、 Bold+Italic 同時 on) の 3 パターン。pressed は bg-fg + text-bg。"
       >
         <ToggleGroupDemo />
+      </Section>
+
+      <Section
+        title="Toolbar"
+        description="button group container (Ark UI 非依存、 role=toolbar + aria-orientation を出す div ラッパー + Separator 流用の Toolbar.Separator)。中身は IconButton / ToggleGroup / Button 等を自由に並べる。rich text editor (Undo/Redo + Bold/Italic/Underline + Align + List の各 group を Separator で区切る) / workspace toolbar (ToggleGroup で view 切替 + Filter / Sort button) の 2 パターン。"
+      >
+        <ToolbarDemo />
       </Section>
 
       <Section
