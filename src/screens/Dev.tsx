@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AccordionDemo } from "./dev/accordion-demo";
 import { AlertDemo } from "./dev/alert-demo";
+import { AlertDialogDemo } from "./dev/alert-dialog-demo";
 import { AvatarDemo } from "./dev/avatar-demo";
 import { CarouselDemo } from "./dev/carousel-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
@@ -78,6 +79,13 @@ export function Dev() {
         description="Inline message banner (Ark UI 非依存、HTML+CSS のみ)。Root / Icon / Title / Description / Actions を dot-namespace に export。variant は Badge と揃えて neutral / success / danger / warning / info の 5 種。grid [1.25rem 1fr] で左 icon + 右本文、 Actions は本文の下に折り返し。"
       >
         <AlertDemo />
+      </Section>
+
+      <Section
+        title="Alert Dialog"
+        description="不可逆 / 警戒系の確認モーダル (Ark UI Dialog primitive に role=alertdialog を渡したラッパー、 Dialog の sub-component を全 inherit)。delete account (Trigger / Confirm が rose 系 destructive class) / discard changes (Title 左に amber warning icon row) / sign out everywhere (非破壊だが警戒系、 confirm は solid default) の 3 パターン。"
+      >
+        <AlertDialogDemo />
       </Section>
 
       <Section
