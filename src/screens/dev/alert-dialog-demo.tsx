@@ -64,18 +64,16 @@ function DiscardChanges() {
             <Button variant="outline">Discard changes</Button>
           </AlertDialog.Trigger>
           <AlertDialog.Content>
-            <div className="flex items-start gap-3">
-              <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
+            <div className="flex items-center gap-3">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
                 <AlertTriangle className="size-5" />
               </span>
-              <div className="flex flex-col gap-1">
-                <AlertDialog.Title>Discard unsaved changes?</AlertDialog.Title>
-                <AlertDialog.Description>
-                  You have edited 3 fields. Closing now will lose every edit
-                  since you opened this page.
-                </AlertDialog.Description>
-              </div>
+              <AlertDialog.Title>Discard unsaved changes?</AlertDialog.Title>
             </div>
+            <AlertDialog.Description>
+              You have edited 3 fields. Closing now will lose every edit since
+              you opened this page.
+            </AlertDialog.Description>
             <div className="mt-6 flex justify-end gap-2">
               <AlertDialog.CloseTrigger asChild>
                 <Button variant="outline">Keep editing</Button>
