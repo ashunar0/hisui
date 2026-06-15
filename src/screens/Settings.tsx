@@ -68,7 +68,7 @@ export function Settings() {
                     type="email"
                     defaultValue="asahi@example.com"
                   />
-                  <p className="flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
+                  <p className="flex items-center gap-1 text-xs text-success-fg">
                     <Check className="size-3" />
                     Verified
                   </p>

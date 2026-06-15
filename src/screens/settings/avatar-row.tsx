@@ -37,7 +37,7 @@ export function AvatarRow() {
             variant="outline"
             size="sm"
             onClick={() => setAvatarUrl(null)}
-            className="text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50"
+            className="text-danger-fg hover:bg-danger-subtle"
           >
             削除
           </Button>

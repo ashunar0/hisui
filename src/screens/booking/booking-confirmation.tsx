@@ -12,8 +12,8 @@ type Props = {
 export function BookingConfirmation({ date, time, email, onReset }: Props) {
   return (
     <div className="flex flex-col items-center gap-4 py-16 text-center">
-      <div className="flex size-12 items-center justify-center rounded-full bg-emerald-50 dark:bg-emerald-950/50">
-        <Check className="size-6 text-emerald-600 dark:text-emerald-400" />
+      <div className="flex size-12 items-center justify-center rounded-full bg-success-subtle">
+        <Check className="size-6 text-success-fg" />
       </div>
       <h2 className="text-xl font-semibold text-fg">予約が完了しました</h2>
       <p className="max-w-sm text-sm leading-relaxed text-fg-muted">

@@ -2,9 +2,6 @@ import { AlertTriangle, Trash2 } from "lucide-react";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 
-const destructiveClass =
-  "bg-rose-600 text-white hover:bg-rose-700 dark:bg-rose-600 dark:hover:bg-rose-700";
-
 export function AlertDialogDemo() {
   return (
     <div className="flex flex-col gap-8">
@@ -25,7 +22,7 @@ function DeleteAccount() {
       <div>
         <AlertDialog.Root>
           <AlertDialog.Trigger asChild>
-            <Button variant="outline" className="text-rose-600 dark:text-rose-400">
+            <Button variant="outline" className="text-danger-fg">
               <Trash2 className="size-4" />
               Delete account
             </Button>
@@ -41,7 +38,7 @@ function DeleteAccount() {
                 <Button variant="outline">Cancel</Button>
               </AlertDialog.CloseTrigger>
               <AlertDialog.CloseTrigger asChild>
-                <Button className={destructiveClass}>Yes, delete</Button>
+                <Button variant="danger">Yes, delete</Button>
               </AlertDialog.CloseTrigger>
             </div>
           </AlertDialog.Content>
@@ -65,7 +62,7 @@ function DiscardChanges() {
           </AlertDialog.Trigger>
           <AlertDialog.Content>
             <div className="flex items-center gap-3">
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-400">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-warning-subtle text-warning-fg">
                 <AlertTriangle className="size-5" />
               </span>
               <AlertDialog.Title>Discard unsaved changes?</AlertDialog.Title>
@@ -79,7 +76,7 @@ function DiscardChanges() {
                 <Button variant="outline">Keep editing</Button>
               </AlertDialog.CloseTrigger>
               <AlertDialog.CloseTrigger asChild>
-                <Button className={destructiveClass}>Discard</Button>
+                <Button variant="danger">Discard</Button>
               </AlertDialog.CloseTrigger>
             </div>
           </AlertDialog.Content>

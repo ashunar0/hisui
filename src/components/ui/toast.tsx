@@ -106,10 +106,10 @@ export const Toast = {
 };
 
 const iconByType = {
-  success: <CheckCircle2 className="size-4 text-emerald-600" />,
-  error: <AlertCircle className="size-4 text-red-600" />,
-  warning: <AlertTriangle className="size-4 text-amber-600" />,
-  info: <Info className="size-4 text-sky-600" />,
+  success: <CheckCircle2 className="size-4 text-success-fg" />,
+  error: <AlertCircle className="size-4 text-danger-fg" />,
+  warning: <AlertTriangle className="size-4 text-warning-fg" />,
+  info: <Info className="size-4 text-info-fg" />,
   loading: <Loader2 className="size-4 animate-spin text-fg-muted" />,
 } as const;
 

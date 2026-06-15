@@ -36,6 +36,30 @@
 
   --color-border: var(--color-neutral-200);
   --color-border-muted: var(--color-neutral-100);
+
+  --color-success-subtle: var(--color-emerald-50);
+  --color-success-border: var(--color-emerald-200);
+  --color-success-fg: var(--color-emerald-700);
+  --color-success-solid: var(--color-emerald-600);
+  --color-success-solid-fg: white;
+
+  --color-danger-subtle: var(--color-rose-50);
+  --color-danger-border: var(--color-rose-200);
+  --color-danger-fg: var(--color-rose-700);
+  --color-danger-solid: var(--color-rose-600);
+  --color-danger-solid-fg: white;
+
+  --color-warning-subtle: var(--color-amber-50);
+  --color-warning-border: var(--color-amber-200);
+  --color-warning-fg: var(--color-amber-700);
+  --color-warning-solid: var(--color-amber-600);
+  --color-warning-solid-fg: white;
+
+  --color-info-subtle: var(--color-sky-50);
+  --color-info-border: var(--color-sky-200);
+  --color-info-fg: var(--color-sky-700);
+  --color-info-solid: var(--color-sky-600);
+  --color-info-solid-fg: white;
 }
 
 .dark {
@@ -55,6 +79,30 @@
 
   --color-border: var(--color-neutral-800);
   --color-border-muted: var(--color-neutral-800);
+
+  --color-success-subtle: var(--color-emerald-950);
+  --color-success-border: var(--color-emerald-900);
+  --color-success-fg: var(--color-emerald-400);
+  --color-success-solid: var(--color-emerald-500);
+  --color-success-solid-fg: var(--color-emerald-50);
+
+  --color-danger-subtle: var(--color-rose-950);
+  --color-danger-border: var(--color-rose-900);
+  --color-danger-fg: var(--color-rose-400);
+  --color-danger-solid: var(--color-rose-500);
+  --color-danger-solid-fg: var(--color-rose-50);
+
+  --color-warning-subtle: var(--color-amber-950);
+  --color-warning-border: var(--color-amber-900);
+  --color-warning-fg: var(--color-amber-400);
+  --color-warning-solid: var(--color-amber-500);
+  --color-warning-solid-fg: var(--color-amber-50);
+
+  --color-info-subtle: var(--color-sky-950);
+  --color-info-border: var(--color-sky-900);
+  --color-info-fg: var(--color-sky-400);
+  --color-info-solid: var(--color-sky-500);
+  --color-info-solid-fg: var(--color-sky-50);
 }
 
 @keyframes menu-open {

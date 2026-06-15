@@ -36,7 +36,7 @@ export function RecentChatItem({ title }: { title: string }) {
           <Menu.Separator />
           <Menu.Item
             value="delete"
-            className="text-rose-600 data-highlighted:text-rose-700 dark:text-rose-400 dark:data-highlighted:text-rose-300"
+            className="text-danger-fg data-highlighted:text-danger-fg"
           >
             <Trash2 className="size-4" />
             削除

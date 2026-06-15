@@ -7,13 +7,13 @@ const VARIANT_CLASSES: Record<AlertVariant, string> = {
   neutral:
     "border-border bg-surface text-fg [&_[data-alert-icon]]:text-fg-muted",
   success:
-    "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-100 [&_[data-alert-icon]]:text-emerald-600 dark:[&_[data-alert-icon]]:text-emerald-400",
+    "border-success-border bg-success-subtle text-success-fg [&_[data-alert-icon]]:text-success-fg",
   danger:
-    "border-rose-200 bg-rose-50 text-rose-900 dark:border-rose-900/60 dark:bg-rose-950/30 dark:text-rose-100 [&_[data-alert-icon]]:text-rose-600 dark:[&_[data-alert-icon]]:text-rose-400",
+    "border-danger-border bg-danger-subtle text-danger-fg [&_[data-alert-icon]]:text-danger-fg",
   warning:
-    "border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/30 dark:text-amber-100 [&_[data-alert-icon]]:text-amber-700 dark:[&_[data-alert-icon]]:text-amber-400",
+    "border-warning-border bg-warning-subtle text-warning-fg [&_[data-alert-icon]]:text-warning-fg",
   info:
-    "border-sky-200 bg-sky-50 text-sky-900 dark:border-sky-900/60 dark:bg-sky-950/30 dark:text-sky-100 [&_[data-alert-icon]]:text-sky-600 dark:[&_[data-alert-icon]]:text-sky-400",
+    "border-info-border bg-info-subtle text-info-fg [&_[data-alert-icon]]:text-info-fg",
 };
 
 type RootProps = HTMLAttributes<HTMLDivElement> & {

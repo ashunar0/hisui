@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";
 
-type Variant = "solid" | "outline" | "ghost" | "subtle";
+type Variant = "solid" | "outline" | "ghost" | "subtle" | "danger";
 type Size = "sm" | "md" | "lg";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -16,6 +16,7 @@ const variantClasses: Record<Variant, string> = {
   outline: "border border-border bg-surface text-fg hover:bg-hover",
   ghost: "text-fg hover:bg-hover",
   subtle: "bg-surface-sunken text-fg hover:bg-surface-sunken-hover",
+  danger: "bg-danger-solid text-danger-solid-fg hover:bg-danger-solid/90",
 };
 
 const sizeClasses: Record<Size, string> = {
