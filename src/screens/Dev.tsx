@@ -5,7 +5,12 @@ import { AlertDemo } from "./dev/alert-demo";
 import { AlertDialogDemo } from "./dev/alert-dialog-demo";
 import { AspectRatioDemo } from "./dev/aspect-ratio-demo";
 import { AvatarDemo } from "./dev/avatar-demo";
+import { BadgeDemo } from "./dev/badge-demo";
+import { BreadcrumbDemo } from "./dev/breadcrumb-demo";
+import { ButtonDemo } from "./dev/button-demo";
+import { CardDemo } from "./dev/card-demo";
 import { CarouselDemo } from "./dev/carousel-demo";
+import { ChartDemo } from "./dev/chart-demo";
 import { CheckboxDemo } from "./dev/checkbox-demo";
 import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
@@ -20,7 +25,10 @@ import { EmptyDemo } from "./dev/empty-demo";
 import { FieldDemo } from "./dev/field-demo";
 import { FieldsetDemo } from "./dev/fieldset-demo";
 import { FileUploadDemo } from "./dev/file-upload-demo";
+import { HeadingDemo } from "./dev/heading-demo";
 import { HoverCardDemo } from "./dev/hover-card-demo";
+import { IconButtonDemo } from "./dev/icon-button-demo";
+import { InputDemo } from "./dev/input-demo";
 import { KbdDemo } from "./dev/kbd-demo";
 import { ListboxDemo } from "./dev/listbox-demo";
 import { MenuDemo } from "./dev/menu-demo";
@@ -39,14 +47,18 @@ import { Section } from "./dev/section";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SelectDemo } from "./dev/select-demo";
 import { SeparatorDemo } from "./dev/separator-demo";
+import { SidebarDemo } from "./dev/sidebar-demo";
 import { SkeletonDemo } from "./dev/skeleton-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { SpinnerDemo } from "./dev/spinner-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
+import { StackDemo } from "./dev/stack-demo";
 import { StepsDemo } from "./dev/steps-demo";
 import { SwitchDemo } from "./dev/switch-demo";
+import { TableDemo } from "./dev/table-demo";
 import { TabsDemo } from "./dev/tabs-demo";
 import { TagsInputDemo } from "./dev/tags-input-demo";
+import { TextareaDemo } from "./dev/textarea-demo";
 import { ToastDemo } from "./dev/toast-demo";
 import { ToggleDemo } from "./dev/toggle-demo";
 import { ToggleGroupDemo } from "./dev/toggle-group-demo";
@@ -106,10 +118,45 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Badge"
+        description="小さい label chip (Ark UI 非依存、span ベース)。 Chakra UI v3 と prop 互換: variant (solid / subtle / outline / surface / plain の 5 style) × colorPalette (neutral / success / danger / warning / info の semantic) × size (xs / sm / md / lg)。 default は subtle / neutral / md。 5 × 5 = 25 通りを map で明示して Tailwind v4 のスキャンに乗せる。 variants (5 style 並べ) / matrix (5 × 5 table) / sizes (4 size) / in context (heading 横 count chip + list row status + inline tag) の 4 パターン。"
+      >
+        <BadgeDemo />
+      </Section>
+
+      <Section
+        title="Breadcrumb"
+        description="ナビゲーション履歴 (Ark UI 非依存)。 Chakra UI v3 と prop 互換の compound pattern: Root (nav) / List (ol、 flex-wrap) / Item (li) / Link (a、 text-fg-muted hover:text-fg) / CurrentLink (span、 aria-current=page、 太字 + text-fg) / Separator (default ChevronRight、 children で上書き) / Ellipsis (省略 ・・・ button)。 default は flat、 separator は明示的に間に挟む。 basic / custom separator (Slash icon / · dot) / with icon (Item 内に Home / Folder icon) / collapsed (Ellipsis で長いパスを省略) の 4 パターン。"
+      >
+        <BreadcrumbDemo />
+      </Section>
+
+      <Section
+        title="Button"
+        description="クリック可能なアクション (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant (solid / subtle / outline / ghost / surface / plain の 6 種) × colorPalette (neutral / success / danger / warning / info、 Badge と統一) × size (xs / sm / md / lg) + loading state + loadingText + asChild。 default は solid / neutral / md。 leftIcon / rightIcon prop は廃止して children に icon 直書き (Chakra v3 流)。 旧 variant=danger は colorPalette=danger に統合。 hover は subtle/surface で bg-(color)-border、 outline/ghost で bg-(color)-subtle で接触感を出す。 variants (6 種並べ) / matrix (6 × 5) / sizes (4 種) / loading (button が loading 中の状態 + onClick で trigger) / with icon (children に lucide icon 直書き) の 5 パターン。"
+      >
+        <ButtonDemo />
+      </Section>
+
+      <Section
+        title="Card"
+        description="container surface (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant (elevated / outline / subtle) × size (sm / md / lg)。 default は variant=outline / size=md。 Root に CardContext で size を流して Header / Body / Footer の padding を連動させる。 sub-component: Root / Header / Title / Description / Body / Footer。 variants (3 種並べ) / sizes (3 種 padding 比較) / composition (Header + Body + Footer の full pattern) / pricing (3 plan card group、 中央 highlight ring) の 4 パターン。"
+      >
+        <CardDemo />
+      </Section>
+
+      <Section
         title="Carousel"
         description="RootProvider / AutoplayTrigger / AutoplayIndicator / ProgressText も dot-namespace に export。hero slider (4 枚、Prev/Next + Indicator) / image gallery + ProgressText counter (2 / 4 表示) / autoplay + AutoplayTrigger (AutoplayIndicator で Play/Pause icon 切替、loop=true で auto cycle) の 3 パターン。Indicator は data-current で長方形に伸びる。"
       >
         <CarouselDemo />
+      </Section>
+
+      <Section
+        title="Chart"
+        description="recharts ラッパー (Chakra UI に同名 primitive 無し、独自設計)。 sub-component: Container (ResponsiveContainer + aspect ratio で box にフィット) / Tooltip (cursor は dashed line + fillOpacity 0.04 + 自作 TooltipContent で icon + name + value をリストレイアウト)。 area (revenue 推移、 emerald + fillOpacity 0.15) / line multi (Actual vs Target、 sky の dashed line で目標線) / bar (channel breakdown、 sky + rounded top) / pie (donut、 4 色 Cell + 右に手書き legend) の 4 パターン。 SVG color は raw color (Tailwind palette: emerald / sky / amber / rose) を direct で指定 (chart は装飾用途、 semantic token と分離)。"
+      >
+        <ChartDemo />
       </Section>
 
       <Section
@@ -211,10 +258,31 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Heading"
+        description="h1〜h6 + 8 sizes (xs / sm / md / lg / xl / 2xl / 3xl / 4xl)。 Chakra UI v3 と prop 互換: size + as の 2 軸。 default は as=h2 / size=md。 3xl 以上は tracking-tight で hero 用途も対応。 sizes (8 段並べ) / semantic as (h1〜h5 を別 size で出して semantic と visual を独立指定) / hero (4xl の landing 見出し) の 3 パターン。"
+      >
+        <HeadingDemo />
+      </Section>
+
+      <Section
         title="Hover Card"
         description="Hover で出る非モーダル overlay。Positioner / Arrow / ArrowTip / Context / RootProvider も dot-namespace に export。@mention user profile / link preview (p-0 flush) / inline help (Arrow + ArrowTip で trigger を指す、placement=top) の 3 パターン。"
       >
         <HoverCardDemo />
+      </Section>
+
+      <Section
+        title="Icon Button"
+        description="icon 1 個の正方形 button (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant / colorPalette は Button と完全共有 (button.tsx の buttonStyles を import) × size (xs / sm / md / lg) + loading + aria-label 必須。 default は variant=ghost (Button は solid、 toolbar 並列前提で控えめに) / colorPalette=neutral / size=md。 sizeClasses は正方形 (size-6 / size-7 / size-8 / size-10、 padding 無し)。 variants (6 種並べ) / matrix (6 × 5) / sizes (4 種) / in context (text editor toolbar + inline header action + loading + danger) の 4 パターン。"
+      >
+        <IconButtonDemo />
+      </Section>
+
+      <Section
+        title="Input"
+        description="text input (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant (outline / subtle / flushed) × size (xs / sm / md / lg) + invalid + disabled + readOnly。 default は variant=outline / size=md。 flushed は size 関わらず px-3 で揃える (feedback_flushed_padding に従う)。 invalid=true で aria-invalid + border-danger、 disabled で opacity-50 + cursor-not-allowed。 variants (3 種) / sizes (4 種) / states (invalid / disabled / readOnly) / composed (Field と組合せ + 左 icon の absolute composition) の 4 パターン。"
+      >
+        <InputDemo />
       </Section>
 
       <Section
@@ -337,6 +405,13 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Sidebar"
+        description="app layout の左サイドバー (Ark UI 非依存、 shadcn 流の compound primitive、 Chakra UI に同名 primitive 無し)。 SidebarContext + useSidebar で open/setOpen/toggle を持ち、 default は viewport ≥ 1024px (--lg breakpoint) で open。 sub-component: Provider / Root (aside、 transition-margin-left で開閉) / Trigger (IconButton + PanelLeft、 toggle 起動) / Header / Content (nav) / Footer / Group (label 付き section) / MenuItem (relative wrapper、 group/menu-item で hover action 連動) / MenuButton (active state で bg-surface-sunken + 太字) / MenuAction (hover で opacity 100、 kebab button)。 basic (Header + Content + Footer + MenuButton) / with Trigger (header に Sidebar.Trigger 置いて開閉) / with MenuAction + Menu (kebab で context menu) の 3 パターン。"
+      >
+        <SidebarDemo />
+      </Section>
+
+      <Section
         title="Skeleton"
         description="loading placeholder (Ark UI 非依存、 animate-pulse + bg-surface-sunken)。size / 形状は className で自由指定 (size-12 rounded-full で avatar、 h-3 w-40 で 1 行 text 等)。profile card (avatar + name + bio 2 行 + button) / table rows (5 行 + header、 width をずらして揺らぎ) / dashboard stat grid (4 widget、 label + 数字 + 補足) の 3 パターン。"
       >
@@ -365,6 +440,13 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Stack"
+        description="flex ラッパー (Ark UI 非依存)。 Chakra UI v3 と prop 互換: direction (row / column / row-reverse / column-reverse) + gap (none / xs / sm / md / lg / xl の semantic enum、 Tailwind の gap-0/1/2/4/6/8 に static map) + align + justify + wrap。 default は direction=column / gap=md。 separator prop は YAGNI で見送り (children に Separator primitive を直接挟めば代替可)。 directions / gaps / align + justify / wrap の 4 パターン。"
+      >
+        <StackDemo />
+      </Section>
+
+      <Section
         title="Steps"
         description="Progress / Context / ItemContext / RootProvider も dot-namespace に export。Root / List / Item / Separator に orientation=vertical 対応。horizontal wizard (Account / Profile / Confirm + CompletedContent) / compact + counter (number only + Context で step N / total) / vertical sidebar (onboarding 左 nav 風) の 3 パターン。"
       >
@@ -379,6 +461,13 @@ export function Dev() {
       </Section>
 
       <Section
+        title="Table"
+        description="data table (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant (line / outline / striped) × size (sm / md / lg) + stickyHeader + interactive (default true)。 default は variant=line / size=md。 sub-component: Root / Header / Body / Footer / Row / Head / Cell + ui-lab 独自の SortableHead + useTableSort hook (Chakra に無い独自機能、 keep)。 TableContext で variant / size を Provider → Header / Body / Row / Head / Cell の見た目を連動。 Head → ColumnHeader リネームは破壊的なので keep。 variants (3 種) / sizes (3 種) / sortable + footer (SortableHead で sort 切替 + Footer で合計行) / sticky (stickyHeader=true で thead 固定、 max-h + overflow-y-auto と組合せ) の 4 パターン。"
+      >
+        <TableDemo />
+      </Section>
+
+      <Section
         title="Tabs"
         description="Indicator が --top/--left/--width/--height CSS var で sliding。pill (Calendar 風) / with icon + count Badge (Inbox 12) / vertical (Settings 左 nav 風) の 3 パターン。"
       >
@@ -390,6 +479,13 @@ export function Dev() {
         description="RootProvider / ItemContext / ClearTrigger / HiddenInput も dot-namespace に export。Skills (default + ClearTrigger、 Context render-prop で items iterate) / email recipients + validate (validate callback で email 形式チェック、 invalid な文字列は Enter しても無視) / max=5 + Context counter (上限到達で Input が data-disabled、 Context で count / max 表示) の 3 パターン。"
       >
         <TagsInputDemo />
+      </Section>
+
+      <Section
+        title="Textarea"
+        description="multi-line input (Ark UI 非依存)。 Chakra UI v3 と prop 互換: variant (outline / subtle / flushed、 Input と統一) × size (xs / sm / md / lg、 min-h を 16 / 20 / 24 / 32 にスケール) + invalid + disabled + readOnly。 default は variant=outline / size=md / resize-y。 autoresize prop は YAGNI で見送り (chat input 等で必要なら ref + scrollHeight 手書きで対応、 demo の AutoResize section で例示)。 variants (3 種) / sizes (4 種) / states (invalid / disabled / readOnly) / auto-resize (ref で scrollHeight 追従) の 4 パターン。"
+      >
+        <TextareaDemo />
       </Section>
 
       <Section

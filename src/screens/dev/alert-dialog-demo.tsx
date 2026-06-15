@@ -38,7 +38,7 @@ function DeleteAccount() {
                 <Button variant="outline">Cancel</Button>
               </AlertDialog.CloseTrigger>
               <AlertDialog.CloseTrigger asChild>
-                <Button variant="danger">Yes, delete</Button>
+                <Button colorPalette="danger">Yes, delete</Button>
               </AlertDialog.CloseTrigger>
             </div>
           </AlertDialog.Content>
@@ -76,7 +76,7 @@ function DiscardChanges() {
                 <Button variant="outline">Keep editing</Button>
               </AlertDialog.CloseTrigger>
               <AlertDialog.CloseTrigger asChild>
-                <Button variant="danger">Discard</Button>
+                <Button colorPalette="danger">Discard</Button>
               </AlertDialog.CloseTrigger>
             </div>
           </AlertDialog.Content>

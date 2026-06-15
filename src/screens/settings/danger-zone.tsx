@@ -12,7 +12,7 @@ export function DangerZone() {
             この操作は取り消せません。すべてのデータが完全に削除されます。
           </p>
         </div>
-        <Button variant="danger">Delete account</Button>
+        <Button colorPalette="danger">Delete account</Button>
       </div>
     </div>
   );

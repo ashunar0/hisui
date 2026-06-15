@@ -1,19 +1,75 @@
 import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import {
-  useCallback,
-  useMemo,
-  useState,
+  createContext,
   type HTMLAttributes,
   type TdHTMLAttributes,
   type ThHTMLAttributes,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
 } from "react";
 import { cn } from "@/lib/utils";
 
-function Root({ className, ...props }: HTMLAttributes<HTMLTableElement>) {
+export type TableVariant = "line" | "outline" | "striped";
+export type TableSize = "sm" | "md" | "lg";
+
+type TableContextValue = {
+  variant: TableVariant;
+  size: TableSize;
+  stickyHeader: boolean;
+  interactive: boolean;
+};
+
+const TableContext = createContext<TableContextValue>({
+  variant: "line",
+  size: "md",
+  stickyHeader: false,
+  interactive: true,
+});
+
+const useTableContext = () => useContext(TableContext);
+
+const cellPadding: Record<TableSize, string> = {
+  sm: "px-3 py-2",
+  md: "px-4 py-3",
+  lg: "px-5 py-4",
+};
+
+const headPadding: Record<TableSize, string> = {
+  sm: "h-8 px-3 text-xs",
+  md: "h-10 px-4 text-xs",
+  lg: "h-12 px-5 text-sm",
+};
+
+type RootProps = HTMLAttributes<HTMLTableElement> & {
+  variant?: TableVariant;
+  size?: TableSize;
+  stickyHeader?: boolean;
+  interactive?: boolean;
+};
+
+function Root({
+  variant = "line",
+  size = "md",
+  stickyHeader = false,
+  interactive = true,
+  className,
+  ...props
+}: RootProps) {
   return (
-    <div className="w-full overflow-x-auto">
-      <table className={cn("w-full text-sm", className)} {...props} />
-    </div>
+    <TableContext.Provider
+      value={{ variant, size, stickyHeader, interactive }}
+    >
+      <div
+        className={cn(
+          "w-full overflow-x-auto",
+          variant === "outline" && "rounded-lg border border-border",
+        )}
+      >
+        <table className={cn("w-full text-sm", className)} {...props} />
+      </div>
+    </TableContext.Provider>
   );
 }
 
@@ -21,10 +77,14 @@ function Header({
   className,
   ...props
 }: HTMLAttributes<HTMLTableSectionElement>) {
+  const { variant, stickyHeader } = useTableContext();
   return (
     <thead
       className={cn(
-        "border-b border-border [&_tr:hover]:bg-transparent",
+        "[&_tr:hover]:bg-transparent",
+        variant !== "striped" && "border-b border-border",
+        variant === "striped" && "bg-surface-sunken",
+        stickyHeader && "sticky top-0 z-10 bg-surface",
         className,
       )}
       {...props}
@@ -36,19 +96,42 @@ function Body({
   className,
   ...props
 }: HTMLAttributes<HTMLTableSectionElement>) {
+  const { variant } = useTableContext();
   return (
     <tbody
-      className={cn("divide-y divide-border-muted", className)}
+      className={cn(
+        variant === "line" && "divide-y divide-border-muted",
+        variant === "outline" && "divide-y divide-border",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function Footer({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableSectionElement>) {
+  return (
+    <tfoot
+      className={cn(
+        "border-t border-border bg-surface-sunken font-medium [&_tr:hover]:bg-transparent",
+        className,
+      )}
       {...props}
     />
   );
 }
 
 function Row({ className, ...props }: HTMLAttributes<HTMLTableRowElement>) {
+  const { variant, interactive } = useTableContext();
   return (
     <tr
       className={cn(
-        "transition-[background-color] hover:bg-hover",
+        "transition-[background-color]",
+        interactive && "hover:bg-hover",
+        variant === "striped" && "even:bg-surface-sunken/50",
         className,
       )}
       {...props}
@@ -60,10 +143,12 @@ function Head({
   className,
   ...props
 }: ThHTMLAttributes<HTMLTableCellElement>) {
+  const { size } = useTableContext();
   return (
     <th
       className={cn(
-        "h-10 px-4 text-left font-medium text-fg-muted text-xs",
+        "text-left font-medium text-fg-muted",
+        headPadding[size],
         className,
       )}
       {...props}
@@ -75,8 +160,12 @@ function Cell({
   className,
   ...props
 }: TdHTMLAttributes<HTMLTableCellElement>) {
+  const { size } = useTableContext();
   return (
-    <td className={cn("px-4 py-3 text-fg", className)} {...props} />
+    <td
+      className={cn("text-fg", cellPadding[size], className)}
+      {...props}
+    />
   );
 }
 
@@ -96,6 +185,7 @@ function SortableHead({
   children,
   ...props
 }: SortableHeadProps) {
+  const { size } = useTableContext();
   const Icon = active
     ? direction === "asc"
       ? ChevronUp
@@ -104,7 +194,8 @@ function SortableHead({
   return (
     <th
       className={cn(
-        "h-10 px-4 text-left font-medium text-fg-muted text-xs",
+        "text-left font-medium text-fg-muted",
+        headPadding[size],
         className,
       )}
       {...props}
@@ -173,6 +264,7 @@ export const Table = {
   Root,
   Header,
   Body,
+  Footer,
   Row,
   Head,
   SortableHead,

@@ -58,7 +58,7 @@ const DEALS: Deal[] = [
   },
 ];
 
-const STATUS_VARIANT: Record<Status, "success" | "info" | "warning"> = {
+const STATUS_PALETTE: Record<Status, "success" | "info" | "warning"> = {
   完了: "success",
   進行中: "info",
   保留: "warning",
@@ -148,7 +148,7 @@ export function RecentDeals() {
                   {deal.amount}
                 </Table.Cell>
                 <Table.Cell>
-                  <Badge variant={STATUS_VARIANT[deal.status]}>
+                  <Badge colorPalette={STATUS_PALETTE[deal.status]}>
                     {deal.status}
                   </Badge>
                 </Table.Cell>

@@ -42,7 +42,13 @@ export function Calendar() {
         <main className="flex flex-1 flex-col overflow-hidden bg-canvas">
           <header className="flex h-14 shrink-0 items-center gap-3 px-6">
             <Sidebar.Trigger className="-ml-2" />
-            <Breadcrumb items={[{ label: "カレンダー" }]} />
+            <Breadcrumb.Root>
+              <Breadcrumb.List>
+                <Breadcrumb.Item>
+                  <Breadcrumb.CurrentLink>カレンダー</Breadcrumb.CurrentLink>
+                </Breadcrumb.Item>
+              </Breadcrumb.List>
+            </Breadcrumb.Root>
             <div className="ml-auto flex items-center gap-3">
               <Tabs.Root
                 value={view}

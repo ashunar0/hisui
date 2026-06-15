@@ -1,51 +1,100 @@
-import { ChevronRight } from "lucide-react";
-import { Fragment, type HTMLAttributes } from "react";
+import { ChevronRight, MoreHorizontal } from "lucide-react";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  LiHTMLAttributes,
+} from "react";
 import { cn } from "@/lib/utils";
 
-type BreadcrumbItem = {
-  label: string;
-  href?: string;
-};
+type NavProps = HTMLAttributes<HTMLElement>;
+type OlProps = HTMLAttributes<HTMLOListElement>;
+type LiProps = LiHTMLAttributes<HTMLLIElement>;
+type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement>;
+type SpanProps = HTMLAttributes<HTMLSpanElement>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
-type BreadcrumbProps = HTMLAttributes<HTMLElement> & {
-  items: BreadcrumbItem[];
-};
-
-export function Breadcrumb({ items, className, ...props }: BreadcrumbProps) {
+function Root({ className, ...props }: NavProps) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className={cn("flex items-center gap-1.5", className)}
+      className={cn("text-sm", className)}
       {...props}
-    >
-      {items.map((item, i) => {
-        const isLast = i === items.length - 1;
-        return (
-          <Fragment key={i}>
-            {item.href && !isLast ? (
-              <a
-                href={item.href}
-                className="text-sm text-fg-muted hover:text-fg"
-              >
-                {item.label}
-              </a>
-            ) : (
-              <span
-                aria-current={isLast ? "page" : undefined}
-                className={cn(
-                  "text-sm",
-                  isLast ? "font-medium text-fg" : "text-fg-muted",
-                )}
-              >
-                {item.label}
-              </span>
-            )}
-            {!isLast && (
-              <ChevronRight className="size-3.5 text-fg-subtle" />
-            )}
-          </Fragment>
-        );
-      })}
-    </nav>
+    />
   );
 }
+
+function List({ className, ...props }: OlProps) {
+  return (
+    <ol
+      className={cn("flex flex-wrap items-center gap-1.5", className)}
+      {...props}
+    />
+  );
+}
+
+function Item({ className, ...props }: LiProps) {
+  return (
+    <li
+      className={cn("inline-flex items-center gap-1.5", className)}
+      {...props}
+    />
+  );
+}
+
+function Link({ className, ...props }: AnchorProps) {
+  return (
+    <a
+      className={cn("text-fg-muted transition-colors hover:text-fg", className)}
+      {...props}
+    />
+  );
+}
+
+function CurrentLink({ className, ...props }: SpanProps) {
+  return (
+    <span
+      aria-current="page"
+      className={cn("font-medium text-fg", className)}
+      {...props}
+    />
+  );
+}
+
+function Separator({ className, children, ...props }: SpanProps) {
+  return (
+    <span
+      role="presentation"
+      className={cn("text-fg-subtle", className)}
+      {...props}
+    >
+      {children ?? <ChevronRight className="size-3.5" />}
+    </span>
+  );
+}
+
+function Ellipsis({ className, children, ...props }: ButtonProps) {
+  return (
+    <button
+      type="button"
+      aria-label="More breadcrumbs"
+      className={cn(
+        "inline-flex size-5 items-center justify-center rounded text-fg-muted hover:bg-hover hover:text-fg",
+        className,
+      )}
+      {...props}
+    >
+      {children ?? <MoreHorizontal className="size-3.5" />}
+    </button>
+  );
+}
+
+export const Breadcrumb = {
+  Root,
+  List,
+  Item,
+  Link,
+  CurrentLink,
+  Separator,
+  Ellipsis,
+};

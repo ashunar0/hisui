@@ -20,7 +20,7 @@ export function StatCard({ label, value, delta, isPositive }: StatCardProps) {
             {value}
           </span>
           <Badge
-            variant={isPositive ? "success" : "danger"}
+            colorPalette={isPositive ? "success" : "danger"}
             className="tabular-nums"
           >
             <TrendIcon className="size-3" />
