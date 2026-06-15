@@ -11,6 +11,7 @@ import { ClipboardDemo } from "./dev/clipboard-demo";
 import { CollapsibleDemo } from "./dev/collapsible-demo";
 import { ColorPickerDemo } from "./dev/color-picker-demo";
 import { ComboboxDemo } from "./dev/combobox-demo";
+import { CommandDemo } from "./dev/command-demo";
 import { DatePickerDemo } from "./dev/date-picker-demo";
 import { DialogDemo } from "./dev/dialog-demo";
 import { DrawerDemo } from "./dev/drawer-demo";
@@ -144,6 +145,13 @@ export function Dev() {
         description="入力で絞り込める select。Positioner / List / ItemGroup / ItemGroupLabel / Context / ItemContext / RootProvider も dot-namespace に export。basic single (Empty fallback) / grouped (国別 ItemGroup + ClearTrigger) / multiple (Context render-prop で選択数表示) の 3 パターン。"
       >
         <ComboboxDemo />
+      </Section>
+
+      <Section
+        title="Command"
+        description="⌘K palette (Listbox + Dialog の compound、 shadcn cmdk 流)。Root / Input (左に Search icon 内蔵) / List / Empty / Group / GroupLabel / Item (justify-start gap-2 で icon + text + shortcut のレイアウト) / ItemText / ItemIndicator / Shortcut (右寄せ Kbd group) / Dialog / DialogContent (max-w-lg p-0 overflow-hidden) を dot-namespace に export。inline (page 内に展開、 query で filter、 3 group + shortcut) / dialog (⌘K で window keydown 監視、 Esc で閉じる、 開閉に合わせて query reset) の 2 パターン。"
+      >
+        <CommandDemo />
       </Section>
 
       <Section
