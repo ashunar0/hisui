@@ -50,7 +50,7 @@ function TableRows() {
         {[1, 2, 3, 4, 5].map((row) => (
           <div
             key={row}
-            className="grid grid-cols-[1fr_120px_100px_80px] gap-4 border-b border-border-muted px-4 py-3 last:border-b-0"
+            className="grid grid-cols-[1fr_120px_100px_80px] items-center gap-4 border-b border-border-muted px-4 py-3 last:border-b-0"
           >
             <div className="flex items-center gap-3">
               <Skeleton className="size-7 rounded-full" />
