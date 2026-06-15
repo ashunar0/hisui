@@ -33,6 +33,7 @@ import { ScrollAreaDemo } from "./dev/scroll-area-demo";
 import { Section } from "./dev/section";
 import { SegmentGroupDemo } from "./dev/segment-group-demo";
 import { SelectDemo } from "./dev/select-demo";
+import { SeparatorDemo } from "./dev/separator-demo";
 import { SkeletonDemo } from "./dev/skeleton-demo";
 import { SliderDemo } from "./dev/slider-demo";
 import { SplitterDemo } from "./dev/splitter-demo";
@@ -284,6 +285,13 @@ export function Dev() {
         description="Dropdown select。Basic (single + Label + Indicator + ItemIndicator) / Grouped (ItemGroup + ItemGroupLabel で region 別) / Clearable + form (ClearTrigger + HiddenSelect で form submit 対応)。"
       >
         <SelectDemo />
+      </Section>
+
+      <Section
+        title="Separator"
+        description="仕切り線 (Ark UI 非依存、 div で bg-border + h-px or w-px)。orientation=horizontal / vertical、 decorative (default true) で role=none、 false で role=separator + aria-orientation。section dividers (Settings の row 区切り) / labeled (左右 Separator + 中央 OR で SNS login 風) / vertical toolbar (Undo/Redo + 装飾 + 整列 を group 区切り) の 3 パターン。vertical は親に高さが必要 (Separator 自身は h-full)。"
+      >
+        <SeparatorDemo />
       </Section>
 
       <Section
