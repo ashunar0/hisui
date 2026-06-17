@@ -1,7 +1,7 @@
 import { Bell, Calendar, Check, ChevronDown, Search } from "lucide-react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SettingsRow } from "@/components/settings-row";
-import { type Theme, useTheme } from "@/components/theme-provider";
+import { type Theme, useTheme } from "@/components/theme-context";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { DatePicker } from "@/components/ui/date-picker";
