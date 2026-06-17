@@ -92,10 +92,10 @@ function TocLink({ item, active }: { item: TocItem; active: boolean }) {
         scrollToSection(item.id);
       }}
       className={cn(
-        "block border-l py-0.5 pl-3 text-sm",
+        "-ml-px block border-l py-0.5 pl-3 text-sm",
         active
           ? "border-fg font-medium text-fg"
-          : "border-border text-fg-muted hover:text-fg",
+          : "border-transparent text-fg-muted hover:text-fg",
       )}
     >
       {item.text}
@@ -110,7 +110,7 @@ export function OnThisPage() {
   return (
     <aside className="sticky top-12 hidden h-fit w-44 shrink-0 xl:block">
       <p className="mb-3 font-medium text-fg-muted text-sm">On this page</p>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 border-l border-border">
         {items.map((item) => (
           <li key={item.id}>
             <TocLink item={item} active={active === item.id} />

@@ -26,7 +26,7 @@ export function DocsLayout() {
           </div>
         </header>
         <div className="flex min-h-0 flex-1">
-          <Sidebar.Root className="bg-bg">
+          <Sidebar.Root className="bg-bg border-none">
             <Sidebar.Content className="scrollbar-soft overflow-y-auto">
               {DOCS_NAV.map((group, i) => (
                 <Sidebar.Group key={group.label ?? i} label={group.label}>

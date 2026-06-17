@@ -18,7 +18,7 @@ export function InlineCode({
 
 export function CodeBlock({ code }: { code: string }) {
   return (
-    <pre className="scrollbar-soft overflow-x-auto bg-surface-sunken px-4 py-3 text-xs leading-relaxed">
+    <pre className="scrollbar-soft overflow-x-auto bg-canvas px-4 py-3 text-xs leading-relaxed">
       <code className="font-mono text-fg-soft">{code}</code>
     </pre>
   );
