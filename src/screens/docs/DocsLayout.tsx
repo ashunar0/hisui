@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sidebar } from "@/components/ui/sidebar";
 import { DOCS_NAV } from "./docs-nav";
+import { OnThisPage } from "./parts/on-this-page";
 
 export function DocsLayout() {
   const { pathname } = useLocation();
@@ -43,8 +44,11 @@ export function DocsLayout() {
             </Sidebar.Content>
           </Sidebar.Root>
           <main className="scrollbar-soft flex-1 overflow-y-auto">
-            <div className="mx-auto w-full max-w-3xl px-6 py-12">
-              <Outlet />
+            <div className="mx-auto flex max-w-6xl gap-10 px-6 py-12">
+              <div className="mx-auto w-full min-w-0 max-w-3xl flex-1">
+                <Outlet />
+              </div>
+              <OnThisPage />
             </div>
           </main>
         </div>

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Heading } from "@/components/ui/heading";
+import { slugify } from "./slugify";
 
 /** component doc ページ共通の枠 (h1 + lead) */
 export function DocHeader({
@@ -14,7 +15,7 @@ export function DocHeader({
       <Heading as="h1" size="2xl">
         {title}
       </Heading>
-      <p className="text-fg-muted leading-relaxed">{children}</p>
+      <p className="text-fg-muted text-sm leading-relaxed">{children}</p>
     </header>
   );
 }
@@ -30,7 +31,11 @@ export function DocSection({
   children: ReactNode;
 }) {
   return (
-    <section className="flex flex-col gap-4">
+    <section
+      id={slugify(title)}
+      data-doc-section={title}
+      className="scroll-mt-8 flex flex-col gap-4"
+    >
       <div className="flex flex-col gap-1">
         <Heading as="h2" size="sm" className="text-fg-soft">
           {title}
