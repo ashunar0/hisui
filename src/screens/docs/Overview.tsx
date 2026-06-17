@@ -60,7 +60,7 @@ export function Overview() {
             <Link key={to} to={to} className="group">
               <Card.Root
                 variant="outline"
-                className="h-full transition-colors group-hover:border-fg-subtle"
+                className="h-full group-hover:border-fg-subtle"
               >
                 <Card.Header>
                   <Icon className="size-5 text-fg-muted" />

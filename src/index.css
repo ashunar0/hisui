@@ -194,6 +194,13 @@ body {
   color: var(--color-fg);
 }
 
+/* テーマ切替の瞬間だけ全 transition を無効化 (CSS 変数の入替を補間させない) */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
 @utility scrollbar-soft {
   scrollbar-width: thin;
   scrollbar-color: color-mix(in oklab, var(--color-fg-muted) 30%, transparent)

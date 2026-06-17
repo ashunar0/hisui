@@ -50,7 +50,12 @@ export function ThemeProvider({
   }, [theme]);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
+    const root = document.documentElement;
+    root.classList.add("theme-switching");
+    root.classList.toggle("dark", resolvedTheme === "dark");
+    // 強制 reflow: transition 無効のまま新しい色を確定させてから再有効化する
+    window.getComputedStyle(root).getPropertyValue("opacity");
+    root.classList.remove("theme-switching");
   }, [resolvedTheme]);
 
   const setTheme = (next: Theme) => setThemeState(next);
