@@ -1,14 +1,6 @@
-import {
-  MousePointerClick,
-  Palette,
-  Rocket,
-  type LucideIcon,
-} from "lucide-react";
-
 export type DocsNavItem = {
   label: string;
   to: string;
-  icon: LucideIcon;
 };
 
 export type DocsNavGroup = {
@@ -18,20 +10,14 @@ export type DocsNavGroup = {
 
 export const DOCS_NAV: DocsNavGroup[] = [
   {
-    items: [{ label: "Overview", to: "/docs", icon: Rocket }],
+    items: [{ label: "Overview", to: "/docs" }],
   },
   {
     label: "Foundations",
-    items: [{ label: "Colors", to: "/docs/foundations/colors", icon: Palette }],
+    items: [{ label: "Colors", to: "/docs/foundations/colors" }],
   },
   {
     label: "Components",
-    items: [
-      {
-        label: "Button",
-        to: "/docs/components/button",
-        icon: MousePointerClick,
-      },
-    ],
+    items: [{ label: "Button", to: "/docs/components/button" }],
   },
 ];
