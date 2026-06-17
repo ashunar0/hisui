@@ -5,6 +5,7 @@ import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
+import { ButtonDoc } from "@/screens/docs/components/Button";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
 import { Overview } from "@/screens/docs/Overview";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/docs" element={<DocsLayout />}>
             <Route index element={<Overview />} />
             <Route path="foundations/colors" element={<Colors />} />
+            <Route path="components/button" element={<ButtonDoc />} />
           </Route>
         </Routes>
       </BrowserRouter>
