@@ -10,6 +10,7 @@ const screens = [
   { to: "/login", label: "Login" },
   { to: "/signup", label: "Sign up" },
   { to: "/dev", label: "Dev sandbox" },
+  { to: "/docs", label: "Docs" },
 ];
 
 export function Home() {

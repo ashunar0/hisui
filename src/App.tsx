@@ -5,6 +5,9 @@ import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
+import { DocsLayout } from "@/screens/docs/DocsLayout";
+import { Colors } from "@/screens/docs/foundations/Colors";
+import { Overview } from "@/screens/docs/Overview";
 import { Home } from "@/screens/Home";
 import { Login } from "@/screens/Login";
 import { Mail } from "@/screens/Mail";
@@ -26,6 +29,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dev" element={<Dev />} />
+          <Route path="/docs" element={<DocsLayout />}>
+            <Route index element={<Overview />} />
+            <Route path="foundations/colors" element={<Colors />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster />
