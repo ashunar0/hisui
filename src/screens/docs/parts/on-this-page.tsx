@@ -18,25 +18,41 @@ function scrollToSection(id: string) {
     ?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/** 表示中の section のうち最も上にあるものを active に流す observer */
+/**
+ * 表示中の section のうち最も上にあるものを active に流す。
+ * 下端まで scroll しきった時は band に届かない末尾 section を active にする。
+ * cleanup 関数を返す。
+ */
 function createScrollSpy(
-  root: Element,
+  root: HTMLElement,
   sections: HTMLElement[],
   onActive: (id: string) => void,
 ) {
   const visible = new Map<string, boolean>();
+  const computeActive = () => {
+    const atBottom = root.scrollTop + root.clientHeight >= root.scrollHeight - 4;
+    if (atBottom) {
+      onActive(sections[sections.length - 1].id);
+      return;
+    }
+    const topmost = sections.find((s) => visible.get(s.id));
+    if (topmost) onActive(topmost.id);
+  };
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         visible.set(entry.target.id, entry.isIntersecting);
       }
-      const topmost = sections.find((s) => visible.get(s.id));
-      if (topmost) onActive(topmost.id);
+      computeActive();
     },
     { root, rootMargin: "0px 0px -70% 0px", threshold: 0 },
   );
   for (const section of sections) observer.observe(section);
-  return observer;
+  root.addEventListener("scroll", computeActive, { passive: true });
+  return () => {
+    observer.disconnect();
+    root.removeEventListener("scroll", computeActive);
+  };
 }
 
 /** main 内の DocSection を走査して目次 + 現在位置を返す */
@@ -48,17 +64,19 @@ function useTableOfContents() {
   useEffect(() => {
     const main = document.querySelector("main");
     if (!main) return;
-    let spy: IntersectionObserver | undefined;
+    let teardownSpy: (() => void) | undefined;
     // 描画後の DOM を読む (レイアウト確定を 1 フレーム待つ)
     const raf = requestAnimationFrame(() => {
       const sections = collectSections(main);
       setItems(toTocItems(sections));
       setActive(sections[0]?.id ?? null);
-      if (sections.length > 0) spy = createScrollSpy(main, sections, setActive);
+      if (sections.length > 0) {
+        teardownSpy = createScrollSpy(main, sections, setActive);
+      }
     });
     return () => {
       cancelAnimationFrame(raf);
-      spy?.disconnect();
+      teardownSpy?.();
     };
   }, [pathname]);
 
