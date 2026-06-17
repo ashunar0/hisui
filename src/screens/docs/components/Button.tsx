@@ -1,6 +1,5 @@
 import { ArrowRight, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CodeBlock } from "../parts/code";
 import { DocHeader, DocSection } from "../parts/doc-page";
 import { Example } from "../parts/example";
 import { type PropRow, PropsTable } from "../parts/props-table";
@@ -61,8 +60,6 @@ export function ButtonDoc() {
         アクションのトリガー。variant（見た目）× colorPalette（意味の色）×
         size の 3 軸で組み合わせる。Chakra UI v3 と prop 互換。
       </DocHeader>
-
-      <CodeBlock code={`import { Button } from "@/components/ui/button";`} />
 
       <DocSection title="Usage" description="default は solid / neutral / md。">
         <Example code={`<Button>Save changes</Button>`}>
