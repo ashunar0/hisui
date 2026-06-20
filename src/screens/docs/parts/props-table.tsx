@@ -35,7 +35,9 @@ export function PropsTable({ rows }: { rows: PropRow[] }) {
                 <span className="text-fg-subtle">—</span>
               )}
             </Table.Cell>
-            <Table.Cell className="text-fg-muted">{row.description}</Table.Cell>
+            <Table.Cell className="text-fg-muted text-xs leading-relaxed">
+              {row.description}
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>

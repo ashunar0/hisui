@@ -77,10 +77,11 @@ const PROPS: PropRow[] = [
     description: "Floating UI 設定。 sameWidth=true (default) で Trigger 幅と揃える。",
   },
   {
-    name: "Trigger.size",
+    name: "Root.size",
     type: '"xs" | "sm" | "md" | "lg"',
     default: '"md"',
-    description: "高さ・padding・font-size を Input と同じ scale に揃える。",
+    description:
+      "Trigger の高さ・padding・font-size を Input と同じ scale に揃える。 Context 経由で Trigger に流れる。",
   },
 ];
 
@@ -324,19 +325,19 @@ const [value, setValue] = useState<string[]>(["react"]);
 
       <DocSection
         title="Sizes"
-        description="Trigger の size で xs / sm / md / lg。 高さ・padding・font-size が Input と同じ scale。"
+        description="Root の size で xs / sm / md / lg。 Context で Trigger に流れる。 Input と同じ scale。"
       >
         <Example
-          code={`<Select.Trigger size="xs">…</Select.Trigger>
-<Select.Trigger size="sm">…</Select.Trigger>
-<Select.Trigger size="md">…</Select.Trigger>
-<Select.Trigger size="lg">…</Select.Trigger>`}
+          code={`<Select.Root size="xs" ...>…</Select.Root>
+<Select.Root size="sm" ...>…</Select.Root>
+<Select.Root size="md" ...>…</Select.Root>
+<Select.Root size="lg" ...>…</Select.Root>`}
         >
           <div className="flex flex-col gap-3">
             {(["xs", "sm", "md", "lg"] as const).map((s) => (
-              <Select.Root key={s} collection={FRAMEWORKS}>
+              <Select.Root key={s} collection={FRAMEWORKS} size={s}>
                 <Select.Control>
-                  <Select.Trigger size={s} className="w-48">
+                  <Select.Trigger className="w-48">
                     <Select.ValueText placeholder={`size=${s}`} />
                     <Select.Indicator>
                       <ChevronDown className="size-4" />

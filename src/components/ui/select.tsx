@@ -3,18 +3,26 @@ import {
   Select as ArkSelect,
   createListCollection,
 } from "@ark-ui/react/select";
-import type { ComponentProps } from "react";
+import { type ComponentProps, createContext, useContext } from "react";
 import { cn } from "@/lib/utils";
 
-function Root({
-  className,
-  ...props
-}: ComponentProps<typeof ArkSelect.Root>) {
+type SelectSize = "xs" | "sm" | "md" | "lg";
+
+const SelectSizeContext = createContext<SelectSize>("md");
+const useSelectSize = () => useContext(SelectSizeContext);
+
+type RootProps = ComponentProps<typeof ArkSelect.Root> & {
+  size?: SelectSize;
+};
+
+function Root({ size = "md", className, ...props }: RootProps) {
   return (
-    <ArkSelect.Root
-      className={cn("flex flex-col gap-2", className)}
-      {...props}
-    />
+    <SelectSizeContext.Provider value={size}>
+      <ArkSelect.Root
+        className={cn("flex flex-col gap-2", className)}
+        {...props}
+      />
+    </SelectSizeContext.Provider>
   );
 }
 
@@ -42,20 +50,18 @@ function Control({
   );
 }
 
-type TriggerSize = "xs" | "sm" | "md" | "lg";
-
-const triggerSizeClasses: Record<TriggerSize, string> = {
+const triggerSizeClasses: Record<SelectSize, string> = {
   xs: "h-7 px-2 text-xs",
   sm: "h-8 px-2.5 text-sm",
   md: "h-10 px-3 text-sm",
   lg: "h-12 px-4 text-base",
 };
 
-type TriggerProps = ComponentProps<typeof ArkSelect.Trigger> & {
-  size?: TriggerSize;
-};
-
-function Trigger({ size = "md", className, ...props }: TriggerProps) {
+function Trigger({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.Trigger>) {
+  const size = useSelectSize();
   return (
     <ArkSelect.Trigger
       className={cn(
