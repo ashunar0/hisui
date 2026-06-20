@@ -1,4 +1,4 @@
-import { Heading } from "@/components/ui/heading";
+import { DocHeader, DocSection } from "../parts/doc-page";
 
 type Token = { name: string; varName: string; border?: boolean };
 
@@ -65,31 +65,18 @@ function TokenGroup({
   tokens: Token[];
 }) {
   return (
-    <section className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <Heading as="h2" size="sm" className="text-fg-soft">
-          {title}
-        </Heading>
-        <p className="text-fg-muted text-xs">{description}</p>
-      </div>
+    <DocSection title={title} description={description}>
       <SwatchGrid tokens={tokens} />
-    </section>
+    </DocSection>
   );
 }
 
 function AccentScale() {
   return (
-    <section className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <Heading as="h2" size="sm" className="text-fg-soft">
-          Accents
-        </Heading>
-        <p className="text-fg-muted text-xs">
-          success / danger / warning / info × subtle / border / fg / solid /
-          solid-fg の 4 × 5。light は 50/200/700/600/white、dark は
-          950/900/400/500/50 で contrast を確保。
-        </p>
-      </div>
+    <DocSection
+      title="Accents"
+      description="success / danger / warning / info × subtle / border / fg / solid / solid-fg の 4 × 5。light は 50/200/700/600/white、 dark は 950/900/400/500/50 で contrast を確保。"
+    >
       <div className="flex flex-col gap-6">
         {PALETTES.map((palette) => (
           <div key={palette} className="flex flex-col gap-2">
@@ -111,24 +98,19 @@ function AccentScale() {
           </div>
         ))}
       </div>
-    </section>
+    </DocSection>
   );
 }
 
 export function Colors() {
   return (
     <div className="flex flex-col gap-10">
-      <header className="flex flex-col gap-2">
-        <Heading as="h1" size="2xl">
-          Colors
-        </Heading>
-        <p className="text-fg-muted leading-relaxed">
-          色は raw な Tailwind palette を直接使わず、用途を表す semantic token
-          に必ず通す。token は index.css の <code>@theme</code> と{" "}
-          <code>.dark</code> に定義され、light / dark の切替は token
-          の値だけが入れ替わる。
-        </p>
-      </header>
+      <DocHeader title="Colors">
+        色は raw な Tailwind palette を直接使わず、用途を表す semantic token
+        に必ず通す。token は index.css の <code>@theme</code> と{" "}
+        <code>.dark</code> に定義され、light / dark の切替は token
+        の値だけが入れ替わる。
+      </DocHeader>
 
       <TokenGroup
         title="Surfaces"

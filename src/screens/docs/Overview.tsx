@@ -1,4 +1,4 @@
-import { Boxes, Component, Palette, Sparkles } from "lucide-react";
+import { Boxes, Component, Palette, Sparkles, Type } from "lucide-react";
 import { Link } from "react-router";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -16,6 +16,12 @@ const NEXT = [
     icon: Palette,
     title: "Colors",
     description: "semantic token と light / dark の対応を一覧する。",
+  },
+  {
+    to: "/docs/foundations/typography",
+    icon: Type,
+    title: "Typography",
+    description: "font-family、 Heading scale、 weight、 fg token の方針。",
   },
 ];
 
