@@ -1,5 +1,6 @@
 import {
   Boxes,
+  CircleDashed,
   Component,
   Layers,
   Palette,
@@ -43,6 +44,12 @@ const NEXT = [
     title: "Shadow",
     description: "hairline + drop + halo の 3 層構成と mid / high の 2 段階。",
   },
+  {
+    to: "/docs/foundations/radius",
+    icon: CircleDashed,
+    title: "Radius",
+    description: "rounded-* の 7 段階と nesting ルール。",
+  },
 ];
 
 export function Overview() {
@@ -62,7 +69,7 @@ export function Overview() {
           <p className="text-fg-muted leading-relaxed">
             Ark UI + Tailwind v4 で組んだ React デザインシステムの練習場。Chakra
             UI v3 互換の prop API と semantic token で light / dark 両対応。この
-            docs 自体も ui-lab の primitive で出来ているのだ。
+            docs 自体も ui-lab の primitive で出来ている。
           </p>
         </div>
         <div className="flex flex-wrap gap-6 pt-2">
@@ -117,7 +124,7 @@ export function Overview() {
           <Link to="/dev" className="underline hover:text-fg">
             Dev sandbox
           </Link>{" "}
-          にあるのだ。
+          にある。
         </span>
       </footer>
     </div>
