@@ -56,6 +56,7 @@ function Content({
           className={cn(
             "w-full max-w-md rounded-lg border border-border bg-surface p-6 shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_0_4px_rgba(0,0,0,0.03)] focus:outline-none",
             "data-[state=open]:animate-menu-open",
+            "data-[state=closed]:animate-menu-close",
             className,
           )}
           {...props}
