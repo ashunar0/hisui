@@ -16,6 +16,7 @@ import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { MenuDoc } from "@/screens/docs/components/Menu";
+import { PopoverDoc } from "@/screens/docs/components/Popover";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
 import { StackDoc } from "@/screens/docs/components/Stack";
@@ -69,6 +70,7 @@ function App() {
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/menu" element={<MenuDoc />} />
+            <Route path="components/popover" element={<PopoverDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/select" element={<SelectDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
