@@ -10,6 +10,7 @@ import { AvatarDoc } from "@/screens/docs/components/Avatar";
 import { BadgeDoc } from "@/screens/docs/components/Badge";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
+import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
@@ -55,6 +56,7 @@ function App() {
             <Route path="components/badge" element={<BadgeDoc />} />
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/card" element={<CardDoc />} />
+            <Route path="components/checkbox" element={<CheckboxDoc />} />
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />

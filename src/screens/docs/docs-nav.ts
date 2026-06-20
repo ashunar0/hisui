@@ -30,6 +30,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Badge", to: "/docs/components/badge" },
       { label: "Button", to: "/docs/components/button" },
       { label: "Card", to: "/docs/components/card" },
+      { label: "Checkbox", to: "/docs/components/checkbox" },
       { label: "Heading", to: "/docs/components/heading" },
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
