@@ -18,9 +18,9 @@ const variantClasses: Record<CardVariant, string> = {
 };
 
 const headerPadding: Record<CardSize, string> = {
-  sm: "px-4 pt-6 pb-1",
-  md: "px-6 pt-6 pb-2",
-  lg: "px-8 pt-8 pb-2",
+  sm: "px-4 pt-6 pb-1 last:pb-6",
+  md: "px-6 pt-6 pb-2 last:pb-6",
+  lg: "px-8 pt-8 pb-2 last:pb-8",
 };
 
 const bodyPadding: Record<CardSize, string> = {
@@ -99,7 +99,11 @@ function Footer({ className, ...props }: DivProps) {
   const { size } = useCardContext();
   return (
     <div
-      className={cn("flex items-center", footerPadding[size], className)}
+      className={cn(
+        "flex items-center justify-end gap-2",
+        footerPadding[size],
+        className,
+      )}
       {...props}
     />
   );
