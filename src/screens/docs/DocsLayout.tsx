@@ -1,4 +1,5 @@
 import { Boxes } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Sidebar } from "@/components/ui/sidebar";
@@ -7,6 +8,10 @@ import { OnThisPage } from "./parts/on-this-page";
 
 export function DocsLayout() {
   const { pathname } = useLocation();
+  const mainRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 });
+  }, [pathname]);
   return (
     <Sidebar.Provider>
       <div className="flex h-svh flex-col bg-bg">
@@ -43,7 +48,7 @@ export function DocsLayout() {
               ))}
             </Sidebar.Content>
           </Sidebar.Root>
-          <main className="scrollbar-soft flex-1 overflow-y-auto">
+          <main ref={mainRef} className="scrollbar-soft flex-1 overflow-y-auto">
             <div className="mx-auto flex max-w-6xl gap-10 px-6 py-12">
               <div className="mx-auto w-full min-w-0 max-w-3xl flex-1">
                 <Outlet />

@@ -10,6 +10,7 @@ import { ButtonDoc } from "@/screens/docs/components/Button";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
+import { StackDoc } from "@/screens/docs/components/Stack";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
 import { Radius } from "@/screens/docs/foundations/Radius";
@@ -50,6 +51,7 @@ function App() {
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
+            <Route path="components/stack" element={<StackDoc />} />
           </Route>
         </Routes>
       </BrowserRouter>

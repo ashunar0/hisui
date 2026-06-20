@@ -30,6 +30,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Heading", to: "/docs/components/heading" },
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
+      { label: "Stack", to: "/docs/components/stack" },
     ],
   },
 ];
