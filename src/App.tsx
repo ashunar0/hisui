@@ -19,6 +19,7 @@ import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
+import { TooltipDoc } from "@/screens/docs/components/Tooltip";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
 import { Radius } from "@/screens/docs/foundations/Radius";
@@ -68,6 +69,7 @@ function App() {
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
+            <Route path="components/tooltip" element={<TooltipDoc />} />
           </Route>
         </Routes>
       </BrowserRouter>
