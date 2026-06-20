@@ -1,4 +1,4 @@
-import { Boxes, Component, Palette, Sparkles, Type } from "lucide-react";
+import { Boxes, Component, Palette, Ruler, Sparkles, Type } from "lucide-react";
 import { Link } from "react-router";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -22,6 +22,12 @@ const NEXT = [
     icon: Type,
     title: "Typography",
     description: "font-family、 Heading scale、 weight、 fg token の方針。",
+  },
+  {
+    to: "/docs/foundations/spacing",
+    icon: Ruler,
+    title: "Spacing",
+    description: "4px grid の scale と Stack gap enum の対応表。",
   },
 ];
 

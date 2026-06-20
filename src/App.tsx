@@ -8,6 +8,7 @@ import { Dev } from "@/screens/Dev";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
+import { Spacing } from "@/screens/docs/foundations/Spacing";
 import { Typography } from "@/screens/docs/foundations/Typography";
 import { Overview } from "@/screens/docs/Overview";
 import { Home } from "@/screens/Home";
@@ -35,6 +36,7 @@ function App() {
             <Route index element={<Overview />} />
             <Route path="foundations/colors" element={<Colors />} />
             <Route path="foundations/typography" element={<Typography />} />
+            <Route path="foundations/spacing" element={<Spacing />} />
             <Route path="components/button" element={<ButtonDoc />} />
           </Route>
         </Routes>
