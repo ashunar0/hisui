@@ -28,6 +28,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Badge", to: "/docs/components/badge" },
       { label: "Button", to: "/docs/components/button" },
       { label: "IconButton", to: "/docs/components/icon-button" },
+      { label: "Input", to: "/docs/components/input" },
     ],
   },
 ];

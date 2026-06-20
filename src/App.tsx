@@ -8,6 +8,7 @@ import { Dev } from "@/screens/Dev";
 import { BadgeDoc } from "@/screens/docs/components/Badge";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
+import { InputDoc } from "@/screens/docs/components/Input";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
 import { Radius } from "@/screens/docs/foundations/Radius";
@@ -46,6 +47,7 @@ function App() {
             <Route path="components/badge" element={<BadgeDoc />} />
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
+            <Route path="components/input" element={<InputDoc />} />
           </Route>
         </Routes>
       </BrowserRouter>
