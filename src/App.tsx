@@ -15,6 +15,7 @@ import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { StackDoc } from "@/screens/docs/components/Stack";
+import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
@@ -61,6 +62,7 @@ function App() {
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
+            <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
           </Route>
         </Routes>

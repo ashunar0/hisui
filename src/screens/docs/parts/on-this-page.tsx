@@ -13,9 +13,11 @@ function toTocItems(sections: HTMLElement[]): TocItem[] {
 }
 
 function scrollToSection(id: string) {
-  document
-    .getElementById(id)
-    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const target = document.getElementById(id);
+  const main = document.querySelector("main");
+  if (!target || !main) return;
+  const top = target.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
+  main.scrollTo({ top, behavior: "smooth" });
 }
 
 /**

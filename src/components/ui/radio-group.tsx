@@ -52,7 +52,7 @@ function Item({
   return (
     <ArkRadioGroup.Item
       className={cn(
-        "inline-flex cursor-pointer items-center gap-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "relative inline-flex cursor-pointer items-center gap-2 data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
       {...props}
