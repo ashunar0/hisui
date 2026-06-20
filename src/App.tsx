@@ -5,6 +5,8 @@ import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
+import { AlertDoc } from "@/screens/docs/components/Alert";
+import { AvatarDoc } from "@/screens/docs/components/Avatar";
 import { BadgeDoc } from "@/screens/docs/components/Badge";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
@@ -48,6 +50,8 @@ function App() {
             <Route path="foundations/spacing" element={<Spacing />} />
             <Route path="foundations/shadow" element={<Shadow />} />
             <Route path="foundations/radius" element={<Radius />} />
+            <Route path="components/alert" element={<AlertDoc />} />
+            <Route path="components/avatar" element={<AvatarDoc />} />
             <Route path="components/badge" element={<BadgeDoc />} />
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/card" element={<CardDoc />} />
