@@ -17,6 +17,7 @@ import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { MenuDoc } from "@/screens/docs/components/Menu";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
+import { SelectDoc } from "@/screens/docs/components/Select";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TabsDoc } from "@/screens/docs/components/Tabs";
@@ -69,6 +70,7 @@ function App() {
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/menu" element={<MenuDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
+            <Route path="components/select" element={<SelectDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/tabs" element={<TabsDoc />} />

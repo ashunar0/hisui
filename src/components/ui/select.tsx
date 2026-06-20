@@ -6,7 +6,17 @@ import {
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-const Root = ArkSelect.Root;
+function Root({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.Root>) {
+  return (
+    <ArkSelect.Root
+      className={cn("flex flex-col gap-2", className)}
+      {...props}
+    />
+  );
+}
 
 function Label({
   className,
@@ -32,18 +42,29 @@ function Control({
   );
 }
 
-function Trigger({
-  className,
-  ...props
-}: ComponentProps<typeof ArkSelect.Trigger>) {
+type TriggerSize = "xs" | "sm" | "md" | "lg";
+
+const triggerSizeClasses: Record<TriggerSize, string> = {
+  xs: "h-7 px-2 text-xs",
+  sm: "h-8 px-2.5 text-sm",
+  md: "h-10 px-3 text-sm",
+  lg: "h-12 px-4 text-base",
+};
+
+type TriggerProps = ComponentProps<typeof ArkSelect.Trigger> & {
+  size?: TriggerSize;
+};
+
+function Trigger({ size = "md", className, ...props }: TriggerProps) {
   return (
     <ArkSelect.Trigger
       className={cn(
-        "inline-flex h-8 cursor-pointer items-center justify-between gap-2 rounded-md border border-border bg-surface px-3 text-sm text-fg outline-none transition-colors",
+        "inline-flex cursor-pointer items-center justify-between gap-2 rounded-md border border-border bg-surface text-fg outline-none transition-colors",
         "hover:bg-hover",
         "focus-visible:ring-2 focus-visible:ring-fg/20",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         "data-placeholder-shown:text-fg-muted",
+        triggerSizeClasses[size],
         className,
       )}
       {...props}

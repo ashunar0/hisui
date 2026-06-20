@@ -112,7 +112,7 @@ export function Settings() {
                   defaultValue={["ja"]}
                   positioning={{ placement: "bottom-end" }}
                 >
-                  <Select.Trigger className="h-10 md:w-72">
+                  <Select.Trigger className="md:w-72">
                     <Select.ValueText placeholder="言語を選択" />
                     <Select.Indicator>
                       <ChevronDown className="size-4" />
