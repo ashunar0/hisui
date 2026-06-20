@@ -32,6 +32,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
       { label: "Stack", to: "/docs/components/stack" },
+      { label: "Textarea", to: "/docs/components/textarea" },
     ],
   },
 ];
