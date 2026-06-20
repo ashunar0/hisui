@@ -1,4 +1,12 @@
-import { Boxes, Component, Palette, Ruler, Sparkles, Type } from "lucide-react";
+import {
+  Boxes,
+  Component,
+  Layers,
+  Palette,
+  Ruler,
+  Sparkles,
+  Type,
+} from "lucide-react";
 import { Link } from "react-router";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -28,6 +36,12 @@ const NEXT = [
     icon: Ruler,
     title: "Spacing",
     description: "4px grid の scale と Stack gap enum の対応表。",
+  },
+  {
+    to: "/docs/foundations/shadow",
+    icon: Layers,
+    title: "Shadow",
+    description: "hairline + drop + halo の 3 層構成と mid / high の 2 段階。",
   },
 ];
 

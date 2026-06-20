@@ -18,6 +18,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Colors", to: "/docs/foundations/colors" },
       { label: "Typography", to: "/docs/foundations/typography" },
       { label: "Spacing", to: "/docs/foundations/spacing" },
+      { label: "Shadow", to: "/docs/foundations/shadow" },
     ],
   },
   {
