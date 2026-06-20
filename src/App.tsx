@@ -14,6 +14,7 @@ import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
+import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
@@ -61,6 +62,7 @@ function App() {
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
+            <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
