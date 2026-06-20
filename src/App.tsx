@@ -18,6 +18,7 @@ import { InputDoc } from "@/screens/docs/components/Input";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
+import { TabsDoc } from "@/screens/docs/components/Tabs";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
 import { TooltipDoc } from "@/screens/docs/components/Tooltip";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
@@ -68,6 +69,7 @@ function App() {
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
+            <Route path="components/tabs" element={<TabsDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
             <Route path="components/tooltip" element={<TooltipDoc />} />
           </Route>
