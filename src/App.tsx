@@ -15,6 +15,7 @@ import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
+import { MenuDoc } from "@/screens/docs/components/Menu";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
@@ -66,6 +67,7 @@ function App() {
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
+            <Route path="components/menu" element={<MenuDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
