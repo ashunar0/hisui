@@ -24,6 +24,9 @@ export const DOCS_NAV: DocsNavGroup[] = [
   },
   {
     label: "Components",
-    items: [{ label: "Button", to: "/docs/components/button" }],
+    items: [
+      { label: "Badge", to: "/docs/components/badge" },
+      { label: "Button", to: "/docs/components/button" },
+    ],
   },
 ];
