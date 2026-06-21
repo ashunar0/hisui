@@ -1,20 +1,11 @@
-import { TagsInput } from "@/components/ui/tags-input";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
-
-export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-export function renderItems({ value }) {
-  return value.map((tag, index) => (
-    <TagsInput.Item key={`${tag}-${index}`} index={index} value={tag}>
-      <TagsInput.ItemPreview>
-        <TagsInput.ItemText>{tag}</TagsInput.ItemText>
-        <TagsInput.ItemDeleteTrigger />
-      </TagsInput.ItemPreview>
-      <TagsInput.ItemInput />
-    </TagsInput.Item>
-  ));
-}
+import TagsInputMaxCounterDemo from "./demos/tags-input/max-counter";
+import TagsInputMaxCounterSource from "./demos/tags-input/max-counter?raw";
+import TagsInputSkillsDemo from "./demos/tags-input/skills";
+import TagsInputSkillsSource from "./demos/tags-input/skills?raw";
+import TagsInputValidateEmailDemo from "./demos/tags-input/validate-email";
+import TagsInputValidateEmailSource from "./demos/tags-input/validate-email?raw";
 
 export const PARTS = [
   {
@@ -56,6 +47,46 @@ export const PARTS = [
 
 chip 列 + 末尾 Input で複数 tag を入力する form primitive。 Enter で確定、 Backspace で末尾削除、 paste で delimiter 分割。 各 chip は double-click で編集モードに切替。 max / validate で filter も組める。
 
+## Usage
+
+Enter で追加、 chip の × で削除、 ClearTrigger で全消し。 Context render-prop で value を回して Item を map するのが基本契約。
+
+<Example code={TagsInputSkillsSource}>
+  <TagsInputSkillsDemo />
+</Example>
+
+## Import
+
+```tsx
+import { TagsInput } from "@/components/ui/tags-input";
+```
+
+```tsx
+<TagsInput.Root>
+  <TagsInput.Label />
+  <TagsInput.Control>
+    <TagsInput.Context>{renderItems}</TagsInput.Context>
+    <TagsInput.Input />
+  </TagsInput.Control>
+</TagsInput.Root>
+```
+
+## Validate (email only)
+
+validate で false を返すと追加されない。 email format などの filter に。
+
+<Example code={TagsInputValidateEmailSource}>
+  <TagsInputValidateEmailDemo />
+</Example>
+
+## Max + counter
+
+max で上限を設定。 Context render-prop で残数を出して上限まで分かるように。
+
+<Example code={TagsInputMaxCounterSource}>
+  <TagsInputMaxCounterDemo />
+</Example>
+
 ## Anatomy
 
 Context render-prop で value を回して Item を map するのが基本契約。
@@ -70,112 +101,6 @@ Context render-prop で value を回して Item を map するのが基本契約
     </li>
   ))}
 </ul>
-
-## Skills + Clear all
-
-Enter で追加、 chip の × で削除、 ClearTrigger で全消し。
-
-<Example
-  code={`<TagsInput.Root defaultValue={["react", "typescript", "tailwind"]}>
-  <TagsInput.Label>Skills</TagsInput.Label>
-  <TagsInput.Control>
-    <TagsInput.Context>{renderItems}</TagsInput.Context>
-    <TagsInput.Input placeholder="Add skill..." />
-  </TagsInput.Control>
-  <div className="flex items-center justify-between">
-    <span>Press Enter to add</span>
-    <TagsInput.ClearTrigger>Clear all</TagsInput.ClearTrigger>
-  </div>
-</TagsInput.Root>`}
->
-  <div className="w-80">
-    <TagsInput.Root
-      defaultValue={["react", "typescript", "tailwind"]}
-    >
-      <TagsInput.Label>Skills</TagsInput.Label>
-      <TagsInput.Control>
-        <TagsInput.Context>{renderItems}</TagsInput.Context>
-        <TagsInput.Input placeholder="Add skill..." />
-      </TagsInput.Control>
-      <div className="flex items-center justify-between">
-        <span className="text-fg-muted text-xs">
-          Press Enter to add
-        </span>
-        <TagsInput.ClearTrigger>Clear all</TagsInput.ClearTrigger>
-      </div>
-    </TagsInput.Root>
-  </div>
-</Example>
-
-## Validate (email only)
-
-validate で false を返すと追加されない。 email format などの filter に。
-
-<Example
-  code={`<TagsInput.Root
-  defaultValue={["asahi@example.com"]}
-  validate={(details) => EMAIL_RE.test(details.inputValue)}
->
-  ...
-</TagsInput.Root>`}
->
-  <div className="w-80">
-    <TagsInput.Root
-      defaultValue={["asahi@example.com"]}
-      validate={(details) => EMAIL_RE.test(details.inputValue)}
-    >
-      <TagsInput.Label>Invite by email</TagsInput.Label>
-      <TagsInput.Control>
-        <TagsInput.Context>{renderItems}</TagsInput.Context>
-        <TagsInput.Input
-          placeholder="name@domain.com"
-          type="email"
-        />
-      </TagsInput.Control>
-      <span className="text-fg-muted text-xs">
-        invalid な文字列は Enter しても無視される
-      </span>
-    </TagsInput.Root>
-  </div>
-</Example>
-
-## Max + counter
-
-max で上限を設定。 Context render-prop で残数を出して上限まで分かるように。
-
-<Example
-  code={`<TagsInput.Root defaultValue={[...]} max={5}>
-  <div className="flex items-center justify-between">
-    <TagsInput.Label>Channels</TagsInput.Label>
-    <TagsInput.Context>
-      {(api) => <span>{api.value.length} / 5</span>}
-    </TagsInput.Context>
-  </div>
-  ...
-</TagsInput.Root>`}
->
-  <div className="w-80">
-    <TagsInput.Root
-      defaultValue={["product", "design", "engineering"]}
-      max={5}
-    >
-      <div className="flex items-center justify-between">
-        <TagsInput.Label>Channels</TagsInput.Label>
-        <TagsInput.Context>
-          {(api) => (
-            <span className="text-fg-muted text-xs tabular-nums">
-              {api.value.length} / 5
-            </span>
-          )}
-        </TagsInput.Context>
-      </div>
-      <TagsInput.Control>
-        <TagsInput.Context>{renderItems}</TagsInput.Context>
-        <TagsInput.Input placeholder="Add channel..." />
-      </TagsInput.Control>
-    </TagsInput.Root>
-  </div>
-</Example>
 
 ## Root props
 
