@@ -1,9 +1,17 @@
-import { Textarea } from "@/components/ui/textarea";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
-
-export const VARIANTS = ["outline", "subtle", "flushed"];
-export const SIZES = ["xs", "sm", "md", "lg"];
+import TextareaDisabledDemo from "./demos/textarea/disabled";
+import TextareaDisabledSource from "./demos/textarea/disabled?raw";
+import TextareaFixedRowsDemo from "./demos/textarea/fixed-rows";
+import TextareaFixedRowsSource from "./demos/textarea/fixed-rows?raw";
+import TextareaInvalidDemo from "./demos/textarea/invalid";
+import TextareaInvalidSource from "./demos/textarea/invalid?raw";
+import TextareaSizesDemo from "./demos/textarea/sizes";
+import TextareaSizesSource from "./demos/textarea/sizes?raw";
+import TextareaUsageDemo from "./demos/textarea/usage";
+import TextareaUsageSource from "./demos/textarea/usage?raw";
+import TextareaVariantsDemo from "./demos/textarea/variants";
+import TextareaVariantsSource from "./demos/textarea/variants?raw";
 
 # Textarea
 
@@ -13,78 +21,58 @@ multi-line の text input。 Input と prop API を揃え、 min-height + 縦 re
 
 default は outline / md。
 
-<Example code={`<Textarea placeholder="Write a message…" />`}>
-  <div className="max-w-md">
-    <Textarea placeholder="Write a message…" />
-  </div>
+<Example code={TextareaUsageSource}>
+  <TextareaUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Textarea } from "@/components/ui/textarea";
+```
+
+```tsx
+<Textarea placeholder="..." />
+```
 
 ## Variants
 
 Input と同じ 3 種。 form の周囲レイアウトに合わせて選ぶ。
 
-<Example
-  code={VARIANTS.map((v) => `<Textarea variant="${v}" placeholder="${v}" />`).join("\n")}
->
-  <div className="flex max-w-md flex-col gap-3">
-    {VARIANTS.map((v) => (
-      <Textarea key={v} variant={v} placeholder={v} />
-    ))}
-  </div>
+<Example code={TextareaVariantsSource}>
+  <TextareaVariantsDemo />
 </Example>
 
 ## Sizes
 
 xs / sm / md / lg の 4 段階。 min-height が変わる。
 
-<Example
-  code={SIZES.map((s) => `<Textarea size="${s}" placeholder="${s}" />`).join("\n")}
->
-  <div className="flex max-w-md flex-col gap-3">
-    {SIZES.map((s) => (
-      <Textarea key={s} size={s} placeholder={s} />
-    ))}
-  </div>
+<Example code={TextareaSizesSource}>
+  <TextareaSizesDemo />
 </Example>
 
 ## Invalid
 
 invalid で aria-invalid + 各 variant の error スタイル。
 
-<Example
-  code={`<Textarea invalid placeholder="outline invalid" />
-<Textarea variant="subtle" invalid placeholder="subtle invalid" />
-<Textarea variant="flushed" invalid placeholder="flushed invalid" />`}
->
-  <div className="flex max-w-md flex-col gap-3">
-    <Textarea invalid placeholder="outline invalid" />
-    <Textarea variant="subtle" invalid placeholder="subtle invalid" />
-    <Textarea variant="flushed" invalid placeholder="flushed invalid" />
-  </div>
+<Example code={TextareaInvalidSource}>
+  <TextareaInvalidDemo />
 </Example>
 
 ## Disabled
 
 disabled で opacity 50% + cursor-not-allowed。
 
-<Example code={`<Textarea disabled value="locked text" />`}>
-  <div className="max-w-md">
-    <Textarea disabled value="locked text" readOnly />
-  </div>
+<Example code={TextareaDisabledSource}>
+  <TextareaDisabledDemo />
 </Example>
 
 ## Fixed rows
 
 rows 属性で初期高さを直接指定。 resize-y で範囲広げ可能。
 
-<Example
-  code={`<Textarea rows={2} placeholder="Short note" />
-<Textarea rows={6} placeholder="Long description" />`}
->
-  <div className="flex max-w-md flex-col gap-3">
-    <Textarea rows={2} placeholder="Short note" />
-    <Textarea rows={6} placeholder="Long description" />
-  </div>
+<Example code={TextareaFixedRowsSource}>
+  <TextareaFixedRowsDemo />
 </Example>
 
 ## Props
