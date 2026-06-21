@@ -1,7 +1,11 @@
-import { Bell, BellOff, Bold, Italic, Underline, Wifi } from "lucide-react";
-import { Toggle } from "@/components/ui/toggle";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import ToggleIconSwapDemo from "./demos/toggle/icon-swap";
+import ToggleIconSwapSource from "./demos/toggle/icon-swap?raw";
+import ToggleIconToolbarDemo from "./demos/toggle/icon-toolbar";
+import ToggleIconToolbarSource from "./demos/toggle/icon-toolbar?raw";
+import ToggleUsageDemo from "./demos/toggle/usage";
+import ToggleUsageSource from "./demos/toggle/usage?raw";
 
 export const PARTS = [
   {
@@ -20,6 +24,45 @@ export const PARTS = [
 
 2 状態 button。 押下で data-state=on になる以外は plain button。 ToggleGroup のように mutually-exclusive にせず、単独で on/off を持たせたい時に使う (ex. bold / italic / wifi toggle)。
 
+## Usage
+
+default / pressed / disabled の 3 状態。 押下で塗りつぶし。
+
+<Example code={ToggleUsageSource}>
+  <ToggleUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Toggle } from "@/components/ui/toggle";
+```
+
+```tsx
+<Toggle.Root aria-label="...">
+  <Toggle.Indicator fallback={<OffIcon />}>
+    <OnIcon />
+  </Toggle.Indicator>
+  Label
+</Toggle.Root>
+```
+
+## Icon swap with Indicator
+
+Toggle.Indicator の children が on、 fallback が off に対応。 通知 on/off のような切替に。
+
+<Example code={ToggleIconSwapSource}>
+  <ToggleIconSwapDemo />
+</Example>
+
+## Icon-only toolbar
+
+border を消して内側 padding をゼロにすると、 surrounding container の中で並べやすい。 aria-label を必ず付ける。
+
+<Example code={ToggleIconToolbarSource}>
+  <ToggleIconToolbarDemo />
+</Example>
+
 ## Anatomy
 
 Indicator は任意。 icon を on/off で切替たい時だけ使う。
@@ -34,89 +77,6 @@ Indicator は任意。 icon を on/off で切替たい時だけ使う。
     </li>
   ))}
 </ul>
-
-## States
-
-default / pressed / disabled の 3 状態。 押下で塗りつぶし。
-
-<Example
-  code={`<Toggle.Root>...</Toggle.Root>
-<Toggle.Root defaultPressed>...</Toggle.Root>
-<Toggle.Root disabled>...</Toggle.Root>`}
->
-  <div className="flex flex-wrap items-center gap-2">
-    <Toggle.Root aria-label="Wifi off">
-      <Wifi className="size-4" strokeWidth={2} />
-      Wifi
-    </Toggle.Root>
-    <Toggle.Root aria-label="Wifi on" defaultPressed>
-      <Wifi className="size-4" strokeWidth={2} />
-      Wifi
-    </Toggle.Root>
-    <Toggle.Root aria-label="Wifi disabled" disabled>
-      <Wifi className="size-4" strokeWidth={2} />
-      Wifi
-    </Toggle.Root>
-  </div>
-</Example>
-
-## Icon swap with Indicator
-
-Toggle.Indicator の children が on、 fallback が off に対応。 通知 on/off のような切替に。
-
-<Example
-  code={`<Toggle.Root defaultPressed aria-label="Toggle notifications">
-  <Toggle.Indicator fallback={<BellOff />}>
-    <Bell />
-  </Toggle.Indicator>
-  Notifications
-</Toggle.Root>`}
->
-  <Toggle.Root
-    aria-label="Toggle notifications"
-    defaultPressed
-    className="w-fit"
-  >
-    <Toggle.Indicator
-      fallback={<BellOff className="size-4" strokeWidth={2} />}
-    >
-      <Bell className="size-4" strokeWidth={2} />
-    </Toggle.Indicator>
-    Notifications
-  </Toggle.Root>
-</Example>
-
-## Icon-only toolbar
-
-border を消して内側 padding をゼロにすると、 surrounding container の中で並べやすい。 aria-label を必ず付ける。
-
-<Example
-  code={`<div className="flex w-fit items-center gap-1 rounded-md border bg-surface p-1">
-  <Toggle.Root aria-label="Bold" className="size-8 border-0 p-0">
-    <Bold />
-  </Toggle.Root>
-  ...
-</div>`}
->
-  <div className="flex w-fit items-center gap-1 rounded-md border border-border bg-surface p-1">
-    <Toggle.Root
-      aria-label="Bold"
-      defaultPressed
-      className="size-8 border-0 p-0"
-    >
-      <Bold className="size-4" strokeWidth={2.25} />
-    </Toggle.Root>
-    <Toggle.Root aria-label="Italic" className="size-8 border-0 p-0">
-      <Italic className="size-4" strokeWidth={2.25} />
-    </Toggle.Root>
-    <Toggle.Root
-      aria-label="Underline"
-      className="size-8 border-0 p-0"
-    >
-      <Underline className="size-4" strokeWidth={2.25} />
-    </Toggle.Root>
-  </div>
-</Example>
 
 ## Root props
 
