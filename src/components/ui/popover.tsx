@@ -19,7 +19,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkPopover.Positioner>) {
-  return <ArkPopover.Positioner className={cn(className)} {...props} />;
+  return <ArkPopover.Positioner className={cn("z-50", className)} {...props} />;
 }
 
 function Content({
