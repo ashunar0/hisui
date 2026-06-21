@@ -23,7 +23,7 @@ import ComboboxDoc from "@/screens/docs/components/Combobox.mdx";
 import CommandDoc from "@/screens/docs/components/Command.mdx";
 import DatePickerDoc from "@/screens/docs/components/DatePicker.mdx";
 import DialogDoc from "@/screens/docs/components/Dialog.mdx";
-import { DrawerDoc } from "@/screens/docs/components/Drawer";
+import DrawerDoc from "@/screens/docs/components/Drawer.mdx";
 import { EditableDoc } from "@/screens/docs/components/Editable";
 import EmptyDoc from "@/screens/docs/components/Empty.mdx";
 import FieldDoc from "@/screens/docs/components/Field.mdx";

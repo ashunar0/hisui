@@ -1,0 +1,152 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import DrawerBasicDemo from "./demos/drawer/basic";
+import DrawerBasicSource from "./demos/drawer/basic?raw";
+import DrawerBottomSheetDemo from "./demos/drawer/bottom-sheet";
+import DrawerBottomSheetSource from "./demos/drawer/bottom-sheet?raw";
+import DrawerFromLeftDemo from "./demos/drawer/from-left";
+import DrawerFromLeftSource from "./demos/drawer/from-left?raw";
+
+export const PARTS = [
+  {
+    name: "Drawer.Root",
+    description:
+      "外枠。 swipeDirection で出てくる辺を指定 (ui-lab default は end = 右)。 open / onOpenChange で制御。",
+  },
+  {
+    name: "Drawer.Trigger",
+    description: "開閉 button。 asChild で Button / IconButton にラップ。",
+  },
+  {
+    name: "Drawer.Content",
+    description:
+      "中身。 内部で Portal + Backdrop + Positioner + 辺ごとの slide animation を自動 mount。",
+  },
+  {
+    name: "Drawer.Title / Description",
+    description: "見出し + 補足。 aria-labelledby / describedby に自動接続。",
+  },
+  {
+    name: "Drawer.CloseTrigger",
+    description:
+      "閉じる button。 Esc / backdrop click でも閉じる (default)。 IconButton の × で右上に置く典型。",
+  },
+  {
+    name: "Drawer.Grabber / GrabberIndicator",
+    description:
+      "bottom sheet の上端に出す掴み棒。 swipe で閉じるヒントを視覚化。",
+  },
+];
+
+# Drawer
+
+画面の辺から滑り込む panel。 設定の編集 / mobile menu / detail preview / bottom sheet 等に。 Dialog と違い辺に固定で、 swipe gesture と組み合わせやすい。 ui-lab default は端 (右) から。
+
+## Usage
+
+default は swipeDirection=end (右から)。 form を持つ side panel の典型。
+
+<Example code={DrawerBasicSource}>
+  <DrawerBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Drawer } from "@/components/ui/drawer";
+```
+
+```tsx
+<Drawer.Root>
+  <Drawer.Trigger asChild>
+    <Button />
+  </Drawer.Trigger>
+  <Drawer.Content>
+    <Drawer.Title />
+    <Drawer.Description />
+    <Drawer.CloseTrigger asChild>
+      <Button />
+    </Drawer.CloseTrigger>
+  </Drawer.Content>
+</Drawer.Root>
+```
+
+## From left
+
+swipeDirection=start で左から。 mobile sidebar / nav menu に。
+
+<Example code={DrawerFromLeftSource}>
+  <DrawerFromLeftDemo />
+</Example>
+
+## Bottom sheet
+
+swipeDirection=up で下から立ち上がる sheet。 mobile の sort / filter / action sheet に。 Grabber を上端に置くと swipe で閉じる UI 親切。
+
+<Example code={DrawerBottomSheetSource}>
+  <DrawerBottomSheetDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Trigger と Content。 Content は内部で Portal + Backdrop + Positioner を自動 mount。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "swipeDirection",
+      type: '"end" | "start" | "up" | "down"',
+      default: '"end"',
+      description:
+        "出てくる辺。 ui-lab で Ark の default (down) を end に上書き済 — SaaS の感覚に合わせるため。",
+    },
+    {
+      name: "open",
+      type: "boolean",
+      description: "controlled mode の表示状態。",
+    },
+    {
+      name: "defaultOpen",
+      type: "boolean",
+      default: "false",
+      description: "uncontrolled mode の初期表示状態。",
+    },
+    {
+      name: "onOpenChange",
+      type: "(details: { open: boolean }) => void",
+      description: "open 状態が変わった時に呼ばれる。",
+    },
+    {
+      name: "modal",
+      type: "boolean",
+      default: "true",
+      description:
+        "true で backdrop + focus trap + body lock。 false で背景操作可。",
+    },
+    {
+      name: "closeOnInteractOutside",
+      type: "boolean",
+      default: "true",
+      description: "backdrop click で閉じるか。",
+    },
+    {
+      name: "closeOnEscape",
+      type: "boolean",
+      default: "true",
+      description: "Esc キーで閉じるか。",
+    },
+  ]}
+/>
