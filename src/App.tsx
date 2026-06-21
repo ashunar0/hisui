@@ -19,7 +19,7 @@ import CheckboxDoc from "@/screens/docs/components/Checkbox.mdx";
 import ClipboardDoc from "@/screens/docs/components/Clipboard.mdx";
 import CollapsibleDoc from "@/screens/docs/components/Collapsible.mdx";
 import ColorPickerDoc from "@/screens/docs/components/ColorPicker.mdx";
-import { ComboboxDoc } from "@/screens/docs/components/Combobox";
+import ComboboxDoc from "@/screens/docs/components/Combobox.mdx";
 import { CommandDoc } from "@/screens/docs/components/Command";
 import { DatePickerDoc } from "@/screens/docs/components/DatePicker";
 import DialogDoc from "@/screens/docs/components/Dialog.mdx";
