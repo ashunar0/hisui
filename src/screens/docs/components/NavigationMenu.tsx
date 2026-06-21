@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { NavigationMenu } from "@/components/ui/navigation-menu";
+import { CodeBlock } from "../parts/code";
 import { DocHeader, DocSection } from "../parts/doc-page";
-import { Example } from "../parts/example";
 import { type PropRow, PropsTable } from "../parts/props-table";
 
 const PARTS = [
@@ -190,25 +190,9 @@ export function NavigationMenuDoc() {
         title="Usage"
         description="Products / Solutions / Resources に dropdown panel、 Pricing は直接 Link の典型 top nav。"
       >
-        <Example
-          code={`<NavigationMenu.Root>
-  <NavigationMenu.List>
-    <NavigationMenu.Item value="products">
-      <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
-      <NavigationMenu.Content>
-        <CardGrid cards={PRODUCTS} cols="grid-cols-2" />
-      </NavigationMenu.Content>
-    </NavigationMenu.Item>
-    <NavigationMenu.Item value="pricing">
-      <NavigationMenu.Link href="#">Pricing</NavigationMenu.Link>
-    </NavigationMenu.Item>
-  </NavigationMenu.List>
-  <NavigationMenu.ViewportPositioner>
-    <NavigationMenu.Viewport />
-  </NavigationMenu.ViewportPositioner>
-</NavigationMenu.Root>`}
-        >
-          <NavigationMenu.Root>
+        <div className="rounded-lg border border-border">
+          <div className="bg-surface p-6 pb-72">
+            <NavigationMenu.Root>
             <NavigationMenu.List>
               <NavigationMenu.Item value="products">
                 <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
@@ -232,11 +216,32 @@ export function NavigationMenuDoc() {
                 <NavigationMenu.Link href="#">Pricing</NavigationMenu.Link>
               </NavigationMenu.Item>
             </NavigationMenu.List>
-            <NavigationMenu.ViewportPositioner>
-              <NavigationMenu.Viewport />
-            </NavigationMenu.ViewportPositioner>
-          </NavigationMenu.Root>
-        </Example>
+              <NavigationMenu.ViewportPositioner>
+                <NavigationMenu.Viewport />
+              </NavigationMenu.ViewportPositioner>
+            </NavigationMenu.Root>
+          </div>
+          <div className="overflow-hidden rounded-b-lg border-border border-t">
+            <CodeBlock
+              code={`<NavigationMenu.Root>
+  <NavigationMenu.List>
+    <NavigationMenu.Item value="products">
+      <NavigationMenu.Trigger>Products</NavigationMenu.Trigger>
+      <NavigationMenu.Content>
+        <CardGrid cards={PRODUCTS} cols="grid-cols-2" />
+      </NavigationMenu.Content>
+    </NavigationMenu.Item>
+    <NavigationMenu.Item value="pricing">
+      <NavigationMenu.Link href="#">Pricing</NavigationMenu.Link>
+    </NavigationMenu.Item>
+  </NavigationMenu.List>
+  <NavigationMenu.ViewportPositioner>
+    <NavigationMenu.Viewport />
+  </NavigationMenu.ViewportPositioner>
+</NavigationMenu.Root>`}
+            />
+          </div>
+        </div>
       </DocSection>
 
       <DocSection
