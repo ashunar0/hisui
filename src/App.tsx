@@ -22,6 +22,7 @@ import { HoverCardDoc } from "@/screens/docs/components/HoverCard";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { KbdDoc } from "@/screens/docs/components/Kbd";
+import { ListboxDoc } from "@/screens/docs/components/Listbox";
 import { MenuDoc } from "@/screens/docs/components/Menu";
 import { NumberInputDoc } from "@/screens/docs/components/NumberInput";
 import { PaginationDoc } from "@/screens/docs/components/Pagination";
@@ -96,6 +97,7 @@ function App() {
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/kbd" element={<KbdDoc />} />
+            <Route path="components/listbox" element={<ListboxDoc />} />
             <Route path="components/menu" element={<MenuDoc />} />
             <Route
               path="components/number-input"

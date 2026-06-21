@@ -42,6 +42,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
       { label: "Kbd", to: "/docs/components/kbd" },
+      { label: "Listbox", to: "/docs/components/listbox" },
       { label: "Menu", to: "/docs/components/menu" },
       { label: "NumberInput", to: "/docs/components/number-input" },
       { label: "Pagination", to: "/docs/components/pagination" },
