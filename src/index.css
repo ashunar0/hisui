@@ -245,6 +245,11 @@ body {
 .docs-prose > * + * {
   margin-top: 2rem;
 }
+.docs-prose > p {
+  color: var(--color-fg-muted);
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
 .docs-prose > h1 + p,
 .docs-prose > h2 + p {
   margin-top: 0.5rem;

@@ -34,12 +34,6 @@ const mdxComponents = {
       </Heading>
     );
   },
-  p: (props: ComponentPropsWithoutRef<"p">) => (
-    <p
-      {...props}
-      className={cn("text-fg-muted text-sm leading-relaxed", props.className)}
-    />
-  ),
   code: (props: ComponentPropsWithoutRef<"code">) => <InlineCode {...props} />,
 };
 
