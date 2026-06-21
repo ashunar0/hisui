@@ -11,7 +11,7 @@ import AlertDialogDoc from "@/screens/docs/components/AlertDialog.mdx";
 import AspectRatioDoc from "@/screens/docs/components/AspectRatio.mdx";
 import AvatarDoc from "@/screens/docs/components/Avatar.mdx";
 import BadgeDoc from "@/screens/docs/components/Badge.mdx";
-import { BreadcrumbDoc } from "@/screens/docs/components/Breadcrumb";
+import BreadcrumbDoc from "@/screens/docs/components/Breadcrumb.mdx";
 import ButtonDoc from "@/screens/docs/components/Button.mdx";
 import CardDoc from "@/screens/docs/components/Card.mdx";
 import { CarouselDoc } from "@/screens/docs/components/Carousel";
