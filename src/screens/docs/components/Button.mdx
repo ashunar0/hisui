@@ -1,18 +1,19 @@
-import { ArrowRight, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
-
-export const VARIANTS = [
-  "solid",
-  "subtle",
-  "outline",
-  "ghost",
-  "surface",
-  "plain",
-];
-export const PALETTES = ["neutral", "success", "danger", "warning", "info"];
-export const SIZES = ["xs", "sm", "md", "lg"];
+import ButtonAsChildDemo from "./demos/button/as-child";
+import ButtonAsChildSource from "./demos/button/as-child?raw";
+import ButtonColorPalettesDemo from "./demos/button/color-palettes";
+import ButtonColorPalettesSource from "./demos/button/color-palettes?raw";
+import ButtonLoadingDemo from "./demos/button/loading";
+import ButtonLoadingSource from "./demos/button/loading?raw";
+import ButtonSizesDemo from "./demos/button/sizes";
+import ButtonSizesSource from "./demos/button/sizes?raw";
+import ButtonUsageDemo from "./demos/button/usage";
+import ButtonUsageSource from "./demos/button/usage?raw";
+import ButtonVariantsDemo from "./demos/button/variants";
+import ButtonVariantsSource from "./demos/button/variants?raw";
+import ButtonWithIconDemo from "./demos/button/with-icon";
+import ButtonWithIconSource from "./demos/button/with-icon?raw";
 
 # Button
 
@@ -22,122 +23,66 @@ export const SIZES = ["xs", "sm", "md", "lg"];
 
 default は solid / neutral / md。
 
-<Example code={`<Button>Save changes</Button>`}>
-  <Button>Save changes</Button>
+<Example code={ButtonUsageSource}>
+  <ButtonUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Button } from "@/components/ui/button";
+```
+
+```tsx
+<Button>Save changes</Button>
+```
 
 ## Variants
 
 6 種。 solid が最も強く、 plain が最も弱い。
 
-<Example
-  code={VARIANTS.map((v) => `<Button variant="${v}">${v}</Button>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {VARIANTS.map((v) => (
-      <Button key={v} variant={v}>
-        {v}
-      </Button>
-    ))}
-  </div>
+<Example code={ButtonVariantsSource}>
+  <ButtonVariantsDemo />
 </Example>
 
 ## Color palettes
 
 意味を表す 5 色。 例は solid で比較。
 
-<Example
-  code={PALETTES.map((p) => `<Button colorPalette="${p}">${p}</Button>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {PALETTES.map((p) => (
-      <Button key={p} colorPalette={p}>
-        {p}
-      </Button>
-    ))}
-  </div>
+<Example code={ButtonColorPalettesSource}>
+  <ButtonColorPalettesDemo />
 </Example>
 
 ## Sizes
 
 xs / sm / md / lg の 4 段階。
 
-<Example
-  code={SIZES.map((s) => `<Button size="${s}">${s}</Button>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {SIZES.map((s) => (
-      <Button key={s} size={s}>
-        {s}
-      </Button>
-    ))}
-  </div>
+<Example code={ButtonSizesSource}>
+  <ButtonSizesDemo />
 </Example>
 
 ## With icon
 
 children に lucide-react の icon を並べるだけ。 gap は size 連動。
 
-<Example
-  code={`<Button>
-  <Plus className="size-4" />
-  New item
-</Button>
-<Button variant="outline">
-  Continue
-  <ArrowRight className="size-4" />
-</Button>
-<Button variant="subtle" colorPalette="danger">
-  <Trash2 className="size-4" />
-  Delete
-</Button>`}
->
-  <div className="flex flex-wrap items-center gap-3">
-    <Button>
-      <Plus className="size-4" />
-      New item
-    </Button>
-    <Button variant="outline">
-      Continue
-      <ArrowRight className="size-4" />
-    </Button>
-    <Button variant="subtle" colorPalette="danger">
-      <Trash2 className="size-4" />
-      Delete
-    </Button>
-  </div>
+<Example code={ButtonWithIconSource}>
+  <ButtonWithIconDemo />
 </Example>
 
 ## Loading
 
 loading で built-in Spinner を表示。 loadingText で文言差し替え。
 
-<Example
-  code={`<Button loading>Save</Button>
-<Button loading loadingText="Saving…" colorPalette="success">
-  Save
-</Button>`}
->
-  <div className="flex flex-wrap items-center gap-3">
-    <Button loading>Save</Button>
-    <Button loading loadingText="Saving…" colorPalette="success">
-      Save
-    </Button>
-  </div>
+<Example code={ButtonLoadingSource}>
+  <ButtonLoadingDemo />
 </Example>
 
 ## As child
 
 asChild で Button の見た目を別要素 (a / Link 等) に移譲する。
 
-<Example
-  code={`<Button asChild>
-  <a href="/docs">Go to docs</a>
-</Button>`}
->
-  <Button asChild>
-    <a href="/docs">Go to docs</a>
-  </Button>
+<Example code={ButtonAsChildSource}>
+  <ButtonAsChildDemo />
 </Example>
 
 ## Props

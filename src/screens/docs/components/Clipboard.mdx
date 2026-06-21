@@ -1,6 +1,11 @@
-import { Clipboard } from "@/components/ui/clipboard";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import ClipboardCodeSnippetDemo from "./demos/clipboard/code-snippet";
+import ClipboardCodeSnippetSource from "./demos/clipboard/code-snippet?raw";
+import ClipboardInlineShareUrlDemo from "./demos/clipboard/inline-share-url";
+import ClipboardInlineShareUrlSource from "./demos/clipboard/inline-share-url?raw";
+import ClipboardInstallCommandDemo from "./demos/clipboard/install-command";
+import ClipboardInstallCommandSource from "./demos/clipboard/install-command?raw";
 
 export const PARTS = [
   {
@@ -41,6 +46,48 @@ export const PARTS = [
 
 clipboard API を使った copy 動作を内蔵した primitive。 Trigger を押すと value がコピーされ、 Indicator が一定時間 Check icon に切替わる。 Input / ValueText を組み替えれば install command / share URL / code snippet どのレイアウトにも乗せられる。
 
+## Usage
+
+Label + Input + Trigger の定番 layout。 Input readonly で編集不可に。 install command の典型。
+
+<Example code={ClipboardInstallCommandSource}>
+  <ClipboardInstallCommandDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Clipboard } from "@/components/ui/clipboard";
+```
+
+```tsx
+<Clipboard.Root defaultValue="...">
+  <Clipboard.Label />
+  <Clipboard.Control>
+    <Clipboard.Input readOnly />
+    <Clipboard.Trigger>
+      <Clipboard.Indicator />
+    </Clipboard.Trigger>
+  </Clipboard.Control>
+</Clipboard.Root>
+```
+
+## Inline share URL
+
+pill 風に丸めて URL の右端に小さな copy button を貼る。 share UI に便利。
+
+<Example code={ClipboardInlineShareUrlSource}>
+  <ClipboardInlineShareUrlDemo />
+</Example>
+
+## Code snippet
+
+ValueText を使うと plain span として render される。 code block に流したい時に。
+
+<Example code={ClipboardCodeSnippetSource}>
+  <ClipboardCodeSnippetDemo />
+</Example>
+
 ## Anatomy
 
 Input は readonly text field、 ValueText は plain span。 必要な方を選ぶ。
@@ -55,93 +102,6 @@ Input は readonly text field、 ValueText は plain span。 必要な方を選�
     </li>
   ))}
 </ul>
-
-## Install command
-
-Label + Input + Trigger の定番 layout。 Input readonly で編集不可に。
-
-<Example
-  code={`<Clipboard.Root defaultValue="pnpm add @ark-ui/react">
-  <Clipboard.Label>Install command</Clipboard.Label>
-  <Clipboard.Control>
-    <Clipboard.Input readOnly />
-    <Clipboard.Trigger>
-      <Clipboard.Indicator />
-    </Clipboard.Trigger>
-  </Clipboard.Control>
-</Clipboard.Root>`}
->
-  <Clipboard.Root
-    defaultValue="pnpm add @ark-ui/react"
-    className="w-80"
-  >
-    <Clipboard.Label>Install command</Clipboard.Label>
-    <Clipboard.Control>
-      <Clipboard.Input readOnly />
-      <Clipboard.Trigger>
-        <Clipboard.Indicator />
-      </Clipboard.Trigger>
-    </Clipboard.Control>
-  </Clipboard.Root>
-</Example>
-
-## Inline share URL
-
-pill 風に丸めて URL の右端に小さな copy button を貼る。 share UI に便利。
-
-<Example
-  code={`<Clipboard.Root defaultValue="https://ui-lab.dev/booking/abc-123">
-  <Clipboard.Control className="w-fit rounded-full border py-1 pl-3 pr-1.5">
-    <span className="font-mono text-xs">ui-lab.dev/booking/abc-123</span>
-    <Clipboard.Trigger className="size-6 rounded-full border-0 bg-transparent">
-      <Clipboard.Indicator />
-    </Clipboard.Trigger>
-  </Clipboard.Control>
-</Clipboard.Root>`}
->
-  <Clipboard.Root defaultValue="https://ui-lab.dev/booking/abc-123">
-    <Clipboard.Control className="w-fit rounded-full border border-border bg-surface py-1 pr-1.5 pl-3">
-      <span className="font-mono text-fg-soft text-xs">
-        ui-lab.dev/booking/abc-123
-      </span>
-      <Clipboard.Trigger className="size-6 rounded-full border-0 bg-transparent">
-        <Clipboard.Indicator />
-      </Clipboard.Trigger>
-    </Clipboard.Control>
-  </Clipboard.Root>
-</Example>
-
-## Code snippet
-
-ValueText を使うと plain span として render される。 code block に流したい時に。
-
-<Example
-  code={`<Clipboard.Root defaultValue={code}>
-  <Clipboard.Label>Import snippet</Clipboard.Label>
-  <div className="rounded-sm bg-active px-3 py-2">
-    <Clipboard.ValueText className="block truncate text-xs" />
-  </div>
-  <Clipboard.Trigger>
-    <Clipboard.Indicator /> Copy
-  </Clipboard.Trigger>
-</Clipboard.Root>`}
->
-  <Clipboard.Root
-    defaultValue={`import { Carousel } from "@/components/ui/carousel";`}
-    className="w-full max-w-md gap-3 rounded-md border border-border bg-surface p-3"
-  >
-    <Clipboard.Label className="text-fg-muted text-xs">
-      Import snippet
-    </Clipboard.Label>
-    <div className="overflow-hidden rounded-sm bg-active px-3 py-2">
-      <Clipboard.ValueText className="block truncate text-xs" />
-    </div>
-    <Clipboard.Trigger className="inline-flex h-8 w-fit cursor-pointer items-center gap-2 self-end rounded-md border border-border bg-surface px-3 font-medium text-fg text-xs outline-none transition-colors hover:bg-hover">
-      <Clipboard.Indicator />
-      Copy
-    </Clipboard.Trigger>
-  </Clipboard.Root>
-</Example>
 
 ## Root props
 

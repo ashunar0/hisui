@@ -1,16 +1,13 @@
-import {
-  AlertCircle,
-  AlertTriangle,
-  CheckCircle2,
-  Info,
-  Megaphone,
-} from "lucide-react";
-import { Alert } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
-
-export const VARIANTS = ["neutral", "success", "danger", "warning", "info"];
+import AlertTitleOnlyDemo from "./demos/alert/title-only";
+import AlertTitleOnlySource from "./demos/alert/title-only?raw";
+import AlertUsageDemo from "./demos/alert/usage";
+import AlertUsageSource from "./demos/alert/usage?raw";
+import AlertVariantsDemo from "./demos/alert/variants";
+import AlertVariantsSource from "./demos/alert/variants?raw";
+import AlertWithActionsDemo from "./demos/alert/with-actions";
+import AlertWithActionsSource from "./demos/alert/with-actions?raw";
 
 export const PARTS = [
   {
@@ -37,14 +34,6 @@ export const PARTS = [
   },
 ];
 
-export const VARIANT_ICONS = {
-  neutral: Megaphone,
-  success: CheckCircle2,
-  danger: AlertCircle,
-  warning: AlertTriangle,
-  info: Info,
-};
-
 # Alert
 
 画面内に固定で出す通知。 success / danger / warning / info の意味色 + neutral の 5 variant。 Toast (一時通知) と違い inline で居座る用途。
@@ -53,18 +42,8 @@ export const VARIANT_ICONS = {
 
 default は neutral。 Title だけでも成立。
 
-<Example
-  code={`<Alert.Root>\n  <Alert.Icon><Megaphone /></Alert.Icon>\n  <Alert.Title>New version available</Alert.Title>\n  <Alert.Description>Reload the page to apply updates.</Alert.Description>\n</Alert.Root>`}
->
-  <Alert.Root>
-    <Alert.Icon>
-      <Megaphone />
-    </Alert.Icon>
-    <Alert.Title>New version available</Alert.Title>
-    <Alert.Description>
-      Reload the page to apply updates.
-    </Alert.Description>
-  </Alert.Root>
+<Example code={AlertUsageSource}>
+  <AlertUsageDemo />
 </Example>
 
 ## Import
@@ -86,64 +65,24 @@ import { Alert } from "@/components/ui/alert";
 
 5 種。 各色に合った icon を選ぶのが定石。
 
-<Example
-  code={VARIANTS.map((v) => `<Alert.Root variant="${v}">...</Alert.Root>`).join("\n")}
->
-  <div className="flex flex-col gap-3">
-    {VARIANTS.map((v) => {
-      const Icon = VARIANT_ICONS[v];
-      return (
-        <Alert.Root key={v} variant={v}>
-          <Alert.Icon>
-            <Icon />
-          </Alert.Icon>
-          <Alert.Title>{v}</Alert.Title>
-          <Alert.Description>variant={v} の例文。</Alert.Description>
-        </Alert.Root>
-      );
-    })}
-  </div>
+<Example code={AlertVariantsSource}>
+  <AlertVariantsDemo />
 </Example>
 
 ## Title only
 
 Description を省くとコンパクトな 1 行 banner に。
 
-<Example
-  code={`<Alert.Root variant="info">\n  <Alert.Icon><Info /></Alert.Icon>\n  <Alert.Title>Read-only mode is active.</Alert.Title>\n</Alert.Root>`}
->
-  <Alert.Root variant="info">
-    <Alert.Icon>
-      <Info />
-    </Alert.Icon>
-    <Alert.Title>Read-only mode is active.</Alert.Title>
-  </Alert.Root>
+<Example code={AlertTitleOnlySource}>
+  <AlertTitleOnlyDemo />
 </Example>
 
 ## With actions
 
 Alert.Actions に Button を並べる。 確認 / dismiss の 2 button が典型。
 
-<Example
-  code={`<Alert.Root variant="warning">\n  <Alert.Icon><AlertTriangle /></Alert.Icon>\n  <Alert.Title>Subscription expires in 3 days</Alert.Title>\n  <Alert.Description>Renew now to avoid service interruption.</Alert.Description>\n  <Alert.Actions>\n    <Button size="sm" colorPalette="warning">Renew</Button>\n    <Button size="sm" variant="ghost">Remind later</Button>\n  </Alert.Actions>\n</Alert.Root>`}
->
-  <Alert.Root variant="warning">
-    <Alert.Icon>
-      <AlertTriangle />
-    </Alert.Icon>
-    <Alert.Title>Subscription expires in 3 days</Alert.Title>
-    <Alert.Description>
-      Renew now to avoid service interruption.
-    </Alert.Description>
-    <Alert.Actions>
-      <Button size="sm" colorPalette="warning">
-        Renew
-      </Button>
-      <Button size="sm" variant="ghost">
-        Remind later
-      </Button>
-    </Alert.Actions>
-  </Alert.Root>
+<Example code={AlertWithActionsSource}>
+  <AlertWithActionsDemo />
 </Example>
 
 ## Anatomy

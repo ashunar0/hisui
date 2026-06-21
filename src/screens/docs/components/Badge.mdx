@@ -1,11 +1,19 @@
-import { Check, Sparkles, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import BadgeColorPalettesDemo from "./demos/badge/color-palettes";
+import BadgeColorPalettesSource from "./demos/badge/color-palettes?raw";
+import BadgeSizesDemo from "./demos/badge/sizes";
+import BadgeSizesSource from "./demos/badge/sizes?raw";
+import BadgeUsageDemo from "./demos/badge/usage";
+import BadgeUsageSource from "./demos/badge/usage?raw";
+import BadgeVariantsDemo from "./demos/badge/variants";
+import BadgeVariantsSource from "./demos/badge/variants?raw";
+import BadgeWithIconDemo from "./demos/badge/with-icon";
+import BadgeWithIconSource from "./demos/badge/with-icon?raw";
 
 export const VARIANTS = ["solid", "subtle", "outline", "surface", "plain"];
 export const PALETTES = ["neutral", "success", "danger", "warning", "info"];
-export const SIZES = ["xs", "sm", "md", "lg"];
 
 # Badge
 
@@ -15,90 +23,50 @@ export const SIZES = ["xs", "sm", "md", "lg"];
 
 default は subtle / neutral / md。
 
-<Example code={`<Badge>Draft</Badge>`}>
-  <Badge>Draft</Badge>
+<Example code={BadgeUsageSource}>
+  <BadgeUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+```
+
+```tsx
+<Badge>Draft</Badge>
+```
 
 ## Variants
 
 5 種。 solid が最も強く、 plain が最も弱い (背景なし)。
 
-<Example
-  code={VARIANTS.map((v) => `<Badge variant="${v}">${v}</Badge>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {VARIANTS.map((v) => (
-      <Badge key={v} variant={v}>
-        {v}
-      </Badge>
-    ))}
-  </div>
+<Example code={BadgeVariantsSource}>
+  <BadgeVariantsDemo />
 </Example>
 
 ## Color palettes
 
 意味を表す 5 色。 例は subtle で比較。
 
-<Example
-  code={PALETTES.map((p) => `<Badge colorPalette="${p}">${p}</Badge>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {PALETTES.map((p) => (
-      <Badge key={p} colorPalette={p}>
-        {p}
-      </Badge>
-    ))}
-  </div>
+<Example code={BadgeColorPalettesSource}>
+  <BadgeColorPalettesDemo />
 </Example>
 
 ## Sizes
 
 xs / sm / md / lg の 4 段階。
 
-<Example
-  code={SIZES.map((s) => `<Badge size="${s}">${s}</Badge>`).join("\n")}
->
-  <div className="flex flex-wrap items-center gap-3">
-    {SIZES.map((s) => (
-      <Badge key={s} size={s}>
-        {s}
-      </Badge>
-    ))}
-  </div>
+<Example code={BadgeSizesSource}>
+  <BadgeSizesDemo />
 </Example>
 
 ## With icon
 
 children に lucide-react を並べる。 size は size-3 が標準。
 
-<Example
-  code={`<Badge colorPalette="success">
-  <Check className="size-3" />
-  Verified
-</Badge>
-<Badge colorPalette="danger" variant="solid">
-  <X className="size-3" />
-  Failed
-</Badge>
-<Badge colorPalette="info" variant="outline">
-  <Sparkles className="size-3" />
-  New
-</Badge>`}
->
-  <div className="flex flex-wrap items-center gap-3">
-    <Badge colorPalette="success">
-      <Check className="size-3" />
-      Verified
-    </Badge>
-    <Badge colorPalette="danger" variant="solid">
-      <X className="size-3" />
-      Failed
-    </Badge>
-    <Badge colorPalette="info" variant="outline">
-      <Sparkles className="size-3" />
-      New
-    </Badge>
-  </div>
+<Example code={BadgeWithIconSource}>
+  <BadgeWithIconDemo />
 </Example>
 
 ## Matrix

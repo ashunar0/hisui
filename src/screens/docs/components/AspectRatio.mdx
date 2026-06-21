@@ -1,7 +1,11 @@
-import { Image, Play } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import AspectRatioCommonRatiosDemo from "./demos/aspect-ratio/common-ratios";
+import AspectRatioCommonRatiosSource from "./demos/aspect-ratio/common-ratios?raw";
+import AspectRatioUsageDemo from "./demos/aspect-ratio/usage";
+import AspectRatioUsageSource from "./demos/aspect-ratio/usage?raw";
+import AspectRatioVideoFrameDemo from "./demos/aspect-ratio/video-frame";
+import AspectRatioVideoFrameSource from "./demos/aspect-ratio/video-frame?raw";
 
 # AspectRatio
 
@@ -11,83 +15,34 @@ import { PropsTable } from "@/screens/docs/parts/props-table";
 
 ratio に幅÷高さを渡す。 16:9 なら 16/9、 正方形なら 1。
 
-<Example
-  code={`<AspectRatio ratio={16 / 9} className="rounded-md border border-border bg-surface-sunken">
-  <div className="flex h-full items-center justify-center">16:9</div>
-</AspectRatio>`}
->
-  <div className="max-w-sm">
-    <AspectRatio
-      ratio={16 / 9}
-      className="rounded-md border border-border bg-surface-sunken"
-    >
-      <div className="flex h-full items-center justify-center text-fg-muted text-sm">
-        16:9
-      </div>
-    </AspectRatio>
-  </div>
+<Example code={AspectRatioUsageSource}>
+  <AspectRatioUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+```
+
+```tsx
+<AspectRatio ratio={16 / 9}>...</AspectRatio>
+```
 
 ## Common ratios
 
 grid で並べると同じ幅の中で高さだけ変わるのが見やすい。
 
-<Example
-  code={`{[16/9, 1, 4/3, 21/9].map((r) => (
-  <AspectRatio key={r} ratio={r}>...</AspectRatio>
-))}`}
->
-  <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-    {[
-      { label: "16:9", ratio: 16 / 9 },
-      { label: "1:1", ratio: 1 },
-      { label: "4:3", ratio: 4 / 3 },
-      { label: "21:9", ratio: 21 / 9 },
-    ].map(({ label, ratio }) => (
-      <AspectRatio
-        key={label}
-        ratio={ratio}
-        className="rounded-md border border-border bg-surface-sunken"
-      >
-        <div className="flex h-full flex-col items-center justify-center gap-1 text-fg-muted">
-          <Image className="size-5" />
-          <span className="font-medium text-xs">{label}</span>
-        </div>
-      </AspectRatio>
-    ))}
-  </div>
+<Example code={AspectRatioCommonRatiosSource}>
+  <AspectRatioCommonRatiosDemo />
 </Example>
 
 ## Image / video frame
 
 thumbnail を中に置き、 absolute で overlay を重ねる典型例。 box は relative なので absolute 配置がそのまま使える。
 
-<Example
-  code={`<AspectRatio ratio={16 / 9} className="rounded-md bg-...">
-  <button className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ...">
-    <Play />
-  </button>
-  <div className="absolute inset-x-0 bottom-0 ...">Title</div>
-</AspectRatio>`}
->
-  <div className="max-w-md">
-    <AspectRatio
-      ratio={16 / 9}
-      className="rounded-md bg-gradient-to-br from-neutral-700 to-neutral-900 dark:from-neutral-800 dark:to-neutral-950"
-    >
-      <button
-        type="button"
-        aria-label="Play video"
-        className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 flex size-14 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition hover:bg-white"
-      >
-        <Play className="size-6 fill-current" />
-      </button>
-      <div className="absolute inset-x-0 bottom-0 flex flex-col gap-0.5 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
-        <p className="font-medium text-sm">Onboarding tour</p>
-        <p className="text-xs opacity-80">3 min · Product team</p>
-      </div>
-    </AspectRatio>
-  </div>
+<Example code={AspectRatioVideoFrameSource}>
+  <AspectRatioVideoFrameDemo />
 </Example>
 
 ## Props
