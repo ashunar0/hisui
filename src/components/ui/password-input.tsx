@@ -8,7 +8,10 @@ function Root({
   ...props
 }: ComponentProps<typeof ArkPasswordInput.Root>) {
   return (
-    <ArkPasswordInput.Root className={cn("w-full", className)} {...props} />
+    <ArkPasswordInput.Root
+      className={cn("flex w-full flex-col gap-2", className)}
+      {...props}
+    />
   );
 }
 
