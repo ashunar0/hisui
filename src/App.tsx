@@ -29,6 +29,7 @@ import { SelectDoc } from "@/screens/docs/components/Select";
 import { SeparatorDoc } from "@/screens/docs/components/Separator";
 import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
 import { SpinnerDoc } from "@/screens/docs/components/Spinner";
+import { SplitterDoc } from "@/screens/docs/components/Splitter";
 import { SliderDoc } from "@/screens/docs/components/Slider";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { StepsDoc } from "@/screens/docs/components/Steps";
@@ -97,6 +98,7 @@ function App() {
             <Route path="components/skeleton" element={<SkeletonDoc />} />
             <Route path="components/slider" element={<SliderDoc />} />
             <Route path="components/spinner" element={<SpinnerDoc />} />
+            <Route path="components/splitter" element={<SplitterDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/steps" element={<StepsDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />

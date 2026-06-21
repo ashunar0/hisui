@@ -50,6 +50,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Skeleton", to: "/docs/components/skeleton" },
       { label: "Slider", to: "/docs/components/slider" },
       { label: "Spinner", to: "/docs/components/spinner" },
+      { label: "Splitter", to: "/docs/components/splitter" },
       { label: "Stack", to: "/docs/components/stack" },
       { label: "Steps", to: "/docs/components/steps" },
       { label: "Switch", to: "/docs/components/switch" },
