@@ -6,7 +6,17 @@ import { Check } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-const Root = ArkListbox.Root;
+function Root({
+  className,
+  ...props
+}: ComponentProps<typeof ArkListbox.Root>) {
+  return (
+    <ArkListbox.Root
+      className={cn("flex flex-col gap-2", className)}
+      {...props}
+    />
+  );
+}
 
 function Label({
   className,
