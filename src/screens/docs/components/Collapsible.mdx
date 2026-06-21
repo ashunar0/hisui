@@ -1,6 +1,11 @@
-import { Collapsible } from "@/components/ui/collapsible";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import CollapsibleAdvancedOptionsDemo from "./demos/collapsible/advanced-options";
+import CollapsibleAdvancedOptionsSource from "./demos/collapsible/advanced-options?raw";
+import CollapsibleDisabledDemo from "./demos/collapsible/disabled";
+import CollapsibleDisabledSource from "./demos/collapsible/disabled?raw";
+import CollapsibleUsageDemo from "./demos/collapsible/usage";
+import CollapsibleUsageSource from "./demos/collapsible/usage?raw";
 
 export const PARTS = [
   {
@@ -34,6 +39,46 @@ export const PARTS = [
 
 単一の content を開閉する primitive。 Accordion との違いは、 Accordion が複数 item の group で 1 個だけ open する仕組みなのに対し、 Collapsible は完全に独立した 1 単位の開閉。 1 つだけ畳みたい時に使う。
 
+## Usage
+
+Context render-prop で open に応じて Trigger ラベルを切替。 Content を Trigger の上に置くと「下にボタン」レイアウトに。
+
+<Example code={CollapsibleUsageSource}>
+  <CollapsibleUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Collapsible } from "@/components/ui/collapsible";
+```
+
+```tsx
+<Collapsible.Root>
+  <Collapsible.Trigger>
+    <Collapsible.Indicator />
+    ...
+  </Collapsible.Trigger>
+  <Collapsible.Content>...</Collapsible.Content>
+</Collapsible.Root>
+```
+
+## Advanced options panel
+
+filter panel の「上級者向け設定」のような pattern。 Trigger を上に、 Content を bordered box で下に。
+
+<Example code={CollapsibleAdvancedOptionsSource}>
+  <CollapsibleAdvancedOptionsDemo />
+</Example>
+
+## Disabled
+
+Root に disabled を渡すと Trigger に data-disabled が付き opacity-50 + cursor-not-allowed に。
+
+<Example code={CollapsibleDisabledSource}>
+  <CollapsibleDisabledDemo />
+</Example>
+
 ## Anatomy
 
 Trigger は Content の前でも後でも置ける。
@@ -48,96 +93,6 @@ Trigger は Content の前でも後でも置ける。
     </li>
   ))}
 </ul>
-
-## Show more / less
-
-Context render-prop で open に応じて Trigger ラベルを切替。 Content を Trigger の上に置くと「下にボタン」レイアウトに。
-
-<Example
-  code={`<Collapsible.Root>
-  <Collapsible.Content>...</Collapsible.Content>
-  <Collapsible.Trigger>
-    <Collapsible.Indicator />
-    <Collapsible.Context>
-      {(api) => (api.open ? "Show less" : "Show more")}
-    </Collapsible.Context>
-  </Collapsible.Trigger>
-</Collapsible.Root>`}
->
-  <div className="max-w-xl">
-    <p className="text-fg-soft text-sm leading-relaxed">
-      ui-lab は React の design system 練習場。 primitive を 3 階層に
-      分けて、画面まで組み立てる sandbox。
-    </p>
-    <Collapsible.Root>
-      <Collapsible.Content>
-        <p className="mt-2 text-fg-soft text-sm leading-relaxed">
-          Tailwind v4 + Ark UI + lucide-react で構成。 semantic tokens
-          を index.css の @theme で定義、 .dark セレクタで上書き。
-          primitive 側は生の neutral-XXX を直接書かない。
-        </p>
-      </Collapsible.Content>
-      <Collapsible.Trigger className="mt-2">
-        <Collapsible.Indicator />
-        <Collapsible.Context>
-          {(api) => (api.open ? "Show less" : "Show more")}
-        </Collapsible.Context>
-      </Collapsible.Trigger>
-    </Collapsible.Root>
-  </div>
-</Example>
-
-## Advanced options panel
-
-filter panel の「上級者向け設定」のような pattern。 Trigger を上に、 Content を bordered box で下に。
-
-<Example
-  code={`<Collapsible.Root>
-  <Collapsible.Trigger>
-    <Collapsible.Indicator />
-    Show advanced options
-  </Collapsible.Trigger>
-  <Collapsible.Content>
-    <div className="mt-3 rounded-md border bg-surface-muted p-4">...</div>
-  </Collapsible.Content>
-</Collapsible.Root>`}
->
-  <Collapsible.Root>
-    <Collapsible.Trigger>
-      <Collapsible.Indicator />
-      Show advanced options
-    </Collapsible.Trigger>
-    <Collapsible.Content>
-      <div className="mt-3 flex flex-col gap-3 rounded-md border border-border bg-surface-muted p-4 text-fg-soft text-sm">
-        <p>環境変数や CORS 等、普段触らない設定をここに集める。</p>
-        <p>height は --height CSS 変数経由で animation。</p>
-        <p>data-[state=open] と組み合わせて accordion-down 等を当てる。</p>
-      </div>
-    </Collapsible.Content>
-  </Collapsible.Root>
-</Example>
-
-## Disabled
-
-Root に disabled を渡すと Trigger に data-disabled が付き opacity-50 + cursor-not-allowed に。
-
-<Example
-  code={`<Collapsible.Root disabled>
-  <Collapsible.Trigger>...</Collapsible.Trigger>
-</Collapsible.Root>`}
->
-  <Collapsible.Root disabled>
-    <Collapsible.Trigger>
-      <Collapsible.Indicator />
-      Disabled section
-    </Collapsible.Trigger>
-    <Collapsible.Content>
-      <div className="mt-3 rounded-md border border-border bg-surface-muted p-4 text-fg-soft text-sm">
-        開けない。
-      </div>
-    </Collapsible.Content>
-  </Collapsible.Root>
-</Example>
 
 ## Root props
 
