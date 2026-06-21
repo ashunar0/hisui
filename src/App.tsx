@@ -24,7 +24,7 @@ import CommandDoc from "@/screens/docs/components/Command.mdx";
 import DatePickerDoc from "@/screens/docs/components/DatePicker.mdx";
 import DialogDoc from "@/screens/docs/components/Dialog.mdx";
 import DrawerDoc from "@/screens/docs/components/Drawer.mdx";
-import { EditableDoc } from "@/screens/docs/components/Editable";
+import EditableDoc from "@/screens/docs/components/Editable.mdx";
 import EmptyDoc from "@/screens/docs/components/Empty.mdx";
 import FieldDoc from "@/screens/docs/components/Field.mdx";
 import { FileUploadDoc } from "@/screens/docs/components/FileUpload";
