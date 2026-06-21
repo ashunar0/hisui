@@ -22,6 +22,7 @@ import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { KbdDoc } from "@/screens/docs/components/Kbd";
 import { MenuDoc } from "@/screens/docs/components/Menu";
+import { NumberInputDoc } from "@/screens/docs/components/NumberInput";
 import { PaginationDoc } from "@/screens/docs/components/Pagination";
 import { PasswordInputDoc } from "@/screens/docs/components/PasswordInput";
 import { PinInputDoc } from "@/screens/docs/components/PinInput";
@@ -92,6 +93,10 @@ function App() {
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/kbd" element={<KbdDoc />} />
             <Route path="components/menu" element={<MenuDoc />} />
+            <Route
+              path="components/number-input"
+              element={<NumberInputDoc />}
+            />
             <Route path="components/pagination" element={<PaginationDoc />} />
             <Route
               path="components/password-input"
