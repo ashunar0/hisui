@@ -1,0 +1,182 @@
+import { AlignCenter, AlignLeft, AlignRight, Bold, Italic, Underline } from "lucide-react";
+import { ToggleGroup } from "@/components/ui/toggle-group";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const PARTS = [
+  {
+    name: "ToggleGroup.Root",
+    description:
+      "外枠。 value (string[]) と onValueChange で選択 item を管理。 multiple で複数同時 ON 可。",
+  },
+  {
+    name: "ToggleGroup.Item",
+    description:
+      "1 つの toggle button。 value 必須。 data-state=on で塗りつぶし。 横並びの segmented control 風 layout。",
+  },
+];
+
+# ToggleGroup
+
+並んだ toggle button group。 single (1 つだけ ON) と multiple (複数 ON) を切替えられる。 segmented control、 text formatting bar、 view switcher (List / Grid / Card) 等の rounded container で 1 セット。
+
+## Anatomy
+
+Root の中に Item を並べるだけのシンプル compound。 Item は data-state=on で塗りつぶし表示。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Single
+
+default。 1 つだけ ON。 view switcher / sort 方向選択など。
+
+<Example
+  code={`<ToggleGroup.Root defaultValue={["list"]}>
+  <ToggleGroup.Item value="list">List</ToggleGroup.Item>
+  <ToggleGroup.Item value="grid">Grid</ToggleGroup.Item>
+  <ToggleGroup.Item value="card">Card</ToggleGroup.Item>
+</ToggleGroup.Root>`}
+>
+  <ToggleGroup.Root defaultValue={["list"]}>
+    <ToggleGroup.Item value="list">List</ToggleGroup.Item>
+    <ToggleGroup.Item value="grid">Grid</ToggleGroup.Item>
+    <ToggleGroup.Item value="card">Card</ToggleGroup.Item>
+  </ToggleGroup.Root>
+</Example>
+
+## Multiple
+
+multiple で複数同時 ON 可。 text formatting bar (B / I / U) など。
+
+<Example
+  code={`<ToggleGroup.Root multiple defaultValue={["bold"]}>
+  <ToggleGroup.Item value="bold"><Bold /></ToggleGroup.Item>
+  <ToggleGroup.Item value="italic"><Italic /></ToggleGroup.Item>
+  <ToggleGroup.Item value="underline"><Underline /></ToggleGroup.Item>
+</ToggleGroup.Root>`}
+>
+  <ToggleGroup.Root multiple defaultValue={["bold"]}>
+    <ToggleGroup.Item value="bold" aria-label="Bold">
+      <Bold className="size-4" />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="italic" aria-label="Italic">
+      <Italic className="size-4" />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="underline" aria-label="Underline">
+      <Underline className="size-4" />
+    </ToggleGroup.Item>
+  </ToggleGroup.Root>
+</Example>
+
+## Icon + text
+
+text alignment 等、 icon と label を並べる。 segmented control 感。
+
+<Example
+  code={`<ToggleGroup.Root defaultValue={["center"]}>
+  <ToggleGroup.Item value="left"><AlignLeft />Left</ToggleGroup.Item>
+  <ToggleGroup.Item value="center"><AlignCenter />Center</ToggleGroup.Item>
+  <ToggleGroup.Item value="right"><AlignRight />Right</ToggleGroup.Item>
+</ToggleGroup.Root>`}
+>
+  <ToggleGroup.Root defaultValue={["center"]}>
+    <ToggleGroup.Item value="left">
+      <AlignLeft className="size-4" />
+      Left
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="center">
+      <AlignCenter className="size-4" />
+      Center
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="right">
+      <AlignRight className="size-4" />
+      Right
+    </ToggleGroup.Item>
+  </ToggleGroup.Root>
+</Example>
+
+## Disabled
+
+Root に disabled で全体、 Item に disabled で個別。
+
+<Example
+  code={`<ToggleGroup.Root defaultValue={["day"]}>
+  <ToggleGroup.Item value="day">Day</ToggleGroup.Item>
+  <ToggleGroup.Item value="week">Week</ToggleGroup.Item>
+  <ToggleGroup.Item value="month" disabled>Month (locked)</ToggleGroup.Item>
+</ToggleGroup.Root>`}
+>
+  <ToggleGroup.Root defaultValue={["day"]}>
+    <ToggleGroup.Item value="day">Day</ToggleGroup.Item>
+    <ToggleGroup.Item value="week">Week</ToggleGroup.Item>
+    <ToggleGroup.Item value="month" disabled>
+      Month (locked)
+    </ToggleGroup.Item>
+  </ToggleGroup.Root>
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string[]",
+      description: "controlled mode の選択 value 配列。 single でも array で扱う。",
+    },
+    {
+      name: "defaultValue",
+      type: "string[]",
+      description: "uncontrolled mode の初期選択。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string[] }) => void",
+      description: "選択が変わった時に呼ばれる。",
+    },
+    {
+      name: "multiple",
+      type: "boolean",
+      default: "false",
+      description: "true で複数同時 ON 可。 false (single) で 1 つだけ。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "Item の並び方向。 keyboard nav の方向に影響。",
+    },
+    {
+      name: "rovingFocus",
+      type: "boolean",
+      default: "true",
+      description: "true で Tab 1 回で group に入り矢印キーで item 移動。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全 item 無効化。",
+    },
+    {
+      name: "Item.value",
+      type: "string",
+      description: "必須。 Root.value と紐付ける一意 key。",
+    },
+    {
+      name: "Item.disabled",
+      type: "boolean",
+      default: "false",
+      description: "この item だけ無効化。",
+    },
+  ]}
+/>
