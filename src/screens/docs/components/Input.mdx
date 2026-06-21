@@ -1,0 +1,119 @@
+import { Input } from "@/components/ui/input";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const VARIANTS = ["outline", "subtle", "flushed"];
+export const SIZES = ["xs", "sm", "md", "lg"];
+
+# Input
+
+single-line の text input。 variant × size の 2 軸。 default は outline / md。 form-level の error は invalid prop で aria-invalid + danger-border に切り替わる。
+
+## Usage
+
+default は outline / md。
+
+<Example code={`<Input placeholder="Your name" />`}>
+  <div className="max-w-sm">
+    <Input placeholder="Your name" />
+  </div>
+</Example>
+
+## Variants
+
+outline = 標準 / subtle = 塗り (form 内に密度) / flushed = 下線のみ (inline 編集)。
+
+<Example
+  code={VARIANTS.map((v) => `<Input variant="${v}" placeholder="${v}" />`).join("\n")}
+>
+  <div className="flex max-w-sm flex-col gap-3">
+    {VARIANTS.map((v) => (
+      <Input key={v} variant={v} placeholder={v} />
+    ))}
+  </div>
+</Example>
+
+## Sizes
+
+xs / sm / md / lg の 4 段階。 flushed のみ size 不問で px-3 固定。
+
+<Example
+  code={SIZES.map((s) => `<Input size="${s}" placeholder="${s}" />`).join("\n")}
+>
+  <div className="flex max-w-sm flex-col gap-3">
+    {SIZES.map((s) => (
+      <Input key={s} size={s} placeholder={s} />
+    ))}
+  </div>
+</Example>
+
+## Invalid
+
+invalid で aria-invalid + 各 variant の error スタイルに切替。
+
+<Example
+  code={`<Input invalid placeholder="outline invalid" />
+<Input variant="subtle" invalid placeholder="subtle invalid" />
+<Input variant="flushed" invalid placeholder="flushed invalid" />`}
+>
+  <div className="flex max-w-sm flex-col gap-3">
+    <Input invalid placeholder="outline invalid" />
+    <Input variant="subtle" invalid placeholder="subtle invalid" />
+    <Input variant="flushed" invalid placeholder="flushed invalid" />
+  </div>
+</Example>
+
+## Disabled
+
+disabled で opacity 50% + cursor-not-allowed。
+
+<Example code={`<Input disabled value="locked" />`}>
+  <div className="max-w-sm">
+    <Input disabled value="locked" readOnly />
+  </div>
+</Example>
+
+## Type variations
+
+HTMLInput の type 属性をそのまま渡す。
+
+<Example
+  code={`<Input type="email" placeholder="you@example.com" />
+<Input type="password" placeholder="••••••••" />
+<Input type="number" placeholder="42" />
+<Input type="date" />`}
+>
+  <div className="flex max-w-sm flex-col gap-3">
+    <Input type="email" placeholder="you@example.com" />
+    <Input type="password" placeholder="••••••••" />
+    <Input type="number" placeholder="42" />
+    <Input type="date" />
+  </div>
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"outline" | "subtle" | "flushed"',
+      default: '"outline"',
+      description:
+        "outline は border、 subtle は背景塗り、 flushed は下線のみ。 flushed は size 問わず px-3 で揃える。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "高さ・font-size を連動。 h-7 / 8 / 10 / 12。",
+    },
+    {
+      name: "invalid",
+      type: "boolean",
+      default: "false",
+      description:
+        "aria-invalid + border / text-color を danger token に切替。 form-level error にも対応。",
+    },
+  ]}
+/>

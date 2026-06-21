@@ -1,0 +1,103 @@
+import { Heading } from "@/components/ui/heading";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"];
+export const TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
+
+# Heading
+
+見出し。 font-weight は semibold 固定、 size と as を独立に持つのが特徴。 page title は `as="h1"` + `size="2xl"` のように見た目と semantics を分けて指定する。
+
+## Usage
+
+default は as=h2 / size=md。 何も指定しなければ section 見出し相当。
+
+<Example code={`<Heading>Page section</Heading>`}>
+  <Heading>Page section</Heading>
+</Example>
+
+## Sizes
+
+8 段階。 3xl 以上は自動で tracking-tight が付く。
+
+<Example
+  code={SIZES.map((s) => `<Heading size="${s}">${s} heading</Heading>`).join("\n")}
+>
+  <div className="flex flex-col gap-3">
+    {SIZES.map((s) => (
+      <Heading key={s} size={s}>
+        {s} heading
+      </Heading>
+    ))}
+  </div>
+</Example>
+
+## As (semantic tag)
+
+size と独立に HTML tag を選ぶ。 a11y / SEO の文書構造はここで決める。
+
+<Example
+  code={TAGS.map((t) => `<Heading as="${t}">${t} tag</Heading>`).join("\n")}
+>
+  <div className="flex flex-col gap-2">
+    {TAGS.map((t) => (
+      <Heading key={t} as={t}>
+        {t} tag
+      </Heading>
+    ))}
+  </div>
+</Example>
+
+## Page title pattern
+
+page の H1 は size=2xl + as=h1。 hero では 3xl 以上を使う。
+
+<Example
+  code={`<Heading as="h1" size="2xl">Account settings</Heading>
+<Heading as="h1" size="3xl">Welcome back</Heading>`}
+>
+  <div className="flex flex-col gap-4">
+    <Heading as="h1" size="2xl">
+      Account settings
+    </Heading>
+    <Heading as="h1" size="3xl">
+      Welcome back
+    </Heading>
+  </div>
+</Example>
+
+## Section label pattern
+
+docs の section 見出しは as=h2 + size=sm + text-fg-soft で控えめに。
+
+<Example
+  code={`<Heading as="h2" size="sm" className="text-fg-soft">
+  Foundation
+</Heading>`}
+>
+  <Heading as="h2" size="sm" className="text-fg-soft">
+    Foundation
+  </Heading>
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"',
+      default: '"md"',
+      description:
+        "見た目のサイズ。 3xl 以上は tracking-tight が自動で付く。 詳細は Foundations/Typography。",
+    },
+    {
+      name: "as",
+      type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6"',
+      default: '"h2"',
+      description:
+        "出力する HTML tag。 見た目 (size) と semantics (as) を独立に指定する。",
+    },
+  ]}
+/>
