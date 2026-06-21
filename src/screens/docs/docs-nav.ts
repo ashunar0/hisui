@@ -33,6 +33,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Card", to: "/docs/components/card" },
       { label: "Checkbox", to: "/docs/components/checkbox" },
       { label: "Dialog", to: "/docs/components/dialog" },
+      { label: "Empty", to: "/docs/components/empty" },
       { label: "Heading", to: "/docs/components/heading" },
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
