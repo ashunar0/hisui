@@ -1,0 +1,123 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import CommandDialogDemo from "./demos/command/dialog";
+import CommandDialogSource from "./demos/command/dialog?raw";
+import CommandInlineDemo from "./demos/command/inline";
+import CommandInlineSource from "./demos/command/inline?raw";
+
+export const PARTS = [
+  {
+    name: "Command.Root",
+    description:
+      "Listbox.Root の薄 wrap。 collection prop を必須で受ける。 上下矢印 + Enter で navigate。",
+  },
+  {
+    name: "Command.Input",
+    description:
+      "search icon + border-b の検索欄。 controlled で value / onChange を渡し、 filter は自前で行う。",
+  },
+  {
+    name: "Command.List",
+    description:
+      "max-h-80 の scroll 領域。 中に Group / Item / Empty を並べる。",
+  },
+  {
+    name: "Command.Empty",
+    description:
+      "filter 後の結果が 0 件の時に出す placeholder。 表示制御は使う側で。",
+  },
+  {
+    name: "Command.Group / GroupLabel",
+    description:
+      "Suggestions / Settings 等のカテゴリ分け。 GroupLabel は小さい uppercase 見出し。",
+  },
+  {
+    name: "Command.Item / ItemText / ItemIndicator",
+    description:
+      "1 つの command 行。 icon + ItemText + (右端) Shortcut の 3 要素 layout が定型。",
+  },
+  {
+    name: "Command.Shortcut",
+    description: "右端寄せの shortcut 表示用 span。 中に Kbd を並べる。",
+  },
+  {
+    name: "Command.Dialog / DialogContent / DialogTrigger / DialogCloseTrigger",
+    description:
+      "Dialog の薄 wrap。 ⌘K で開く palette を作る時に使う。 DialogContent は max-w-lg + overflow-hidden + p-0。",
+  },
+];
+
+# Command
+
+⌘K palette 等で使う command list。 中身は Listbox の薄 wrap + Dialog wrap で、 検索 / カテゴリ分け / shortcut 表示までを 1 セットに。 filter は使う側で query を持って自前で実装する設計。
+
+## Usage
+
+page 内に直接展開する inline palette。 "new" や "theme" で filter 動作を確認できる。
+
+<Example code={CommandInlineSource}>
+  <CommandInlineDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Command, createListCollection } from "@/components/ui/command";
+```
+
+```tsx
+<Command.Root collection={collection}>
+  <Command.Input value={query} onChange={...} />
+  <Command.List>
+    <Command.Empty />
+    <Command.Group>
+      <Command.GroupLabel />
+      <Command.Item item={item}>
+        <Command.ItemText />
+        <Command.Shortcut />
+      </Command.Item>
+    </Command.Group>
+  </Command.List>
+</Command.Root>
+```
+
+## Dialog palette (⌘K)
+
+Command.Dialog で modal に閉じ込めて、 useEffect で window keydown を監視。 closed 時は query を reset。
+
+<Example code={CommandDialogSource}>
+  <CommandDialogDemo />
+</Example>
+
+## Anatomy
+
+Root に collection、 Input に value/onChange、 List に Group + Item を並べるのが基本。 Empty は結果 0 件の時の placeholder。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "collection",
+      type: "ListCollection<T>",
+      description:
+        "createListCollection({ items }) で作る。 filter 後の items を渡すと visible item だけ navigate 対象に。",
+    },
+    {
+      name: "onSelect",
+      type: "(details: { value }) => void",
+      description: "Item 確定の callback。 router push 等につなぐ。",
+    },
+  ]}
+/>
