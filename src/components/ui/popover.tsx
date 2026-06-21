@@ -19,13 +19,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkPopover.Positioner>) {
-  return (
-    <ArkPopover.Positioner
-      className={cn(className)}
-      style={{ "--z-index": 50 } as React.CSSProperties}
-      {...props}
-    />
-  );
+  return <ArkPopover.Positioner className={cn("z-50!", className)} {...props} />;
 }
 
 function Content({
