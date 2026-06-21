@@ -1,8 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { IconButton } from "@/components/ui/icon-button";
-import { Spinner } from "@/components/ui/spinner";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import SpinnerColorsDemo from "./demos/spinner/colors";
+import SpinnerColorsSource from "./demos/spinner/colors?raw";
+import SpinnerFullPanelDemo from "./demos/spinner/full-panel";
+import SpinnerFullPanelSource from "./demos/spinner/full-panel?raw";
+import SpinnerInButtonDemo from "./demos/spinner/in-button";
+import SpinnerInButtonSource from "./demos/spinner/in-button?raw";
+import SpinnerInIconButtonDemo from "./demos/spinner/in-icon-button";
+import SpinnerInIconButtonSource from "./demos/spinner/in-icon-button?raw";
+import SpinnerSizesDemo from "./demos/spinner/sizes";
+import SpinnerSizesSource from "./demos/spinner/sizes?raw";
+import SpinnerUsageDemo from "./demos/spinner/usage";
+import SpinnerUsageSource from "./demos/spinner/usage?raw";
 
 # Spinner
 
@@ -12,98 +21,58 @@ loading 中の汎用 indicator。 Lucide Loader2 を回転 animation で wrap �
 
 単体は class 無しで size-4 の標準サイズ。
 
-<Example code={`<Spinner />`}>
-  <Spinner />
+<Example code={SpinnerUsageSource}>
+  <SpinnerUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Spinner } from "@/components/ui/spinner";
+```
+
+```tsx
+<Spinner />
+```
 
 ## Sizes
 
 size-\* で大きさを切り替え。 周辺の text や button に合わせる。
 
-<Example
-  code={`<Spinner className="size-3" />
-<Spinner className="size-4" />
-<Spinner className="size-5" />
-<Spinner className="size-8" />`}
->
-  <div className="flex items-end gap-6">
-    <Spinner className="size-3" />
-    <Spinner className="size-4" />
-    <Spinner className="size-5" />
-    <Spinner className="size-8" />
-  </div>
+<Example code={SpinnerSizesSource}>
+  <SpinnerSizesDemo />
 </Example>
 
 ## Colors
 
 text-\* で色付け。 fg / fg-soft / fg-muted を context に合わせて。
 
-<Example
-  code={`<Spinner className="text-fg" />
-<Spinner className="text-fg-soft" />
-<Spinner className="text-fg-muted" />`}
->
-  <div className="flex items-center gap-6">
-    <Spinner className="text-fg" />
-    <Spinner className="text-fg-soft" />
-    <Spinner className="text-fg-muted" />
-  </div>
+<Example code={SpinnerColorsSource}>
+  <SpinnerColorsDemo />
 </Example>
 
 ## In Button
 
 submit pending の典型。 label と並べる時は size-4、 label を残すか差し替えるかは UI 次第。
 
-<Example
-  code={`<Button disabled>
-  <Spinner className="text-bg" />
-  Saving...
-</Button>
-<Button variant="outline" disabled>
-  <Spinner />
-  Loading
-</Button>`}
->
-  <div className="flex items-center gap-3">
-    <Button disabled>
-      <Spinner className="text-bg" />
-      Saving...
-    </Button>
-    <Button variant="outline" disabled>
-      <Spinner />
-      Loading
-    </Button>
-  </div>
+<Example code={SpinnerInButtonSource}>
+  <SpinnerInButtonDemo />
 </Example>
 
 ## In IconButton
 
 refresh / sync button の処理中。 同 size の Spinner に差し替える。
 
-<Example
-  code={`<IconButton aria-label="Refreshing" disabled>
-  <Spinner />
-</IconButton>`}
->
-  <IconButton aria-label="Refreshing" disabled>
-    <Spinner />
-  </IconButton>
+<Example code={SpinnerInIconButtonSource}>
+  <SpinnerInIconButtonDemo />
 </Example>
 
 ## Full panel
 
 card / section 全体の loading。 中央に大きめ + 補足 text。
 
-<Example
-  code={`<div className="flex flex-col items-center justify-center gap-3 rounded-md border border-border p-12">
-  <Spinner className="size-6" />
-  <p className="text-fg-muted text-sm">Loading projects...</p>
-</div>`}
->
-  <div className="flex w-full flex-col items-center justify-center gap-3 rounded-md border border-border bg-surface p-12">
-    <Spinner className="size-6" />
-    <p className="text-fg-muted text-sm">Loading projects...</p>
-  </div>
+<Example code={SpinnerFullPanelSource}>
+  <SpinnerFullPanelDemo />
 </Example>
 
 ## Props
