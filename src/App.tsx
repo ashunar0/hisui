@@ -35,7 +35,7 @@ import InputDoc from "@/screens/docs/components/Input.mdx";
 import KbdDoc from "@/screens/docs/components/Kbd.mdx";
 import ListboxDoc from "@/screens/docs/components/Listbox.mdx";
 import MenuDoc from "@/screens/docs/components/Menu.mdx";
-import { NumberInputDoc } from "@/screens/docs/components/NumberInput";
+import NumberInputDoc from "@/screens/docs/components/NumberInput.mdx";
 import { PaginationDoc } from "@/screens/docs/components/Pagination";
 import PasswordInputDoc from "@/screens/docs/components/PasswordInput.mdx";
 import PinInputDoc from "@/screens/docs/components/PinInput.mdx";
