@@ -24,6 +24,7 @@ import { KbdDoc } from "@/screens/docs/components/Kbd";
 import { MenuDoc } from "@/screens/docs/components/Menu";
 import { PaginationDoc } from "@/screens/docs/components/Pagination";
 import { PasswordInputDoc } from "@/screens/docs/components/PasswordInput";
+import { PinInputDoc } from "@/screens/docs/components/PinInput";
 import { PopoverDoc } from "@/screens/docs/components/Popover";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
@@ -96,6 +97,7 @@ function App() {
               path="components/password-input"
               element={<PasswordInputDoc />}
             />
+            <Route path="components/pin-input" element={<PinInputDoc />} />
             <Route path="components/popover" element={<PopoverDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/select" element={<SelectDoc />} />

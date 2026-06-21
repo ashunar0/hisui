@@ -44,6 +44,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Menu", to: "/docs/components/menu" },
       { label: "Pagination", to: "/docs/components/pagination" },
       { label: "PasswordInput", to: "/docs/components/password-input" },
+      { label: "PinInput", to: "/docs/components/pin-input" },
       { label: "Popover", to: "/docs/components/popover" },
       { label: "RadioGroup", to: "/docs/components/radio-group" },
       { label: "Select", to: "/docs/components/select" },
