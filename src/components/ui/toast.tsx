@@ -68,7 +68,7 @@ function ActionTrigger({
   return (
     <ArkToast.ActionTrigger
       className={cn(
-        "cursor-pointer rounded-sm px-2 py-1 text-xs font-medium text-fg outline-none transition-colors",
+        "shrink-0 cursor-pointer self-center rounded-sm px-2 py-1 text-xs font-medium text-fg outline-none transition-colors",
         "hover:bg-hover focus-visible:ring-2 focus-visible:ring-fg/30",
         className,
       )}
@@ -84,7 +84,7 @@ function CloseTrigger({
   return (
     <ArkToast.CloseTrigger
       className={cn(
-        "shrink-0 cursor-pointer self-start rounded-sm text-fg-muted transition-colors hover:text-fg",
+        "shrink-0 cursor-pointer self-center rounded-sm text-fg-muted transition-colors hover:text-fg",
         className,
       )}
       {...props}
