@@ -22,6 +22,7 @@ import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { KbdDoc } from "@/screens/docs/components/Kbd";
 import { MenuDoc } from "@/screens/docs/components/Menu";
+import { PaginationDoc } from "@/screens/docs/components/Pagination";
 import { PopoverDoc } from "@/screens/docs/components/Popover";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
@@ -87,6 +88,7 @@ function App() {
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/kbd" element={<KbdDoc />} />
             <Route path="components/menu" element={<MenuDoc />} />
+            <Route path="components/pagination" element={<PaginationDoc />} />
             <Route path="components/popover" element={<PopoverDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/select" element={<SelectDoc />} />
