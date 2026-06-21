@@ -1,5 +1,5 @@
 import { Collapsible as ArkCollapsible } from "@ark-ui/react/collapsible";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
@@ -42,12 +42,12 @@ function Indicator({
     <ArkCollapsible.Indicator
       className={cn(
         "inline-flex size-4 items-center justify-center text-fg-muted transition-transform duration-150",
-        "data-[state=open]:rotate-90",
+        "data-[state=open]:rotate-180",
         className,
       )}
       {...props}
     >
-      {children ?? <ChevronRight className="size-3.5" strokeWidth={2.25} />}
+      {children ?? <ChevronDown className="size-3.5" strokeWidth={2.25} />}
     </ArkCollapsible.Indicator>
   );
 }
