@@ -1,0 +1,221 @@
+import { Field } from "@/components/ui/field";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const PARTS = [
+  {
+    name: "Field.Root",
+    description:
+      "外枠。 disabled / invalid / required / readOnly を Context で配下に流す。 単一 form field の wrapper。",
+  },
+  {
+    name: "Field.Label",
+    description:
+      "見出し。 Input/Textarea/Select と htmlFor が自動連結。 RequiredIndicator を中に並べる。",
+  },
+  {
+    name: "Field.Input / Textarea / Select",
+    description:
+      "native input/textarea/select。 a11y 属性 (aria-invalid / disabled / required) が Root から自動継承。",
+  },
+  {
+    name: "Field.HelperText",
+    description:
+      "label 下の補足。 aria-describedby に自動接続。 invalid 時は ErrorText に切替わる。",
+  },
+  {
+    name: "Field.ErrorText",
+    description: "invalid=true の時だけ表示される error message。 赤字。",
+  },
+  {
+    name: "Field.RequiredIndicator",
+    description:
+      "Label 内に置く * マーク。 required=true の時のみ表示。 children で記号変更可。",
+  },
+];
+
+# Field
+
+form field 用の wrapper。 Label / Input / HelperText / ErrorText / RequiredIndicator を Root で繋いで、 disabled / invalid / required の state と a11y 属性 (aria-invalid / aria-describedby / htmlFor) を 1 箇所で配る。 native input/textarea/select 上に組む素朴な作り。
+
+## Anatomy
+
+Root に state を渡し、 中に Label + Input/Textarea/Select + HelperText + ErrorText を並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Usage
+
+Label + Input + HelperText の基本形。
+
+<Example
+  code={`<Field.Root>
+  <Field.Label>Email</Field.Label>
+  <Field.Input placeholder="you@example.com" />
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root>
+      <Field.Label>Email</Field.Label>
+      <Field.Input placeholder="you@example.com" />
+      <Field.HelperText>
+        {"We'll never share your email."}
+      </Field.HelperText>
+    </Field.Root>
+  </div>
+</Example>
+
+## Required + RequiredIndicator
+
+required を Root に渡すと、 Label 内の RequiredIndicator が表示される。
+
+<Example
+  code={`<Field.Root required>
+  <Field.Label>Display name<Field.RequiredIndicator /></Field.Label>
+  <Field.Input placeholder="Your name" />
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root required>
+      <Field.Label>
+        Display name
+        <Field.RequiredIndicator />
+      </Field.Label>
+      <Field.Input placeholder="Your name" />
+    </Field.Root>
+  </div>
+</Example>
+
+## Invalid + ErrorText
+
+invalid=true で HelperText が隠れて ErrorText が出る。 aria-invalid も自動。
+
+<Example
+  code={`<Field.Root invalid>
+  <Field.Label>Password</Field.Label>
+  <Field.Input type="password" defaultValue="abc" />
+  <Field.HelperText>8 文字以上で英数記号混合。</Field.HelperText>
+  <Field.ErrorText>Too short.</Field.ErrorText>
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root invalid>
+      <Field.Label>Password</Field.Label>
+      <Field.Input type="password" defaultValue="abc" />
+      <Field.HelperText>8 文字以上で英数記号混合。</Field.HelperText>
+      <Field.ErrorText>Too short.</Field.ErrorText>
+    </Field.Root>
+  </div>
+</Example>
+
+## Textarea
+
+Field.Textarea で複数行入力。 Input と同じ state 継承。
+
+<Example
+  code={`<Field.Root>
+  <Field.Label>Bio</Field.Label>
+  <Field.Textarea placeholder="Tell us about yourself" />
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root>
+      <Field.Label>Bio</Field.Label>
+      <Field.Textarea placeholder="Tell us about yourself" />
+      <Field.HelperText>Markdown supported.</Field.HelperText>
+    </Field.Root>
+  </div>
+</Example>
+
+## Select
+
+Field.Select は native `<select>` ベース。 popup じゃない軽量版。 chevron icon を自動配置。
+
+<Example
+  code={`<Field.Root>
+  <Field.Label>Plan</Field.Label>
+  <Field.Select defaultValue="pro">
+    <option value="free">Free</option>
+    <option value="pro">Pro</option>
+    <option value="enterprise">Enterprise</option>
+  </Field.Select>
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root>
+      <Field.Label>Plan</Field.Label>
+      <Field.Select defaultValue="pro">
+        <option value="free">Free</option>
+        <option value="pro">Pro</option>
+        <option value="enterprise">Enterprise</option>
+      </Field.Select>
+    </Field.Root>
+  </div>
+</Example>
+
+## Disabled
+
+Root に disabled で Input/Textarea/Select 全部無効化、 opacity 50% + sunken bg。
+
+<Example
+  code={`<Field.Root disabled>
+  <Field.Label>Org ID</Field.Label>
+  <Field.Input defaultValue="org_a1b2c3" />
+  <Field.HelperText>Read-only field.</Field.HelperText>
+</Field.Root>`}
+>
+  <div className="w-80">
+    <Field.Root disabled>
+      <Field.Label>Org ID</Field.Label>
+      <Field.Input defaultValue="org_a1b2c3" />
+      <Field.HelperText>Read-only field.</Field.HelperText>
+    </Field.Root>
+  </div>
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea/Select 全部 disabled に。",
+    },
+    {
+      name: "invalid",
+      type: "boolean",
+      default: "false",
+      description:
+        "aria-invalid + ErrorText 表示。 HelperText は隠れて ErrorText が出る。",
+    },
+    {
+      name: "required",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea/Select の required + RequiredIndicator 表示制御。",
+    },
+    {
+      name: "readOnly",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea を readonly に。",
+    },
+    {
+      name: "ids",
+      type: "{ control?: string; label?: string; ... }",
+      description: "a11y id を上書きしたい時用 (普通は自動)。",
+    },
+  ]}
+/>
