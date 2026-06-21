@@ -40,6 +40,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Popover", to: "/docs/components/popover" },
       { label: "RadioGroup", to: "/docs/components/radio-group" },
       { label: "Select", to: "/docs/components/select" },
+      { label: "Skeleton", to: "/docs/components/skeleton" },
       { label: "Slider", to: "/docs/components/slider" },
       { label: "Stack", to: "/docs/components/stack" },
       { label: "Switch", to: "/docs/components/switch" },

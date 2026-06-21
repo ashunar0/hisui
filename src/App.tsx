@@ -20,6 +20,7 @@ import { MenuDoc } from "@/screens/docs/components/Menu";
 import { PopoverDoc } from "@/screens/docs/components/Popover";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
+import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
 import { SliderDoc } from "@/screens/docs/components/Slider";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
@@ -76,6 +77,7 @@ function App() {
             <Route path="components/popover" element={<PopoverDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
             <Route path="components/select" element={<SelectDoc />} />
+            <Route path="components/skeleton" element={<SkeletonDoc />} />
             <Route path="components/slider" element={<SliderDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
