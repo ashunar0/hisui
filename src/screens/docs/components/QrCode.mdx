@@ -1,8 +1,11 @@
-import { Download, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { QrCode } from "@/components/ui/qr-code";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import QrCodeInlineTicketDemo from "./demos/qr-code/inline-ticket";
+import QrCodeInlineTicketSource from "./demos/qr-code/inline-ticket?raw";
+import QrCodeLogoOverlayDemo from "./demos/qr-code/logo-overlay";
+import QrCodeLogoOverlaySource from "./demos/qr-code/logo-overlay?raw";
+import QrCodeUsageDemo from "./demos/qr-code/usage";
+import QrCodeUsageSource from "./demos/qr-code/usage?raw";
 
 export const PARTS = [
   {
@@ -39,6 +42,46 @@ export const PARTS = [
 
 Ark UI ベースの QR code generator。 value を渡せば SVG pattern を描画。 中央に logo を重ねたい時は Overlay と encoding.ecc=H をセットで。 Center wrapper で Frame と Overlay の center を保つのが落とし穴。
 
+## Usage
+
+value に URL を渡すだけの最小例。 Root の card layout で枠と padding を付ける。
+
+<Example code={QrCodeUsageSource}>
+  <QrCodeUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { QrCode } from "@/components/ui/qr-code";
+```
+
+```tsx
+<QrCode.Root value="...">
+  <QrCode.Center>
+    <QrCode.Frame>
+      <QrCode.Pattern />
+    </QrCode.Frame>
+  </QrCode.Center>
+</QrCode.Root>
+```
+
+## Logo overlay + download
+
+Overlay で中央に icon を重ねる時は encoding.ecc=H で誤り訂正を最大に。 DownloadTrigger は asChild で Button に差し替えて見た目を合わせる。
+
+<Example code={QrCodeLogoOverlaySource}>
+  <QrCodeLogoOverlayDemo />
+</Example>
+
+## Compact inline ticket
+
+Root を flex-row + 小さい Frame にすると ticket / chit-style に。
+
+<Example code={QrCodeInlineTicketSource}>
+  <QrCodeInlineTicketDemo />
+</Example>
+
 ## Anatomy
 
 Center は ui-lab 独自の relative wrapper。 Frame だけなら Center は省略可だが、 Overlay や DownloadTrigger を併用する時は必須。
@@ -53,126 +96,6 @@ Center は ui-lab 独自の relative wrapper。 Frame だけなら Center は省
     </li>
   ))}
 </ul>
-
-## Basic share URL
-
-value に URL を渡すだけの最小例。 Root の card layout で枠と padding を付ける。
-
-<Example
-  code={`<QrCode.Root value="https://ui-lab.dev/booking/abc-123">
-  <QrCode.Center>
-    <QrCode.Frame>
-      <QrCode.Pattern />
-    </QrCode.Frame>
-  </QrCode.Center>
-  <span className="font-mono text-xs">ui-lab.dev/booking/abc-123</span>
-</QrCode.Root>`}
->
-  <QrCode.Root value="https://ui-lab.dev/booking/abc-123">
-    <QrCode.Center>
-      <QrCode.Frame>
-        <QrCode.Pattern />
-      </QrCode.Frame>
-    </QrCode.Center>
-    <span className="font-mono text-fg-soft text-xs">
-      ui-lab.dev/booking/abc-123
-    </span>
-  </QrCode.Root>
-</Example>
-
-## Logo overlay + download
-
-Overlay で中央に icon を重ねる時は encoding.ecc=H で誤り訂正を最大に。 DownloadTrigger は asChild で Button に差し替えて見た目を合わせる。
-
-<Example
-  code={`<QrCode.Root
-  value="otpauth://totp/ui-lab:asahi?secret=JBSWY3DPEHPK3PXP&issuer=ui-lab"
-  encoding={{ ecc: "H" }}
->
-  <QrCode.Center>
-    <QrCode.Frame>
-      <QrCode.Pattern />
-    </QrCode.Frame>
-    <QrCode.Overlay>
-      <Sparkles className="size-4" />
-    </QrCode.Overlay>
-  </QrCode.Center>
-  <QrCode.DownloadTrigger
-    fileName="2fa-qr.png"
-    mimeType="image/png"
-    asChild
-  >
-    <Button variant="outline" size="sm">
-      <Download className="size-4" /> Download PNG
-    </Button>
-  </QrCode.DownloadTrigger>
-</QrCode.Root>`}
->
-  <QrCode.Root
-    value="otpauth://totp/ui-lab:asahi?secret=JBSWY3DPEHPK3PXP&issuer=ui-lab"
-    encoding={{ ecc: "H" }}
-  >
-    <QrCode.Center>
-      <QrCode.Frame>
-        <QrCode.Pattern />
-      </QrCode.Frame>
-      <QrCode.Overlay>
-        <Sparkles className="size-4 text-fg" strokeWidth={2.25} />
-      </QrCode.Overlay>
-    </QrCode.Center>
-    <QrCode.DownloadTrigger
-      fileName="2fa-qr.png"
-      mimeType="image/png"
-      asChild
-    >
-      <Button variant="outline" size="sm">
-        <Download className="size-4" />
-        Download PNG
-      </Button>
-    </QrCode.DownloadTrigger>
-  </QrCode.Root>
-</Example>
-
-## Compact inline ticket
-
-Root を flex-row + 小さい Frame にすると ticket / chit-style に。
-
-<Example
-  code={`<QrCode.Root
-  value="https://ui-lab.dev/ticket/E-9F3K"
-  className="w-fit flex-row items-center gap-4 p-3"
->
-  <QrCode.Center>
-    <QrCode.Frame className="size-24">
-      <QrCode.Pattern />
-    </QrCode.Frame>
-  </QrCode.Center>
-  <div>...event info</div>
-</QrCode.Root>`}
->
-  <QrCode.Root
-    value="https://ui-lab.dev/ticket/E-9F3K"
-    className="w-fit flex-row items-center gap-4 p-3"
-  >
-    <QrCode.Center>
-      <QrCode.Frame className="size-24">
-        <QrCode.Pattern />
-      </QrCode.Frame>
-    </QrCode.Center>
-    <div className="flex flex-col gap-0.5">
-      <span className="text-fg-muted text-xs uppercase tracking-wide">
-        Admission
-      </span>
-      <span className="font-semibold text-fg text-sm">
-        UI Lab Night #3
-      </span>
-      <span className="text-fg-soft text-xs">
-        2026-07-15 ・ 19:00
-      </span>
-      <span className="font-mono text-fg-subtle text-xs">E-9F3K</span>
-    </div>
-  </QrCode.Root>
-</Example>
 
 ## Root props
 
