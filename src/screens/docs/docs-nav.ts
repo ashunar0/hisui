@@ -37,6 +37,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Drawer", to: "/docs/components/drawer" },
       { label: "Empty", to: "/docs/components/empty" },
       { label: "Heading", to: "/docs/components/heading" },
+      { label: "HoverCard", to: "/docs/components/hover-card" },
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
       { label: "Kbd", to: "/docs/components/kbd" },

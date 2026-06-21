@@ -17,6 +17,7 @@ import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { DrawerDoc } from "@/screens/docs/components/Drawer";
 import { EmptyDoc } from "@/screens/docs/components/Empty";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
+import { HoverCardDoc } from "@/screens/docs/components/HoverCard";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
 import { InputDoc } from "@/screens/docs/components/Input";
 import { KbdDoc } from "@/screens/docs/components/Kbd";
@@ -81,6 +82,7 @@ function App() {
             <Route path="components/drawer" element={<DrawerDoc />} />
             <Route path="components/empty" element={<EmptyDoc />} />
             <Route path="components/heading" element={<HeadingDoc />} />
+            <Route path="components/hover-card" element={<HoverCardDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
             <Route path="components/input" element={<InputDoc />} />
             <Route path="components/kbd" element={<KbdDoc />} />
