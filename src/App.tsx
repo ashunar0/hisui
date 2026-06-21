@@ -27,7 +27,7 @@ import DrawerDoc from "@/screens/docs/components/Drawer.mdx";
 import EditableDoc from "@/screens/docs/components/Editable.mdx";
 import EmptyDoc from "@/screens/docs/components/Empty.mdx";
 import FieldDoc from "@/screens/docs/components/Field.mdx";
-import { FileUploadDoc } from "@/screens/docs/components/FileUpload";
+import FileUploadDoc from "@/screens/docs/components/FileUpload.mdx";
 import HeadingDoc from "@/screens/docs/components/Heading.mdx";
 import HoverCardDoc from "@/screens/docs/components/HoverCard.mdx";
 import IconButtonDoc from "@/screens/docs/components/IconButton.mdx";
