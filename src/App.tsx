@@ -52,7 +52,7 @@ import SidebarDoc from "@/screens/docs/components/Sidebar.mdx";
 import SkeletonDoc from "@/screens/docs/components/Skeleton.mdx";
 import SpinnerDoc from "@/screens/docs/components/Spinner.mdx";
 import { SplitterDoc } from "@/screens/docs/components/Splitter";
-import { SliderDoc } from "@/screens/docs/components/Slider";
+import SliderDoc from "@/screens/docs/components/Slider.mdx";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { StepsDoc } from "@/screens/docs/components/Steps";
 import SwitchDoc from "@/screens/docs/components/Switch.mdx";
