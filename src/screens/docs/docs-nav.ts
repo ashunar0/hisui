@@ -35,6 +35,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Combobox", to: "/docs/components/combobox" },
       { label: "Dialog", to: "/docs/components/dialog" },
       { label: "Drawer", to: "/docs/components/drawer" },
+      { label: "Editable", to: "/docs/components/editable" },
       { label: "Empty", to: "/docs/components/empty" },
       { label: "Heading", to: "/docs/components/heading" },
       { label: "HoverCard", to: "/docs/components/hover-card" },
