@@ -14,7 +14,7 @@ import BadgeDoc from "@/screens/docs/components/Badge.mdx";
 import BreadcrumbDoc from "@/screens/docs/components/Breadcrumb.mdx";
 import ButtonDoc from "@/screens/docs/components/Button.mdx";
 import CardDoc from "@/screens/docs/components/Card.mdx";
-import { CarouselDoc } from "@/screens/docs/components/Carousel";
+import CarouselDoc from "@/screens/docs/components/Carousel.mdx";
 import CheckboxDoc from "@/screens/docs/components/Checkbox.mdx";
 import ClipboardDoc from "@/screens/docs/components/Clipboard.mdx";
 import CollapsibleDoc from "@/screens/docs/components/Collapsible.mdx";

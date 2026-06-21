@@ -1,0 +1,157 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import CarouselAutoplayDemo from "./demos/carousel/autoplay";
+import CarouselAutoplaySource from "./demos/carousel/autoplay?raw";
+import CarouselHeroDemo from "./demos/carousel/hero";
+import CarouselHeroSource from "./demos/carousel/hero?raw";
+import CarouselWithProgressDemo from "./demos/carousel/with-progress";
+import CarouselWithProgressSource from "./demos/carousel/with-progress?raw";
+
+export const PARTS = [
+  {
+    name: "Carousel.Root",
+    description:
+      "外枠。 slideCount / loop / autoplay / orientation を受ける。 relative + overflow-hidden + border。",
+  },
+  {
+    name: "Carousel.ItemGroup",
+    description:
+      "Item を flex row (horizontal) または flex col (vertical) で並べる track。",
+  },
+  {
+    name: "Carousel.Item",
+    description:
+      "1 slide。 default で basis-full + shrink-0 + grow-0 (1 画面 1 slide)。 index prop 必須。",
+  },
+  {
+    name: "Carousel.Control",
+    description:
+      "Prev / Next を inset-y-0 で両端に配置する flex row。 pointer-events-none で中央 area の操作を妨げない。",
+  },
+  {
+    name: "Carousel.PrevTrigger / NextTrigger",
+    description:
+      "矢印 button。 default は ChevronLeft / ChevronRight。 children で差し替え。",
+  },
+  {
+    name: "Carousel.IndicatorGroup",
+    description:
+      "下端中央の dot 列。 default で absolute bottom-3 配置。",
+  },
+  {
+    name: "Carousel.Indicator",
+    description:
+      "dot 1 個。 data-current で width が伸びて active が分かる。 index 必須。",
+  },
+  {
+    name: "Carousel.AutoplayTrigger / AutoplayIndicator",
+    description:
+      "再生 / 一時停止 toggle。 Trigger の中で Indicator が Play / Pause icon を切替。",
+  },
+  {
+    name: "Carousel.ProgressText",
+    description:
+      "「3 / 8」のような counter text。 header に置く時に便利。",
+  },
+];
+
+# Carousel
+
+Ark UI ベースの slider。 slide / dot / Prev/Next / Autoplay / Progress を全部 dot-namespace で持つ。 Root に slideCount を渡し、 Item の index と合わせるのが基本契約。
+
+## Usage
+
+最小構成 + dot indicator。 Item に index、 Root に slideCount を渡す。
+
+<Example code={CarouselHeroSource}>
+  <CarouselHeroDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Carousel } from "@/components/ui/carousel";
+```
+
+```tsx
+<Carousel.Root slideCount={n}>
+  <Carousel.ItemGroup>
+    <Carousel.Item index={0} />
+  </Carousel.ItemGroup>
+  <Carousel.Control>
+    <Carousel.PrevTrigger />
+    <Carousel.NextTrigger />
+  </Carousel.Control>
+  <Carousel.IndicatorGroup>
+    <Carousel.Indicator index={0} />
+  </Carousel.IndicatorGroup>
+</Carousel.Root>
+```
+
+## With progress counter
+
+ProgressText を header に出すと「3 / 4」が見える。 IndicatorGroup を省くパターン。
+
+<Example code={CarouselWithProgressSource}>
+  <CarouselWithProgressDemo />
+</Example>
+
+## Autoplay
+
+autoplay に delay を渡すと自動再生。 loop と組み合わせて無限ループに。 AutoplayTrigger で一時停止 toggle を出せる。
+
+<Example code={CarouselAutoplaySource}>
+  <CarouselAutoplayDemo />
+</Example>
+
+## Anatomy
+
+Root の中に ItemGroup + Item を並べ、 Control / IndicatorGroup を overlay として置く。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "slideCount",
+      type: "number",
+      description: "総 slide 数。 必須。 Indicator や ProgressText の母数になる。",
+    },
+    {
+      name: "loop",
+      type: "boolean",
+      default: "false",
+      description: "末尾の次が先頭に戻る。 autoplay と組み合わせると無限再生。",
+    },
+    {
+      name: "autoplay",
+      type: "boolean | { delay?: number }",
+      description:
+        "自動再生。 { delay: 3000 } で 3 秒間隔。 AutoplayTrigger で一時停止可。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "縦 carousel にしたい時は vertical。",
+    },
+    {
+      name: "slidesPerPage / slidesPerMove",
+      type: "number",
+      default: "1",
+      description:
+        "1 画面に複数 slide を見せたい時に。 同時に move 量も変えられる。",
+    },
+  ]}
+/>
