@@ -38,6 +38,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Editable", to: "/docs/components/editable" },
       { label: "Empty", to: "/docs/components/empty" },
       { label: "Field", to: "/docs/components/field" },
+      { label: "FileUpload", to: "/docs/components/file-upload" },
       { label: "Heading", to: "/docs/components/heading" },
       { label: "HoverCard", to: "/docs/components/hover-card" },
       { label: "IconButton", to: "/docs/components/icon-button" },
