@@ -5,7 +5,7 @@ import { Calendar } from "@/screens/Calendar";
 import { Chat } from "@/screens/Chat";
 import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
-import { AccordionDoc } from "@/screens/docs/components/Accordion";
+import AccordionDoc from "@/screens/docs/components/Accordion.mdx";
 import AlertDoc from "@/screens/docs/components/Alert.mdx";
 import { AlertDialogDoc } from "@/screens/docs/components/AlertDialog";
 import AspectRatioDoc from "@/screens/docs/components/AspectRatio.mdx";
