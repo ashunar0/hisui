@@ -1,100 +1,59 @@
-import { Separator } from "@/components/ui/separator";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import SeparatorCustomColorDemo from "./demos/separator/custom-color";
+import SeparatorCustomColorSource from "./demos/separator/custom-color?raw";
+import SeparatorInCardDemo from "./demos/separator/in-card";
+import SeparatorInCardSource from "./demos/separator/in-card?raw";
+import SeparatorUsageDemo from "./demos/separator/usage";
+import SeparatorUsageSource from "./demos/separator/usage?raw";
+import SeparatorVerticalDemo from "./demos/separator/vertical";
+import SeparatorVerticalSource from "./demos/separator/vertical?raw";
 
 # Separator
 
 section / item の区切り線。 1px の bg-border。 orientation で horizontal / vertical 切替。 default は装飾 (role=none) で、 意味のある区切りなら decorative=false にして screen reader に届ける。
 
-## Horizontal
+## Usage
 
-default。 縦に積んだ block の間に挟む。
+default は horizontal。 縦に積んだ block の間に挟む。
 
-<Example
-  code={`<div>
-  <p>Section 1</p>
-  <Separator />
-  <p>Section 2</p>
-</div>`}
->
-  <div className="flex w-full max-w-md flex-col gap-3">
-    <p className="text-fg text-sm">Section 1</p>
-    <Separator />
-    <p className="text-fg text-sm">Section 2</p>
-    <Separator />
-    <p className="text-fg text-sm">Section 3</p>
-  </div>
+<Example code={SeparatorUsageSource}>
+  <SeparatorUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Separator } from "@/components/ui/separator";
+```
+
+```tsx
+<Separator />
+<Separator orientation="vertical" />
+```
 
 ## Vertical
 
 orientation=vertical で 1px の縦線。 flex-row の inline 要素間に。
 
-<Example
-  code={`<div className="flex h-5 items-center gap-3">
-  <span>Home</span>
-  <Separator orientation="vertical" />
-  <span>Docs</span>
-  <Separator orientation="vertical" />
-  <span>API</span>
-</div>`}
->
-  <div className="flex h-5 items-center gap-3 text-fg-soft text-sm">
-    <span>Home</span>
-    <Separator orientation="vertical" />
-    <span>Docs</span>
-    <Separator orientation="vertical" />
-    <span>API</span>
-  </div>
+<Example code={SeparatorVerticalSource}>
+  <SeparatorVerticalDemo />
 </Example>
 
 ## In card
 
 header と body、 body と footer の区切り。 card 内で頻出。
 
-<Example
-  code={`<div className="rounded-md border border-border">
-  <div className="p-4"><h3>Settings</h3></div>
-  <Separator />
-  <div className="p-4">...</div>
-  <Separator />
-  <div className="p-4 flex justify-end">...</div>
-</div>`}
->
-  <div className="w-full max-w-md overflow-hidden rounded-md border border-border bg-surface">
-    <div className="p-4">
-      <h3 className="font-medium text-fg text-sm">Settings</h3>
-      <p className="text-fg-muted text-xs">Manage your preferences.</p>
-    </div>
-    <Separator />
-    <div className="flex flex-col gap-2 p-4">
-      <p className="text-fg-soft text-sm">Theme: System</p>
-      <p className="text-fg-soft text-sm">Language: English</p>
-      <p className="text-fg-soft text-sm">Notifications: Email</p>
-    </div>
-    <Separator />
-    <div className="flex justify-end p-3">
-      <p className="text-fg-muted text-xs">Last saved 2 min ago</p>
-    </div>
-  </div>
+<Example code={SeparatorInCardSource}>
+  <SeparatorInCardDemo />
 </Example>
 
 ## Custom color
 
 className で bg-* を上書き。 muted な区切りや brand 色強調に。
 
-<Example
-  code={`<Separator className="bg-border-muted" />
-<Separator className="bg-fg" />`}
->
-  <div className="flex w-full max-w-md flex-col gap-3">
-    <Separator />
-    <p className="text-fg-muted text-xs">bg-border (default)</p>
-    <Separator className="bg-border-muted" />
-    <p className="text-fg-muted text-xs">bg-border-muted</p>
-    <Separator className="bg-fg" />
-    <p className="text-fg-muted text-xs">bg-fg</p>
-  </div>
+<Example code={SeparatorCustomColorSource}>
+  <SeparatorCustomColorDemo />
 </Example>
 
 ## Props
