@@ -1,0 +1,219 @@
+import { Button } from "@/components/ui/button";
+import { PinInput } from "@/components/ui/pin-input";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const PARTS = [
+  {
+    name: "PinInput.Root",
+    description:
+      "外枠。 value (string[]) で各桁の値、 onValueChange で更新。 otp / mask / type で挙動 modifier。",
+  },
+  {
+    name: "PinInput.Label",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "PinInput.Control",
+    description:
+      "Input N 個を並べる枠。 flex で横並び gap-2。 OTP の桁数だけ Input を入れる。",
+  },
+  {
+    name: "PinInput.Input",
+    description:
+      "1 桁分の box。 index 必須 (0 始まり)。 paste で全桁に分配、 文字入力で自動で次へ focus 移動。",
+  },
+  {
+    name: "PinInput.HiddenInput",
+    description:
+      "form submit 用の隠し input。 value 結合した文字列が name 経由で送られる。 Root 内に自動 mount。",
+  },
+  {
+    name: "PinInput.Context",
+    description:
+      "render-prop で api.value (string[]) / api.complete (boolean) を取れる。 submit gate / 進捗表示に。",
+  },
+];
+
+export function WithSubmit() {
+  return (
+    <PinInput.Root>
+      <PinInput.Label>Verify code (5 digits)</PinInput.Label>
+      <PinInput.Control>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <PinInput.Input key={i} index={i} />
+        ))}
+      </PinInput.Control>
+      <PinInput.Context>
+        {(api) => {
+          const filled = api.value.filter(Boolean).length;
+          const total = api.value.length;
+          return (
+            <div className="mt-1 flex items-center justify-between gap-3">
+              <span className="text-fg-muted text-[11px]">
+                {filled} / {total} digits
+              </span>
+              <Button size="sm" disabled={!api.complete}>
+                Verify
+              </Button>
+            </div>
+          );
+        }}
+      </PinInput.Context>
+    </PinInput.Root>
+  );
+}
+
+# PinInput
+
+OTP / PIN / 認証コード入力用の桁ごと box。 paste で全桁に分配、 入力毎に次の box へ自動 focus、 全桁埋まると onValueComplete が発火。 otp 属性で iOS / Android の SMS 自動入力にも対応。
+
+## Anatomy
+
+Root の中に Label / Control / (Context 任意)。 Control の中に Input を桁数分。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## OTP
+
+otp prop で autocomplete=one-time-code。 SMS の認証コードを自動入力できるようになる。
+
+<Example
+  code={`<PinInput.Root otp>
+  <PinInput.Label>One-time code</PinInput.Label>
+  <PinInput.Control>
+    {Array.from({ length: 6 }).map((_, i) => (
+      <PinInput.Input key={i} index={i} />
+    ))}
+  </PinInput.Control>
+</PinInput.Root>`}
+>
+  <PinInput.Root otp>
+    <PinInput.Label>One-time code</PinInput.Label>
+    <PinInput.Control>
+      {Array.from({ length: 6 }).map((_, i) => (
+        <PinInput.Input key={i} index={i} />
+      ))}
+    </PinInput.Control>
+  </PinInput.Root>
+</Example>
+
+## Masked
+
+mask prop で入力値を • 表示。 PIN / passcode 入力風。
+
+<Example
+  code={`<PinInput.Root mask>
+  <PinInput.Label>Card PIN</PinInput.Label>
+  <PinInput.Control>
+    {Array.from({ length: 4 }).map((_, i) => (
+      <PinInput.Input key={i} index={i} />
+    ))}
+  </PinInput.Control>
+</PinInput.Root>`}
+>
+  <PinInput.Root mask>
+    <PinInput.Label>Card PIN</PinInput.Label>
+    <PinInput.Control>
+      {Array.from({ length: 4 }).map((_, i) => (
+        <PinInput.Input key={i} index={i} />
+      ))}
+    </PinInput.Control>
+  </PinInput.Root>
+</Example>
+
+## With submit gate
+
+Context render-prop で api.complete / api.value を取って、 全桁埋まるまで submit を disable + 進捗表示。
+
+<Example
+  code={`<PinInput.Root>
+  <PinInput.Label>Verify code (5 digits)</PinInput.Label>
+  <PinInput.Control>
+    {Array.from({ length: 5 }).map((_, i) => <PinInput.Input key={i} index={i} />)}
+  </PinInput.Control>
+  <PinInput.Context>
+    {(api) => (
+      <div className="flex justify-between">
+        <span>{api.value.filter(Boolean).length} / {api.value.length} digits</span>
+        <Button disabled={!api.complete}>Verify</Button>
+      </div>
+    )}
+  </PinInput.Context>
+</PinInput.Root>`}
+>
+  <WithSubmit />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string[]",
+      description: "controlled mode の各桁の値。 桁数 = array 長。",
+    },
+    {
+      name: "defaultValue",
+      type: "string[]",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string[]; valueAsString: string }) => void",
+      description: "入力毎に呼ばれる。",
+    },
+    {
+      name: "onValueComplete",
+      type: "(details: { value: string[]; valueAsString: string }) => void",
+      description: "全桁埋まった瞬間に呼ばれる。 verify 自動発火に。",
+    },
+    {
+      name: "otp",
+      type: "boolean",
+      default: "false",
+      description:
+        "autocomplete=one-time-code を付ける。 iOS / Android が SMS から自動入力する。",
+    },
+    {
+      name: "mask",
+      type: "boolean",
+      default: "false",
+      description: "入力値を表示時に • に置換 (中身は普通に保存)。 PIN 入力風。",
+    },
+    {
+      name: "type",
+      type: '"numeric" | "alphanumeric" | "alphabetic"',
+      default: '"numeric"',
+      description: "受け付ける文字種。 numeric=数字のみ、 alphanumeric=英数。",
+    },
+    {
+      name: "placeholder",
+      type: "string",
+      default: '""',
+      description: "空桁の表示。 ui-lab default は空文字 (ui がきれい)。",
+    },
+    {
+      name: "blurOnComplete",
+      type: "boolean",
+      default: "false",
+      description: "全桁埋まったら blur。 自動 submit 系で UX に影響。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全 input 無効化。",
+    },
+  ]}
+/>
