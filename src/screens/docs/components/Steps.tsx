@@ -223,7 +223,7 @@ export function StepsDoc() {
         <Example
           code={`<Steps.Root count={4} defaultStep={1}>
   <Steps.List>...</Steps.List>
-  <Steps.Context>{(api) => <span>Step {api.step + 1} of {api.count}</span>}</Steps.Context>
+  <Steps.Context>{(api) => <span>Step {api.value + 1} of {api.count}</span>}</Steps.Context>
 </Steps.Root>`}
         >
           <div className="w-full max-w-md">
@@ -247,7 +247,7 @@ export function StepsDoc() {
                 <Steps.Context>
                   {(api) => (
                     <span className="ml-3 text-fg-muted text-xs tabular-nums">
-                      Step {api.step + 1} of {api.count}
+                      Step {api.value + 1} of {api.count}
                     </span>
                   )}
                 </Steps.Context>
