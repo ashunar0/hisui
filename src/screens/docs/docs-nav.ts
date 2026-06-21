@@ -61,6 +61,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Tabs", to: "/docs/components/tabs" },
       { label: "Textarea", to: "/docs/components/textarea" },
       { label: "Toast", to: "/docs/components/toast" },
+      { label: "ToggleGroup", to: "/docs/components/toggle-group" },
       { label: "Tooltip", to: "/docs/components/tooltip" },
     ],
   },
