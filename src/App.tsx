@@ -7,13 +7,20 @@ import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
 import { AccordionDoc } from "@/screens/docs/components/Accordion";
 import { AlertDoc } from "@/screens/docs/components/Alert";
+import { AlertDialogDoc } from "@/screens/docs/components/AlertDialog";
+import { AspectRatioDoc } from "@/screens/docs/components/AspectRatio";
 import { AvatarDoc } from "@/screens/docs/components/Avatar";
 import { BadgeDoc } from "@/screens/docs/components/Badge";
+import { BreadcrumbDoc } from "@/screens/docs/components/Breadcrumb";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
+import { CarouselDoc } from "@/screens/docs/components/Carousel";
 import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
+import { ClipboardDoc } from "@/screens/docs/components/Clipboard";
+import { CollapsibleDoc } from "@/screens/docs/components/Collapsible";
 import { ColorPickerDoc } from "@/screens/docs/components/ColorPicker";
 import { ComboboxDoc } from "@/screens/docs/components/Combobox";
+import { CommandDoc } from "@/screens/docs/components/Command";
 import { DatePickerDoc } from "@/screens/docs/components/DatePicker";
 import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { DrawerDoc } from "@/screens/docs/components/Drawer";
@@ -33,10 +40,15 @@ import { PaginationDoc } from "@/screens/docs/components/Pagination";
 import { PasswordInputDoc } from "@/screens/docs/components/PasswordInput";
 import { PinInputDoc } from "@/screens/docs/components/PinInput";
 import { PopoverDoc } from "@/screens/docs/components/Popover";
+import { ProgressDoc } from "@/screens/docs/components/Progress";
+import { QrCodeDoc } from "@/screens/docs/components/QrCode";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
+import { RatingGroupDoc } from "@/screens/docs/components/RatingGroup";
+import { ScrollAreaDoc } from "@/screens/docs/components/ScrollArea";
 import { SegmentGroupDoc } from "@/screens/docs/components/SegmentGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
 import { SeparatorDoc } from "@/screens/docs/components/Separator";
+import { SidebarDoc } from "@/screens/docs/components/Sidebar";
 import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
 import { SpinnerDoc } from "@/screens/docs/components/Spinner";
 import { SplitterDoc } from "@/screens/docs/components/Splitter";
@@ -44,11 +56,17 @@ import { SliderDoc } from "@/screens/docs/components/Slider";
 import { StackDoc } from "@/screens/docs/components/Stack";
 import { StepsDoc } from "@/screens/docs/components/Steps";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
+import { TableDoc } from "@/screens/docs/components/Table";
 import { TabsDoc } from "@/screens/docs/components/Tabs";
+import { TagsInputDoc } from "@/screens/docs/components/TagsInput";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
 import { ToastDoc } from "@/screens/docs/components/Toast";
+import { ToggleDoc } from "@/screens/docs/components/Toggle";
 import { ToggleGroupDoc } from "@/screens/docs/components/ToggleGroup";
+import { ToolbarDoc } from "@/screens/docs/components/Toolbar";
 import { TooltipDoc } from "@/screens/docs/components/Tooltip";
+import { TreeViewDoc } from "@/screens/docs/components/TreeView";
+import { ChartDoc } from "@/screens/docs/data-viz/Chart";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
 import { Radius } from "@/screens/docs/foundations/Radius";
@@ -86,16 +104,32 @@ function App() {
             <Route path="foundations/radius" element={<Radius />} />
             <Route path="components/accordion" element={<AccordionDoc />} />
             <Route path="components/alert" element={<AlertDoc />} />
+            <Route
+              path="components/alert-dialog"
+              element={<AlertDialogDoc />}
+            />
+            <Route
+              path="components/aspect-ratio"
+              element={<AspectRatioDoc />}
+            />
             <Route path="components/avatar" element={<AvatarDoc />} />
             <Route path="components/badge" element={<BadgeDoc />} />
+            <Route path="components/breadcrumb" element={<BreadcrumbDoc />} />
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/card" element={<CardDoc />} />
+            <Route path="components/carousel" element={<CarouselDoc />} />
             <Route path="components/checkbox" element={<CheckboxDoc />} />
+            <Route path="components/clipboard" element={<ClipboardDoc />} />
+            <Route
+              path="components/collapsible"
+              element={<CollapsibleDoc />}
+            />
             <Route
               path="components/color-picker"
               element={<ColorPickerDoc />}
             />
             <Route path="components/combobox" element={<ComboboxDoc />} />
+            <Route path="components/command" element={<CommandDoc />} />
             <Route
               path="components/date-picker"
               element={<DatePickerDoc />}
@@ -127,13 +161,24 @@ function App() {
             />
             <Route path="components/pin-input" element={<PinInputDoc />} />
             <Route path="components/popover" element={<PopoverDoc />} />
+            <Route path="components/progress" element={<ProgressDoc />} />
+            <Route path="components/qr-code" element={<QrCodeDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
+            <Route
+              path="components/rating-group"
+              element={<RatingGroupDoc />}
+            />
+            <Route
+              path="components/scroll-area"
+              element={<ScrollAreaDoc />}
+            />
             <Route
               path="components/segment-group"
               element={<SegmentGroupDoc />}
             />
             <Route path="components/select" element={<SelectDoc />} />
             <Route path="components/separator" element={<SeparatorDoc />} />
+            <Route path="components/sidebar" element={<SidebarDoc />} />
             <Route path="components/skeleton" element={<SkeletonDoc />} />
             <Route path="components/slider" element={<SliderDoc />} />
             <Route path="components/spinner" element={<SpinnerDoc />} />
@@ -141,14 +186,20 @@ function App() {
             <Route path="components/stack" element={<StackDoc />} />
             <Route path="components/steps" element={<StepsDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
+            <Route path="components/table" element={<TableDoc />} />
             <Route path="components/tabs" element={<TabsDoc />} />
+            <Route path="components/tags-input" element={<TagsInputDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
             <Route path="components/toast" element={<ToastDoc />} />
+            <Route path="components/toggle" element={<ToggleDoc />} />
             <Route
               path="components/toggle-group"
               element={<ToggleGroupDoc />}
             />
+            <Route path="components/toolbar" element={<ToolbarDoc />} />
             <Route path="components/tooltip" element={<TooltipDoc />} />
+            <Route path="components/tree-view" element={<TreeViewDoc />} />
+            <Route path="data-viz/chart" element={<ChartDoc />} />
           </Route>
         </Routes>
       </BrowserRouter>

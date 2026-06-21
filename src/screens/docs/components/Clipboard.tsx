@@ -1,0 +1,190 @@
+import { Clipboard } from "@/components/ui/clipboard";
+import { DocHeader, DocSection } from "../parts/doc-page";
+import { Example } from "../parts/example";
+import { type PropRow, PropsTable } from "../parts/props-table";
+
+const PARTS = [
+  {
+    name: "Clipboard.Root",
+    description:
+      "外枠。 value / defaultValue / timeout を受ける。 Indicator の copied 状態を管理。",
+  },
+  {
+    name: "Clipboard.Label",
+    description: "見出し。 text-sm + font-medium。",
+  },
+  {
+    name: "Clipboard.Control",
+    description: "Input + Trigger を flex row で並べる行。",
+  },
+  {
+    name: "Clipboard.Input",
+    description:
+      "Input 風の readonly text field。 copy 対象の文字列を表示。",
+  },
+  {
+    name: "Clipboard.ValueText",
+    description:
+      "value をそのまま render する span。 Input じゃなく code block 内に表示したい時に。",
+  },
+  {
+    name: "Clipboard.Trigger",
+    description: "copy 実行 button。 Indicator を child に置く。",
+  },
+  {
+    name: "Clipboard.Indicator",
+    description:
+      "コピー前/後で children と copied prop を swap。 default は Copy ↔ Check。",
+  },
+];
+
+const PROPS: PropRow[] = [
+  {
+    name: "value",
+    type: "string",
+    default: "—",
+    description: "コピー対象。 controlled。",
+  },
+  {
+    name: "defaultValue",
+    type: "string",
+    default: "—",
+    description: "uncontrolled 初期値。",
+  },
+  {
+    name: "timeout",
+    type: "number",
+    default: "3000",
+    description:
+      "copied 状態が継続する ms。 経過後 Indicator が元の icon に戻る。",
+  },
+  {
+    name: "onStatusChange",
+    type: "(details: { copied: boolean }) => void",
+    default: "—",
+    description: "copied 状態が変化した時の callback。",
+  },
+];
+
+export function ClipboardDoc() {
+  return (
+    <div className="flex flex-col gap-10">
+      <DocHeader title="Clipboard">
+        clipboard API を使った copy 動作を内蔵した primitive。 Trigger を押すと
+        value がコピーされ、 Indicator が一定時間 Check icon に切替わる。 Input
+        / ValueText を組み替えれば install command / share URL / code snippet
+        どのレイアウトにも乗せられる。
+      </DocHeader>
+
+      <DocSection
+        title="Anatomy"
+        description="Input は readonly text field、 ValueText は plain span。 必要な方を選ぶ。"
+      >
+        <ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+          {PARTS.map((p) => (
+            <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+              <span className="font-mono text-fg text-xs">{p.name}</span>
+              <span className="text-fg-muted text-xs leading-relaxed">
+                {p.description}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </DocSection>
+
+      <DocSection
+        title="Install command"
+        description="Label + Input + Trigger の定番 layout。 Input readonly で編集不可に。"
+      >
+        <Example
+          code={`<Clipboard.Root defaultValue="pnpm add @ark-ui/react">
+  <Clipboard.Label>Install command</Clipboard.Label>
+  <Clipboard.Control>
+    <Clipboard.Input readOnly />
+    <Clipboard.Trigger>
+      <Clipboard.Indicator />
+    </Clipboard.Trigger>
+  </Clipboard.Control>
+</Clipboard.Root>`}
+        >
+          <Clipboard.Root
+            defaultValue="pnpm add @ark-ui/react"
+            className="w-80"
+          >
+            <Clipboard.Label>Install command</Clipboard.Label>
+            <Clipboard.Control>
+              <Clipboard.Input readOnly />
+              <Clipboard.Trigger>
+                <Clipboard.Indicator />
+              </Clipboard.Trigger>
+            </Clipboard.Control>
+          </Clipboard.Root>
+        </Example>
+      </DocSection>
+
+      <DocSection
+        title="Inline share URL"
+        description="pill 風に丸めて URL の右端に小さな copy button を貼る。 share UI に便利。"
+      >
+        <Example
+          code={`<Clipboard.Root defaultValue="https://ui-lab.dev/booking/abc-123">
+  <Clipboard.Control className="w-fit rounded-full border py-1 pl-3 pr-1.5">
+    <span className="font-mono text-xs">ui-lab.dev/booking/abc-123</span>
+    <Clipboard.Trigger className="size-6 rounded-full border-0 bg-transparent">
+      <Clipboard.Indicator />
+    </Clipboard.Trigger>
+  </Clipboard.Control>
+</Clipboard.Root>`}
+        >
+          <Clipboard.Root defaultValue="https://ui-lab.dev/booking/abc-123">
+            <Clipboard.Control className="w-fit rounded-full border border-border bg-surface py-1 pr-1.5 pl-3">
+              <span className="font-mono text-fg-soft text-xs">
+                ui-lab.dev/booking/abc-123
+              </span>
+              <Clipboard.Trigger className="size-6 rounded-full border-0 bg-transparent">
+                <Clipboard.Indicator />
+              </Clipboard.Trigger>
+            </Clipboard.Control>
+          </Clipboard.Root>
+        </Example>
+      </DocSection>
+
+      <DocSection
+        title="Code snippet"
+        description="ValueText を使うと plain span として render される。 code block に流したい時に。"
+      >
+        <Example
+          code={`<Clipboard.Root defaultValue={code}>
+  <Clipboard.Label>Import snippet</Clipboard.Label>
+  <div className="rounded-sm bg-active px-3 py-2">
+    <Clipboard.ValueText className="block truncate text-xs" />
+  </div>
+  <Clipboard.Trigger>
+    <Clipboard.Indicator /> Copy
+  </Clipboard.Trigger>
+</Clipboard.Root>`}
+        >
+          <Clipboard.Root
+            defaultValue={`import { Carousel } from "@/components/ui/carousel";`}
+            className="w-full max-w-md gap-3 rounded-md border border-border bg-surface p-3"
+          >
+            <Clipboard.Label className="text-fg-muted text-xs">
+              Import snippet
+            </Clipboard.Label>
+            <div className="overflow-hidden rounded-sm bg-active px-3 py-2">
+              <Clipboard.ValueText className="block truncate text-xs" />
+            </div>
+            <Clipboard.Trigger className="inline-flex h-8 w-fit cursor-pointer items-center gap-2 self-end rounded-md border border-border bg-surface px-3 font-medium text-fg text-xs outline-none transition-colors hover:bg-hover">
+              <Clipboard.Indicator />
+              Copy
+            </Clipboard.Trigger>
+          </Clipboard.Root>
+        </Example>
+      </DocSection>
+
+      <DocSection title="Root props">
+        <PropsTable rows={PROPS} />
+      </DocSection>
+    </div>
+  );
+}
