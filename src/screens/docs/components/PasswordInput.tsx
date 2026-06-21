@@ -7,7 +7,7 @@ const PARTS = [
   {
     name: "PasswordInput.Root",
     description:
-      "外枠。 value / onValueChange で文字列を管理。 visible / onVisibilityChange で表示切替。",
+      "外枠。 visible / onVisibilityChange で表示切替。 値は native input に任せて Input 側で defaultValue / value を渡す。",
   },
   {
     name: "PasswordInput.Label",
@@ -36,53 +36,38 @@ const PARTS = [
 
 const PROPS: PropRow[] = [
   {
-    name: "value",
-    type: "string",
-    description: "controlled mode の値。",
-  },
-  {
-    name: "defaultValue",
-    type: "string",
-    description: "uncontrolled mode の初期値。",
-  },
-  {
-    name: "onValueChange",
-    type: "(details: { value: string }) => void",
-    description: "入力が変わった時に呼ばれる。",
-  },
-  {
-    name: "visible",
+    name: "Root.visible",
     type: "boolean",
     description: "controlled mode の表示状態。",
   },
   {
-    name: "defaultVisible",
+    name: "Root.defaultVisible",
     type: "boolean",
     default: "false",
     description: "uncontrolled mode の初期表示状態 (false = 隠す)。",
   },
   {
-    name: "onVisibilityChange",
+    name: "Root.onVisibilityChange",
     type: "(details: { visible: boolean }) => void",
     description: "show / hide 切替時に呼ばれる。",
   },
   {
-    name: "disabled",
+    name: "Root.disabled",
     type: "boolean",
     default: "false",
     description: "全体無効化。",
   },
   {
-    name: "invalid",
+    name: "Root.invalid",
     type: "boolean",
     default: "false",
     description: "Field 等と組み合わせる時の validation 状態。",
   },
   {
-    name: "required",
-    type: "boolean",
-    default: "false",
-    description: "form submit 必須。",
+    name: "Input (native)",
+    type: "—",
+    description:
+      "値の管理は native input に任せる (defaultValue / value / onChange は Input 側に渡す)。 zag-js は visibility だけ管理する。",
   },
 ];
 
@@ -141,15 +126,19 @@ export function PasswordInputDoc() {
         description="defaultValue で initial 値、 defaultVisible で初期表示状態。"
       >
         <Example
-          code={`<PasswordInput.Root defaultValue="hunter2" defaultVisible>
-  ...
+          code={`<PasswordInput.Root defaultVisible>
+  <PasswordInput.Label>Saved password</PasswordInput.Label>
+  <PasswordInput.Control>
+    <PasswordInput.Input defaultValue="hunter2" />
+    <PasswordInput.VisibilityTrigger />
+  </PasswordInput.Control>
 </PasswordInput.Root>`}
         >
           <div className="w-72">
-            <PasswordInput.Root defaultValue="hunter2" defaultVisible>
+            <PasswordInput.Root defaultVisible>
               <PasswordInput.Label>Saved password</PasswordInput.Label>
               <PasswordInput.Control>
-                <PasswordInput.Input />
+                <PasswordInput.Input defaultValue="hunter2" />
                 <PasswordInput.VisibilityTrigger />
               </PasswordInput.Control>
             </PasswordInput.Root>
@@ -161,12 +150,18 @@ export function PasswordInputDoc() {
         title="Disabled"
         description="Root に disabled。 Input + Trigger 両方無効化、 opacity 50%。"
       >
-        <Example code={`<PasswordInput.Root disabled defaultValue="locked">...`}>
+        <Example code={`<PasswordInput.Root disabled>
+  <PasswordInput.Label>Locked</PasswordInput.Label>
+  <PasswordInput.Control>
+    <PasswordInput.Input defaultValue="locked" />
+    <PasswordInput.VisibilityTrigger />
+  </PasswordInput.Control>
+</PasswordInput.Root>`}>
           <div className="w-72">
-            <PasswordInput.Root disabled defaultValue="locked">
+            <PasswordInput.Root disabled>
               <PasswordInput.Label>Locked</PasswordInput.Label>
               <PasswordInput.Control>
-                <PasswordInput.Input />
+                <PasswordInput.Input defaultValue="locked" />
                 <PasswordInput.VisibilityTrigger />
               </PasswordInput.Control>
             </PasswordInput.Root>
