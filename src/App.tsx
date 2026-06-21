@@ -43,7 +43,7 @@ import PopoverDoc from "@/screens/docs/components/Popover.mdx";
 import ProgressDoc from "@/screens/docs/components/Progress.mdx";
 import QrCodeDoc from "@/screens/docs/components/QrCode.mdx";
 import RadioGroupDoc from "@/screens/docs/components/RadioGroup.mdx";
-import { RatingGroupDoc } from "@/screens/docs/components/RatingGroup";
+import RatingGroupDoc from "@/screens/docs/components/RatingGroup.mdx";
 import ScrollAreaDoc from "@/screens/docs/components/ScrollArea.mdx";
 import SegmentGroupDoc from "@/screens/docs/components/SegmentGroup.mdx";
 import { SelectDoc } from "@/screens/docs/components/Select";
