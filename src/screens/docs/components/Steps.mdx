@@ -1,0 +1,174 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import StepsCompactDemo from "./demos/steps/compact";
+import StepsCompactSource from "./demos/steps/compact?raw";
+import StepsVerticalDemo from "./demos/steps/vertical";
+import StepsVerticalSource from "./demos/steps/vertical?raw";
+import StepsWizardDemo from "./demos/steps/wizard";
+import StepsWizardSource from "./demos/steps/wizard?raw";
+
+export const PARTS = [
+  {
+    name: "Steps.Root",
+    description:
+      "外枠。 count で総 step 数。 step (controlled) / defaultStep で現在 step を管理。",
+  },
+  {
+    name: "Steps.List",
+    description: "Item を並べる行。 orientation で horizontal / vertical 切替。",
+  },
+  {
+    name: "Steps.Item",
+    description: "1 step。 index 必須。 Trigger + Separator を中に置く。",
+  },
+  {
+    name: "Steps.Trigger",
+    description:
+      "step 切替 button。 Indicator + Label を中に。 current 中は cursor:default で click 無効化。",
+  },
+  {
+    name: "Steps.Indicator",
+    description:
+      "丸い番号 / Check icon の表示。 data-current / data-complete で見た目切替。",
+  },
+  {
+    name: "Steps.CompleteIndicator",
+    description:
+      "完了済 step で Check icon を出す helper。 group-data-[complete]:block で表示制御済み。",
+  },
+  {
+    name: "Steps.Separator",
+    description: "Item 間の線。 完了済区間で fg 色に変わる。",
+  },
+  {
+    name: "Steps.Content",
+    description: "各 step の中身 panel。 index で対応 step を指定。",
+  },
+  {
+    name: "Steps.CompletedContent",
+    description: "全 step 完了後に出す success 画面。",
+  },
+  {
+    name: "Steps.PrevTrigger / NextTrigger",
+    description:
+      "Back / Next button。 端で自動 disabled。 NextTrigger は最後で Complete 扱い。",
+  },
+  {
+    name: "Steps.Progress",
+    description:
+      'Context API の text 表示 ("Step N of Total" 等) を出す helper。',
+  },
+];
+
+# Steps
+
+多段 form / onboarding / wizard の進行管理。 number の Indicator + Separator + Content の組み合わせで、 horizontal の wizard も vertical の sidebar 型 form もこの 1 primitive で組める。
+
+## Usage
+
+3 step wizard。 Account / Profile / Confirm の Indicator + Label と、 Content × N + CompletedContent + Prev / Next。
+
+<Example code={StepsWizardSource}>
+  <StepsWizardDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Steps } from "@/components/ui/steps";
+```
+
+```tsx
+<Steps.Root count={N}>
+  <Steps.List>
+    <Steps.Item index={0}>
+      <Steps.Trigger>
+        <Steps.Indicator>
+          <Steps.CompleteIndicator />
+        </Steps.Indicator>
+      </Steps.Trigger>
+      <Steps.Separator />
+    </Steps.Item>
+  </Steps.List>
+  <Steps.Content index={0} />
+  <Steps.CompletedContent />
+  <Steps.PrevTrigger />
+  <Steps.NextTrigger />
+</Steps.Root>
+```
+
+## Compact (number only)
+
+数字だけの軽量 indicator + Context で "Step N / Total"。 sub-form の進捗表示に。
+
+<Example code={StepsCompactSource}>
+  <StepsCompactDemo />
+</Example>
+
+## Vertical
+
+orientation=vertical で sidebar 配置。 左に Steps、 右に Content の 2 column。
+
+<Example code={StepsVerticalSource}>
+  <StepsVerticalDemo />
+</Example>
+
+## Anatomy
+
+Root の中に List (Item × N) と Content × N と CompletedContent、 Prev / NextTrigger。 Item 内に Trigger (Indicator + label) と Separator。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "count",
+      type: "number",
+      description: "必須。 総 step 数。",
+    },
+    {
+      name: "step",
+      type: "number",
+      description: "controlled mode の現在 step (0-indexed)。",
+    },
+    {
+      name: "defaultStep",
+      type: "number",
+      default: "0",
+      description: "uncontrolled mode の初期 step。",
+    },
+    {
+      name: "onStepChange",
+      type: "(details: { step: number }) => void",
+      description: "step が変わった時に呼ばれる。",
+    },
+    {
+      name: "onStepComplete",
+      type: "() => void",
+      description: "全 step 完了時に呼ばれる。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "List の並び。 vertical で sidebar 風。",
+    },
+    {
+      name: "linear",
+      type: "boolean",
+      default: "false",
+      description: "true で完了済以外の step を click で飛ばせない。",
+    },
+  ]}
+/>
