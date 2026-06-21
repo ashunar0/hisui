@@ -29,6 +29,7 @@ import { PasswordInputDoc } from "@/screens/docs/components/PasswordInput";
 import { PinInputDoc } from "@/screens/docs/components/PinInput";
 import { PopoverDoc } from "@/screens/docs/components/Popover";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
+import { SegmentGroupDoc } from "@/screens/docs/components/SegmentGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
 import { SeparatorDoc } from "@/screens/docs/components/Separator";
 import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
@@ -108,6 +109,10 @@ function App() {
             <Route path="components/pin-input" element={<PinInputDoc />} />
             <Route path="components/popover" element={<PopoverDoc />} />
             <Route path="components/radio-group" element={<RadioGroupDoc />} />
+            <Route
+              path="components/segment-group"
+              element={<SegmentGroupDoc />}
+            />
             <Route path="components/select" element={<SelectDoc />} />
             <Route path="components/separator" element={<SeparatorDoc />} />
             <Route path="components/skeleton" element={<SkeletonDoc />} />
