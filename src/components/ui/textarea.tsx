@@ -1,4 +1,4 @@
-import type { TextareaHTMLAttributes } from "react";
+import type { Ref, TextareaHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 type TextareaVariant = "outline" | "subtle" | "flushed";
@@ -8,6 +8,7 @@ type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   variant?: TextareaVariant;
   size?: TextareaSize;
   invalid?: boolean;
+  ref?: Ref<HTMLTextAreaElement>;
 };
 
 const sizeClasses: Record<TextareaSize, string> = {

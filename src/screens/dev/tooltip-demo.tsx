@@ -48,7 +48,7 @@ function Toolbar() {
         {TOOLS.map((tool) => (
           <Tooltip.Root key={tool.label}>
             <Tooltip.Trigger asChild>
-              <IconButton>
+              <IconButton aria-label={tool.label}>
                 <tool.icon className="size-4" />
               </IconButton>
             </Tooltip.Trigger>

@@ -1,12 +1,15 @@
-import { TreeView as ArkTreeView } from "@ark-ui/react/tree-view";
+import {
+  TreeView as ArkTreeView,
+  type TreeNode,
+} from "@ark-ui/react/tree-view";
 import { Check, ChevronRight, Minus } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-function Root({
+function Root<T extends TreeNode>({
   className,
   ...props
-}: ComponentProps<typeof ArkTreeView.Root>) {
+}: ArkTreeView.RootProps<T>) {
   return (
     <ArkTreeView.Root
       className={cn("flex flex-col gap-1.5", className)}

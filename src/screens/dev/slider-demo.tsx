@@ -92,7 +92,7 @@ function WithDraggingIndicator() {
               <Slider.Range />
             </Slider.Track>
             <Slider.Thumb index={0}>
-              <Slider.DraggingIndicator index={0} />
+              <Slider.DraggingIndicator />
             </Slider.Thumb>
           </Slider.Control>
         </Slider.Root>

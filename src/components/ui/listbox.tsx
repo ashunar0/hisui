@@ -1,15 +1,16 @@
 import {
   Listbox as ArkListbox,
   createListCollection,
+  type CollectionItem,
 } from "@ark-ui/react/listbox";
 import { Check } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-function Root({
+function Root<T extends CollectionItem>({
   className,
   ...props
-}: ComponentProps<typeof ArkListbox.Root>) {
+}: ArkListbox.RootProps<T>) {
   return (
     <ArkListbox.Root
       className={cn("flex flex-col gap-2", className)}

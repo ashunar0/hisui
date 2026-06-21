@@ -1,5 +1,8 @@
 import { parseColor } from "@ark-ui/react/color-picker";
-import type { Color, ColorFormat } from "@ark-ui/react/color-picker";
+import type {
+  Color,
+  ColorPickerColorFormat as ColorFormat,
+} from "@ark-ui/react/color-picker";
 import { Check, Pipette } from "lucide-react";
 import { useState } from "react";
 import { ColorPicker } from "@/components/ui/color-picker";

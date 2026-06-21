@@ -70,7 +70,7 @@ function ControlledExample() {
   const [value, setValue] = useState("pro");
   return (
     <div className="flex flex-col gap-2">
-      <RadioGroup.Root value={value} onValueChange={(d) => setValue(d.value)}>
+      <RadioGroup.Root value={value} onValueChange={(d) => d.value !== null && setValue(d.value)}>
         {PLANS.map((p) => (
           <RadioGroup.Item key={p.value} value={p.value}>
             <RadioGroup.ItemControl />
@@ -88,7 +88,7 @@ function CardListExample() {
   return (
     <RadioGroup.Root
       value={value}
-      onValueChange={(d) => setValue(d.value)}
+      onValueChange={(d) => d.value !== null && setValue(d.value)}
       className="gap-3"
     >
       {PLANS.map((p) => (
@@ -165,7 +165,7 @@ export function RadioGroupDoc() {
       >
         <Example
           code={`const [value, setValue] = useState("pro");
-<RadioGroup.Root value={value} onValueChange={(d) => setValue(d.value)}>
+<RadioGroup.Root value={value} onValueChange={(d) => d.value !== null && setValue(d.value)}>
   ...
 </RadioGroup.Root>`}
         >

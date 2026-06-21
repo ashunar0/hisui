@@ -90,18 +90,14 @@ function CheckboxExample() {
         <Menu.CheckboxItem
           value="bookmarks"
           checked={bookmarks}
-          onCheckedChange={(d) =>
-            setBookmarks(d === "indeterminate" ? false : d)
-          }
+          onCheckedChange={setBookmarks}
         >
           <Menu.ItemText>Bookmarks</Menu.ItemText>
         </Menu.CheckboxItem>
         <Menu.CheckboxItem
           value="history"
           checked={history}
-          onCheckedChange={(d) =>
-            setHistory(d === "indeterminate" ? false : d)
-          }
+          onCheckedChange={setHistory}
         >
           <Menu.ItemText>History</Menu.ItemText>
         </Menu.CheckboxItem>

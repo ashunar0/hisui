@@ -2,6 +2,7 @@ import { Portal } from "@ark-ui/react/portal";
 import {
   Select as ArkSelect,
   createListCollection,
+  type CollectionItem,
 } from "@ark-ui/react/select";
 import { type ComponentProps, createContext, useContext } from "react";
 import { cn } from "@/lib/utils";
@@ -11,11 +12,15 @@ type SelectSize = "xs" | "sm" | "md" | "lg";
 const SelectSizeContext = createContext<SelectSize>("md");
 const useSelectSize = () => useContext(SelectSizeContext);
 
-type RootProps = ComponentProps<typeof ArkSelect.Root> & {
+type RootProps<T extends CollectionItem> = ArkSelect.RootProps<T> & {
   size?: SelectSize;
 };
 
-function Root({ size = "md", className, ...props }: RootProps) {
+function Root<T extends CollectionItem>({
+  size = "md",
+  className,
+  ...props
+}: RootProps<T>) {
   return (
     <SelectSizeContext.Provider value={size}>
       <ArkSelect.Root
