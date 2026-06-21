@@ -1,9 +1,15 @@
-import { Heading } from "@/components/ui/heading";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
-
-export const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"];
-export const TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
+import HeadingAsTagDemo from "./demos/heading/as-tag";
+import HeadingAsTagSource from "./demos/heading/as-tag?raw";
+import HeadingPageTitleDemo from "./demos/heading/page-title";
+import HeadingPageTitleSource from "./demos/heading/page-title?raw";
+import HeadingSectionLabelDemo from "./demos/heading/section-label";
+import HeadingSectionLabelSource from "./demos/heading/section-label?raw";
+import HeadingSizesDemo from "./demos/heading/sizes";
+import HeadingSizesSource from "./demos/heading/sizes?raw";
+import HeadingUsageDemo from "./demos/heading/usage";
+import HeadingUsageSource from "./demos/heading/usage?raw";
 
 # Heading
 
@@ -13,72 +19,50 @@ export const TAGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
 
 default は as=h2 / size=md。 何も指定しなければ section 見出し相当。
 
-<Example code={`<Heading>Page section</Heading>`}>
-  <Heading>Page section</Heading>
+<Example code={HeadingUsageSource}>
+  <HeadingUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Heading } from "@/components/ui/heading";
+```
+
+```tsx
+<Heading as="h1" size="2xl">Title</Heading>
+```
 
 ## Sizes
 
 8 段階。 3xl 以上は自動で tracking-tight が付く。
 
-<Example
-  code={SIZES.map((s) => `<Heading size="${s}">${s} heading</Heading>`).join("\n")}
->
-  <div className="flex flex-col gap-3">
-    {SIZES.map((s) => (
-      <Heading key={s} size={s}>
-        {s} heading
-      </Heading>
-    ))}
-  </div>
+<Example code={HeadingSizesSource}>
+  <HeadingSizesDemo />
 </Example>
 
 ## As (semantic tag)
 
 size と独立に HTML tag を選ぶ。 a11y / SEO の文書構造はここで決める。
 
-<Example
-  code={TAGS.map((t) => `<Heading as="${t}">${t} tag</Heading>`).join("\n")}
->
-  <div className="flex flex-col gap-2">
-    {TAGS.map((t) => (
-      <Heading key={t} as={t}>
-        {t} tag
-      </Heading>
-    ))}
-  </div>
+<Example code={HeadingAsTagSource}>
+  <HeadingAsTagDemo />
 </Example>
 
 ## Page title pattern
 
 page の H1 は size=2xl + as=h1。 hero では 3xl 以上を使う。
 
-<Example
-  code={`<Heading as="h1" size="2xl">Account settings</Heading>
-<Heading as="h1" size="3xl">Welcome back</Heading>`}
->
-  <div className="flex flex-col gap-4">
-    <Heading as="h1" size="2xl">
-      Account settings
-    </Heading>
-    <Heading as="h1" size="3xl">
-      Welcome back
-    </Heading>
-  </div>
+<Example code={HeadingPageTitleSource}>
+  <HeadingPageTitleDemo />
 </Example>
 
 ## Section label pattern
 
 docs の section 見出しは as=h2 + size=sm + text-fg-soft で控えめに。
 
-<Example
-  code={`<Heading as="h2" size="sm" className="text-fg-soft">
-  Foundation
-</Heading>`}
->
-  <Heading as="h2" size="sm" className="text-fg-soft">
-    Foundation
-  </Heading>
+<Example code={HeadingSectionLabelSource}>
+  <HeadingSectionLabelDemo />
 </Example>
 
 ## Props
