@@ -12,6 +12,7 @@ import { BadgeDoc } from "@/screens/docs/components/Badge";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
 import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
+import { ColorPickerDoc } from "@/screens/docs/components/ColorPicker";
 import { ComboboxDoc } from "@/screens/docs/components/Combobox";
 import { DatePickerDoc } from "@/screens/docs/components/DatePicker";
 import { DialogDoc } from "@/screens/docs/components/Dialog";
@@ -90,6 +91,10 @@ function App() {
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/card" element={<CardDoc />} />
             <Route path="components/checkbox" element={<CheckboxDoc />} />
+            <Route
+              path="components/color-picker"
+              element={<ColorPickerDoc />}
+            />
             <Route path="components/combobox" element={<ComboboxDoc />} />
             <Route
               path="components/date-picker"
