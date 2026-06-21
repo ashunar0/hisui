@@ -1,8 +1,13 @@
-import { FileText, Inbox, Plus, Search, Upload } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Empty } from "@/components/ui/empty";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import EmptyOnboardingDemo from "./demos/empty/onboarding";
+import EmptyOnboardingSource from "./demos/empty/onboarding?raw";
+import EmptySearchZeroStateDemo from "./demos/empty/search-zero-state";
+import EmptySearchZeroStateSource from "./demos/empty/search-zero-state?raw";
+import EmptyTitleOnlyDemo from "./demos/empty/title-only";
+import EmptyTitleOnlySource from "./demos/empty/title-only?raw";
+import EmptyUsageDemo from "./demos/empty/usage";
+import EmptyUsageSource from "./demos/empty/usage?raw";
 
 export const PARTS = [
   {
@@ -32,6 +37,53 @@ export const PARTS = [
 
 データが無い時の placeholder。 dashed border の box に Icon + Title + Description + Actions を center 寄せで並べる。 list / search / inbox の zero-state、 onboarding の初手 CTA に。
 
+## Usage
+
+Icon + Title + Description + 1 CTA の典型。
+
+<Example code={EmptyUsageSource}>
+  <EmptyUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Empty } from "@/components/ui/empty";
+```
+
+```tsx
+<Empty.Root>
+  <Empty.Icon />
+  <Empty.Title />
+  <Empty.Description />
+  <Empty.Actions />
+</Empty.Root>
+```
+
+## Title only
+
+一番軽い形。 list 末尾の inline placeholder に。
+
+<Example code={EmptyTitleOnlySource}>
+  <EmptyTitleOnlyDemo />
+</Example>
+
+## Search zero-state
+
+検索結果が無い時。 query を文中に出して reset を促す。
+
+<Example code={EmptySearchZeroStateSource}>
+  <EmptySearchZeroStateDemo />
+</Example>
+
+## Onboarding
+
+初回 user 向け。 primary + secondary の 2 CTA を並べる。
+
+<Example code={EmptyOnboardingSource}>
+  <EmptyOnboardingDemo />
+</Example>
+
 ## Anatomy
 
 Root の中に Icon / Title / Description / Actions を順に並べる。 全部任意 — Title だけでも成立。
@@ -46,115 +98,6 @@ Root の中に Icon / Title / Description / Actions を順に並べる。 全部
     </li>
   ))}
 </ul>
-
-## Usage
-
-Icon + Title + Description + 1 CTA の典型。
-
-<Example
-  code={`<Empty.Root>
-  <Empty.Icon><Inbox /></Empty.Icon>
-  <Empty.Title>No messages</Empty.Title>
-  <Empty.Description>Your inbox is empty. New messages will show up here.</Empty.Description>
-  <Empty.Actions>
-    <Button>Compose</Button>
-  </Empty.Actions>
-</Empty.Root>`}
->
-  <Empty.Root className="w-full">
-    <Empty.Icon>
-      <Inbox />
-    </Empty.Icon>
-    <Empty.Title>No messages</Empty.Title>
-    <Empty.Description>
-      Your inbox is empty. New messages will show up here.
-    </Empty.Description>
-    <Empty.Actions>
-      <Button>
-        <Plus className="size-4" />
-        Compose
-      </Button>
-    </Empty.Actions>
-  </Empty.Root>
-</Example>
-
-## Title only
-
-一番軽い形。 list 末尾の inline placeholder に。
-
-<Example
-  code={`<Empty.Root className="p-6">
-  <Empty.Title>No results</Empty.Title>
-</Empty.Root>`}
->
-  <Empty.Root className="w-full p-6">
-    <Empty.Title>No results</Empty.Title>
-  </Empty.Root>
-</Example>
-
-## Search zero-state
-
-検索結果が無い時。 query を文中に出して reset を促す。
-
-<Example
-  code={`<Empty.Root>
-  <Empty.Icon><Search /></Empty.Icon>
-  <Empty.Title>No matches for "zustand"</Empty.Title>
-  <Empty.Description>Try a different keyword or clear the filters.</Empty.Description>
-  <Empty.Actions>
-    <Button variant="outline">Clear filters</Button>
-  </Empty.Actions>
-</Empty.Root>`}
->
-  <Empty.Root className="w-full">
-    <Empty.Icon>
-      <Search />
-    </Empty.Icon>
-    <Empty.Title>{'No matches for "zustand"'}</Empty.Title>
-    <Empty.Description>
-      Try a different keyword or clear the filters.
-    </Empty.Description>
-    <Empty.Actions>
-      <Button variant="outline">Clear filters</Button>
-    </Empty.Actions>
-  </Empty.Root>
-</Example>
-
-## Onboarding
-
-初回 user 向け。 primary + secondary の 2 CTA を並べる。
-
-<Example
-  code={`<Empty.Root>
-  <Empty.Icon><FileText /></Empty.Icon>
-  <Empty.Title>Start your first document</Empty.Title>
-  <Empty.Description>Create a blank doc or import an existing file from your drive.</Empty.Description>
-  <Empty.Actions>
-    <Button><Plus className="size-4" />New document</Button>
-    <Button variant="outline"><Upload className="size-4" />Import</Button>
-  </Empty.Actions>
-</Empty.Root>`}
->
-  <Empty.Root className="w-full">
-    <Empty.Icon>
-      <FileText />
-    </Empty.Icon>
-    <Empty.Title>Start your first document</Empty.Title>
-    <Empty.Description>
-      Create a blank doc or import an existing file from your drive.
-    </Empty.Description>
-    <Empty.Actions>
-      <Button>
-        <Plus className="size-4" />
-        New document
-      </Button>
-      <Button variant="outline">
-        <Upload className="size-4" />
-        Import
-      </Button>
-    </Empty.Actions>
-  </Empty.Root>
-</Example>
 
 ## Props
 
