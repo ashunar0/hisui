@@ -1,7 +1,13 @@
-import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import SwitchControlledDemo from "./demos/switch/controlled";
+import SwitchControlledSource from "./demos/switch/controlled?raw";
+import SwitchDisabledDemo from "./demos/switch/disabled";
+import SwitchDisabledSource from "./demos/switch/disabled?raw";
+import SwitchSettingsListDemo from "./demos/switch/settings-list";
+import SwitchSettingsListSource from "./demos/switch/settings-list?raw";
+import SwitchUsageDemo from "./demos/switch/usage";
+import SwitchUsageSource from "./demos/switch/usage?raw";
 
 export const PARTS = [
   {
@@ -24,50 +30,56 @@ export const PARTS = [
   },
 ];
 
-export function ControlledExample() {
-  const [checked, setChecked] = useState(true);
-  return (
-    <Switch.Root checked={checked} onCheckedChange={(d) => setChecked(d.checked)}>
-      <Switch.Control>
-        <Switch.Thumb />
-      </Switch.Control>
-      <Switch.Label>checked = {String(checked)}</Switch.Label>
-    </Switch.Root>
-  );
-}
-
-export const SETTINGS = [
-  { key: "notifications", label: "Email notifications", default: true },
-  { key: "marketing", label: "Marketing emails", default: false },
-  { key: "weekly", label: "Weekly digest", default: true },
-];
-
-export function SettingsListExample() {
-  const [state, setState] = useState(() =>
-    Object.fromEntries(SETTINGS.map((s) => [s.key, s.default])),
-  );
-  return (
-    <div className="flex max-w-md flex-col gap-3 rounded-md border border-border p-4">
-      {SETTINGS.map((s) => (
-        <Switch.Root
-          key={s.key}
-          checked={state[s.key]}
-          onCheckedChange={(d) => setState((p) => ({ ...p, [s.key]: d.checked }))}
-          className="justify-between w-full"
-        >
-          <Switch.Label>{s.label}</Switch.Label>
-          <Switch.Control>
-            <Switch.Thumb />
-          </Switch.Control>
-        </Switch.Root>
-      ))}
-    </div>
-  );
-}
-
 # Switch
 
 on / off の 2 状態を持つ form control。 Checkbox と機能は同じだが、 即時反映する設定 (notification、 dark mode、 feature toggle) に使う。
+
+## Usage
+
+uncontrolled (defaultChecked) の最小例。
+
+<Example code={SwitchUsageSource}>
+  <SwitchUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Switch } from "@/components/ui/switch";
+```
+
+```tsx
+<Switch.Root>
+  <Switch.Control>
+    <Switch.Thumb />
+  </Switch.Control>
+  <Switch.Label>...</Switch.Label>
+</Switch.Root>
+```
+
+## Controlled
+
+checked + onCheckedChange で値を制御。
+
+<Example code={SwitchControlledSource}>
+  <SwitchControlledDemo />
+</Example>
+
+## Disabled
+
+disabled で操作不可 + opacity-50。
+
+<Example code={SwitchDisabledSource}>
+  <SwitchDisabledDemo />
+</Example>
+
+## Settings list pattern
+
+設定画面の典型。 Label を左、 Control を右に配置 (justify-between + w-full)。
+
+<Example code={SwitchSettingsListSource}>
+  <SwitchSettingsListDemo />
+</Example>
 
 ## Anatomy
 
@@ -83,83 +95,6 @@ Root の中に Control (中に Thumb) と Label を並べる。
     </li>
   ))}
 </ul>
-
-## Usage
-
-uncontrolled (defaultChecked) の最小例。
-
-<Example
-  code={`<Switch.Root defaultChecked>
-  <Switch.Control>
-    <Switch.Thumb />
-  </Switch.Control>
-  <Switch.Label>Wi-Fi</Switch.Label>
-</Switch.Root>`}
->
-  <Switch.Root defaultChecked>
-    <Switch.Control>
-      <Switch.Thumb />
-    </Switch.Control>
-    <Switch.Label>Wi-Fi</Switch.Label>
-  </Switch.Root>
-</Example>
-
-## Controlled
-
-checked + onCheckedChange で値を制御。
-
-<Example
-  code={`const [checked, setChecked] = useState(true);
-<Switch.Root checked={checked} onCheckedChange={(d) => setChecked(d.checked)}>
-  <Switch.Control><Switch.Thumb /></Switch.Control>
-  <Switch.Label>checked = {String(checked)}</Switch.Label>
-</Switch.Root>`}
->
-  <ControlledExample />
-</Example>
-
-## Disabled
-
-disabled で操作不可 + opacity-50。
-
-<Example
-  code={`<Switch.Root disabled>
-  <Switch.Control><Switch.Thumb /></Switch.Control>
-  <Switch.Label>Disabled</Switch.Label>
-</Switch.Root>
-<Switch.Root disabled defaultChecked>
-  <Switch.Control><Switch.Thumb /></Switch.Control>
-  <Switch.Label>Disabled checked</Switch.Label>
-</Switch.Root>`}
->
-  <div className="flex flex-col gap-2">
-    <Switch.Root disabled>
-      <Switch.Control>
-        <Switch.Thumb />
-      </Switch.Control>
-      <Switch.Label>Disabled</Switch.Label>
-    </Switch.Root>
-    <Switch.Root disabled defaultChecked>
-      <Switch.Control>
-        <Switch.Thumb />
-      </Switch.Control>
-      <Switch.Label>Disabled checked</Switch.Label>
-    </Switch.Root>
-  </div>
-</Example>
-
-## Settings list pattern
-
-設定画面の典型。 Label を左、 Control を右に配置 (justify-between + w-full)。
-
-<Example
-  code={`<Switch.Root className="justify-between w-full" ...>
-  <Switch.Label>Email notifications</Switch.Label>
-  <Switch.Control><Switch.Thumb /></Switch.Control>
-</Switch.Root>`}
->
-  <SettingsListExample />
-</Example>
 
 ## Root props
 
