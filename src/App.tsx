@@ -47,7 +47,7 @@ import { RatingGroupDoc } from "@/screens/docs/components/RatingGroup";
 import { ScrollAreaDoc } from "@/screens/docs/components/ScrollArea";
 import { SegmentGroupDoc } from "@/screens/docs/components/SegmentGroup";
 import { SelectDoc } from "@/screens/docs/components/Select";
-import { SeparatorDoc } from "@/screens/docs/components/Separator";
+import SeparatorDoc from "@/screens/docs/components/Separator.mdx";
 import { SidebarDoc } from "@/screens/docs/components/Sidebar";
 import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
 import { SpinnerDoc } from "@/screens/docs/components/Spinner";
