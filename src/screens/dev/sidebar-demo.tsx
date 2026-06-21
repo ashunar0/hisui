@@ -32,7 +32,7 @@ function Basic() {
       <div className="relative h-72 overflow-hidden rounded-lg border border-border">
         <Sidebar.Provider>
           <div className="flex h-full">
-            <Sidebar.Root className="w-48">
+            <Sidebar.Root className="[--sidebar-w:12rem]">
               <Sidebar.Header>
                 <span className="font-semibold text-sm">ui-lab</span>
               </Sidebar.Header>
@@ -86,7 +86,7 @@ function WithTrigger() {
       <div className="relative h-72 overflow-hidden rounded-lg border border-border">
         <Sidebar.Provider>
           <div className="flex h-full">
-            <Sidebar.Root className="w-48">
+            <Sidebar.Root className="[--sidebar-w:12rem]">
               <Sidebar.Header>
                 <span className="font-semibold text-sm">Workspace</span>
               </Sidebar.Header>
@@ -147,7 +147,7 @@ function WithMenuAction() {
       <div className="relative h-72 overflow-hidden rounded-lg border border-border">
         <Sidebar.Provider>
           <div className="flex h-full">
-            <Sidebar.Root className="w-56">
+            <Sidebar.Root className="[--sidebar-w:14rem]">
               <Sidebar.Header>
                 <span className="font-semibold text-sm">Channels</span>
               </Sidebar.Header>
@@ -171,15 +171,13 @@ function WithMenuAction() {
                             <MoreHorizontal className="size-4" />
                           </Sidebar.MenuAction>
                         </Menu.Trigger>
-                        <Menu.Positioner>
-                          <Menu.Content>
-                            <Menu.Item value="mute">Mute</Menu.Item>
-                            <Menu.Item value="pin">Pin</Menu.Item>
-                            <Menu.Item value="leave" className="text-danger-fg">
-                              Leave
-                            </Menu.Item>
-                          </Menu.Content>
-                        </Menu.Positioner>
+                        <Menu.Content>
+                          <Menu.Item value="mute">Mute</Menu.Item>
+                          <Menu.Item value="pin">Pin</Menu.Item>
+                          <Menu.Item value="leave" className="text-danger-fg">
+                            Leave
+                          </Menu.Item>
+                        </Menu.Content>
                       </Menu.Root>
                     </Sidebar.MenuItem>
                   ))}

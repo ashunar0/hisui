@@ -3,6 +3,7 @@ import {
   createContext,
   type AnchorHTMLAttributes,
   type ButtonHTMLAttributes,
+  type CSSProperties,
   type HTMLAttributes,
   type ReactNode,
   useContext,
@@ -55,14 +56,15 @@ function Provider({ children }: ProviderProps) {
   );
 }
 
-function Root({ className, ...props }: HTMLAttributes<HTMLElement>) {
+function Root({ className, style, ...props }: HTMLAttributes<HTMLElement>) {
   const { open } = useSidebar();
   return (
     <aside
+      style={{ "--sidebar-w": "16rem", ...style } as CSSProperties}
       className={cn(
-        "flex w-64 flex-col border-r border-border bg-surface-muted",
+        "flex w-[var(--sidebar-w)] flex-col border-r border-border bg-surface-muted",
         "transition-[margin-left] duration-200 ease-out",
-        !open && "-ml-64",
+        !open && "ml-[calc(-1*var(--sidebar-w))]",
         className,
       )}
       {...props}
