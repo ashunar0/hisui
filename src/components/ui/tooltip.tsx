@@ -21,7 +21,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkTooltip.Positioner>) {
-  return <ArkTooltip.Positioner className={cn(className)} {...props} />;
+  return <ArkTooltip.Positioner className={cn("z-50!", className)} {...props} />;
 }
 
 function Content({

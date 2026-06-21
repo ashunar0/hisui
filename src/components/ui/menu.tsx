@@ -31,7 +31,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkMenu.Positioner>) {
-  return <ArkMenu.Positioner className={cn(className)} {...props} />;
+  return <ArkMenu.Positioner className={cn("z-50!", className)} {...props} />;
 }
 
 function Content({

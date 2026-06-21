@@ -84,12 +84,16 @@ function ValueSwatch({
   );
 }
 
-function Positioner(
-  props: ComponentProps<typeof ArkColorPicker.Positioner>,
-) {
+function Positioner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkColorPicker.Positioner>) {
   return (
     <Portal>
-      <ArkColorPicker.Positioner {...props} />
+      <ArkColorPicker.Positioner
+        className={cn("z-50!", className)}
+        {...props}
+      />
     </Portal>
   );
 }

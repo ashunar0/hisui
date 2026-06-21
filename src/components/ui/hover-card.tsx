@@ -25,7 +25,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkHoverCard.Positioner>) {
-  return <ArkHoverCard.Positioner className={cn(className)} {...props} />;
+  return <ArkHoverCard.Positioner className={cn("z-50!", className)} {...props} />;
 }
 
 function Content({

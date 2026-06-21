@@ -122,8 +122,13 @@ function ClearTrigger({
   );
 }
 
-function Positioner(props: ComponentProps<typeof ArkSelect.Positioner>) {
-  return <ArkSelect.Positioner {...props} />;
+function Positioner({
+  className,
+  ...props
+}: ComponentProps<typeof ArkSelect.Positioner>) {
+  return (
+    <ArkSelect.Positioner className={cn("z-50!", className)} {...props} />
+  );
 }
 
 function Content({
@@ -132,7 +137,7 @@ function Content({
 }: ComponentProps<typeof ArkSelect.Content>) {
   return (
     <Portal>
-      <ArkSelect.Positioner>
+      <ArkSelect.Positioner className="z-50!">
         <ArkSelect.Content
           className={cn(
             "min-w-32 rounded-md border border-border bg-surface p-1 shadow-md focus:outline-none",

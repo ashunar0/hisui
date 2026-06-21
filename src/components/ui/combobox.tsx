@@ -87,7 +87,7 @@ function Positioner({
   className,
   ...props
 }: ComponentProps<typeof ArkCombobox.Positioner>) {
-  return <ArkCombobox.Positioner className={cn(className)} {...props} />;
+  return <ArkCombobox.Positioner className={cn("z-50!", className)} {...props} />;
 }
 
 function Content({
