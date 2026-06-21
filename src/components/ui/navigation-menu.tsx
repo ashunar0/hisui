@@ -94,7 +94,7 @@ function Content({
   return (
     <ArkNavigationMenu.Content
       className={cn(
-        "absolute inset-0 outline-none",
+        "absolute top-0 left-0 outline-none",
         "data-[state=open]:animate-menu-open",
         "data-[state=closed]:animate-menu-close",
         className,
@@ -111,8 +111,9 @@ function Viewport({
   return (
     <ArkNavigationMenu.Viewport
       className={cn(
-        "relative overflow-hidden rounded-md border border-border bg-surface outline-none",
-        "shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_0_4px_rgba(0,0,0,0.03)]",
+        "relative h-[var(--viewport-height)] w-[var(--viewport-width)] overflow-hidden rounded-md border border-border bg-surface outline-none transition-[width,height] duration-200",
+        "drop-shadow-[0_1px_0_rgba(0,0,0,0.04)] drop-shadow-[0_8px_24px_rgba(0,0,0,0.08)] drop-shadow-[0_0_4px_rgba(0,0,0,0.03)]",
+        "dark:drop-shadow-[0_1px_0_rgba(0,0,0,0.4)] dark:drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_0_4px_rgba(0,0,0,0.2)]",
         "data-[state=open]:animate-menu-open",
         "data-[state=closed]:animate-menu-close",
         className,
