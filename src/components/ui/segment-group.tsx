@@ -4,10 +4,12 @@ import { cn } from "@/lib/utils";
 
 function Root({
   className,
+  orientation = "horizontal",
   ...props
 }: ComponentProps<typeof ArkSegmentGroup.Root>) {
   return (
     <ArkSegmentGroup.Root
+      orientation={orientation}
       className={cn(
         "relative inline-flex w-fit items-center gap-1 rounded-lg bg-surface-sunken p-1",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
