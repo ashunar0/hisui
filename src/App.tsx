@@ -14,6 +14,7 @@ import { CardDoc } from "@/screens/docs/components/Card";
 import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
 import { ComboboxDoc } from "@/screens/docs/components/Combobox";
 import { DialogDoc } from "@/screens/docs/components/Dialog";
+import { DrawerDoc } from "@/screens/docs/components/Drawer";
 import { EmptyDoc } from "@/screens/docs/components/Empty";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
@@ -77,6 +78,7 @@ function App() {
             <Route path="components/checkbox" element={<CheckboxDoc />} />
             <Route path="components/combobox" element={<ComboboxDoc />} />
             <Route path="components/dialog" element={<DialogDoc />} />
+            <Route path="components/drawer" element={<DrawerDoc />} />
             <Route path="components/empty" element={<EmptyDoc />} />
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
