@@ -8,7 +8,7 @@ export function InlineCode({
   return (
     <code
       className={cn(
-        "rounded bg-surface-sunken px-1.5 py-0.5 font-mono text-[0.8125em] text-fg-soft",
+        "box-decoration-clone rounded bg-surface-sunken px-1.5 py-0.5 font-mono text-[0.8125em] text-fg-soft",
         className,
       )}
       {...props}

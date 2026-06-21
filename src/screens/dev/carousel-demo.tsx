@@ -113,7 +113,7 @@ export function CarouselDemo() {
           <Carousel.ItemGroup>
             {ANNOUNCEMENTS.map((slide, i) => (
               <Carousel.Item key={i} index={i}>
-                <div className="flex h-40 flex-col justify-center gap-2 bg-surface px-8">
+                <div className="flex h-40 flex-col justify-center gap-2 bg-surface px-16">
                   <div className="text-base font-semibold text-fg">
                     {slide.title}
                   </div>
