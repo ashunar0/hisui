@@ -32,7 +32,6 @@ import { InputDemo } from "./dev/input-demo";
 import { KbdDemo } from "./dev/kbd-demo";
 import { ListboxDemo } from "./dev/listbox-demo";
 import { MenuDemo } from "./dev/menu-demo";
-import { NavigationMenuDemo } from "./dev/navigation-menu-demo";
 import { NumberInputDemo } from "./dev/number-input-demo";
 import { PaginationDemo } from "./dev/pagination-demo";
 import { PasswordInputDemo } from "./dev/password-input-demo";
@@ -304,13 +303,6 @@ export function Dev() {
         description="Dropdown menu。Positioner / ContextTrigger / ItemContext / RootProvider も dot-namespace に export、ArrowTip の border 削除 (Vercel/Linear 風 fill のみ)。edit menu (Item + shortcut + disabled + destructive) / share submenu (TriggerItem で nested Menu.Root) / view options (RadioItemGroup + CheckboxItem + ItemGroupLabel + closeOnSelect=false) の 3 パターン。"
       >
         <MenuDemo />
-      </Section>
-
-      <Section
-        title="Navigation Menu"
-        description="Top nav の大きい dropdown panel。Root / RootProvider / List / Item / Trigger / Link / Content / Viewport / ViewportPositioner / Indicator / ItemIndicator / Arrow / Context を dot-namespace に export。Item に value 必須、 Trigger hover で Content が Viewport に転送されて表示。Trigger は group + ChevronDown を内包、 open で chevron 180° 回転。top nav (Products / Solutions の 2 col card grid、 Resources の 1 col、 Pricing は Link 直接) の 1 パターン。"
-      >
-        <NavigationMenuDemo />
       </Section>
 
       <Section

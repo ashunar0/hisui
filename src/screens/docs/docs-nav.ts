@@ -42,7 +42,6 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Input", to: "/docs/components/input" },
       { label: "Kbd", to: "/docs/components/kbd" },
       { label: "Menu", to: "/docs/components/menu" },
-      { label: "NavigationMenu", to: "/docs/components/navigation-menu" },
       { label: "Pagination", to: "/docs/components/pagination" },
       { label: "Popover", to: "/docs/components/popover" },
       { label: "RadioGroup", to: "/docs/components/radio-group" },
