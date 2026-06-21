@@ -25,6 +25,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
   {
     label: "Components",
     items: [
+      { label: "Accordion", to: "/docs/components/accordion" },
       { label: "Alert", to: "/docs/components/alert" },
       { label: "Avatar", to: "/docs/components/avatar" },
       { label: "Badge", to: "/docs/components/badge" },
