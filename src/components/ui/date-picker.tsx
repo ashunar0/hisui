@@ -34,7 +34,7 @@ function Control({
 }: ComponentProps<typeof ArkDatePicker.Control>) {
   return (
     <ArkDatePicker.Control
-      className={cn("relative flex items-center", className)}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     />
   );
@@ -47,7 +47,7 @@ function Input({
   return (
     <ArkDatePicker.Input
       className={cn(
-        "flex h-10 w-full rounded-sm border border-border bg-surface px-3 py-2 pr-10 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:ring-2 focus:ring-fg-subtle",
+        "flex h-10 min-w-0 flex-1 rounded-sm border border-border bg-surface px-3 py-2 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:ring-2 focus:ring-fg-subtle",
         className,
       )}
       {...props}
@@ -62,7 +62,7 @@ function Trigger({
   return (
     <ArkDatePicker.Trigger
       className={cn(
-        "absolute right-1.5 inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-fg-soft hover:bg-hover",
+        "inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-sm border border-border bg-surface text-fg-soft transition-colors hover:bg-hover hover:text-fg",
         className,
       )}
       {...props}

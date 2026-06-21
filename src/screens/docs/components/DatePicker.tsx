@@ -187,7 +187,7 @@ export function DatePickerDoc() {
           <div className="w-96">
             <DatePicker.Root selectionMode="range">
               <DatePicker.Label>Check-in / Check-out</DatePicker.Label>
-              <DatePicker.Control className="gap-2">
+              <DatePicker.Control>
                 <DatePicker.Input index={0} />
                 <DatePicker.Input index={1} />
                 <DatePicker.Trigger>
