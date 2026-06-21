@@ -170,13 +170,26 @@ export function DatePickerDoc() {
         description="selectionMode=range で 2 つの日を選び期間に。 booking / 期間 filter。"
       >
         <Example
-          code={`<DatePicker.Root selectionMode="range">...`}
+          code={`<DatePicker.Root selectionMode="range">
+  <DatePicker.Label>Check-in / Check-out</DatePicker.Label>
+  <DatePicker.Control>
+    <DatePicker.Input index={0} />
+    <DatePicker.Input index={1} />
+    <DatePicker.Trigger>
+      <Calendar />
+    </DatePicker.Trigger>
+  </DatePicker.Control>
+  <DatePicker.Content>
+    <DatePicker.Calendar />
+  </DatePicker.Content>
+</DatePicker.Root>`}
         >
-          <div className="w-72">
+          <div className="w-96">
             <DatePicker.Root selectionMode="range">
               <DatePicker.Label>Check-in / Check-out</DatePicker.Label>
-              <DatePicker.Control>
-                <DatePicker.Input />
+              <DatePicker.Control className="gap-2">
+                <DatePicker.Input index={0} />
+                <DatePicker.Input index={1} />
                 <DatePicker.Trigger>
                   <CalendarIcon className="size-4" />
                 </DatePicker.Trigger>
