@@ -37,7 +37,9 @@ function Content({
       <Positioner>
         <ArkHoverCard.Content
           className={cn(
-            "rounded-md border border-border bg-surface p-4 shadow-[0_1px_0_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.08),0_0_4px_rgba(0,0,0,0.03)] focus:outline-none",
+            "rounded-md border border-border bg-surface p-4 focus:outline-none",
+            "drop-shadow-[0_1px_0_rgba(0,0,0,0.04)] drop-shadow-[0_8px_24px_rgba(0,0,0,0.08)] drop-shadow-[0_0_4px_rgba(0,0,0,0.03)]",
+            "dark:drop-shadow-[0_1px_0_rgba(0,0,0,0.4)] dark:drop-shadow-[0_8px_24px_rgba(0,0,0,0.4)] dark:drop-shadow-[0_0_4px_rgba(0,0,0,0.2)]",
             "data-[state=open]:animate-menu-open",
             className,
           )}
