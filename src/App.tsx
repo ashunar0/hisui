@@ -57,7 +57,7 @@ import StackDoc from "@/screens/docs/components/Stack.mdx";
 import StepsDoc from "@/screens/docs/components/Steps.mdx";
 import SwitchDoc from "@/screens/docs/components/Switch.mdx";
 import TableDoc from "@/screens/docs/components/Table.mdx";
-import { TabsDoc } from "@/screens/docs/components/Tabs";
+import TabsDoc from "@/screens/docs/components/Tabs.mdx";
 import TagsInputDoc from "@/screens/docs/components/TagsInput.mdx";
 import TextareaDoc from "@/screens/docs/components/Textarea.mdx";
 import { ToastDoc } from "@/screens/docs/components/Toast";
