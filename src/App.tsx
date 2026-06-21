@@ -31,6 +31,7 @@ import { SkeletonDoc } from "@/screens/docs/components/Skeleton";
 import { SpinnerDoc } from "@/screens/docs/components/Spinner";
 import { SliderDoc } from "@/screens/docs/components/Slider";
 import { StackDoc } from "@/screens/docs/components/Stack";
+import { StepsDoc } from "@/screens/docs/components/Steps";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TabsDoc } from "@/screens/docs/components/Tabs";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
@@ -97,6 +98,7 @@ function App() {
             <Route path="components/slider" element={<SliderDoc />} />
             <Route path="components/spinner" element={<SpinnerDoc />} />
             <Route path="components/stack" element={<StackDoc />} />
+            <Route path="components/steps" element={<StepsDoc />} />
             <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/tabs" element={<TabsDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
