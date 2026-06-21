@@ -36,6 +36,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Heading", to: "/docs/components/heading" },
       { label: "IconButton", to: "/docs/components/icon-button" },
       { label: "Input", to: "/docs/components/input" },
+      { label: "Kbd", to: "/docs/components/kbd" },
       { label: "Menu", to: "/docs/components/menu" },
       { label: "Popover", to: "/docs/components/popover" },
       { label: "RadioGroup", to: "/docs/components/radio-group" },
