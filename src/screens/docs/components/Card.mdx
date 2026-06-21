@@ -1,12 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import CardAsChildDemo from "./demos/card/as-child";
+import CardAsChildSource from "./demos/card/as-child?raw";
+import CardHeaderOnlyDemo from "./demos/card/header-only";
+import CardHeaderOnlySource from "./demos/card/header-only?raw";
+import CardSizesDemo from "./demos/card/sizes";
+import CardSizesSource from "./demos/card/sizes?raw";
+import CardUsageDemo from "./demos/card/usage";
+import CardUsageSource from "./demos/card/usage?raw";
 import CardVariantsDemo from "./demos/card/variants";
 import CardVariantsSource from "./demos/card/variants?raw";
-
-export const VARIANTS = ["elevated", "outline", "subtle"];
-export const SIZES = ["sm", "md", "lg"];
 
 export const PARTS = [
   {
@@ -45,36 +48,8 @@ compound primitive。 Root に variant / size を渡し、 中身は Header / Ti
 
 default は outline / md。 Header + Body + Footer の典型 layout。
 
-<Example
-  code={`<Card.Root>
-  <Card.Header>
-    <Card.Title>Workspace</Card.Title>
-    <Card.Description>Manage members and permissions.</Card.Description>
-  </Card.Header>
-  <Card.Body>
-    <p className="text-sm">Body content goes here.</p>
-  </Card.Body>
-  <Card.Footer>
-    <Button>Save</Button>
-  </Card.Footer>
-</Card.Root>`}
->
-  <div className="max-w-md">
-    <Card.Root>
-      <Card.Header>
-        <Card.Title>Workspace</Card.Title>
-        <Card.Description>
-          Manage members and permissions.
-        </Card.Description>
-      </Card.Header>
-      <Card.Body>
-        <p className="text-fg-soft text-sm">Body content goes here.</p>
-      </Card.Body>
-      <Card.Footer>
-        <Button>Save</Button>
-      </Card.Footer>
-    </Card.Root>
-  </div>
+<Example code={CardUsageSource}>
+  <CardUsageDemo />
 </Example>
 
 ## Import
@@ -103,76 +78,24 @@ import { Card } from "@/components/ui/card";
 
 sm / md / lg の 3 段階。 Header / Body / Footer の padding が連動。
 
-<Example
-  code={SIZES.map((s) => `<Card.Root size="${s}">...</Card.Root>`).join("\n")}
->
-  <div className="flex flex-col gap-4">
-    {SIZES.map((s) => (
-      <Card.Root key={s} size={s}>
-        <Card.Header>
-          <Card.Title>size={s}</Card.Title>
-          <Card.Description>
-            Header / Body / Footer の padding が連動する。
-          </Card.Description>
-        </Card.Header>
-        <Card.Body>
-          <p className="text-fg-soft text-sm">Body content</p>
-        </Card.Body>
-      </Card.Root>
-    ))}
-  </div>
+<Example code={CardSizesSource}>
+  <CardSizesDemo />
 </Example>
 
 ## Header only
 
 Title + Description だけで成立。 Body / Footer は不要なら省く。
 
-<Example
-  code={`<Card.Root>
-  <Card.Header>
-    <Card.Title>Quick note</Card.Title>
-    <Card.Description>Short snippet, no body.</Card.Description>
-  </Card.Header>
-</Card.Root>`}
->
-  <div className="max-w-sm">
-    <Card.Root>
-      <Card.Header>
-        <Card.Title>Quick note</Card.Title>
-        <Card.Description>Short snippet, no body.</Card.Description>
-      </Card.Header>
-    </Card.Root>
-  </div>
+<Example code={CardHeaderOnlySource}>
+  <CardHeaderOnlyDemo />
 </Example>
 
 ## As child (clickable card)
 
 asChild で Root を Link や button に差し替えると hover / focus が乗る。
 
-<Example
-  code={`<Card.Root asChild>
-  <a href="#" className="block hover:border-fg-subtle">
-    <Card.Header>
-      <Card.Title>Clickable</Card.Title>
-      <Card.Description>Whole card is a link.</Card.Description>
-    </Card.Header>
-  </a>
-</Card.Root>`}
->
-  <div className="max-w-sm">
-    <Card.Root asChild>
-      <a
-        href="#card-link"
-        className="block hover:border-fg-subtle"
-        onClick={(e) => e.preventDefault()}
-      >
-        <Card.Header>
-          <Card.Title>Clickable</Card.Title>
-          <Card.Description>Whole card is a link.</Card.Description>
-        </Card.Header>
-      </a>
-    </Card.Root>
-  </div>
+<Example code={CardAsChildSource}>
+  <CardAsChildDemo />
 </Example>
 
 ## Anatomy
