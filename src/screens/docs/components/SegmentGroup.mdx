@@ -1,7 +1,13 @@
-import { Calendar, List, Map } from "lucide-react";
-import { SegmentGroup } from "@/components/ui/segment-group";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import SegmentGroupDisabledDemo from "./demos/segment-group/disabled";
+import SegmentGroupDisabledSource from "./demos/segment-group/disabled?raw";
+import SegmentGroupIconTextDemo from "./demos/segment-group/icon-text";
+import SegmentGroupIconTextSource from "./demos/segment-group/icon-text?raw";
+import SegmentGroupUsageDemo from "./demos/segment-group/usage";
+import SegmentGroupUsageSource from "./demos/segment-group/usage?raw";
+import SegmentGroupVerticalDemo from "./demos/segment-group/vertical";
+import SegmentGroupVerticalSource from "./demos/segment-group/vertical?raw";
 
 export const PARTS = [
   {
@@ -29,6 +35,53 @@ export const PARTS = [
 
 iOS 風の segmented control。 常に 1 つだけ選択された single radio で、 選択中 item の下に浮かぶ Indicator が滑らかに追従する。 ToggleGroup と違って bordered ではなく sunken 背景、 view switcher / time period などに向く。
 
+## Usage
+
+time period switcher の典型。 Indicator を Item 群より前に置く。
+
+<Example code={SegmentGroupUsageSource}>
+  <SegmentGroupUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { SegmentGroup } from "@/components/ui/segment-group";
+```
+
+```tsx
+<SegmentGroup.Root>
+  <SegmentGroup.Indicator />
+  <SegmentGroup.Item value="...">
+    <SegmentGroup.ItemText>...</SegmentGroup.ItemText>
+  </SegmentGroup.Item>
+</SegmentGroup.Root>
+```
+
+## Icon + text
+
+view switcher で icon と label を並べる。
+
+<Example code={SegmentGroupIconTextSource}>
+  <SegmentGroupIconTextDemo />
+</Example>
+
+## Vertical
+
+orientation=vertical で縦並び。 settings の section nav 等。
+
+<Example code={SegmentGroupVerticalSource}>
+  <SegmentGroupVerticalDemo />
+</Example>
+
+## Disabled item
+
+Item に disabled で個別、 Root に disabled で全体。
+
+<Example code={SegmentGroupDisabledSource}>
+  <SegmentGroupDisabledDemo />
+</Example>
+
 ## Anatomy
 
 Root の中に Indicator (1 つ) と Item 群を並べる。 Indicator は absolute で Item の上に重なる。
@@ -43,100 +96,6 @@ Root の中に Indicator (1 つ) と Item 群を並べる。 Indicator は absol
     </li>
   ))}
 </ul>
-
-## Usage
-
-time period switcher の典型。 Indicator を Item 群より前に置く。
-
-<Example
-  code={`<SegmentGroup.Root defaultValue="week">
-  <SegmentGroup.Indicator />
-  <SegmentGroup.Item value="day"><SegmentGroup.ItemText>Day</SegmentGroup.ItemText></SegmentGroup.Item>
-  <SegmentGroup.Item value="week"><SegmentGroup.ItemText>Week</SegmentGroup.ItemText></SegmentGroup.Item>
-  <SegmentGroup.Item value="month"><SegmentGroup.ItemText>Month</SegmentGroup.ItemText></SegmentGroup.Item>
-</SegmentGroup.Root>`}
->
-  <SegmentGroup.Root defaultValue="week">
-    <SegmentGroup.Indicator />
-    <SegmentGroup.Item value="day">
-      <SegmentGroup.ItemText>Day</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="week">
-      <SegmentGroup.ItemText>Week</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="month">
-      <SegmentGroup.ItemText>Month</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-  </SegmentGroup.Root>
-</Example>
-
-## Icon + text
-
-view switcher で icon と label を並べる。
-
-<Example
-  code={`<SegmentGroup.Item value="list">
-  <List />
-  <SegmentGroup.ItemText>List</SegmentGroup.ItemText>
-</SegmentGroup.Item>`}
->
-  <SegmentGroup.Root defaultValue="list">
-    <SegmentGroup.Indicator />
-    <SegmentGroup.Item value="list">
-      <List className="size-4" />
-      <SegmentGroup.ItemText>List</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="calendar">
-      <Calendar className="size-4" />
-      <SegmentGroup.ItemText>Calendar</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="map">
-      <Map className="size-4" />
-      <SegmentGroup.ItemText>Map</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-  </SegmentGroup.Root>
-</Example>
-
-## Vertical
-
-orientation=vertical で縦並び。 settings の section nav 等。
-
-<Example
-  code={`<SegmentGroup.Root orientation="vertical" defaultValue="general">
-  <SegmentGroup.Indicator />
-  ...
-</SegmentGroup.Root>`}
->
-  <SegmentGroup.Root orientation="vertical" defaultValue="general">
-    <SegmentGroup.Indicator />
-    {["General", "Billing", "Members", "Security"].map((label) => (
-      <SegmentGroup.Item key={label} value={label.toLowerCase()}>
-        <SegmentGroup.ItemText>{label}</SegmentGroup.ItemText>
-      </SegmentGroup.Item>
-    ))}
-  </SegmentGroup.Root>
-</Example>
-
-## Disabled item
-
-Item に disabled で個別、 Root に disabled で全体。
-
-<Example
-  code={`<SegmentGroup.Item value="pro" disabled>Pro (locked)</SegmentGroup.Item>`}
->
-  <SegmentGroup.Root defaultValue="free">
-    <SegmentGroup.Indicator />
-    <SegmentGroup.Item value="free">
-      <SegmentGroup.ItemText>Free</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="pro" disabled>
-      <SegmentGroup.ItemText>Pro (locked)</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-    <SegmentGroup.Item value="enterprise">
-      <SegmentGroup.ItemText>Enterprise</SegmentGroup.ItemText>
-    </SegmentGroup.Item>
-  </SegmentGroup.Root>
-</Example>
 
 ## Props
 
