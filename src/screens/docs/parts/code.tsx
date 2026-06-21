@@ -21,9 +21,10 @@ export function InlineCode({
 type CodeBlockProps = {
   code: string;
   lang?: BundledLanguage;
+  maxHeight?: string;
 };
 
-export function CodeBlock({ code, lang = "tsx" }: CodeBlockProps) {
+export function CodeBlock({ code, lang = "tsx", maxHeight }: CodeBlockProps) {
   const [html, setHtml] = useState<string | null>(null);
 
   useEffect(() => {
@@ -43,17 +44,18 @@ export function CodeBlock({ code, lang = "tsx" }: CodeBlockProps) {
   return (
     <Clipboard.Root
       value={code}
-      className="group relative block"
+      className="group relative block min-w-0"
     >
       {html ? (
         <div
-          className="scrollbar-soft overflow-x-auto text-xs leading-relaxed [&_pre]:m-0 [&_pre]:px-4 [&_pre]:py-3 [&_code]:font-mono"
+          className="scrollbar-soft min-w-0 overflow-auto text-xs leading-relaxed [&_pre]:m-0 [&_pre]:min-w-max [&_pre]:px-4 [&_pre]:py-3 [&_code]:font-mono"
+          style={maxHeight ? { maxHeight } : undefined}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       ) : (
         <pre
-          className="scrollbar-soft overflow-x-auto px-4 py-3 text-xs leading-relaxed"
-          style={{ backgroundColor: "#282c34" }}
+          className="scrollbar-soft overflow-auto px-4 py-3 text-xs leading-relaxed"
+          style={{ backgroundColor: "#282c34", ...(maxHeight ? { maxHeight } : undefined) }}
         >
           <code className="font-mono opacity-60">{code}</code>
         </pre>

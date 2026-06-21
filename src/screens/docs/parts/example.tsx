@@ -33,7 +33,7 @@ export function Example({ code, children }: ExampleProps) {
         {view === "preview" ? (
           <div className="bg-surface p-6">{children}</div>
         ) : (
-          <CodeBlock code={code} />
+          <CodeBlock code={code} maxHeight="420px" />
         )}
       </div>
     </div>
