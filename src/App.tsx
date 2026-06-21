@@ -21,7 +21,7 @@ import CollapsibleDoc from "@/screens/docs/components/Collapsible.mdx";
 import ColorPickerDoc from "@/screens/docs/components/ColorPicker.mdx";
 import ComboboxDoc from "@/screens/docs/components/Combobox.mdx";
 import CommandDoc from "@/screens/docs/components/Command.mdx";
-import { DatePickerDoc } from "@/screens/docs/components/DatePicker";
+import DatePickerDoc from "@/screens/docs/components/DatePicker.mdx";
 import DialogDoc from "@/screens/docs/components/Dialog.mdx";
 import { DrawerDoc } from "@/screens/docs/components/Drawer";
 import { EditableDoc } from "@/screens/docs/components/Editable";

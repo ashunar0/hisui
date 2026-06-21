@@ -1,0 +1,186 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import DatePickerBasicDemo from "./demos/date-picker/basic";
+import DatePickerBasicSource from "./demos/date-picker/basic?raw";
+import DatePickerFixedWeeksDemo from "./demos/date-picker/fixed-weeks";
+import DatePickerFixedWeeksSource from "./demos/date-picker/fixed-weeks?raw";
+import DatePickerLocaleDemo from "./demos/date-picker/locale";
+import DatePickerLocaleSource from "./demos/date-picker/locale?raw";
+import DatePickerRangeDemo from "./demos/date-picker/range";
+import DatePickerRangeSource from "./demos/date-picker/range?raw";
+
+export const PARTS = [
+  {
+    name: "DatePicker.Root",
+    description:
+      "外枠。 value / onValueChange で日付を管理。 selectionMode で single / multiple / range、 locale / timeZone も指定可。",
+  },
+  {
+    name: "DatePicker.Label",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "DatePicker.Control",
+    description: "Input + Trigger を並べる枠。 relative で trigger 重ねる土台。",
+  },
+  {
+    name: "DatePicker.Input",
+    description: "text 入力可能な date 入力。 format に従って自動解釈。",
+  },
+  {
+    name: "DatePicker.Trigger",
+    description: "click で calendar popup を開く button。 Input の右端に被せる。",
+  },
+  {
+    name: "DatePicker.Content",
+    description:
+      "calendar popup。 内部で Portal + Positioner + 3 View (day/month/year) を切替表示。",
+  },
+  {
+    name: "DatePicker.Calendar",
+    description:
+      "ui-lab helper。 DayView + MonthView + YearView を 1 つにまとめた compound。 単純な calendar はこれだけで OK。",
+  },
+  {
+    name: "DatePicker.View / ViewControl / ViewTrigger",
+    description:
+      "View は day / month / year の 3 mode。 ViewControl に Prev/Next + ViewTrigger (上の月名 click で view 切替) を並べる。",
+  },
+  {
+    name: "DatePicker.ClearTrigger / PresetTrigger",
+    description:
+      'ClearTrigger は選択 clear、 PresetTrigger は "Today" / "Tomorrow" 等の preset jump button。',
+  },
+];
+
+# DatePicker
+
+日付選択用の compound。 calendar grid (day / month / year の 3 view 切替)、 Input への直接入力、 range / multiple、 preset jump まで全部入り。 popup は Portal で escape する。
+
+## Usage
+
+Trigger click で calendar 開く。 day 選ぶと Input 反映、 popup 上の月名 click で month/year view にジャンプ。
+
+<Example code={DatePickerBasicSource}>
+  <DatePickerBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { DatePicker } from "@/components/ui/date-picker";
+```
+
+```tsx
+<DatePicker.Root>
+  <DatePicker.Label />
+  <DatePicker.Control>
+    <DatePicker.Input />
+    <DatePicker.Trigger />
+  </DatePicker.Control>
+  <DatePicker.Content>
+    <DatePicker.Calendar />
+  </DatePicker.Content>
+</DatePicker.Root>
+```
+
+## Range
+
+selectionMode=range で 2 つの日を選び期間に。 booking / 期間 filter。
+
+<Example code={DatePickerRangeSource}>
+  <DatePickerRangeDemo />
+</Example>
+
+## Locale (Japanese)
+
+locale prop で曜日名 / 週先頭 / 月名を切替。
+
+<Example code={DatePickerLocaleSource}>
+  <DatePickerLocaleDemo />
+</Example>
+
+## Fixed weeks
+
+fixedWeeks で常に 6 週表示。 calendar の高さが月ごとに変わらなくなる (UI ガクガク防止)。
+
+<Example code={DatePickerFixedWeeksSource}>
+  <DatePickerFixedWeeksDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Label / Control (Input + Trigger) / Content (Calendar)。 Calendar は DayView + MonthView + YearView を含む helper。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[20rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "DateValue[]",
+      description: "controlled mode の選択日。 range は 2 要素 array。",
+    },
+    {
+      name: "defaultValue",
+      type: "DateValue[]",
+      description: "uncontrolled mode の初期日。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: DateValue[] }) => void",
+      description: "選択日が変わった時に呼ばれる。",
+    },
+    {
+      name: "selectionMode",
+      type: '"single" | "multiple" | "range"',
+      default: '"single"',
+      description: "選択方式。 multiple = 複数日、 range = 期間 (開始 / 終了)。",
+    },
+    {
+      name: "min / max",
+      type: "DateValue",
+      description: "選択可能な範囲。 過去 / 未来を制限。",
+    },
+    {
+      name: "locale",
+      type: "string",
+      default: '"en-US"',
+      description: "週の先頭 / 曜日名 / month/year 表示の locale。",
+    },
+    {
+      name: "startOfWeek",
+      type: "number",
+      description: "週の先頭曜日 (0=日, 1=月)。 locale 既定を上書き。",
+    },
+    {
+      name: "fixedWeeks",
+      type: "boolean",
+      default: "false",
+      description:
+        "常に 6 週表示で高さを固定。 月跨ぎで calendar 高さが変動しない。",
+    },
+    {
+      name: "format",
+      type: "(date) => string",
+      description: "Input に出る text の format。",
+    },
+    {
+      name: "view",
+      type: '"day" | "month" | "year"',
+      default: '"day"',
+      description: "初期 view。 month / year で開いて jump させる UX も。",
+    },
+  ]}
+/>
