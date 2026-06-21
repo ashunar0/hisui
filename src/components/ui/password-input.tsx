@@ -1,17 +1,34 @@
 import { PasswordInput as ArkPasswordInput } from "@ark-ui/react/password-input";
 import { Eye, EyeOff } from "lucide-react";
-import type { ComponentProps } from "react";
+import { createContext, useContext, type ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
+type InputVariant = "outline" | "subtle" | "flushed";
+type InputSize = "xs" | "sm" | "md" | "lg";
+
+const PasswordInputContext = createContext<{
+  variant: InputVariant;
+  size: InputSize;
+}>({ variant: "outline", size: "md" });
+
+type RootProps = ComponentProps<typeof ArkPasswordInput.Root> & {
+  variant?: InputVariant;
+  size?: InputSize;
+};
+
 function Root({
+  variant = "outline",
+  size = "md",
   className,
   ...props
-}: ComponentProps<typeof ArkPasswordInput.Root>) {
+}: RootProps) {
   return (
-    <ArkPasswordInput.Root
-      className={cn("flex w-full flex-col gap-2", className)}
-      {...props}
-    />
+    <PasswordInputContext.Provider value={{ variant, size }}>
+      <ArkPasswordInput.Root
+        className={cn("flex w-full flex-col gap-2", className)}
+        {...props}
+      />
+    </PasswordInputContext.Provider>
   );
 }
 
@@ -39,15 +56,40 @@ function Control({
   );
 }
 
+const sizeClasses: Record<InputSize, string> = {
+  xs: "h-7 text-xs",
+  sm: "h-8 text-sm",
+  md: "h-10 text-sm",
+  lg: "h-12 text-base",
+};
+
+const paddingClasses: Record<InputVariant, Record<InputSize, string>> = {
+  outline: { xs: "pr-7 pl-2", sm: "pr-8 pl-2.5", md: "pr-10 pl-3", lg: "pr-12 pl-4" },
+  subtle: { xs: "pr-7 pl-2", sm: "pr-8 pl-2.5", md: "pr-10 pl-3", lg: "pr-12 pl-4" },
+  flushed: { xs: "pr-7 pl-3", sm: "pr-8 pl-3", md: "pr-10 pl-3", lg: "pr-12 pl-3" },
+};
+
+const variantClasses: Record<InputVariant, string> = {
+  outline:
+    "rounded-sm border border-border bg-surface focus:ring-2 focus:ring-fg-subtle aria-invalid:border-danger-border aria-invalid:focus:ring-danger-border",
+  subtle:
+    "rounded-sm border border-transparent bg-hover focus:bg-surface focus:ring-2 focus:ring-fg-subtle aria-invalid:bg-danger-subtle aria-invalid:text-danger-fg",
+  flushed:
+    "rounded-none border-b border-border bg-transparent focus:border-fg-soft aria-invalid:border-danger-border",
+};
+
 function Input({
   className,
   ...props
 }: ComponentProps<typeof ArkPasswordInput.Input>) {
+  const { variant, size } = useContext(PasswordInputContext);
   return (
     <ArkPasswordInput.Input
       className={cn(
-        "flex h-10 w-full rounded-sm border border-border bg-surface px-3 py-2 pr-10 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:ring-2 focus:ring-fg-subtle",
-        "disabled:cursor-not-allowed disabled:opacity-50",
+        "flex w-full py-2 text-fg placeholder:text-fg-subtle focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+        sizeClasses[size],
+        paddingClasses[variant][size],
+        variantClasses[variant],
         className,
       )}
       {...props}

@@ -36,6 +36,18 @@ const PARTS = [
 
 const PROPS: PropRow[] = [
   {
+    name: "Root.variant",
+    type: '"outline" | "subtle" | "flushed"',
+    default: '"outline"',
+    description: "見た目。 Input と同じ 3 種。 Context で Input に流す。",
+  },
+  {
+    name: "Root.size",
+    type: '"xs" | "sm" | "md" | "lg"',
+    default: '"md"',
+    description: "高さ / padding / font-size。 Input と scale 統一。",
+  },
+  {
     name: "Root.visible",
     type: "boolean",
     description: "controlled mode の表示状態。",
@@ -165,6 +177,58 @@ export function PasswordInputDoc() {
                 <PasswordInput.VisibilityTrigger />
               </PasswordInput.Control>
             </PasswordInput.Root>
+          </div>
+        </Example>
+      </DocSection>
+
+      <DocSection
+        title="Variants"
+        description="Input と同じ outline / subtle / flushed の 3 種。 Root に variant prop で指定。"
+      >
+        <Example
+          code={`<PasswordInput.Root variant="outline">...
+<PasswordInput.Root variant="subtle">...
+<PasswordInput.Root variant="flushed">...`}
+        >
+          <div className="flex w-72 flex-col gap-4">
+            {(["outline", "subtle", "flushed"] as const).map((v) => (
+              <PasswordInput.Root key={v} variant={v}>
+                <PasswordInput.Label>{v}</PasswordInput.Label>
+                <PasswordInput.Control>
+                  <PasswordInput.Input
+                    placeholder={`${v} variant`}
+                    defaultValue="hunter2"
+                  />
+                  <PasswordInput.VisibilityTrigger />
+                </PasswordInput.Control>
+              </PasswordInput.Root>
+            ))}
+          </div>
+        </Example>
+      </DocSection>
+
+      <DocSection
+        title="Sizes"
+        description="xs / sm / md (default) / lg。 Input と scale 統一。"
+      >
+        <Example
+          code={`<PasswordInput.Root size="xs">...
+<PasswordInput.Root size="sm">...
+<PasswordInput.Root size="md">...
+<PasswordInput.Root size="lg">...`}
+        >
+          <div className="flex w-72 flex-col gap-3">
+            {(["xs", "sm", "md", "lg"] as const).map((s) => (
+              <PasswordInput.Root key={s} size={s}>
+                <PasswordInput.Control>
+                  <PasswordInput.Input
+                    placeholder={`${s} size`}
+                    defaultValue="hunter2"
+                  />
+                  <PasswordInput.VisibilityTrigger />
+                </PasswordInput.Control>
+              </PasswordInput.Root>
+            ))}
           </div>
         </Example>
       </DocSection>
