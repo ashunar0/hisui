@@ -1,6 +1,15 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import SkeletonProfileCardDemo from "./demos/skeleton/profile-card";
+import SkeletonProfileCardSource from "./demos/skeleton/profile-card?raw";
+import SkeletonShapesDemo from "./demos/skeleton/shapes";
+import SkeletonShapesSource from "./demos/skeleton/shapes?raw";
+import SkeletonStatGridDemo from "./demos/skeleton/stat-grid";
+import SkeletonStatGridSource from "./demos/skeleton/stat-grid?raw";
+import SkeletonTableRowsDemo from "./demos/skeleton/table-rows";
+import SkeletonTableRowsSource from "./demos/skeleton/table-rows?raw";
+import SkeletonUsageDemo from "./demos/skeleton/usage";
+import SkeletonUsageSource from "./demos/skeleton/usage?raw";
 
 # Skeleton
 
@@ -10,125 +19,50 @@ import { PropsTable } from "@/screens/docs/parts/props-table";
 
 単体は width / height を class で指定するだけ。
 
-<Example code={`<Skeleton className="h-4 w-40" />`}>
-  <Skeleton className="h-4 w-40" />
+<Example code={SkeletonUsageSource}>
+  <SkeletonUsageDemo />
 </Example>
+
+## Import
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton";
+```
+
+```tsx
+<Skeleton className="h-4 w-40" />
+```
 
 ## Shapes
 
 rounded-full で円、 rounded-md で button / chip 風、 h-1 + w-full で text 行。
 
-<Example
-  code={`<Skeleton className="size-12 rounded-full" />
-<Skeleton className="h-8 w-24 rounded-md" />
-<Skeleton className="h-3 w-48" />`}
->
-  <div className="flex items-center gap-4">
-    <Skeleton className="size-12 rounded-full" />
-    <Skeleton className="h-8 w-24 rounded-md" />
-    <Skeleton className="h-3 w-48" />
-  </div>
+<Example code={SkeletonShapesSource}>
+  <SkeletonShapesDemo />
 </Example>
 
 ## Profile card
 
 avatar + name + email + bio 2 行 + action button。 bio の width 違いで実 text の揺らぎを再現。
 
-<Example
-  code={`<div className="flex items-start gap-4 rounded-md border border-border p-5">
-  <Skeleton className="size-12 rounded-full" />
-  <div className="flex flex-1 flex-col gap-2">
-    <Skeleton className="h-4 w-32" />
-    <Skeleton className="h-3 w-48" />
-    <Skeleton className="h-3 w-full" />
-    <Skeleton className="h-3 w-4/5" />
-    <Skeleton className="h-8 w-24 rounded-md" />
-  </div>
-</div>`}
->
-  <div className="flex max-w-md items-start gap-4 rounded-md border border-border bg-surface p-5">
-    <Skeleton className="size-12 rounded-full" />
-    <div className="flex flex-1 flex-col gap-2">
-      <Skeleton className="h-4 w-32" />
-      <Skeleton className="h-3 w-48" />
-      <div className="mt-2 flex flex-col gap-1.5">
-        <Skeleton className="h-3 w-full" />
-        <Skeleton className="h-3 w-4/5" />
-      </div>
-      <Skeleton className="mt-2 h-8 w-24 rounded-md" />
-    </div>
-  </div>
+<Example code={SkeletonProfileCardSource}>
+  <SkeletonProfileCardDemo />
 </Example>
 
 ## Table rows
 
 header + 5 行。 各列で width をずらして実データの不揃いを表現。
 
-<Example
-  code={`{rows.map((row) => (
-  <div className="grid grid-cols-[1fr_120px_100px_80px] gap-4 px-4 py-3">
-    <Skeleton className="h-3 w-40" />
-    <Skeleton className="h-3 w-20" />
-    <Skeleton className="h-5 w-16 rounded-full" />
-    <Skeleton className="h-3 w-12" />
-  </div>
-))}`}
->
-  <div className="w-full rounded-md border border-border bg-surface">
-    <div className="grid grid-cols-[1fr_120px_100px_80px] gap-4 border-b border-border px-4 py-3">
-      <Skeleton className="h-3 w-16" />
-      <Skeleton className="h-3 w-14" />
-      <Skeleton className="h-3 w-12" />
-      <Skeleton className="h-3 w-10" />
-    </div>
-    {[1, 2, 3, 4, 5].map((row) => (
-      <div
-        key={row}
-        className="grid grid-cols-[1fr_120px_100px_80px] items-center gap-4 border-b border-border-muted px-4 py-3 last:border-b-0"
-      >
-        <div className="flex items-center gap-3">
-          <Skeleton className="size-7 rounded-full" />
-          <Skeleton
-            className={`h-3 ${["w-40", "w-32", "w-44", "w-36", "w-28"][row - 1]}`}
-          />
-        </div>
-        <Skeleton
-          className={`h-3 ${["w-20", "w-16", "w-24", "w-20", "w-14"][row - 1]}`}
-        />
-        <Skeleton className="h-5 w-16 rounded-full" />
-        <Skeleton className="h-3 w-12" />
-      </div>
-    ))}
-  </div>
+<Example code={SkeletonTableRowsSource}>
+  <SkeletonTableRowsDemo />
 </Example>
 
 ## Stat grid
 
 Dashboard widget の loading。 数字行は h-7 大きめ、 補足行は h-3 + 60% 幅で hierarchy を残す。
 
-<Example
-  code={`<div className="grid grid-cols-4 gap-3">
-  {widgets.map(() => (
-    <div className="flex flex-col gap-3 rounded-md border border-border p-4">
-      <Skeleton className="h-3 w-20" />
-      <Skeleton className="h-7 w-28" />
-      <Skeleton className="h-3 w-3/5" />
-    </div>
-  ))}
-</div>`}
->
-  <div className="grid w-full grid-cols-2 gap-3 md:grid-cols-4">
-    {[1, 2, 3, 4].map((i) => (
-      <div
-        key={i}
-        className="flex flex-col gap-3 rounded-md border border-border bg-surface p-4"
-      >
-        <Skeleton className="h-3 w-20" />
-        <Skeleton className="h-7 w-28" />
-        <Skeleton className="h-3 w-3/5" />
-      </div>
-    ))}
-  </div>
+<Example code={SkeletonStatGridSource}>
+  <SkeletonStatGridDemo />
 </Example>
 
 ## Props
