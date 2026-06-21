@@ -1,0 +1,185 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import ToastPromiseDemo from "./demos/toast/promise";
+import ToastPromiseSource from "./demos/toast/promise?raw";
+import ToastTypesDemo from "./demos/toast/types";
+import ToastTypesSource from "./demos/toast/types?raw";
+import ToastWithActionDemo from "./demos/toast/with-action";
+import ToastWithActionSource from "./demos/toast/with-action?raw";
+
+export const PARTS = [
+  {
+    name: "toaster (singleton)",
+    description:
+      "createToaster で作る global instance。 placement / max を指定。 .create() で 1 つ追加、 .promise() で loading→success/error 遷移。",
+  },
+  {
+    name: "<Toaster />",
+    description:
+      "App root に 1 つだけ mount。 全 toast の render を担う。 ui-lab では App.tsx に既に置いてある。",
+  },
+  {
+    name: "Toast.Root",
+    description:
+      "1 つの toast 表面。 --x / --y / --opacity を translate と opacity に流すのが必須 (Ark UI の地雷)。",
+  },
+  {
+    name: "Toast.Title / Description",
+    description:
+      "見出し + 補足。 a11y のため aria-labelledby / describedby に自動接続。",
+  },
+  {
+    name: "Toast.ActionTrigger",
+    description:
+      "Undo 等の action button。 toast.create({ action: { label, onClick } }) で自動配置。",
+  },
+  {
+    name: "Toast.CloseTrigger",
+    description: "× で閉じる button。 default で X icon が入る。",
+  },
+];
+
+# Toast
+
+画面の隅に積む通知。 success / error / 進行中などを邪魔せず伝える。 toaster.create() で 1 行追加するだけで、 描画は App root の Toaster が引き受ける imperative API。
+
+## Usage
+
+success / error / warning / info / loading / neutral。 type で icon が切り替わる。
+
+<Example code={ToastTypesSource}>
+  <ToastTypesDemo />
+</Example>
+
+## Import
+
+```tsx
+import { toaster } from "@/components/ui/toast";
+```
+
+```tsx
+toaster.create({
+  title: "Saved",
+  description: "Your changes are live.",
+  type: "success",
+});
+```
+
+## Setup
+
+createToaster で singleton を作り、 Toaster component を root に置く。 ui-lab では既にやってある。
+
+```tsx
+// components/ui/toast.tsx
+export const toaster = createToaster({ placement: "bottom-end", max: 3 });
+
+// App.tsx
+import { Toaster } from "@/components/ui/toast";
+function App() {
+  return (
+    <>
+      <Routes>...</Routes>
+      <Toaster />
+    </>
+  );
+}
+```
+
+## With action
+
+Undo パターン。 action.label + action.onClick を渡すと自動で ActionTrigger が並ぶ。
+
+<Example code={ToastWithActionSource}>
+  <ToastWithActionDemo />
+</Example>
+
+## Promise flow
+
+toaster.promise() で loading → success/error を 1 つの toast で遷移。 fetch のように非同期処理を直接渡せる。
+
+<Example code={ToastPromiseSource}>
+  <ToastPromiseDemo />
+</Example>
+
+## Anatomy
+
+App root に Toaster を 1 つ mount し、 toaster.create() で imperative に追加する。 個別 toast は内部で Toast.Root + Title + Description + Action + Close で組まれる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## toaster.create() options
+
+<PropsTable
+  rows={[
+    {
+      name: "title",
+      type: "string",
+      description: "見出し。 大体必須。",
+    },
+    {
+      name: "description",
+      type: "string",
+      description: "補足 1 行。 任意。",
+    },
+    {
+      name: "type",
+      type: '"success" | "error" | "warning" | "info" | "loading"',
+      description: "icon と意味を決める。 省略で neutral (icon 無し)。",
+    },
+    {
+      name: "duration",
+      type: "number",
+      default: "5000",
+      description:
+        "ms。 loading 系は短め、 action 付きは長めにしたい時に。",
+    },
+    {
+      name: "action",
+      type: "{ label: string; onClick: () => void }",
+      description: "trailing の Undo 風 button。 ActionTrigger に自動配置。",
+    },
+    {
+      name: "id",
+      type: "string",
+      description: "省略可。 同 id で .update() / .remove() できる。",
+    },
+  ]}
+/>
+
+## createToaster() options
+
+<PropsTable
+  rows={[
+    {
+      name: "placement",
+      type: '"top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end"',
+      description: "画面のどこに積むか。 ui-lab は bottom-end。",
+    },
+    {
+      name: "max",
+      type: "number",
+      description:
+        "同時表示の上限。 超えたら古い順に押し出す。 ui-lab は 3。",
+    },
+    {
+      name: "overlap",
+      type: "boolean",
+      default: "false",
+      description: "重ねるか並べるか。 false で縦 / 横にスタック。",
+    },
+    {
+      name: "gap",
+      type: "number",
+      description: "toast 間の隙間 (px)。",
+    },
+  ]}
+/>
