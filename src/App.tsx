@@ -12,6 +12,7 @@ import { BadgeDoc } from "@/screens/docs/components/Badge";
 import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
 import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
+import { ComboboxDoc } from "@/screens/docs/components/Combobox";
 import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { EmptyDoc } from "@/screens/docs/components/Empty";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
@@ -74,6 +75,7 @@ function App() {
             <Route path="components/button" element={<ButtonDoc />} />
             <Route path="components/card" element={<CardDoc />} />
             <Route path="components/checkbox" element={<CheckboxDoc />} />
+            <Route path="components/combobox" element={<ComboboxDoc />} />
             <Route path="components/dialog" element={<DialogDoc />} />
             <Route path="components/empty" element={<EmptyDoc />} />
             <Route path="components/heading" element={<HeadingDoc />} />
