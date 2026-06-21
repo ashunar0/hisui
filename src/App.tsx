@@ -48,7 +48,7 @@ import ScrollAreaDoc from "@/screens/docs/components/ScrollArea.mdx";
 import SegmentGroupDoc from "@/screens/docs/components/SegmentGroup.mdx";
 import SelectDoc from "@/screens/docs/components/Select.mdx";
 import SeparatorDoc from "@/screens/docs/components/Separator.mdx";
-import { SidebarDoc } from "@/screens/docs/components/Sidebar";
+import SidebarDoc from "@/screens/docs/components/Sidebar.mdx";
 import SkeletonDoc from "@/screens/docs/components/Skeleton.mdx";
 import SpinnerDoc from "@/screens/docs/components/Spinner.mdx";
 import { SplitterDoc } from "@/screens/docs/components/Splitter";
