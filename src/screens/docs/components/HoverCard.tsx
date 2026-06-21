@@ -181,7 +181,9 @@ export function HoverCardDoc() {
                   instant
                 </span>
               </HoverCard.Trigger>
-              <HoverCard.Content>0 / 0 — 即出 / 即閉</HoverCard.Content>
+              <HoverCard.Content className="text-sm">
+                0 / 0 — 即出 / 即閉
+              </HoverCard.Content>
             </HoverCard.Root>
             <HoverCard.Root openDelay={150} closeDelay={150}>
               <HoverCard.Trigger asChild>
@@ -189,7 +191,9 @@ export function HoverCardDoc() {
                   default
                 </span>
               </HoverCard.Trigger>
-              <HoverCard.Content>150 / 150 — ui-lab default</HoverCard.Content>
+              <HoverCard.Content className="text-sm">
+                150 / 150 — ui-lab default
+              </HoverCard.Content>
             </HoverCard.Root>
             <HoverCard.Root openDelay={500} closeDelay={200}>
               <HoverCard.Trigger asChild>
@@ -197,7 +201,9 @@ export function HoverCardDoc() {
                   slow
                 </span>
               </HoverCard.Trigger>
-              <HoverCard.Content>500 / 200 — rich preview 向け</HoverCard.Content>
+              <HoverCard.Content className="text-sm">
+                500 / 200 — rich preview 向け
+              </HoverCard.Content>
             </HoverCard.Root>
           </div>
         </Example>
