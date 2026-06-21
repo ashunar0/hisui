@@ -46,7 +46,7 @@ import RadioGroupDoc from "@/screens/docs/components/RadioGroup.mdx";
 import RatingGroupDoc from "@/screens/docs/components/RatingGroup.mdx";
 import ScrollAreaDoc from "@/screens/docs/components/ScrollArea.mdx";
 import SegmentGroupDoc from "@/screens/docs/components/SegmentGroup.mdx";
-import { SelectDoc } from "@/screens/docs/components/Select";
+import SelectDoc from "@/screens/docs/components/Select.mdx";
 import SeparatorDoc from "@/screens/docs/components/Separator.mdx";
 import { SidebarDoc } from "@/screens/docs/components/Sidebar";
 import SkeletonDoc from "@/screens/docs/components/Skeleton.mdx";
