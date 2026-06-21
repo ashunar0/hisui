@@ -235,7 +235,6 @@ toaster.create({ title: "Reminder" }); // neutral`}
         <Example
           code={`toaster.create({
   title: "Email archived",
-  description: '"Q3 planning sync" was moved to archive.',
   action: {
     label: "Undo",
     onClick: () => toaster.create({ type: "success", title: "Restored" }),
@@ -248,7 +247,6 @@ toaster.create({ title: "Reminder" }); // neutral`}
             onClick={() =>
               toaster.create({
                 title: "Email archived",
-                description: "Q3 planning sync was moved to archive.",
                 action: {
                   label: "Undo",
                   onClick: () =>
