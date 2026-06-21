@@ -1,0 +1,168 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import ProgressCircularDemo from "./demos/progress/circular";
+import ProgressCircularSource from "./demos/progress/circular?raw";
+import ProgressCircularLabelDemo from "./demos/progress/circular-label";
+import ProgressCircularLabelSource from "./demos/progress/circular-label?raw";
+import ProgressIndeterminateDemo from "./demos/progress/indeterminate";
+import ProgressIndeterminateSource from "./demos/progress/indeterminate?raw";
+import ProgressLinearDemo from "./demos/progress/linear";
+import ProgressLinearSource from "./demos/progress/linear?raw";
+import ProgressStateViewDemo from "./demos/progress/state-view";
+import ProgressStateViewSource from "./demos/progress/state-view?raw";
+
+export const PARTS = [
+  {
+    name: "Progress.Root",
+    description:
+      "外枠。 value / min / max を持つ。 value={null} で indeterminate。 default は flex flex-col gap-1.5。",
+  },
+  {
+    name: "Progress.Label",
+    description: "見出し。 text-xs + font-medium。",
+  },
+  {
+    name: "Progress.ValueText",
+    description:
+      "現在値の表示。 default は percent。 format={(v, max) => string} で書式上書き。",
+  },
+  {
+    name: "Progress.Track",
+    description: "linear の枠。 bg-surface-sunken の rounded bar。",
+  },
+  {
+    name: "Progress.Range",
+    description:
+      "Track 内の塗り。 data-state=indeterminate で animation 切替。",
+  },
+  {
+    name: "Progress.Circle",
+    description:
+      "circular SVG container。 --size と --thickness を style 経由で調整。",
+  },
+  {
+    name: "Progress.CircleTrack",
+    description: "circular の背景円。 stroke-surface-sunken。",
+  },
+  {
+    name: "Progress.CircleRange",
+    description: "circular の塗り円。 stroke-fg。",
+  },
+  {
+    name: "Progress.View",
+    description:
+      'state="loading" | "complete" で content を swap。 100% で Done を見せたい時に。',
+  },
+];
+
+# Progress
+
+進捗を表す bar / circle。 1 つの primitive で linear と circular 両方サポート。 value={null} で indeterminate animation に切替。 Progress.View で loading / complete の content swap も組める。
+
+## Usage
+
+Track + Range の bar。 Label / ValueText を上に並べるのが定型。
+
+<Example code={ProgressLinearSource}>
+  <ProgressLinearDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Progress } from "@/components/ui/progress";
+```
+
+```tsx
+<Progress.Root value={65}>
+  <Progress.Label />
+  <Progress.ValueText />
+  <Progress.Track>
+    <Progress.Range />
+  </Progress.Track>
+</Progress.Root>
+```
+
+## Indeterminate
+
+value={null} で進捗不明モード。 Range が data-state=indeterminate になり muted 色 + animation に切替。
+
+<Example code={ProgressIndeterminateSource}>
+  <ProgressIndeterminateDemo />
+</Example>
+
+## Circular
+
+Circle + CircleTrack + CircleRange の SVG。 --size と --thickness を style/class で調整して大きさを変える。
+
+<Example code={ProgressCircularSource}>
+  <ProgressCircularDemo />
+</Example>
+
+## Circular with center label
+
+Circle を relative box で包んで absolute inset-0 で中央に label を重ねる。 Apple Watch 風の見せ方。
+
+<Example code={ProgressCircularLabelSource}>
+  <ProgressCircularLabelDemo />
+</Example>
+
+## State view
+
+Progress.View state=loading | complete で content を切替。 100% に達したら Done に swap したい時に使う。
+
+<Example code={ProgressStateViewSource}>
+  <ProgressStateViewDemo />
+</Example>
+
+## Anatomy
+
+Root に value を渡し、 linear なら Track + Range、 circular なら Circle + CircleTrack + CircleRange を組む。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "number | null",
+      default: "0",
+      description: "現在値。 null で indeterminate (無限 animation)。",
+    },
+    {
+      name: "min",
+      type: "number",
+      default: "0",
+      description: "最小値。",
+    },
+    {
+      name: "max",
+      type: "number",
+      default: "100",
+      description: "最大値。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "linear の向き。 circular には影響しない。",
+    },
+    {
+      name: "translations",
+      type: "{ value?: (details) => string }",
+      description:
+        "ValueText の format 上書き。 details に value / max / percent が入る。",
+    },
+  ]}
+/>
