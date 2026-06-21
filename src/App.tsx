@@ -30,6 +30,7 @@ import { StackDoc } from "@/screens/docs/components/Stack";
 import { SwitchDoc } from "@/screens/docs/components/Switch";
 import { TabsDoc } from "@/screens/docs/components/Tabs";
 import { TextareaDoc } from "@/screens/docs/components/Textarea";
+import { ToastDoc } from "@/screens/docs/components/Toast";
 import { TooltipDoc } from "@/screens/docs/components/Tooltip";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import { Colors } from "@/screens/docs/foundations/Colors";
@@ -91,6 +92,7 @@ function App() {
             <Route path="components/switch" element={<SwitchDoc />} />
             <Route path="components/tabs" element={<TabsDoc />} />
             <Route path="components/textarea" element={<TextareaDoc />} />
+            <Route path="components/toast" element={<ToastDoc />} />
             <Route path="components/tooltip" element={<TooltipDoc />} />
           </Route>
         </Routes>

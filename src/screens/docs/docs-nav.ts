@@ -50,6 +50,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Switch", to: "/docs/components/switch" },
       { label: "Tabs", to: "/docs/components/tabs" },
       { label: "Textarea", to: "/docs/components/textarea" },
+      { label: "Toast", to: "/docs/components/toast" },
       { label: "Tooltip", to: "/docs/components/tooltip" },
     ],
   },
