@@ -33,6 +33,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Card", to: "/docs/components/card" },
       { label: "Checkbox", to: "/docs/components/checkbox" },
       { label: "Combobox", to: "/docs/components/combobox" },
+      { label: "DatePicker", to: "/docs/components/date-picker" },
       { label: "Dialog", to: "/docs/components/dialog" },
       { label: "Drawer", to: "/docs/components/drawer" },
       { label: "Editable", to: "/docs/components/editable" },

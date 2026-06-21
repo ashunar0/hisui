@@ -4,8 +4,16 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
-function Root(props: ComponentProps<typeof ArkDatePicker.Root>) {
-  return <ArkDatePicker.Root {...props} />;
+function Root({
+  className,
+  ...props
+}: ComponentProps<typeof ArkDatePicker.Root>) {
+  return (
+    <ArkDatePicker.Root
+      className={cn("flex flex-col gap-2", className)}
+      {...props}
+    />
+  );
 }
 
 function Label({

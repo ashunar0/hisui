@@ -13,6 +13,7 @@ import { ButtonDoc } from "@/screens/docs/components/Button";
 import { CardDoc } from "@/screens/docs/components/Card";
 import { CheckboxDoc } from "@/screens/docs/components/Checkbox";
 import { ComboboxDoc } from "@/screens/docs/components/Combobox";
+import { DatePickerDoc } from "@/screens/docs/components/DatePicker";
 import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { DrawerDoc } from "@/screens/docs/components/Drawer";
 import { EditableDoc } from "@/screens/docs/components/Editable";
@@ -90,6 +91,10 @@ function App() {
             <Route path="components/card" element={<CardDoc />} />
             <Route path="components/checkbox" element={<CheckboxDoc />} />
             <Route path="components/combobox" element={<ComboboxDoc />} />
+            <Route
+              path="components/date-picker"
+              element={<DatePickerDoc />}
+            />
             <Route path="components/dialog" element={<DialogDoc />} />
             <Route path="components/drawer" element={<DrawerDoc />} />
             <Route path="components/editable" element={<EditableDoc />} />
