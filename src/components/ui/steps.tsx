@@ -75,7 +75,7 @@ function Indicator({
     <ArkSteps.Indicator
       className={cn(
         "group flex size-7 items-center justify-center rounded-full border border-border bg-surface text-sm font-medium text-fg-muted transition-colors",
-        "data-[current]:border-fg data-[current]:text-fg",
+        "data-[current]:border-fg data-[current]:bg-fg data-[current]:text-bg",
         "data-[complete]:border-fg data-[complete]:bg-fg data-[complete]:text-bg",
         className,
       )}
