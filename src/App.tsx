@@ -7,7 +7,7 @@ import { Dashboard } from "@/screens/Dashboard";
 import { Dev } from "@/screens/Dev";
 import AccordionDoc from "@/screens/docs/components/Accordion.mdx";
 import AlertDoc from "@/screens/docs/components/Alert.mdx";
-import { AlertDialogDoc } from "@/screens/docs/components/AlertDialog";
+import AlertDialogDoc from "@/screens/docs/components/AlertDialog.mdx";
 import AspectRatioDoc from "@/screens/docs/components/AspectRatio.mdx";
 import AvatarDoc from "@/screens/docs/components/Avatar.mdx";
 import BadgeDoc from "@/screens/docs/components/Badge.mdx";

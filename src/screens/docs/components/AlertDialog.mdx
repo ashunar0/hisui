@@ -1,0 +1,132 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import AlertDialogDestructiveDemo from "./demos/alert-dialog/destructive";
+import AlertDialogDestructiveSource from "./demos/alert-dialog/destructive?raw";
+import AlertDialogNonDestructiveDemo from "./demos/alert-dialog/non-destructive";
+import AlertDialogNonDestructiveSource from "./demos/alert-dialog/non-destructive?raw";
+import AlertDialogWithWarningDemo from "./demos/alert-dialog/with-warning";
+import AlertDialogWithWarningSource from "./demos/alert-dialog/with-warning?raw";
+
+export const PARTS = [
+  {
+    name: "AlertDialog.Root",
+    description:
+      "Dialog.Root の薄い wrapper。 role=alertdialog を強制する以外は Dialog と同じ API。",
+  },
+  {
+    name: "AlertDialog.Trigger",
+    description: "開閉ボタン。 asChild で Button 等に差し替え。",
+  },
+  {
+    name: "AlertDialog.Content",
+    description:
+      "中身。 内部で Portal + Backdrop + Positioner を自動 mount。 中央 modal。",
+  },
+  {
+    name: "AlertDialog.Title",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "AlertDialog.Description",
+    description: "補足。 aria-describedby に自動接続。",
+  },
+  {
+    name: "AlertDialog.CloseTrigger",
+    description:
+      "確認 / Cancel など閉じる action。 asChild で Button に。 Esc / backdrop click でも閉じる。",
+  },
+];
+
+# AlertDialog
+
+Dialog の confirm 専用 variant。 API は Dialog と同じだが role=alertdialog で固定され、 a11y 的に「ユーザーの確認が必要」と通知される。 削除 / 破棄 / sign out 等の不可逆操作に。
+
+## Usage
+
+不可逆操作。 Confirm は colorPalette=danger、 Cancel は outline で 2 button を並べる。
+
+<Example code={AlertDialogDestructiveSource}>
+  <AlertDialogDestructiveDemo />
+</Example>
+
+## Import
+
+```tsx
+import { AlertDialog } from "@/components/ui/alert-dialog";
+```
+
+```tsx
+<AlertDialog.Root>
+  <AlertDialog.Trigger asChild>
+    <Button />
+  </AlertDialog.Trigger>
+  <AlertDialog.Content>
+    <AlertDialog.Title />
+    <AlertDialog.Description />
+    <AlertDialog.CloseTrigger asChild>
+      <Button />
+    </AlertDialog.CloseTrigger>
+  </AlertDialog.Content>
+</AlertDialog.Root>
+```
+
+## With warning icon
+
+Title の左に warning icon を同居させると視認性が上がる。 flex + items-center の row で組む。
+
+<Example code={AlertDialogWithWarningSource}>
+  <AlertDialogWithWarningDemo />
+</Example>
+
+## Non-destructive confirm
+
+破壊的ではないが警戒したい action (sign out 等) は Confirm を default solid に。 色で warn しすぎない。
+
+<Example code={AlertDialogNonDestructiveSource}>
+  <AlertDialogNonDestructiveDemo />
+</Example>
+
+## Anatomy
+
+Dialog と同じ part 構成。 違いは role=alertdialog 固定 + Confirm を colorPalette=danger にする慣習だけ。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "open",
+      type: "boolean",
+      description: "controlled 開閉。 onOpenChange とセットで使う。",
+    },
+    {
+      name: "defaultOpen",
+      type: "boolean",
+      default: "false",
+      description: "uncontrolled 初期値。",
+    },
+    {
+      name: "onOpenChange",
+      type: "(details: { open: boolean }) => void",
+      description: "open 変化の callback。",
+    },
+    {
+      name: "role",
+      type: '"alertdialog"',
+      default: '"alertdialog"',
+      description:
+        "AlertDialog では固定。 Dialog との差分はここだけ (a11y で確認系と通知される)。",
+    },
+  ]}
+/>
