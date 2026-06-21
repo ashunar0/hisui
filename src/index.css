@@ -241,3 +241,11 @@ body {
     );
   }
 }
+
+.docs-prose > * + * {
+  margin-top: 2rem;
+}
+.docs-prose > h1 + p,
+.docs-prose > h2 + p {
+  margin-top: 0.5rem;
+}
