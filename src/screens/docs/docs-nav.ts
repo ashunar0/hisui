@@ -42,6 +42,7 @@ export const DOCS_NAV: DocsNavGroup[] = [
       { label: "Select", to: "/docs/components/select" },
       { label: "Skeleton", to: "/docs/components/skeleton" },
       { label: "Slider", to: "/docs/components/slider" },
+      { label: "Spinner", to: "/docs/components/spinner" },
       { label: "Stack", to: "/docs/components/stack" },
       { label: "Switch", to: "/docs/components/switch" },
       { label: "Tabs", to: "/docs/components/tabs" },
