@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { SegmentGroup } from "@/components/ui/segment-group";
 import { CodeBlock } from "./code";
 
 type ExampleProps = {
@@ -7,15 +8,33 @@ type ExampleProps = {
 };
 
 /**
- * live preview (上) + source (下) の 2 段組み。
- * preview のレイアウトは children 側で flex などを組んで制御する。
+ * Preview / Code を SegmentGroup (枠外) で切替。 中身は border 付き box。
  */
 export function Example({ code, children }: ExampleProps) {
+  const [view, setView] = useState<"preview" | "code">("preview");
   return (
-    <div className="overflow-hidden rounded-lg border border-border">
-      <div className="bg-surface p-6">{children}</div>
-      <div className="border-t border-border">
-        <CodeBlock code={code} />
+    <div className="flex flex-col gap-3">
+      <SegmentGroup.Root
+        value={view}
+        onValueChange={(d) =>
+          d.value && setView(d.value as "preview" | "code")
+        }
+        className="w-fit"
+      >
+        <SegmentGroup.Indicator />
+        <SegmentGroup.Item value="preview">
+          <SegmentGroup.ItemText>Preview</SegmentGroup.ItemText>
+        </SegmentGroup.Item>
+        <SegmentGroup.Item value="code">
+          <SegmentGroup.ItemText>Code</SegmentGroup.ItemText>
+        </SegmentGroup.Item>
+      </SegmentGroup.Root>
+      <div className="overflow-hidden rounded-lg border border-border">
+        {view === "preview" ? (
+          <div className="bg-surface p-6">{children}</div>
+        ) : (
+          <CodeBlock code={code} />
+        )}
       </div>
     </div>
   );
