@@ -1,7 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { PinInput } from "@/components/ui/pin-input";
 import { Example } from "@/screens/docs/parts/example";
 import { PropsTable } from "@/screens/docs/parts/props-table";
+import PinInputMaskedDemo from "./demos/pin-input/masked";
+import PinInputMaskedSource from "./demos/pin-input/masked?raw";
+import PinInputOtpDemo from "./demos/pin-input/otp";
+import PinInputOtpSource from "./demos/pin-input/otp?raw";
+import PinInputUsageDemo from "./demos/pin-input/usage";
+import PinInputUsageSource from "./demos/pin-input/usage?raw";
+import PinInputWithSubmitDemo from "./demos/pin-input/with-submit";
+import PinInputWithSubmitSource from "./demos/pin-input/with-submit?raw";
 
 export const PARTS = [
   {
@@ -35,38 +41,58 @@ export const PARTS = [
   },
 ];
 
-export function WithSubmit() {
-  return (
-    <PinInput.Root>
-      <PinInput.Label>Verify code (5 digits)</PinInput.Label>
-      <PinInput.Control>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <PinInput.Input key={i} index={i} />
-        ))}
-      </PinInput.Control>
-      <PinInput.Context>
-        {(api) => {
-          const filled = api.value.filter(Boolean).length;
-          const total = api.value.length;
-          return (
-            <div className="mt-1 flex items-center justify-between gap-3">
-              <span className="text-fg-muted text-[11px]">
-                {filled} / {total} digits
-              </span>
-              <Button size="sm" disabled={!api.complete}>
-                Verify
-              </Button>
-            </div>
-          );
-        }}
-      </PinInput.Context>
-    </PinInput.Root>
-  );
-}
-
 # PinInput
 
 OTP / PIN / 認証コード入力用の桁ごと box。 paste で全桁に分配、 入力毎に次の box へ自動 focus、 全桁埋まると onValueComplete が発火。 otp 属性で iOS / Android の SMS 自動入力にも対応。
+
+## Usage
+
+桁数分の Input を Control 内に並べるだけの最小形。
+
+<Example code={PinInputUsageSource}>
+  <PinInputUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { PinInput } from "@/components/ui/pin-input";
+```
+
+```tsx
+<PinInput.Root>
+  <PinInput.Label />
+  <PinInput.Control>
+    {Array.from({ length: N }).map((_, i) => (
+      <PinInput.Input key={i} index={i} />
+    ))}
+  </PinInput.Control>
+</PinInput.Root>
+```
+
+## OTP
+
+otp prop で autocomplete=one-time-code。 SMS の認証コードを自動入力できるようになる。
+
+<Example code={PinInputOtpSource}>
+  <PinInputOtpDemo />
+</Example>
+
+## Masked
+
+mask prop で入力値を • 表示。 PIN / passcode 入力風。
+
+<Example code={PinInputMaskedSource}>
+  <PinInputMaskedDemo />
+</Example>
+
+## With submit gate
+
+Context render-prop で api.complete / api.value を取って、 全桁埋まるまで submit を disable + 進捗表示。
+
+<Example code={PinInputWithSubmitSource}>
+  <PinInputWithSubmitDemo />
+</Example>
 
 ## Anatomy
 
@@ -82,77 +108,6 @@ Root の中に Label / Control / (Context 任意)。 Control の中に Input を
     </li>
   ))}
 </ul>
-
-## OTP
-
-otp prop で autocomplete=one-time-code。 SMS の認証コードを自動入力できるようになる。
-
-<Example
-  code={`<PinInput.Root otp>
-  <PinInput.Label>One-time code</PinInput.Label>
-  <PinInput.Control>
-    {Array.from({ length: 6 }).map((_, i) => (
-      <PinInput.Input key={i} index={i} />
-    ))}
-  </PinInput.Control>
-</PinInput.Root>`}
->
-  <PinInput.Root otp>
-    <PinInput.Label>One-time code</PinInput.Label>
-    <PinInput.Control>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <PinInput.Input key={i} index={i} />
-      ))}
-    </PinInput.Control>
-  </PinInput.Root>
-</Example>
-
-## Masked
-
-mask prop で入力値を • 表示。 PIN / passcode 入力風。
-
-<Example
-  code={`<PinInput.Root mask>
-  <PinInput.Label>Card PIN</PinInput.Label>
-  <PinInput.Control>
-    {Array.from({ length: 4 }).map((_, i) => (
-      <PinInput.Input key={i} index={i} />
-    ))}
-  </PinInput.Control>
-</PinInput.Root>`}
->
-  <PinInput.Root mask>
-    <PinInput.Label>Card PIN</PinInput.Label>
-    <PinInput.Control>
-      {Array.from({ length: 4 }).map((_, i) => (
-        <PinInput.Input key={i} index={i} />
-      ))}
-    </PinInput.Control>
-  </PinInput.Root>
-</Example>
-
-## With submit gate
-
-Context render-prop で api.complete / api.value を取って、 全桁埋まるまで submit を disable + 進捗表示。
-
-<Example
-  code={`<PinInput.Root>
-  <PinInput.Label>Verify code (5 digits)</PinInput.Label>
-  <PinInput.Control>
-    {Array.from({ length: 5 }).map((_, i) => <PinInput.Input key={i} index={i} />)}
-  </PinInput.Control>
-  <PinInput.Context>
-    {(api) => (
-      <div className="flex justify-between">
-        <span>{api.value.filter(Boolean).length} / {api.value.length} digits</span>
-        <Button disabled={!api.complete}>Verify</Button>
-      </div>
-    )}
-  </PinInput.Context>
-</PinInput.Root>`}
->
-  <WithSubmit />
-</Example>
 
 ## Props
 
