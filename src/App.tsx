@@ -17,6 +17,7 @@ import { DialogDoc } from "@/screens/docs/components/Dialog";
 import { DrawerDoc } from "@/screens/docs/components/Drawer";
 import { EditableDoc } from "@/screens/docs/components/Editable";
 import { EmptyDoc } from "@/screens/docs/components/Empty";
+import { FieldDoc } from "@/screens/docs/components/Field";
 import { HeadingDoc } from "@/screens/docs/components/Heading";
 import { HoverCardDoc } from "@/screens/docs/components/HoverCard";
 import { IconButtonDoc } from "@/screens/docs/components/IconButton";
@@ -92,6 +93,7 @@ function App() {
             <Route path="components/drawer" element={<DrawerDoc />} />
             <Route path="components/editable" element={<EditableDoc />} />
             <Route path="components/empty" element={<EmptyDoc />} />
+            <Route path="components/field" element={<FieldDoc />} />
             <Route path="components/heading" element={<HeadingDoc />} />
             <Route path="components/hover-card" element={<HoverCardDoc />} />
             <Route path="components/icon-button" element={<IconButtonDoc />} />
