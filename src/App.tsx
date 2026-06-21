@@ -39,7 +39,7 @@ import NumberInputDoc from "@/screens/docs/components/NumberInput.mdx";
 import PaginationDoc from "@/screens/docs/components/Pagination.mdx";
 import PasswordInputDoc from "@/screens/docs/components/PasswordInput.mdx";
 import PinInputDoc from "@/screens/docs/components/PinInput.mdx";
-import { PopoverDoc } from "@/screens/docs/components/Popover";
+import PopoverDoc from "@/screens/docs/components/Popover.mdx";
 import { ProgressDoc } from "@/screens/docs/components/Progress";
 import QrCodeDoc from "@/screens/docs/components/QrCode.mdx";
 import { RadioGroupDoc } from "@/screens/docs/components/RadioGroup";
