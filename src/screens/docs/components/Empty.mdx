@@ -1,0 +1,179 @@
+import { FileText, Inbox, Plus, Search, Upload } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Empty } from "@/components/ui/empty";
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+
+export const PARTS = [
+  {
+    name: "Empty.Root",
+    description:
+      "外枠。 dashed border + center 寄せ flex の placeholder container。 p-12 で余白を確保。",
+  },
+  {
+    name: "Empty.Icon",
+    description: "丸い surface-sunken の枠に icon を入れる。 子 svg は size-6 強制。",
+  },
+  {
+    name: "Empty.Title",
+    description: "見出し。 h3 base、 font-semibold。",
+  },
+  {
+    name: "Empty.Description",
+    description: "補足。 max-w-sm で 1〜2 行に収める。 fg-muted。",
+  },
+  {
+    name: "Empty.Actions",
+    description: "下に並ぶ button 群。 flex-wrap で center 配置。",
+  },
+];
+
+# Empty
+
+データが無い時の placeholder。 dashed border の box に Icon + Title + Description + Actions を center 寄せで並べる。 list / search / inbox の zero-state、 onboarding の初手 CTA に。
+
+## Anatomy
+
+Root の中に Icon / Title / Description / Actions を順に並べる。 全部任意 — Title だけでも成立。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Usage
+
+Icon + Title + Description + 1 CTA の典型。
+
+<Example
+  code={`<Empty.Root>
+  <Empty.Icon><Inbox /></Empty.Icon>
+  <Empty.Title>No messages</Empty.Title>
+  <Empty.Description>Your inbox is empty. New messages will show up here.</Empty.Description>
+  <Empty.Actions>
+    <Button>Compose</Button>
+  </Empty.Actions>
+</Empty.Root>`}
+>
+  <Empty.Root className="w-full">
+    <Empty.Icon>
+      <Inbox />
+    </Empty.Icon>
+    <Empty.Title>No messages</Empty.Title>
+    <Empty.Description>
+      Your inbox is empty. New messages will show up here.
+    </Empty.Description>
+    <Empty.Actions>
+      <Button>
+        <Plus className="size-4" />
+        Compose
+      </Button>
+    </Empty.Actions>
+  </Empty.Root>
+</Example>
+
+## Title only
+
+一番軽い形。 list 末尾の inline placeholder に。
+
+<Example
+  code={`<Empty.Root className="p-6">
+  <Empty.Title>No results</Empty.Title>
+</Empty.Root>`}
+>
+  <Empty.Root className="w-full p-6">
+    <Empty.Title>No results</Empty.Title>
+  </Empty.Root>
+</Example>
+
+## Search zero-state
+
+検索結果が無い時。 query を文中に出して reset を促す。
+
+<Example
+  code={`<Empty.Root>
+  <Empty.Icon><Search /></Empty.Icon>
+  <Empty.Title>No matches for "zustand"</Empty.Title>
+  <Empty.Description>Try a different keyword or clear the filters.</Empty.Description>
+  <Empty.Actions>
+    <Button variant="outline">Clear filters</Button>
+  </Empty.Actions>
+</Empty.Root>`}
+>
+  <Empty.Root className="w-full">
+    <Empty.Icon>
+      <Search />
+    </Empty.Icon>
+    <Empty.Title>{'No matches for "zustand"'}</Empty.Title>
+    <Empty.Description>
+      Try a different keyword or clear the filters.
+    </Empty.Description>
+    <Empty.Actions>
+      <Button variant="outline">Clear filters</Button>
+    </Empty.Actions>
+  </Empty.Root>
+</Example>
+
+## Onboarding
+
+初回 user 向け。 primary + secondary の 2 CTA を並べる。
+
+<Example
+  code={`<Empty.Root>
+  <Empty.Icon><FileText /></Empty.Icon>
+  <Empty.Title>Start your first document</Empty.Title>
+  <Empty.Description>Create a blank doc or import an existing file from your drive.</Empty.Description>
+  <Empty.Actions>
+    <Button><Plus className="size-4" />New document</Button>
+    <Button variant="outline"><Upload className="size-4" />Import</Button>
+  </Empty.Actions>
+</Empty.Root>`}
+>
+  <Empty.Root className="w-full">
+    <Empty.Icon>
+      <FileText />
+    </Empty.Icon>
+    <Empty.Title>Start your first document</Empty.Title>
+    <Empty.Description>
+      Create a blank doc or import an existing file from your drive.
+    </Empty.Description>
+    <Empty.Actions>
+      <Button>
+        <Plus className="size-4" />
+        New document
+      </Button>
+      <Button variant="outline">
+        <Upload className="size-4" />
+        Import
+      </Button>
+    </Empty.Actions>
+  </Empty.Root>
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "Root.className",
+      type: "string",
+      description: "padding / 背景 / 枠を上書き。 inline 用に縮めることも。",
+    },
+    {
+      name: "Icon.className",
+      type: "string",
+      description: "icon container の色 / 形状を上書き。 子 svg は自動で size-6。",
+    },
+    {
+      name: "Title / Description / Actions",
+      type: "HTMLAttributes",
+      description: "それぞれ h3 / p / div の prop を pass-through。",
+    },
+  ]}
+/>
