@@ -1,0 +1,27 @@
+import RadiusScale from "@hisui/screens/docs/foundations/demos/radius/scale";
+import RadiusConventions from "@hisui/screens/docs/foundations/demos/radius/conventions";
+import RadiusNesting from "@hisui/screens/docs/foundations/demos/radius/nesting";
+
+export const metadata = { title: "Radius | Hisui UI" };
+
+# Radius
+
+radius は Tailwind default の `rounded-*` をそのまま使う。 ui-lab の標準は `rounded-md (6px)`、 高度が高い surface だけ `rounded-lg` に上げる。 Pill / Avatar は `rounded-full`。
+
+## Scale
+
+Tailwind default の radius を素のまま使う。 ui-lab の標準は `rounded-md (6px)`、 floating で意図的に大きくする時だけ `rounded-lg` に上げる。
+
+<RadiusScale />
+
+## Conventions
+
+迷ったらこの対応で書く。
+
+<RadiusConventions />
+
+## Nesting
+
+parent と child の radius は揃えるか、 child を 1 段小さくする。 child > parent は中身が枠を突き抜けて見えるので避ける。
+
+<RadiusNesting />

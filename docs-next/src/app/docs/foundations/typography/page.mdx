@@ -1,0 +1,41 @@
+import TypographyHeadingScale from "@hisui/screens/docs/foundations/demos/typography/heading-scale";
+import TypographyBodyScale from "@hisui/screens/docs/foundations/demos/typography/body-scale";
+import TypographyWeights from "@hisui/screens/docs/foundations/demos/typography/weights";
+import TypographyForegroundTokens from "@hisui/screens/docs/foundations/demos/typography/foreground-tokens";
+import TypographyLeadingTracking from "@hisui/screens/docs/foundations/demos/typography/leading-tracking";
+
+export const metadata = { title: "Typography | Hisui UI" };
+
+# Typography
+
+font-family は Wix Madefor Text Variable を `--font-sans` に束ねる。 サイズ・weight・leading は Tailwind default をそのまま使い、 文字色だけ semantic token に通す方針。
+
+## Heading scale
+
+Heading primitive の size。 8 段階。 3xl 以上は tracking-tight、 font-weight は semibold 固定。
+
+<TypographyHeadingScale />
+
+## Body scale
+
+本文・UI で使うサイズ。 Tailwind default をそのまま使う。
+
+<TypographyBodyScale />
+
+## Weights
+
+Wix Madefor Text Variable は 400 / 500 / 600 / 700 を主に使う。
+
+<TypographyWeights />
+
+## Foreground tokens
+
+文字色は raw color を使わず semantic token に通す。 詳細は Colors を参照。
+
+<TypographyForegroundTokens />
+
+## Leading & tracking
+
+長文には leading-relaxed、 大きな Heading には tracking-tight を組み合わせる。
+
+<TypographyLeadingTracking />
