@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Sidebar } from "@/components/ui/sidebar";
 import { DOCS_NAV } from "./docs-nav";
 import { mdxComponents } from "./parts/mdx-components";
+import { DocsSearch } from "./parts/docs-search";
 import { OnThisPage } from "./parts/on-this-page";
 
 export function DocsLayout() {
@@ -13,20 +14,23 @@ export function DocsLayout() {
   const mainRef = useRef<HTMLElement>(null);
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0 });
-    const item = DOCS_NAV.flatMap((g) => g.items).find((i) => i.to === pathname);
+    const item = DOCS_NAV.flatMap((g) => g.items).find(
+      (i) => i.to === pathname,
+    );
     document.title = item ? `${item.label} | Hisui UI` : "Hisui UI";
   }, [pathname]);
   return (
     <Sidebar.Provider>
       <div className="flex h-svh flex-col bg-bg">
-        <header className="flex shrink-0 items-center gap-3 border-b border-border px-4 py-2.5">
+        <header className="flex shrink-0 items-center gap-3 border-b border-border px-6 py-4">
           <Link
             to="/docs"
-            className="flex items-center gap-2 text-md font-bold tracking-tight"
+            className="flex items-center gap-2 text-lg font-bold tracking-tight"
           >
             Hisui UI
           </Link>
           <div className="ml-auto flex items-center gap-2">
+            <DocsSearch />
             <Link to="/" className="text-xs text-fg-muted hover:text-fg">
               ← home
             </Link>
