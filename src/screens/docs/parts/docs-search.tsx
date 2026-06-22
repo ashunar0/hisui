@@ -58,14 +58,11 @@ export function DocsSearch() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex h-9 w-64 items-center gap-2 rounded-md bg-surface-muted px-3 text-sm text-fg-muted hover:bg-hover"
+        className="flex h-9 w-64 items-center gap-2 rounded-md border border-transparent bg-hover px-3 text-sm text-fg-soft hover:bg-surface-sunken"
       >
         <Search className="size-4" />
         <span className="flex-1 text-left">Search docs...</span>
-        <span className="flex items-center gap-1">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
-        </span>
+        <Kbd>⌘K</Kbd>
       </button>
       <Command.Dialog
         open={open}
