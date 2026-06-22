@@ -19,28 +19,30 @@ export function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <Sidebar.Provider>
       <div className="flex h-svh flex-col bg-bg">
-        <header className="flex shrink-0 items-center gap-3 border-b border-border px-6 py-4">
-          <Link
-            href="/docs"
-            className="flex items-center gap-2 text-lg font-bold tracking-tight"
-          >
-            Hisui UI
-          </Link>
-          <div className="ml-auto flex items-center gap-2">
-            <DocsSearch />
-            <a
-              href="https://github.com/ashunar0/hisui"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub repository"
-              className="inline-flex size-8 items-center justify-center rounded-md text-fg hover:bg-hover"
+        <header className="shrink-0 border-b border-border">
+          <div className="mx-auto flex w-full max-w-[1400px] items-center gap-3 px-6 py-4">
+            <Link
+              href="/docs"
+              className="flex items-center gap-2 text-lg font-bold tracking-tight"
             >
-              <GithubIcon className="size-4" />
-            </a>
+              Hisui UI
+            </Link>
+            <div className="ml-auto flex items-center gap-2">
+              <DocsSearch />
+              <a
+                href="https://github.com/ashunar0/hisui"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub repository"
+                className="inline-flex size-8 items-center justify-center rounded-md text-fg hover:bg-hover"
+              >
+                <GithubIcon className="size-4" />
+              </a>
+            </div>
           </div>
         </header>
-        <div className="flex min-h-0 flex-1">
-          <Sidebar.Root className="bg-bg border-none">
+        <div className="mx-auto flex min-h-0 w-full max-w-[1400px] flex-1">
+          <Sidebar.Root className="border-none bg-bg">
             <Sidebar.Content className="scrollbar-soft overflow-y-auto">
               {DOCS_NAV.map((group, i) => (
                 <Sidebar.Group key={group.label ?? i}>
@@ -72,11 +74,9 @@ export function DocsLayout({ children }: { children: ReactNode }) {
           </Sidebar.Root>
           <main
             ref={mainRef}
-            className="scrollbar-soft flex-1 overflow-y-auto"
+            className="scrollbar-soft min-w-0 flex-1 overflow-y-auto"
           >
-            <div className="mx-auto max-w-6xl px-6 pt-4 pb-16">
-              {children}
-            </div>
+            <div className="px-8 pt-4 pb-16">{children}</div>
           </main>
         </div>
       </div>
