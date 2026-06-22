@@ -73,7 +73,7 @@ import Radius from "@/screens/docs/foundations/Radius.mdx";
 import Shadow from "@/screens/docs/foundations/Shadow.mdx";
 import Spacing from "@/screens/docs/foundations/Spacing.mdx";
 import Typography from "@/screens/docs/foundations/Typography.mdx";
-import { Overview } from "@/screens/docs/Overview";
+import Overview from "@/screens/docs/Overview.mdx";
 import { Home } from "@/screens/Home";
 import { Login } from "@/screens/Login";
 import { Mail } from "@/screens/Mail";

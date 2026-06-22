@@ -14,7 +14,7 @@ function toPascal(slug: string) {
 }
 
 function sourceUrlFromPath(pathname: string): string | null {
-  if (pathname === "/docs") return `${SOURCE_BASE}/Overview.tsx`;
+  if (pathname === "/docs") return `${SOURCE_BASE}/Overview.mdx`;
   const m = pathname.match(/^\/docs\/([^/]+)\/([^/]+)\/?$/);
   if (!m) return null;
   const [, section, slug] = m;
