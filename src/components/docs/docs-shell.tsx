@@ -15,11 +15,11 @@ export function DocsShell({
 }) {
   return (
     <div className="flex gap-10">
-      <div className="docs-prose relative min-w-0 max-w-3xl flex-1">
-        <div className="absolute right-0 top-1">
+      <div className="relative min-w-0 max-w-3xl flex-1 pt-8">
+        <div className="absolute right-0 top-9">
           <CopyPage />
         </div>
-        {children}
+        <div className="docs-prose">{children}</div>
       </div>
       <OnThisPage initialItems={toc ?? []} />
     </div>
