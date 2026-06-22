@@ -1,6 +1,6 @@
 # Hisui UI
 
-個人用 React component registry。 Ark UI + Tailwind v4 で組んだ 63 個の primitive を shadcn 方式 (copy-paste) で consumer project に配布する。
+React component registry。 Ark UI + Tailwind v4 で組んだ 63 個の primitive を shadcn 方式 (copy-paste) で consumer project に配布する。
 
 - **63 primitive** + 5 foundations (Colors / Typography / Spacing / Shadow / Radius)
 - **Next.js (App Router) + Vite** 両対応 (framework 自動判定)
@@ -103,10 +103,6 @@ hisui/
     ├── index.css              token 全 255 行
     └── components/ui/*.tsx    全 63 primitive (source of truth)
 ```
-
-## Contributing
-
-個人 registry のため外部 contribution は受け付けない。 自分用に fork は自由。
 
 ## License
 
