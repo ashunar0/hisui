@@ -1,0 +1,25 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { Button } from "@/components/ui/button";
+import ButtonUsageDemo from "../../../../src/screens/docs/components/demos/button/usage";
+
+export const ButtonUsageSource = readFileSync(
+  resolve(process.cwd(), "../src/screens/docs/components/demos/button/usage.tsx"),
+  "utf8",
+);
+
+# MDX + Hisui Button
+
+<div className="flex gap-2">
+  <Button>solid</Button>
+  <Button variant="outline">outline</Button>
+  <Button variant="ghost">ghost</Button>
+</div>
+
+## Live demo
+
+<ButtonUsageDemo />
+
+## Source
+
+<pre className="bg-surface-sunken p-3 text-xs">{ButtonUsageSource}</pre>
