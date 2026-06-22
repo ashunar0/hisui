@@ -23,3 +23,12 @@ export async function loadDemo(
   const html = await highlightCode(code);
   return { code, html };
 }
+
+/** Read any source file under shared src/ and pre-highlight it (SSR). */
+export async function loadSource(
+  relativePath: string,
+): Promise<{ code: string; html: string }> {
+  const code = readSource(relativePath);
+  const html = await highlightCode(code);
+  return { code, html };
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { Chart } from "@/components/ui/chart";
 

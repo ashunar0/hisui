@@ -1,0 +1,88 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ChartAreaDemo from "@hisui/screens/docs/data-viz/demos/chart/area";
+import ChartBarDemo from "@hisui/screens/docs/data-viz/demos/chart/bar";
+import ChartLineMultiDemo from "@hisui/screens/docs/data-viz/demos/chart/line-multi";
+import ChartPieDemo from "@hisui/screens/docs/data-viz/demos/chart/pie";
+import { loadSource } from "@/lib/read-source";
+
+export const chartArea = await loadSource("screens/docs/data-viz/demos/chart/area.tsx");
+export const chartBar = await loadSource("screens/docs/data-viz/demos/chart/bar.tsx");
+export const chartLineMulti = await loadSource("screens/docs/data-viz/demos/chart/line-multi.tsx");
+export const chartPie = await loadSource("screens/docs/data-viz/demos/chart/pie.tsx");
+export const metadata = { title: "Chart | Hisui UI" };
+
+# Chart
+
+recharts ベースのデータ可視化 wrapper。 ui-lab 独自の薄 wrap は Container (ResponsiveContainer + aspect) と Tooltip (token 色に揃えた cursor + content) の 2 つだけで、 中の chart 本体は recharts の AreaChart / LineChart / BarChart / PieChart 等をそのまま使う。 軸 / grid / 色は CSS 変数 (`--color-fg-muted` / `--color-border` / 等) で token と同期させる。
+
+## Area chart
+
+revenue 推移の定番。 stroke + fill + fillOpacity で線と塗りを分離。 axisLine / tickLine を false にして minimal 寄りに。
+
+<Example code={chartArea.code} html={chartArea.html}>
+  <ChartAreaDemo />
+</Example>
+
+## Line chart (multi series)
+
+同じ Chart.Container の中に Line を 2 本。 Tooltip は 2 entry 自動表示。 secondary は strokeDasharray で破線に。
+
+<Example code={chartLineMulti.code} html={chartLineMulti.html}>
+  <ChartLineMultiDemo />
+</Example>
+
+## Bar chart
+
+channel 別の breakdown。 radius で top-left/right だけ丸める (bar の上端を rounded)。
+
+<Example code={chartBar.code} html={chartBar.html}>
+  <ChartBarDemo />
+</Example>
+
+## Pie chart with legend
+
+各 slice の色は Cell に直接渡す。 凡例は recharts の Legend を使わず、 横に手書きの list を並べると token と整合させやすい。
+
+<Example code={chartPie.code} html={chartPie.html}>
+  <ChartPieDemo />
+</Example>
+
+## Anatomy
+
+2 part だけ。 残りは recharts の API そのまま。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  <li className="grid grid-cols-[14rem_1fr] gap-3">
+    <span className="font-mono text-fg text-xs">Chart.Container</span>
+    <span className="text-fg-muted text-xs leading-relaxed">
+      recharts の ResponsiveContainer 薄 wrap。 aspect prop で aspect-ratio、 width=100%。 中の AreaChart / LineChart 等を 1 つ child として渡す。
+    </span>
+  </li>
+  <li className="grid grid-cols-[14rem_1fr] gap-3">
+    <span className="font-mono text-fg text-xs">Chart.Tooltip</span>
+    <span className="text-fg-muted text-xs leading-relaxed">
+      recharts Tooltip の薄 wrap。 cursor=dashed line、 content は ui-lab token に合わせた自作 (icon swatch + name + value)。 series が複数あれば自動で全部 list。
+    </span>
+  </li>
+</ul>
+
+## Container props
+
+<PropsTable
+  rows={[
+    {
+      name: "aspect",
+      type: "number",
+      default: "16 / 9",
+      description: "幅÷高さ。 横長は 16/6、 正方形 (pie) は 1。",
+    },
+    {
+      name: "children",
+      type: "ReactElement",
+      default: "—",
+      description:
+        "recharts の AreaChart / LineChart / BarChart / PieChart を 1 つだけ渡す。",
+    },
+  ]}
+/>

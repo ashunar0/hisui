@@ -1,3 +1,5 @@
+"use client";
+
 import { Cell, Pie, PieChart } from "recharts";
 import { Chart } from "@/components/ui/chart";
 
