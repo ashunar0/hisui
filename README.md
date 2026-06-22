@@ -13,13 +13,13 @@ React component registry。 Ark UI + Tailwind v4 で組んだ 63 個の primitiv
 
 ```bash
 # 1. 初期化 (hisui.json + tokens + lib/utils + lib/slot)
-npx -y github:ashunar0/hisui init
+npx hisui-ui init
 
 # 2. primitive を追加 (registry dep + npm dep 自動解決)
-npx -y github:ashunar0/hisui add button dialog menu
+npx hisui-ui add button dialog menu
 
 # 全部入れたい時
-npx -y github:ashunar0/hisui add --all
+npx hisui-ui add --all
 ```
 
 ## Commands
