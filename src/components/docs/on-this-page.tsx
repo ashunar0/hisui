@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type TocItem = { id: string; text: string };
+export type TocItem = { id: string; text: string };
 
 function collectSections(root: ParentNode) {
   return Array.from(root.querySelectorAll<HTMLElement>("[data-doc-section]"));
@@ -58,10 +58,10 @@ function createScrollSpy(
   };
 }
 
-function useTableOfContents() {
+function useTableOfContents(initial: TocItem[]) {
   const pathname = usePathname();
-  const [items, setItems] = useState<TocItem[]>([]);
-  const [active, setActive] = useState<string | null>(null);
+  const [items, setItems] = useState<TocItem[]>(initial);
+  const [active, setActive] = useState<string | null>(initial[0]?.id ?? null);
 
   useEffect(() => {
     const main = document.querySelector("main");
@@ -69,8 +69,10 @@ function useTableOfContents() {
     let teardownSpy: (() => void) | undefined;
     const raf = requestAnimationFrame(() => {
       const sections = collectSections(main);
-      setItems(toTocItems(sections));
-      setActive(sections[0]?.id ?? null);
+      // mount 後に DOM scan で確定値に置き換える (initial が古い等のケース保険)
+      const next = toTocItems(sections);
+      setItems(next);
+      setActive((curr) => curr ?? next[0]?.id ?? null);
       if (sections.length > 0) {
         teardownSpy = createScrollSpy(main, sections, setActive);
       }
@@ -104,8 +106,12 @@ function TocLink({ item, active }: { item: TocItem; active: boolean }) {
   );
 }
 
-export function OnThisPage() {
-  const { items, active } = useTableOfContents();
+export function OnThisPage({
+  initialItems = [],
+}: {
+  initialItems?: TocItem[];
+}) {
+  const { items, active } = useTableOfContents(initialItems);
   if (items.length === 0) return null;
 
   return (

@@ -7,7 +7,6 @@ import { GithubIcon } from "@/components/github-icon";
 import { Sidebar } from "@/components/ui/sidebar";
 import { DOCS_NAV } from "@hisui/screens/docs/docs-nav";
 import { DocsSearch } from "./docs-search";
-import { OnThisPage } from "./on-this-page";
 
 export function DocsLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "";
@@ -75,11 +74,8 @@ export function DocsLayout({ children }: { children: ReactNode }) {
             ref={mainRef}
             className="scrollbar-soft flex-1 overflow-y-auto"
           >
-            <div className="mx-auto flex max-w-6xl gap-10 px-6 pt-4 pb-16">
-              <div className="mx-auto w-full min-w-0 max-w-3xl flex-1">
-                {children}
-              </div>
-              <OnThisPage />
+            <div className="mx-auto max-w-6xl px-6 pt-4 pb-16">
+              {children}
             </div>
           </main>
         </div>

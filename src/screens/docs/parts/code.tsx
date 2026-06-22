@@ -54,7 +54,7 @@ export function CodeBlock({
   return (
     <Clipboard.Root
       value={code}
-      className="group relative block min-w-0"
+      className="group relative block min-w-0 overflow-hidden rounded-lg"
     >
       {html ? (
         <div

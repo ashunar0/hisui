@@ -10,7 +10,7 @@ import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/utils";
 import { CodeBlock, InlineCode } from "@hisui/screens/docs/parts/code";
 import { slugify } from "@hisui/screens/docs/parts/slugify";
-import { CopyPage } from "./copy-page";
+import { DocsShell } from "./docs-shell";
 
 function textOf(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -18,14 +18,11 @@ function textOf(node: ReactNode): string {
   return "";
 }
 
-export const docsMdxComponents: MDXComponents = {
-  wrapper: ({ children, ...props }: ComponentPropsWithoutRef<"div">) => (
-    <div {...props} className={cn("docs-prose relative", props.className)}>
-      <div className="absolute right-0 top-1">
-        <CopyPage />
-      </div>
-      {children}
-    </div>
+export const docsMdxComponents = {
+  // remark plugin が emit する <DocsShell> を解決
+  DocsShell,
+  wrapper: ({ children, className }: ComponentPropsWithoutRef<"div">) => (
+    <div className={cn(className)}>{children}</div>
   ),
   h1: ({ children, ...props }: ComponentPropsWithoutRef<"h1">) => (
     <Heading as="h1" size="2xl" {...props}>
@@ -64,4 +61,4 @@ export const docsMdxComponents: MDXComponents = {
     const code = textOf(codeEl.props.children).replace(/\n$/, "");
     return <CodeBlock code={code} lang={lang} />;
   },
-};
+} satisfies MDXComponents;

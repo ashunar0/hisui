@@ -6,8 +6,13 @@ import type { NextConfig } from "next";
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, "..");
 
+// Turbopack はループバ options が serializable じゃないと弾く。
+// remarkPlugins は [moduleSpecifier, options?] 形式で渡す。
 const withMDX = createMDX({
   extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [[resolve(here, "lib/remark-docs-toc.mjs"), {}]],
+  },
 });
 
 const nextConfig: NextConfig = {

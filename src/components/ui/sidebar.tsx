@@ -9,8 +9,8 @@ import {
   type HTMLAttributes,
   type ReactNode,
   useContext,
-  useEffect,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Slot } from "@/lib/slot";
@@ -18,10 +18,16 @@ import { cn } from "@/lib/utils";
 
 const SIDEBAR_MEDIA_QUERY = "(min-width: 1024px)";
 
+// 「explicit に user が toggle した state」 と 「viewport で決まる default」 を分離。
+// SSR では explicit=null → CSS の lg: responsive variant で default 表示が決まり、
+// JS / viewport を読む必要が無いので hydration mismatch / flash どちらも起きない。
+// user が toggle した瞬間 explicit が boolean になり CSS responsive を上書きする。
 type SidebarContextValue = {
   open: boolean;
   setOpen: (open: boolean) => void;
   toggle: () => void;
+  /** explicit override が無い (auto) かどうか。 Root の class 分岐用 */
+  isAuto: boolean;
 };
 
 const SidebarContext = createContext<SidebarContextValue | null>(null);
@@ -38,35 +44,49 @@ type ProviderProps = {
   children: ReactNode;
 };
 
+function subscribeMedia(callback: () => void) {
+  const mq = window.matchMedia(SIDEBAR_MEDIA_QUERY);
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getMediaSnapshot() {
+  return window.matchMedia(SIDEBAR_MEDIA_QUERY).matches;
+}
+
 function Provider({ children }: ProviderProps) {
-  const [open, setOpen] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia(SIDEBAR_MEDIA_QUERY).matches,
+  const [explicit, setExplicit] = useState<boolean | null>(null);
+  // viewport は useSyncExternalStore で外部購読。 server snapshot は true (desktop)。
+  // visual は CSS responsive で決まるので server/client 差は無害。
+  const isDesktop = useSyncExternalStore(
+    subscribeMedia,
+    getMediaSnapshot,
+    () => true,
   );
-  useEffect(() => {
-    const mq = window.matchMedia(SIDEBAR_MEDIA_QUERY);
-    const handler = (e: MediaQueryListEvent) => setOpen(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  const toggle = () => setOpen((v) => !v);
+  const open = explicit ?? isDesktop;
+  const setOpen = (next: boolean) => setExplicit(next);
+  const toggle = () => setExplicit(!open);
   return (
-    <SidebarContext.Provider value={{ open, setOpen, toggle }}>
+    <SidebarContext.Provider
+      value={{ open, setOpen, toggle, isAuto: explicit === null }}
+    >
       {children}
     </SidebarContext.Provider>
   );
 }
 
 function Root({ className, style, ...props }: HTMLAttributes<HTMLElement>) {
-  const { open } = useSidebar();
+  const { open, isAuto } = useSidebar();
   return (
     <aside
       style={{ "--sidebar-w": "16rem", ...style } as CSSProperties}
       className={cn(
-        "flex w-[var(--sidebar-w)] flex-col border-r border-border bg-surface-muted",
+        "flex w-(--sidebar-w) flex-col border-r border-border bg-surface-muted",
         "transition-[margin-left] duration-200 ease-out",
-        !open && "ml-[calc(-1*var(--sidebar-w))]",
+        isAuto
+          ? // auto: mobile 閉じ / desktop 開きを CSS で制御
+            "-ml-(--sidebar-w) lg:ml-0"
+          : !open && "-ml-(--sidebar-w)",
         className,
       )}
       {...props}
@@ -112,9 +132,7 @@ function Group({ label, className, children, ...props }: GroupProps) {
   return (
     <div className={cn("flex flex-col gap-1", className)} {...props}>
       {label && (
-        <h2 className="px-3 pb-1 text-xs font-medium text-fg-muted">
-          {label}
-        </h2>
+        <h2 className="px-3 pb-1 text-xs font-medium text-fg-muted">{label}</h2>
       )}
       {children}
     </div>
@@ -149,10 +167,7 @@ function MenuButton({
 
 function MenuItem({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div
-      className={cn("group/menu-item relative", className)}
-      {...props}
-    />
+    <div className={cn("group/menu-item relative", className)} {...props} />
   );
 }
 

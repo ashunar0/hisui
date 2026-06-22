@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '**/.next/**']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -23,6 +23,18 @@ export default defineConfig([
     files: ['src/components/ui/**/*.{ts,tsx}'],
     rules: {
       'react-refresh/only-export-components': 'off',
+    },
+  },
+  {
+    // Next.js App Router の page/layout は metadata 等 component 以外も export する
+    files: ['docs-next/**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        {
+          allowExportNames: ['metadata', 'generateMetadata', 'viewport', 'dynamic', 'revalidate'],
+        },
+      ],
     },
   },
 ])

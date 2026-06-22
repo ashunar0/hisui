@@ -1,0 +1,13 @@
+{
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "useFlatConfig": true,
+        "experimental": {
+          "useFlatConfig": true
+        },
+        "workingDirectories": [{ "mode": "auto" }]
+      }
+    }
+  }
+}
