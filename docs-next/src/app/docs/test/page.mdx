@@ -1,0 +1,22 @@
+import { Button } from "@/components/ui/button";
+import { Example } from "@hisui/screens/docs/parts/example";
+import { highlightCode } from "@hisui/lib/highlight";
+import { readDemoSource } from "@/lib/read-source";
+import ButtonUsageDemo from "@hisui/screens/docs/components/demos/button/usage";
+
+export const ButtonUsageSource = readDemoSource("button/usage.tsx");
+export const ButtonUsageHtml = await highlightCode(ButtonUsageSource);
+
+# MDX + Hisui Button
+
+<div className="flex gap-2">
+  <Button>solid</Button>
+  <Button variant="outline">outline</Button>
+  <Button variant="ghost">ghost</Button>
+</div>
+
+## Live demo with Example
+
+<Example code={ButtonUsageSource} html={ButtonUsageHtml}>
+  <ButtonUsageDemo />
+</Example>

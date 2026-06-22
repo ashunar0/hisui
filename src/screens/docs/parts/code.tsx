@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, type HTMLAttributes } from "react";
 import { codeToHtml, type BundledLanguage } from "shiki";
 import { Clipboard } from "@/components/ui/clipboard";
@@ -22,12 +24,20 @@ type CodeBlockProps = {
   code: string;
   lang?: BundledLanguage;
   maxHeight?: string;
+  /** Pre-rendered shiki HTML. When provided, client-side highlighting is skipped (SSR path). */
+  html?: string;
 };
 
-export function CodeBlock({ code, lang = "tsx", maxHeight }: CodeBlockProps) {
-  const [html, setHtml] = useState<string | null>(null);
+export function CodeBlock({
+  code,
+  lang = "tsx",
+  maxHeight,
+  html: prerendered,
+}: CodeBlockProps) {
+  const [html, setHtml] = useState<string | null>(prerendered ?? null);
 
   useEffect(() => {
+    if (prerendered) return;
     let cancelled = false;
     codeToHtml(code, {
       lang,
@@ -39,7 +49,7 @@ export function CodeBlock({ code, lang = "tsx", maxHeight }: CodeBlockProps) {
     return () => {
       cancelled = true;
     };
-  }, [code, lang]);
+  }, [code, lang, prerendered]);
 
   return (
     <Clipboard.Root

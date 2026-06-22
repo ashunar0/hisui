@@ -1,3 +1,5 @@
+"use client";
+
 import { Table } from "@/components/ui/table";
 import { InlineCode } from "./code";
 

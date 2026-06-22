@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, type ReactNode } from "react";
 import { SegmentGroup } from "@/components/ui/segment-group";
 import { CodeBlock } from "./code";
@@ -5,12 +7,14 @@ import { CodeBlock } from "./code";
 type ExampleProps = {
   code: string;
   children: ReactNode;
+  /** Pre-rendered shiki HTML (SSR path). */
+  html?: string;
 };
 
 /**
  * Preview / Code を SegmentGroup (枠外) で切替。 中身は border 付き box。
  */
-export function Example({ code, children }: ExampleProps) {
+export function Example({ code, children, html }: ExampleProps) {
   const [view, setView] = useState<"preview" | "code">("preview");
   return (
     <div className="flex flex-col gap-3">
@@ -33,7 +37,7 @@ export function Example({ code, children }: ExampleProps) {
         {view === "preview" ? (
           <div className="bg-surface p-6">{children}</div>
         ) : (
-          <CodeBlock code={code} maxHeight="420px" />
+          <CodeBlock code={code} maxHeight="420px" html={html} />
         )}
       </div>
     </div>

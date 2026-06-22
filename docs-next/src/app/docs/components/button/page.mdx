@@ -1,0 +1,133 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import { loadDemo } from "@/lib/read-source";
+import ButtonUsageDemo from "@hisui/screens/docs/components/demos/button/usage";
+import ButtonVariantsDemo from "@hisui/screens/docs/components/demos/button/variants";
+import ButtonColorPalettesDemo from "@hisui/screens/docs/components/demos/button/color-palettes";
+import ButtonSizesDemo from "@hisui/screens/docs/components/demos/button/sizes";
+import ButtonWithIconDemo from "@hisui/screens/docs/components/demos/button/with-icon";
+import ButtonLoadingDemo from "@hisui/screens/docs/components/demos/button/loading";
+import ButtonAsChildDemo from "@hisui/screens/docs/components/demos/button/as-child";
+
+export const usage = await loadDemo("button/usage.tsx");
+export const variants = await loadDemo("button/variants.tsx");
+export const colorPalettes = await loadDemo("button/color-palettes.tsx");
+export const sizes = await loadDemo("button/sizes.tsx");
+export const withIcon = await loadDemo("button/with-icon.tsx");
+export const loading = await loadDemo("button/loading.tsx");
+export const asChild = await loadDemo("button/as-child.tsx");
+
+export const metadata = { title: "Button | Hisui UI" };
+
+# Button
+
+アクションのトリガー。 variant (見た目) × colorPalette (意味の色) × size の 3 軸で組み合わせる。 Chakra UI v3 と prop 互換。
+
+## Usage
+
+default は solid / neutral / md。
+
+<Example code={usage.code} html={usage.html}>
+  <ButtonUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Button } from "@/components/ui/button";
+```
+
+```tsx
+<Button>Save changes</Button>
+```
+
+## Variants
+
+6 種。 solid が最も強く、 plain が最も弱い。
+
+<Example code={variants.code} html={variants.html}>
+  <ButtonVariantsDemo />
+</Example>
+
+## Color palettes
+
+意味を表す 5 色。 例は solid で比較。
+
+<Example code={colorPalettes.code} html={colorPalettes.html}>
+  <ButtonColorPalettesDemo />
+</Example>
+
+## Sizes
+
+xs / sm / md / lg の 4 段階。
+
+<Example code={sizes.code} html={sizes.html}>
+  <ButtonSizesDemo />
+</Example>
+
+## With icon
+
+children に lucide-react の icon を並べるだけ。 gap は size 連動。
+
+<Example code={withIcon.code} html={withIcon.html}>
+  <ButtonWithIconDemo />
+</Example>
+
+## Loading
+
+loading で built-in Spinner を表示。 loadingText で文言差し替え。
+
+<Example code={loading.code} html={loading.html}>
+  <ButtonLoadingDemo />
+</Example>
+
+## As child
+
+asChild で Button の見た目を別要素 (a / Link 等) に移譲する。
+
+<Example code={asChild.code} html={asChild.html}>
+  <ButtonAsChildDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"solid" | "subtle" | "outline" | "ghost" | "surface" | "plain"',
+      default: '"solid"',
+      description: "見た目のスタイル。色の強さと面の塗りを決める。",
+    },
+    {
+      name: "colorPalette",
+      type: '"neutral" | "success" | "danger" | "warning" | "info"',
+      default: '"neutral"',
+      description: "意味を表す色。semantic token に紐づき light/dark 両対応。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "高さ・padding・font-size をまとめてスケール。",
+    },
+    {
+      name: "loading",
+      type: "boolean",
+      default: "false",
+      description: "Spinner を表示し disabled 化。",
+    },
+    {
+      name: "loadingText",
+      type: "string",
+      description: "loading 中に children の代わりに出す文言。",
+    },
+    {
+      name: "asChild",
+      type: "boolean",
+      default: "false",
+      description: "子要素にスタイルを移譲 (Link などを Button 見た目にする)。",
+    },
+  ]}
+/>
+
