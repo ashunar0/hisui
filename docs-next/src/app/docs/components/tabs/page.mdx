@@ -1,0 +1,159 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import TabsBasicDemo from "@hisui/screens/docs/components/demos/tabs/basic";
+import TabsControlledDemo from "@hisui/screens/docs/components/demos/tabs/controlled";
+import TabsDisabledDemo from "@hisui/screens/docs/components/demos/tabs/disabled";
+import TabsLineDemo from "@hisui/screens/docs/components/demos/tabs/line";
+import TabsVerticalDemo from "@hisui/screens/docs/components/demos/tabs/vertical";
+import { loadDemo } from "@/lib/read-source";
+
+export const tabsBasic = await loadDemo("tabs/basic.tsx");
+export const tabsControlled = await loadDemo("tabs/controlled.tsx");
+export const tabsDisabled = await loadDemo("tabs/disabled.tsx");
+export const tabsLine = await loadDemo("tabs/line.tsx");
+export const tabsVertical = await loadDemo("tabs/vertical.tsx");
+export const metadata = { title: "Tabs | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Tabs.Root",
+    description:
+      "外枠。 value / onValueChange で選択 tab を管理。 各 Trigger / Content の value で紐付け。",
+  },
+  {
+    name: "Tabs.List",
+    description:
+      "Trigger を並べる行。 bg-surface-sunken + rounded-lg の segmented container。",
+  },
+  {
+    name: "Tabs.Indicator",
+    description:
+      "選択中 tab の下に走る浮かび上がる白い背景。 Trigger の位置に追従して transition。",
+  },
+  {
+    name: "Tabs.Trigger",
+    description: "1 つの tab ボタン。 value 必須。 disabled 個別指定可。",
+  },
+  {
+    name: "Tabs.Content",
+    description:
+      "中身。 Trigger と同じ value で対応。 unmount は default false (mount 維持)。",
+  },
+];
+
+# Tabs
+
+水平 / 垂直に並ぶ tab で content を切り替える。 List + Indicator + Trigger × N + Content × N の compound。 segmented control 風の見た目で Indicator が滑らかに追従する。
+
+## Usage
+
+uncontrolled (defaultValue) の最小例。
+
+<Example code={tabsBasic.code} html={tabsBasic.html}>
+  <TabsBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Tabs } from "@/components/ui/tabs";
+```
+
+```tsx
+<Tabs.Root defaultValue="...">
+  <Tabs.List>
+    <Tabs.Indicator />
+    <Tabs.Trigger value="..." />
+  </Tabs.List>
+  <Tabs.Content value="..." />
+</Tabs.Root>
+```
+
+## Controlled
+
+value + onValueChange で外部から制御。
+
+<Example code={tabsControlled.code} html={tabsControlled.html}>
+  <TabsControlledDemo />
+</Example>
+
+## Variant: line
+
+下線型。 page 内 nav や記事の章切替に。 List / Indicator / Trigger 全部 variant=line に連動する。
+
+<Example code={tabsLine.code} html={tabsLine.html}>
+  <TabsLineDemo />
+</Example>
+
+## Disabled tab
+
+Trigger に disabled で個別無効化。
+
+<Example code={tabsDisabled.code} html={tabsDisabled.html}>
+  <TabsDisabledDemo />
+</Example>
+
+## Vertical
+
+orientation=vertical で List が縦並びに。 左 nav 風 layout に使う。
+
+<Example code={tabsVertical.code} html={tabsVertical.html}>
+  <TabsVerticalDemo />
+</Example>
+
+## Anatomy
+
+Root の中に List (Indicator + Trigger 群) と Content 群を並べる。 Content は Trigger と同じ value で対応。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[10rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"enclosed" | "line"',
+      default: '"enclosed"',
+      description:
+        "enclosed = sunken container + 浮く白 indicator (segmented control 風)。 line = 下線のみ (page 内 nav 風)。",
+    },
+    {
+      name: "value",
+      type: "string",
+      description: "controlled mode の選択 tab value。",
+    },
+    {
+      name: "defaultValue",
+      type: "string",
+      description: "uncontrolled mode の初期 value。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string }) => void",
+      description: "tab が変わった時に呼ばれる。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "List の並べる向き。 vertical で左右 layout。",
+    },
+    {
+      name: "activationMode",
+      type: '"automatic" | "manual"',
+      default: '"automatic"',
+      description:
+        "キーボード移動時に focus だけ動かす (manual) or 即選択 (automatic)。",
+    },
+  ]}
+/>

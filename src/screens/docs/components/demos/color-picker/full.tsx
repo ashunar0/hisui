@@ -1,3 +1,5 @@
+"use client";
+
 import { parseColor } from "@ark-ui/react/color-picker";
 import type {
   Color,

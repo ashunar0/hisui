@@ -1,3 +1,5 @@
+"use client";
+
 import { TagsInput } from "@/components/ui/tags-input";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

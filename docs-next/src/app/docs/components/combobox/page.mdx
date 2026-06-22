@@ -1,0 +1,179 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ComboboxBasicDemo from "@hisui/screens/docs/components/demos/combobox/basic";
+import ComboboxGroupedDemo from "@hisui/screens/docs/components/demos/combobox/grouped";
+import ComboboxMultipleDemo from "@hisui/screens/docs/components/demos/combobox/multiple";
+import { loadDemo } from "@/lib/read-source";
+
+export const comboboxBasic = await loadDemo("combobox/basic.tsx");
+export const comboboxGrouped = await loadDemo("combobox/grouped.tsx");
+export const comboboxMultiple = await loadDemo("combobox/multiple.tsx");
+export const metadata = { title: "Combobox | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Combobox.Root",
+    description:
+      "外枠。 collection (useListCollection で作る) + onInputValueChange で filter を駆動。",
+  },
+  {
+    name: "Combobox.Label",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "Combobox.Control",
+    description:
+      "Input + Trigger + ClearTrigger を並べる枠。 border / focus ring を引く relative container。",
+  },
+  {
+    name: "Combobox.Input",
+    description:
+      "text 入力。 タイプ毎に onInputValueChange が走り filter を呼ぶ。",
+  },
+  {
+    name: "Combobox.Trigger",
+    description:
+      "右端の chevron。 click で Content 開閉。 data-state=open で 180° 回転。",
+  },
+  {
+    name: "Combobox.ClearTrigger",
+    description:
+      "入力値を一括 clear する × button。 値があるときだけ自動表示。",
+  },
+  {
+    name: "Combobox.Content",
+    description:
+      "popup の中身。 Portal + Positioner + animation を内蔵。 min-w は --reference-width で Control 幅に追従。",
+  },
+  {
+    name: "Combobox.Empty",
+    description: "filter 結果が空の時の fallback。 Content の中に Item と並べて置く。",
+  },
+  {
+    name: "Combobox.Item / ItemText / ItemIndicator",
+    description:
+      "1 候補。 item prop に collection.items の要素を渡す。 ItemIndicator は選択状態でだけ render。",
+  },
+  {
+    name: "Combobox.ItemGroup / ItemGroupLabel",
+    description: "候補を group 分けする時に使う。 group の間に separator が自動で入る。",
+  },
+];
+
+# Combobox
+
+text 入力で候補を絞り込んで選ぶ Select の上位互換。 useListCollection で項目を持ち、 タイプ毎に filter を回す。 single / multiple、 flat / group、 任意の Empty fallback まで 1 primitive で。
+
+## Usage
+
+useListCollection で collection と filter を作り、 onInputValueChange から filter を呼ぶ。 ItemIndicator で選択チェック。
+
+<Example code={comboboxBasic.code} html={comboboxBasic.html}>
+  <ComboboxBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Combobox, useListCollection } from "@/components/ui/combobox";
+```
+
+```tsx
+<Combobox.Root collection={collection} onInputValueChange={...}>
+  <Combobox.Label />
+  <Combobox.Control>
+    <Combobox.Input />
+    <Combobox.Trigger />
+  </Combobox.Control>
+  <Combobox.Content>
+    <Combobox.Empty />
+    <Combobox.Item item={item}>
+      <Combobox.ItemText />
+      <Combobox.ItemIndicator />
+    </Combobox.Item>
+  </Combobox.Content>
+</Combobox.Root>
+```
+
+## Grouped
+
+ItemGroup + ItemGroupLabel で候補を category 別に。 ClearTrigger で × もつけて入力一括 clear。
+
+<Example code={comboboxGrouped.code} html={comboboxGrouped.html}>
+  <ComboboxGroupedDemo />
+</Example>
+
+## Multiple
+
+multiple で複数選択。 選んでも Content は閉じない。 選択数は Combobox.Context render-prop で取得して Label 横に出すと UI 親切。
+
+<Example code={comboboxMultiple.code} html={comboboxMultiple.html}>
+  <ComboboxMultipleDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Label と Control (Input + Trigger + ClearTrigger)、 Content (Empty + Item / ItemGroup)。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "collection",
+      type: "ListCollection",
+      description:
+        "useListCollection が返す collection。 itemToString / itemToValue / filter を内包。",
+    },
+    {
+      name: "value",
+      type: "string[]",
+      description: "controlled 選択値。 multiple でも single でも配列。",
+    },
+    {
+      name: "defaultValue",
+      type: "string[]",
+      description: "uncontrolled の初期選択。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string[] }) => void",
+      description: "選択が変わった時に呼ばれる。",
+    },
+    {
+      name: "onInputValueChange",
+      type: "(details: { inputValue: string }) => void",
+      description:
+        "input に文字が入る度に呼ばれる。 ここで collection の filter を呼ぶ。",
+    },
+    {
+      name: "multiple",
+      type: "boolean",
+      default: "false",
+      description: "複数選択可。 Content は選んでも閉じない。",
+    },
+    {
+      name: "openOnClick",
+      type: "boolean",
+      default: "false",
+      description: "Input click で開く。 default は文字入力で開く。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全体無効化。",
+    },
+  ]}
+/>

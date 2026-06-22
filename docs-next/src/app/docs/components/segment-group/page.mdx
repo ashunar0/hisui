@@ -1,0 +1,151 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SegmentGroupDisabledDemo from "@hisui/screens/docs/components/demos/segment-group/disabled";
+import SegmentGroupIconTextDemo from "@hisui/screens/docs/components/demos/segment-group/icon-text";
+import SegmentGroupUsageDemo from "@hisui/screens/docs/components/demos/segment-group/usage";
+import SegmentGroupVerticalDemo from "@hisui/screens/docs/components/demos/segment-group/vertical";
+import { loadDemo } from "@/lib/read-source";
+
+export const segmentGroupDisabled = await loadDemo("segment-group/disabled.tsx");
+export const segmentGroupIconText = await loadDemo("segment-group/icon-text.tsx");
+export const segmentGroupUsage = await loadDemo("segment-group/usage.tsx");
+export const segmentGroupVertical = await loadDemo("segment-group/vertical.tsx");
+export const metadata = { title: "SegmentGroup | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "SegmentGroup.Root",
+    description:
+      "外枠。 value / onValueChange で選択 item を管理。 sunken bg の rounded container。 single radio 風 (常に 1 つ選択)。",
+  },
+  {
+    name: "SegmentGroup.Indicator",
+    description:
+      "選択中 item の下に浮かぶ surface 矩形。 Item の位置に追従して滑らかに transition。",
+  },
+  {
+    name: "SegmentGroup.Item",
+    description:
+      "1 つの segment。 value 必須。 内部 ItemHiddenInput を自動 mount。 click で選択。",
+  },
+  {
+    name: "SegmentGroup.ItemText",
+    description: "Item 内の label text。 a11y のため Item の主 text を wrap する。",
+  },
+];
+
+# SegmentGroup
+
+iOS 風の segmented control。 常に 1 つだけ選択された single radio で、 選択中 item の下に浮かぶ Indicator が滑らかに追従する。 ToggleGroup と違って bordered ではなく sunken 背景、 view switcher / time period などに向く。
+
+## Usage
+
+time period switcher の典型。 Indicator を Item 群より前に置く。
+
+<Example code={segmentGroupUsage.code} html={segmentGroupUsage.html}>
+  <SegmentGroupUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { SegmentGroup } from "@/components/ui/segment-group";
+```
+
+```tsx
+<SegmentGroup.Root>
+  <SegmentGroup.Indicator />
+  <SegmentGroup.Item value="...">
+    <SegmentGroup.ItemText>...</SegmentGroup.ItemText>
+  </SegmentGroup.Item>
+</SegmentGroup.Root>
+```
+
+## Icon + text
+
+view switcher で icon と label を並べる。
+
+<Example code={segmentGroupIconText.code} html={segmentGroupIconText.html}>
+  <SegmentGroupIconTextDemo />
+</Example>
+
+## Vertical
+
+orientation=vertical で縦並び。 settings の section nav 等。
+
+<Example code={segmentGroupVertical.code} html={segmentGroupVertical.html}>
+  <SegmentGroupVerticalDemo />
+</Example>
+
+## Disabled item
+
+Item に disabled で個別、 Root に disabled で全体。
+
+<Example code={segmentGroupDisabled.code} html={segmentGroupDisabled.html}>
+  <SegmentGroupDisabledDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Indicator (1 つ) と Item 群を並べる。 Indicator は absolute で Item の上に重なる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string",
+      description: "controlled mode の選択 value。 single 選択固定 (string 1 つ)。",
+    },
+    {
+      name: "defaultValue",
+      type: "string",
+      description: "uncontrolled mode の初期選択。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string }) => void",
+      description: "選択が変わった時に呼ばれる。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "Item の並び方向。 vertical で縦並び。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全 item 無効化。",
+    },
+    {
+      name: "name",
+      type: "string",
+      description: "form 内で送信する hidden input の name。",
+    },
+    {
+      name: "Item.value",
+      type: "string",
+      description: "必須。 Root.value と紐付ける一意 key。",
+    },
+    {
+      name: "Item.disabled",
+      type: "boolean",
+      default: "false",
+      description: "この item だけ無効化。",
+    },
+  ]}
+/>

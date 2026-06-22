@@ -1,0 +1,87 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import KbdCombinationsDemo from "@hisui/screens/docs/components/demos/kbd/combinations";
+import KbdInMenuDemo from "@hisui/screens/docs/components/demos/kbd/in-menu";
+import KbdInlineInTextDemo from "@hisui/screens/docs/components/demos/kbd/inline-in-text";
+import KbdSizesDemo from "@hisui/screens/docs/components/demos/kbd/sizes";
+import KbdUsageDemo from "@hisui/screens/docs/components/demos/kbd/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const kbdCombinations = await loadDemo("kbd/combinations.tsx");
+export const kbdInMenu = await loadDemo("kbd/in-menu.tsx");
+export const kbdInlineInText = await loadDemo("kbd/inline-in-text.tsx");
+export const kbdSizes = await loadDemo("kbd/sizes.tsx");
+export const kbdUsage = await loadDemo("kbd/usage.tsx");
+export const metadata = { title: "Kbd | Hisui UI" };
+
+# Kbd
+
+keyboard shortcut を表示する inline element。 native の kbd タグを bordered + 下 shadow で装飾し、 物理的なキー風に。 Command palette / tooltip / menu の trailing hint に。
+
+## Usage
+
+children に key 名を渡すだけ。
+
+<Example code={kbdUsage.code} html={kbdUsage.html}>
+  <KbdUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Kbd } from "@/components/ui/kbd";
+```
+
+```tsx
+<Kbd>K</Kbd>
+```
+
+## Combinations
+
+複数 key を + や横並びで。 Modifier + key の典型。
+
+<Example code={kbdCombinations.code} html={kbdCombinations.html}>
+  <KbdCombinationsDemo />
+</Example>
+
+## Inline in text
+
+本文中の説明に挟む。 baseline が text と揃うように h-5 / leading-none で調整済み。
+
+<Example code={kbdInlineInText.code} html={kbdInlineInText.html}>
+  <KbdInlineInTextDemo />
+</Example>
+
+## In menu / list
+
+menu item の右端に shortcut hint。 ml-auto + text 列との間隔を空ける。
+
+<Example code={kbdInMenu.code} html={kbdInMenu.html}>
+  <KbdInMenuDemo />
+</Example>
+
+## Sizes
+
+className で text size と高さを上書き。 周辺 typo に合わせる。
+
+<Example code={kbdSizes.code} html={kbdSizes.html}>
+  <KbdSizesDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "className",
+      type: "string",
+      description:
+        "サイズ / 色 / shadow 等を上書き。 default は h-5 min-w-5、 border + 下 shadow で物理 key 感を出す。",
+    },
+    {
+      name: "...HTMLAttributes",
+      type: "—",
+      description: "kbd タグの prop を pass-through。",
+    },
+  ]}
+/>

@@ -1,3 +1,5 @@
+"use client";
+
 import { ImageUp, Trash2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/ui/file-upload";

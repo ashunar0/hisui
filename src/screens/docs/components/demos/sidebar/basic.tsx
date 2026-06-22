@@ -1,3 +1,5 @@
+"use client";
+
 import { Home, Inbox, Settings, Users } from "lucide-react";
 import { Sidebar } from "@/components/ui/sidebar";
 

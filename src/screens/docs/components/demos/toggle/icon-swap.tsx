@@ -1,3 +1,5 @@
+"use client";
+
 import { Bell, BellOff } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 

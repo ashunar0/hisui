@@ -1,3 +1,5 @@
+"use client";
+
 import { Editable } from "@/components/ui/editable";
 
 export default function EditableDblclickDemo() {

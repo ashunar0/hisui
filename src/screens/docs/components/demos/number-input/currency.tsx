@@ -1,3 +1,5 @@
+"use client";
+
 import { NumberInput } from "@/components/ui/number-input";
 
 export default function NumberInputCurrencyDemo() {

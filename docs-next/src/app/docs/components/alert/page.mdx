@@ -1,0 +1,118 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import AlertTitleOnlyDemo from "@hisui/screens/docs/components/demos/alert/title-only";
+import AlertUsageDemo from "@hisui/screens/docs/components/demos/alert/usage";
+import AlertVariantsDemo from "@hisui/screens/docs/components/demos/alert/variants";
+import AlertWithActionsDemo from "@hisui/screens/docs/components/demos/alert/with-actions";
+import { loadDemo } from "@/lib/read-source";
+
+export const alertTitleOnly = await loadDemo("alert/title-only.tsx");
+export const alertUsage = await loadDemo("alert/usage.tsx");
+export const alertVariants = await loadDemo("alert/variants.tsx");
+export const alertWithActions = await loadDemo("alert/with-actions.tsx");
+export const metadata = { title: "Alert | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Alert.Root",
+    description:
+      "外枠。 role=alert + grid 2 col layout (icon | content)。 variant で色を切替。",
+  },
+  {
+    name: "Alert.Icon",
+    description:
+      "左カラムの icon 枠。 lucide-react を size-5 で入れる前提。 variant の色が data-alert-icon 経由で当たる。",
+  },
+  {
+    name: "Alert.Title",
+    description: "右カラム 1 行目。 font-medium で短く強い見出し。",
+  },
+  {
+    name: "Alert.Description",
+    description: "Title の下の説明文。 opacity-90 で少し落とす。",
+  },
+  {
+    name: "Alert.Actions",
+    description: "右カラム最下段。 Button を flex-wrap で並べる action row。",
+  },
+];
+
+# Alert
+
+画面内に固定で出す通知。 success / danger / warning / info の意味色 + neutral の 5 variant。 Toast (一時通知) と違い inline で居座る用途。
+
+## Usage
+
+default は neutral。 Title だけでも成立。
+
+<Example code={alertUsage.code} html={alertUsage.html}>
+  <AlertUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Alert } from "@/components/ui/alert";
+```
+
+```tsx
+<Alert.Root>
+  <Alert.Icon />
+  <Alert.Title />
+  <Alert.Description />
+  <Alert.Actions />
+</Alert.Root>
+```
+
+## Variants
+
+5 種。 各色に合った icon を選ぶのが定石。
+
+<Example code={alertVariants.code} html={alertVariants.html}>
+  <AlertVariantsDemo />
+</Example>
+
+## Title only
+
+Description を省くとコンパクトな 1 行 banner に。
+
+<Example code={alertTitleOnly.code} html={alertTitleOnly.html}>
+  <AlertTitleOnlyDemo />
+</Example>
+
+## With actions
+
+Alert.Actions に Button を並べる。 確認 / dismiss の 2 button が典型。
+
+<Example code={alertWithActions.code} html={alertWithActions.html}>
+  <AlertWithActionsDemo />
+</Example>
+
+## Anatomy
+
+grid 2 col。 左に Icon、 右に Title / Description / Actions が縦積み。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[10rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"neutral" | "success" | "danger" | "warning" | "info"',
+      default: '"neutral"',
+      description:
+        "意味を表す色。 border / bg / text / icon が semantic token に紐づく。",
+    },
+  ]}
+/>

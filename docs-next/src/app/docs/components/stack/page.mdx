@@ -1,0 +1,127 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import StackAlignDemo from "@hisui/screens/docs/components/demos/stack/align";
+import StackBasicDemo from "@hisui/screens/docs/components/demos/stack/basic";
+import StackDirectionDemo from "@hisui/screens/docs/components/demos/stack/direction";
+import StackGapDemo from "@hisui/screens/docs/components/demos/stack/gap";
+import StackJustifyDemo from "@hisui/screens/docs/components/demos/stack/justify";
+import StackPatternsDemo from "@hisui/screens/docs/components/demos/stack/patterns";
+import StackWrapDemo from "@hisui/screens/docs/components/demos/stack/wrap";
+import { loadDemo } from "@/lib/read-source";
+
+export const stackAlign = await loadDemo("stack/align.tsx");
+export const stackBasic = await loadDemo("stack/basic.tsx");
+export const stackDirection = await loadDemo("stack/direction.tsx");
+export const stackGap = await loadDemo("stack/gap.tsx");
+export const stackJustify = await loadDemo("stack/justify.tsx");
+export const stackPatterns = await loadDemo("stack/patterns.tsx");
+export const stackWrap = await loadDemo("stack/wrap.tsx");
+export const metadata = { title: "Stack | Hisui UI" };
+
+# Stack
+
+flex container の薄いラッパー。 direction / gap / align / justify / wrap を semantic enum で受ける。 1 階層の flex を書くたびに class 並べるのを減らすのが目的。
+
+## Usage
+
+default は column / gap=md。 縦積みの最頻パターン。
+
+<Example code={stackBasic.code} html={stackBasic.html}>
+  <StackBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Stack } from "@/components/ui/stack";
+```
+
+```tsx
+<Stack direction="row" gap="md" align="center" justify="between">
+  ...
+</Stack>
+```
+
+## Direction
+
+4 種。 reverse は順序を保ったまま逆向きに並べる。
+
+<Example code={stackDirection.code} html={stackDirection.html}>
+  <StackDirectionDemo />
+</Example>
+
+## Gap
+
+6 段階。 詳細は Foundations/Spacing の Stack gap section。
+
+<Example code={stackGap.code} html={stackGap.html}>
+  <StackGapDemo />
+</Example>
+
+## Align
+
+cross axis の揃え (row なら縦、 column なら横)。
+
+<Example code={stackAlign.code} html={stackAlign.html}>
+  <StackAlignDemo />
+</Example>
+
+## Justify
+
+main axis の揃え。 between / around / evenly は spacing が分配される。
+
+<Example code={stackJustify.code} html={stackJustify.html}>
+  <StackJustifyDemo />
+</Example>
+
+## Wrap
+
+親幅を超えたら折り返す。 tag や badge を横に並べる時に。
+
+<Example code={stackWrap.code} html={stackWrap.html}>
+  <StackWrapDemo />
+</Example>
+
+## Common patterns
+
+ui-lab で頻出する組み合わせ。
+
+<Example code={stackPatterns.code} html={stackPatterns.html}>
+  <StackPatternsDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "direction",
+      type: '"row" | "column" | "row-reverse" | "column-reverse"',
+      default: '"column"',
+      description: "flex の主軸。 default は縦積み。",
+    },
+    {
+      name: "gap",
+      type: '"none" | "xs" | "sm" | "md" | "lg" | "xl"',
+      default: '"md"',
+      description:
+        "間隔。 Tailwind gap-0/1/2/4/6/8 に static map。 詳細は Foundations/Spacing。",
+    },
+    {
+      name: "align",
+      type: '"start" | "center" | "end" | "stretch" | "baseline"',
+      description: "items-* 相当。 cross axis の揃え。",
+    },
+    {
+      name: "justify",
+      type: '"start" | "center" | "end" | "between" | "around" | "evenly"',
+      description: "justify-* 相当。 main axis の揃え。",
+    },
+    {
+      name: "wrap",
+      type: "boolean",
+      default: "false",
+      description: "true で flex-wrap。 親幅を超えたら折り返す。",
+    },
+  ]}
+/>

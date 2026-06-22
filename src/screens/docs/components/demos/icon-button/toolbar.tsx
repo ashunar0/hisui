@@ -1,3 +1,5 @@
+"use client";
+
 import { Bold, Italic, Underline } from "lucide-react";
 import { IconButton } from "@/components/ui/icon-button";
 

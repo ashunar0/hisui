@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar } from "@/components/ui/avatar";
 
 const USERS = ["alice", "bob", "carol", "dan"];

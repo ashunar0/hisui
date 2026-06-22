@@ -1,0 +1,157 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import BreadcrumbBasicDemo from "@hisui/screens/docs/components/demos/breadcrumb/basic";
+import BreadcrumbCollapsedDemo from "@hisui/screens/docs/components/demos/breadcrumb/collapsed";
+import BreadcrumbCustomSeparatorDemo from "@hisui/screens/docs/components/demos/breadcrumb/custom-separator";
+import BreadcrumbWithIconDemo from "@hisui/screens/docs/components/demos/breadcrumb/with-icon";
+import { loadDemo } from "@/lib/read-source";
+
+export const breadcrumbBasic = await loadDemo("breadcrumb/basic.tsx");
+export const breadcrumbCollapsed = await loadDemo("breadcrumb/collapsed.tsx");
+export const breadcrumbCustomSeparator = await loadDemo("breadcrumb/custom-separator.tsx");
+export const breadcrumbWithIcon = await loadDemo("breadcrumb/with-icon.tsx");
+export const metadata = { title: "Breadcrumb | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Breadcrumb.Root",
+    description: "nav 要素。 aria-label=Breadcrumb を持つ landmark。",
+  },
+  {
+    name: "Breadcrumb.List",
+    description: "ol。 flex + wrap + gap で item を横並びにする。",
+  },
+  {
+    name: "Breadcrumb.Item",
+    description: "li。 inline-flex で link / separator を 1 単位に。",
+  },
+  {
+    name: "Breadcrumb.Link",
+    description:
+      "a 要素。 通常は text-fg-muted、 hover で text-fg。 href / onClick を渡す。",
+  },
+  {
+    name: "Breadcrumb.CurrentLink",
+    description:
+      "span + aria-current=page。 末尾の現在地。 font-medium + text-fg で強調。",
+  },
+  {
+    name: "Breadcrumb.Separator",
+    description:
+      "role=presentation の span。 default は ChevronRight。 children で記号差し替え。",
+  },
+  {
+    name: "Breadcrumb.Ellipsis",
+    description:
+      "省略 button。 中段を畳む時に使う。 default は MoreHorizontal icon。",
+  },
+];
+
+# Breadcrumb
+
+現在地までの階層を辿るナビゲーション。 plain HTML primitive (zag-js は使わない) で、 nav / ol / li / a / span の構造をそのまま露出。 Separator / Ellipsis は icon の差し替えだけサポート。
+
+## Usage
+
+Link を辿って末尾だけ CurrentLink にする。 Separator は default の ChevronRight。
+
+<Example code={breadcrumbBasic.code} html={breadcrumbBasic.html}>
+  <BreadcrumbBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+```
+
+```tsx
+<Breadcrumb.Root>
+  <Breadcrumb.List>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="/" />
+    </Breadcrumb.Item>
+    <Breadcrumb.Separator />
+    <Breadcrumb.Item>
+      <Breadcrumb.CurrentLink />
+    </Breadcrumb.Item>
+  </Breadcrumb.List>
+</Breadcrumb.Root>
+```
+
+## Custom separator
+
+Separator に children を渡すと icon や記号に切り替えられる。 slash / dot がよく使われる。
+
+<Example code={breadcrumbCustomSeparator.code} html={breadcrumbCustomSeparator.html}>
+  <BreadcrumbCustomSeparatorDemo />
+</Example>
+
+## With icon
+
+Link / CurrentLink の中に icon を直接入れる。 inline-flex + gap-1.5 で揃う。
+
+<Example code={breadcrumbWithIcon.code} html={breadcrumbWithIcon.html}>
+  <BreadcrumbWithIconDemo />
+</Example>
+
+## Collapsed
+
+長い階層は Ellipsis で畳む。 onClick で Menu / Popover を出して展開するパターンが想定。
+
+<Example code={breadcrumbCollapsed.code} html={breadcrumbCollapsed.html}>
+  <BreadcrumbCollapsedDemo />
+</Example>
+
+## Anatomy
+
+末尾は CurrentLink、 途中は Link + Separator の繰り返し。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[12rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Props
+
+全 part が標準 HTML attribute を pass-through する plain wrapper。 zag state は持たない。
+
+<PropsTable
+  rows={[
+    {
+      name: "Root",
+      type: "HTMLAttributes<HTMLElement>",
+      description:
+        "標準 nav prop をそのまま受ける。 aria-label は default で Breadcrumb。",
+    },
+    {
+      name: "Link",
+      type: "AnchorHTMLAttributes<HTMLAnchorElement>",
+      description: "標準 a prop。 href / onClick を渡す。",
+    },
+    {
+      name: "CurrentLink",
+      type: "HTMLAttributes<HTMLSpanElement>",
+      description:
+        "span。 aria-current=page を固定で付与。 children に現在ページ名。",
+    },
+    {
+      name: "Separator",
+      type: "HTMLAttributes<HTMLSpanElement>",
+      description:
+        "children を渡すと icon / 記号を差し替えできる。 渡さなければ ChevronRight。",
+    },
+    {
+      name: "Ellipsis",
+      type: "ButtonHTMLAttributes<HTMLButtonElement>",
+      description:
+        "button。 onClick を渡せば畳んだ階層を展開する menu / popover に繋げられる。",
+    },
+  ]}
+/>

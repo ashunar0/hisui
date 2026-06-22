@@ -1,3 +1,5 @@
+"use client";
+
 import { Field } from "@/components/ui/field";
 
 export default function FieldDisabledDemo() {

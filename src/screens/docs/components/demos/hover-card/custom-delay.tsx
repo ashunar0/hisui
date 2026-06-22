@@ -1,3 +1,5 @@
+"use client";
+
 import { HoverCard } from "@/components/ui/hover-card";
 
 export default function HoverCardCustomDelayDemo() {

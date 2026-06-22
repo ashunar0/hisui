@@ -1,3 +1,5 @@
+"use client";
+
 import { Calendar, List, Map } from "lucide-react";
 import { SegmentGroup } from "@/components/ui/segment-group";
 

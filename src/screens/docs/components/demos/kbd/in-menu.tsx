@@ -1,3 +1,5 @@
+"use client";
+
 import { Kbd } from "@/components/ui/kbd";
 
 const ITEMS = [

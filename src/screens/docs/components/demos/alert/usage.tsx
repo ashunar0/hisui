@@ -1,3 +1,5 @@
+"use client";
+
 import { Megaphone } from "lucide-react";
 import { Alert } from "@/components/ui/alert";
 

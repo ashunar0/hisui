@@ -1,0 +1,140 @@
+import { Badge } from "@/components/ui/badge";
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import BadgeColorPalettesDemo from "@hisui/screens/docs/components/demos/badge/color-palettes";
+import BadgeSizesDemo from "@hisui/screens/docs/components/demos/badge/sizes";
+import BadgeUsageDemo from "@hisui/screens/docs/components/demos/badge/usage";
+import BadgeVariantsDemo from "@hisui/screens/docs/components/demos/badge/variants";
+import BadgeWithIconDemo from "@hisui/screens/docs/components/demos/badge/with-icon";
+import { loadDemo } from "@/lib/read-source";
+
+export const badgeColorPalettes = await loadDemo("badge/color-palettes.tsx");
+export const badgeSizes = await loadDemo("badge/sizes.tsx");
+export const badgeUsage = await loadDemo("badge/usage.tsx");
+export const badgeVariants = await loadDemo("badge/variants.tsx");
+export const badgeWithIcon = await loadDemo("badge/with-icon.tsx");
+export const metadata = { title: "Badge | Hisui UI" };
+
+export const VARIANTS = ["solid", "subtle", "outline", "surface", "plain"];
+export const PALETTES = ["neutral", "success", "danger", "warning", "info"];
+
+# Badge
+
+小さな label / chip。 status・count・tag を表す。 variant × colorPalette × size の 3 軸で Button と同じ設計だが、 inline-flex + rounded-md + font-medium の小箱。
+
+## Usage
+
+default は subtle / neutral / md。
+
+<Example code={badgeUsage.code} html={badgeUsage.html}>
+  <BadgeUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+```
+
+```tsx
+<Badge>Draft</Badge>
+```
+
+## Variants
+
+5 種。 solid が最も強く、 plain が最も弱い (背景なし)。
+
+<Example code={badgeVariants.code} html={badgeVariants.html}>
+  <BadgeVariantsDemo />
+</Example>
+
+## Color palettes
+
+意味を表す 5 色。 例は subtle で比較。
+
+<Example code={badgeColorPalettes.code} html={badgeColorPalettes.html}>
+  <BadgeColorPalettesDemo />
+</Example>
+
+## Sizes
+
+xs / sm / md / lg の 4 段階。
+
+<Example code={badgeSizes.code} html={badgeSizes.html}>
+  <BadgeSizesDemo />
+</Example>
+
+## With icon
+
+children に lucide-react を並べる。 size は size-3 が標準。
+
+<Example code={badgeWithIcon.code} html={badgeWithIcon.html}>
+  <BadgeWithIconDemo />
+</Example>
+
+## Matrix
+
+variant × colorPalette のマトリクスで雰囲気を比較。
+
+<div className="overflow-x-auto rounded-md border border-border">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b border-border bg-surface-muted">
+        <th className="px-3 py-2 text-left text-fg-muted text-xs font-medium" />
+        {PALETTES.map((p) => (
+          <th
+            key={p}
+            className="px-3 py-2 text-left text-fg-muted text-xs font-medium"
+          >
+            {p}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {VARIANTS.map((v) => (
+        <tr
+          key={v}
+          className="border-b border-border-muted last:border-b-0"
+        >
+          <td className="px-3 py-2 font-mono text-fg-muted text-[11px]">
+            {v}
+          </td>
+          {PALETTES.map((p) => (
+            <td key={p} className="px-3 py-2">
+              <Badge variant={v} colorPalette={p}>
+                {p}
+              </Badge>
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"solid" | "subtle" | "outline" | "surface" | "plain"',
+      default: '"subtle"',
+      description:
+        "見た目のスタイル。 Button と違い ghost が無く plain (文字のみ) になる。",
+    },
+    {
+      name: "colorPalette",
+      type: '"neutral" | "success" | "danger" | "warning" | "info"',
+      default: '"neutral"',
+      description: "意味を表す色。 semantic token に紐づき light/dark 両対応。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "padding と font-size をまとめてスケール。",
+    },
+  ]}
+/>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 
 const VARIANTS = ["outline", "subtle", "flushed"] as const;

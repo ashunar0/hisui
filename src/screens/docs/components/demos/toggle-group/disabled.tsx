@@ -1,3 +1,5 @@
+"use client";
+
 import { ToggleGroup } from "@/components/ui/toggle-group";
 
 export default function ToggleGroupDisabledDemo() {

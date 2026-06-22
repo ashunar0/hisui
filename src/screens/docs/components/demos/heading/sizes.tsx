@@ -1,3 +1,5 @@
+"use client";
+
 import { Heading } from "@/components/ui/heading";
 
 const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"] as const;

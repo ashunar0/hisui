@@ -1,0 +1,98 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SpinnerColorsDemo from "@hisui/screens/docs/components/demos/spinner/colors";
+import SpinnerFullPanelDemo from "@hisui/screens/docs/components/demos/spinner/full-panel";
+import SpinnerInButtonDemo from "@hisui/screens/docs/components/demos/spinner/in-button";
+import SpinnerInIconButtonDemo from "@hisui/screens/docs/components/demos/spinner/in-icon-button";
+import SpinnerSizesDemo from "@hisui/screens/docs/components/demos/spinner/sizes";
+import SpinnerUsageDemo from "@hisui/screens/docs/components/demos/spinner/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const spinnerColors = await loadDemo("spinner/colors.tsx");
+export const spinnerFullPanel = await loadDemo("spinner/full-panel.tsx");
+export const spinnerInButton = await loadDemo("spinner/in-button.tsx");
+export const spinnerInIconButton = await loadDemo("spinner/in-icon-button.tsx");
+export const spinnerSizes = await loadDemo("spinner/sizes.tsx");
+export const spinnerUsage = await loadDemo("spinner/usage.tsx");
+export const metadata = { title: "Spinner | Hisui UI" };
+
+# Spinner
+
+loading 中の汎用 indicator。 Lucide Loader2 を回転 animation で wrap した SVG。 size と color は className で。 Button / IconButton の中に置けば submit pending、 単体置きで全画面 loading にも。
+
+## Usage
+
+単体は class 無しで size-4 の標準サイズ。
+
+<Example code={spinnerUsage.code} html={spinnerUsage.html}>
+  <SpinnerUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Spinner } from "@/components/ui/spinner";
+```
+
+```tsx
+<Spinner />
+```
+
+## Sizes
+
+size-\* で大きさを切り替え。 周辺の text や button に合わせる。
+
+<Example code={spinnerSizes.code} html={spinnerSizes.html}>
+  <SpinnerSizesDemo />
+</Example>
+
+## Colors
+
+text-\* で色付け。 fg / fg-soft / fg-muted を context に合わせて。
+
+<Example code={spinnerColors.code} html={spinnerColors.html}>
+  <SpinnerColorsDemo />
+</Example>
+
+## In Button
+
+submit pending の典型。 label と並べる時は size-4、 label を残すか差し替えるかは UI 次第。
+
+<Example code={spinnerInButton.code} html={spinnerInButton.html}>
+  <SpinnerInButtonDemo />
+</Example>
+
+## In IconButton
+
+refresh / sync button の処理中。 同 size の Spinner に差し替える。
+
+<Example code={spinnerInIconButton.code} html={spinnerInIconButton.html}>
+  <SpinnerInIconButtonDemo />
+</Example>
+
+## Full panel
+
+card / section 全体の loading。 中央に大きめ + 補足 text。
+
+<Example code={spinnerFullPanel.code} html={spinnerFullPanel.html}>
+  <SpinnerFullPanelDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "className",
+      type: "string",
+      description:
+        "size-* で大きさ、 text-* で色。 default は size-4 text-fg-muted。",
+    },
+    {
+      name: "...SVGProps",
+      type: "—",
+      description:
+        "Lucide Loader2 (svg) の prop を pass-through。 role=status / aria-label=Loading は default で付く。",
+    },
+  ]}
+/>

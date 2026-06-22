@@ -1,3 +1,5 @@
+"use client";
+
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NAME_WIDTHS = ["w-40", "w-32", "w-44", "w-36", "w-28"];

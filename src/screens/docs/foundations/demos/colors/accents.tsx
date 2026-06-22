@@ -1,3 +1,5 @@
+"use client";
+
 const PALETTES = ["success", "danger", "warning", "info"] as const;
 const STOPS = ["subtle", "border", "fg", "solid", "solid-fg"] as const;
 

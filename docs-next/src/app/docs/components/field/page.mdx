@@ -1,0 +1,168 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import FieldDisabledDemo from "@hisui/screens/docs/components/demos/field/disabled";
+import FieldInvalidDemo from "@hisui/screens/docs/components/demos/field/invalid";
+import FieldRequiredDemo from "@hisui/screens/docs/components/demos/field/required";
+import FieldSelectDemo from "@hisui/screens/docs/components/demos/field/select";
+import FieldTextareaDemo from "@hisui/screens/docs/components/demos/field/textarea";
+import FieldUsageDemo from "@hisui/screens/docs/components/demos/field/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const fieldDisabled = await loadDemo("field/disabled.tsx");
+export const fieldInvalid = await loadDemo("field/invalid.tsx");
+export const fieldRequired = await loadDemo("field/required.tsx");
+export const fieldSelect = await loadDemo("field/select.tsx");
+export const fieldTextarea = await loadDemo("field/textarea.tsx");
+export const fieldUsage = await loadDemo("field/usage.tsx");
+export const metadata = { title: "Field | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Field.Root",
+    description:
+      "外枠。 disabled / invalid / required / readOnly を Context で配下に流す。 単一 form field の wrapper。",
+  },
+  {
+    name: "Field.Label",
+    description:
+      "見出し。 Input/Textarea/Select と htmlFor が自動連結。 RequiredIndicator を中に並べる。",
+  },
+  {
+    name: "Field.Input / Textarea / Select",
+    description:
+      "native input/textarea/select。 a11y 属性 (aria-invalid / disabled / required) が Root から自動継承。",
+  },
+  {
+    name: "Field.HelperText",
+    description:
+      "label 下の補足。 aria-describedby に自動接続。 invalid 時は ErrorText に切替わる。",
+  },
+  {
+    name: "Field.ErrorText",
+    description: "invalid=true の時だけ表示される error message。 赤字。",
+  },
+  {
+    name: "Field.RequiredIndicator",
+    description:
+      "Label 内に置く * マーク。 required=true の時のみ表示。 children で記号変更可。",
+  },
+];
+
+# Field
+
+form field 用の wrapper。 Label / Input / HelperText / ErrorText / RequiredIndicator を Root で繋いで、 disabled / invalid / required の state と a11y 属性 (aria-invalid / aria-describedby / htmlFor) を 1 箇所で配る。 native input/textarea/select 上に組む素朴な作り。
+
+## Usage
+
+Label + Input + HelperText の基本形。
+
+<Example code={fieldUsage.code} html={fieldUsage.html}>
+  <FieldUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Field } from "@/components/ui/field";
+```
+
+```tsx
+<Field.Root>
+  <Field.Label />
+  <Field.Input />
+  <Field.HelperText />
+  <Field.ErrorText />
+</Field.Root>
+```
+
+## Required + RequiredIndicator
+
+required を Root に渡すと、 Label 内の RequiredIndicator が表示される。
+
+<Example code={fieldRequired.code} html={fieldRequired.html}>
+  <FieldRequiredDemo />
+</Example>
+
+## Invalid + ErrorText
+
+invalid=true で HelperText が隠れて ErrorText が出る。 aria-invalid も自動。
+
+<Example code={fieldInvalid.code} html={fieldInvalid.html}>
+  <FieldInvalidDemo />
+</Example>
+
+## Textarea
+
+Field.Textarea で複数行入力。 Input と同じ state 継承。
+
+<Example code={fieldTextarea.code} html={fieldTextarea.html}>
+  <FieldTextareaDemo />
+</Example>
+
+## Select
+
+Field.Select は native `<select>` ベース。 popup じゃない軽量版。 chevron icon を自動配置。
+
+<Example code={fieldSelect.code} html={fieldSelect.html}>
+  <FieldSelectDemo />
+</Example>
+
+## Disabled
+
+Root に disabled で Input/Textarea/Select 全部無効化、 opacity 50% + sunken bg。
+
+<Example code={fieldDisabled.code} html={fieldDisabled.html}>
+  <FieldDisabledDemo />
+</Example>
+
+## Anatomy
+
+Root に state を渡し、 中に Label + Input/Textarea/Select + HelperText + ErrorText を並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea/Select 全部 disabled に。",
+    },
+    {
+      name: "invalid",
+      type: "boolean",
+      default: "false",
+      description:
+        "aria-invalid + ErrorText 表示。 HelperText は隠れて ErrorText が出る。",
+    },
+    {
+      name: "required",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea/Select の required + RequiredIndicator 表示制御。",
+    },
+    {
+      name: "readOnly",
+      type: "boolean",
+      default: "false",
+      description: "Input/Textarea を readonly に。",
+    },
+    {
+      name: "ids",
+      type: "{ control?: string; label?: string; ... }",
+      description: "a11y id を上書きしたい時用 (普通は自動)。",
+    },
+  ]}
+/>

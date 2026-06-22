@@ -1,3 +1,5 @@
+"use client";
+
 import { PasswordInput } from "@/components/ui/password-input";
 
 export default function PasswordInputPreFilledDemo() {

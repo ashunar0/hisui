@@ -1,3 +1,5 @@
+"use client";
+
 import { createTreeCollection } from "@ark-ui/react/collection";
 import {
   Bell,

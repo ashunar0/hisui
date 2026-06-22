@@ -1,0 +1,136 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import AvatarFallbackOnlyDemo from "@hisui/screens/docs/components/demos/avatar/fallback-only";
+import AvatarGroupDemo from "@hisui/screens/docs/components/demos/avatar/group";
+import AvatarShapesDemo from "@hisui/screens/docs/components/demos/avatar/shapes";
+import AvatarSizesDemo from "@hisui/screens/docs/components/demos/avatar/sizes";
+import AvatarUsageDemo from "@hisui/screens/docs/components/demos/avatar/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const avatarFallbackOnly = await loadDemo("avatar/fallback-only.tsx");
+export const avatarGroup = await loadDemo("avatar/group.tsx");
+export const avatarShapes = await loadDemo("avatar/shapes.tsx");
+export const avatarSizes = await loadDemo("avatar/sizes.tsx");
+export const avatarUsage = await loadDemo("avatar/usage.tsx");
+export const metadata = { title: "Avatar | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Avatar.Root",
+    description: "外枠。 size / shape を受ける。 overflow-hidden で image を clip。",
+  },
+  {
+    name: "Avatar.Image",
+    description: "img タグ。 src 渡せば load 試行、 失敗 / 未指定で Fallback に切替。",
+  },
+  {
+    name: "Avatar.Fallback",
+    description:
+      "Image が失敗 / 未指定の時に表示。 name を渡すと 自動で initials 生成、 children でアイコン等にも差替可。",
+  },
+];
+
+# Avatar
+
+ユーザーの顔写真 / initials を表示する円 (or 角丸 / 角あり) 枠。 Ark UI ベースで Image が失敗したら Fallback に自動切替。 name から initials を生成するのが ui-lab の便利機能。
+
+## Usage
+
+Image + Fallback(name) の最小構成。 src が読めなければ initials が出る。
+
+<Example code={avatarUsage.code} html={avatarUsage.html}>
+  <AvatarUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Avatar } from "@/components/ui/avatar";
+```
+
+```tsx
+<Avatar.Root>
+  <Avatar.Image src="..." alt="..." />
+  <Avatar.Fallback name="..." />
+</Avatar.Root>
+```
+
+## Fallback only
+
+src を渡さない / 失敗時の表示。 name で initials、 children でアイコン。
+
+<Example code={avatarFallbackOnly.code} html={avatarFallbackOnly.html}>
+  <AvatarFallbackOnlyDemo />
+</Example>
+
+## Sizes
+
+6 段階。 size-6 (xs) 〜 size-20 (2xl)。
+
+<Example code={avatarSizes.code} html={avatarSizes.html}>
+  <AvatarSizesDemo />
+</Example>
+
+## Shapes
+
+3 種。 circle がデフォルト、 rounded は app 内で柔らかさ、 square は profile / list 系。
+
+<Example code={avatarShapes.code} html={avatarShapes.html}>
+  <AvatarShapesDemo />
+</Example>
+
+## Group
+
+overlap して並べる典型パターン。 -space-x で重ね、 各 Root に ring-2 で境界線。
+
+<Example code={avatarGroup.code} html={avatarGroup.html}>
+  <AvatarGroupDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Image と Fallback を並べる。 Ark UI が状態を見て自動切替。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[10rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+      default: '"md"',
+      description: "size-6 / 8 / 10 / 12 / 16 / 20。 font-size も連動。",
+    },
+    {
+      name: "shape",
+      type: '"circle" | "rounded" | "square"',
+      default: '"circle"',
+      description:
+        "circle = rounded-full、 rounded = rounded-md、 square = 角あり。",
+    },
+  ]}
+/>
+
+## Fallback props
+
+<PropsTable
+  rows={[
+    {
+      name: "name",
+      type: "string",
+      description:
+        "名前から initials を自動生成 (2 文字、 大文字化)。 children が無い時のみ使われる。",
+    },
+  ]}
+/>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Stack } from "@/components/ui/stack";
 
 type StackGap = {

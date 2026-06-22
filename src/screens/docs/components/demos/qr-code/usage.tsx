@@ -1,3 +1,5 @@
+"use client";
+
 import { QrCode } from "@/components/ui/qr-code";
 
 export default function QrCodeUsageDemo() {

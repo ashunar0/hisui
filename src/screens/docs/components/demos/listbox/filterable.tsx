@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import { Listbox, createListCollection } from "@/components/ui/listbox";
 

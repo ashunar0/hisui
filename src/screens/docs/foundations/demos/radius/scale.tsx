@@ -1,3 +1,5 @@
+"use client";
+
 type RadiusToken = {
   name: string;
   value: string;

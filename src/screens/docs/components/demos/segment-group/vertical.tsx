@@ -1,3 +1,5 @@
+"use client";
+
 import { SegmentGroup } from "@/components/ui/segment-group";
 
 const LABELS = ["General", "Billing", "Members", "Security"] as const;

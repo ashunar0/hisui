@@ -1,3 +1,5 @@
+"use client";
+
 const CONVENTIONS = [
   {
     title: "Default = rounded-md",

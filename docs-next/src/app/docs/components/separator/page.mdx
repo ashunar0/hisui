@@ -1,0 +1,91 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SeparatorCustomColorDemo from "@hisui/screens/docs/components/demos/separator/custom-color";
+import SeparatorInCardDemo from "@hisui/screens/docs/components/demos/separator/in-card";
+import SeparatorUsageDemo from "@hisui/screens/docs/components/demos/separator/usage";
+import SeparatorVerticalDemo from "@hisui/screens/docs/components/demos/separator/vertical";
+import { loadDemo } from "@/lib/read-source";
+
+export const separatorCustomColor = await loadDemo("separator/custom-color.tsx");
+export const separatorInCard = await loadDemo("separator/in-card.tsx");
+export const separatorUsage = await loadDemo("separator/usage.tsx");
+export const separatorVertical = await loadDemo("separator/vertical.tsx");
+export const metadata = { title: "Separator | Hisui UI" };
+
+# Separator
+
+section / item の区切り線。 1px の bg-border。 orientation で horizontal / vertical 切替。 default は装飾 (role=none) で、 意味のある区切りなら decorative=false にして screen reader に届ける。
+
+## Usage
+
+default は horizontal。 縦に積んだ block の間に挟む。
+
+<Example code={separatorUsage.code} html={separatorUsage.html}>
+  <SeparatorUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Separator } from "@/components/ui/separator";
+```
+
+```tsx
+<Separator />
+<Separator orientation="vertical" />
+```
+
+## Vertical
+
+orientation=vertical で 1px の縦線。 flex-row の inline 要素間に。
+
+<Example code={separatorVertical.code} html={separatorVertical.html}>
+  <SeparatorVerticalDemo />
+</Example>
+
+## In card
+
+header と body、 body と footer の区切り。 card 内で頻出。
+
+<Example code={separatorInCard.code} html={separatorInCard.html}>
+  <SeparatorInCardDemo />
+</Example>
+
+## Custom color
+
+className で bg-* を上書き。 muted な区切りや brand 色強調に。
+
+<Example code={separatorCustomColor.code} html={separatorCustomColor.html}>
+  <SeparatorCustomColorDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description:
+        "horizontal は h-px w-full、 vertical は h-full w-px。 親の flex 向きに合わせる。",
+    },
+    {
+      name: "decorative",
+      type: "boolean",
+      default: "true",
+      description:
+        "true (default) は role=none で screen reader に無視させる。 false で role=separator + aria-orientation。",
+    },
+    {
+      name: "className",
+      type: "string",
+      description: "色 (bg-*) や margin 等を上書き。",
+    },
+    {
+      name: "...HTMLAttributes<div>",
+      type: "—",
+      description: "div の prop を pass-through。",
+    },
+  ]}
+/>

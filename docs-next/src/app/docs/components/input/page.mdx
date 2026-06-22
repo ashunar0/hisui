@@ -1,0 +1,106 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import InputDisabledDemo from "@hisui/screens/docs/components/demos/input/disabled";
+import InputInvalidDemo from "@hisui/screens/docs/components/demos/input/invalid";
+import InputSizesDemo from "@hisui/screens/docs/components/demos/input/sizes";
+import InputTypeVariationsDemo from "@hisui/screens/docs/components/demos/input/type-variations";
+import InputUsageDemo from "@hisui/screens/docs/components/demos/input/usage";
+import InputVariantsDemo from "@hisui/screens/docs/components/demos/input/variants";
+import { loadDemo } from "@/lib/read-source";
+
+export const inputDisabled = await loadDemo("input/disabled.tsx");
+export const inputInvalid = await loadDemo("input/invalid.tsx");
+export const inputSizes = await loadDemo("input/sizes.tsx");
+export const inputTypeVariations = await loadDemo("input/type-variations.tsx");
+export const inputUsage = await loadDemo("input/usage.tsx");
+export const inputVariants = await loadDemo("input/variants.tsx");
+export const metadata = { title: "Input | Hisui UI" };
+
+# Input
+
+single-line の text input。 variant × size の 2 軸。 default は outline / md。 form-level の error は invalid prop で aria-invalid + danger-border に切り替わる。
+
+## Usage
+
+default は outline / md。
+
+<Example code={inputUsage.code} html={inputUsage.html}>
+  <InputUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Input } from "@/components/ui/input";
+```
+
+```tsx
+<Input placeholder="..." />
+```
+
+## Variants
+
+outline = 標準 / subtle = 塗り (form 内に密度) / flushed = 下線のみ (inline 編集)。
+
+<Example code={inputVariants.code} html={inputVariants.html}>
+  <InputVariantsDemo />
+</Example>
+
+## Sizes
+
+xs / sm / md / lg の 4 段階。 flushed のみ size 不問で px-3 固定。
+
+<Example code={inputSizes.code} html={inputSizes.html}>
+  <InputSizesDemo />
+</Example>
+
+## Invalid
+
+invalid で aria-invalid + 各 variant の error スタイルに切替。
+
+<Example code={inputInvalid.code} html={inputInvalid.html}>
+  <InputInvalidDemo />
+</Example>
+
+## Disabled
+
+disabled で opacity 50% + cursor-not-allowed。
+
+<Example code={inputDisabled.code} html={inputDisabled.html}>
+  <InputDisabledDemo />
+</Example>
+
+## Type variations
+
+HTMLInput の type 属性をそのまま渡す。
+
+<Example code={inputTypeVariations.code} html={inputTypeVariations.html}>
+  <InputTypeVariationsDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"outline" | "subtle" | "flushed"',
+      default: '"outline"',
+      description:
+        "outline は border、 subtle は背景塗り、 flushed は下線のみ。 flushed は size 問わず px-3 で揃える。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "高さ・font-size を連動。 h-7 / 8 / 10 / 12。",
+    },
+    {
+      name: "invalid",
+      type: "boolean",
+      default: "false",
+      description:
+        "aria-invalid + border / text-color を danger token に切替。 form-level error にも対応。",
+    },
+  ]}
+/>

@@ -1,3 +1,5 @@
+"use client";
+
 import { TagsInput } from "@/components/ui/tags-input";
 
 function renderItems({ value }: { value: string[] }) {

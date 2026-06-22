@@ -1,0 +1,148 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import TreeViewCheckboxTreeDemo from "@hisui/screens/docs/components/demos/tree-view/checkbox-tree";
+import TreeViewFileExplorerDemo from "@hisui/screens/docs/components/demos/tree-view/file-explorer";
+import TreeViewSidebarNavDemo from "@hisui/screens/docs/components/demos/tree-view/sidebar-nav";
+import { loadDemo } from "@/lib/read-source";
+
+export const treeViewCheckboxTree = await loadDemo("tree-view/checkbox-tree.tsx");
+export const treeViewFileExplorer = await loadDemo("tree-view/file-explorer.tsx");
+export const treeViewSidebarNav = await loadDemo("tree-view/sidebar-nav.tsx");
+export const metadata = { title: "TreeView | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "TreeView.Root",
+    description:
+      "外枠。 collection / selectionMode / defaultExpandedValue / defaultSelectedValue を受ける。",
+  },
+  {
+    name: "TreeView.Tree",
+    description:
+      "node 列の bordered container。 紙のような card に node を並べる。",
+  },
+  {
+    name: "TreeView.NodeProvider",
+    description:
+      "各 node を render する時の wrapper。 node と indexPath を渡す (再帰 render の boilerplate)。",
+  },
+  {
+    name: "TreeView.Branch / BranchControl / BranchIndicator / BranchText / BranchContent / BranchIndentGuide",
+    description:
+      "children を持つ node。 BranchControl が行、 BranchContent が展開部分、 BranchIndentGuide が縦線。 BranchIndicator は file tree convention で右向き chevron + open で 90deg 回転。",
+  },
+  {
+    name: "TreeView.Item / ItemText / ItemIndicator",
+    description:
+      "leaf node。 ItemIndicator は selected で表示される dot。 file explorer / nav どちらにも。",
+  },
+  {
+    name: "TreeView.NodeCheckbox / NodeCheckboxIndicator",
+    description:
+      "checkbox tree 用の checkbox。 親 node は子の状態によって indeterminate になる。 Check / Minus は group-data 経由で切替。",
+  },
+];
+
+# TreeView
+
+階層 list を render する primitive。 data は createTreeCollection で作って Root に collection prop で渡す。 再帰 render は NodeProvider + Branch / Item の組み合わせで自分で書く (Ark UI の規約)。 selectionMode で single / multiple、 NodeCheckbox で 3 状態 (checked / indeterminate / unchecked) も対応。
+
+## Usage
+
+children を持つ node = Branch、 ない node = Item。 BranchIndicator は file tree convention で chevron を rotate-90 (右→下)。
+
+<Example code={treeViewFileExplorer.code} html={treeViewFileExplorer.html}>
+  <TreeViewFileExplorerDemo />
+</Example>
+
+## Import
+
+```tsx
+import { TreeView } from "@/components/ui/tree-view";
+import { createTreeCollection } from "@ark-ui/react/collection";
+```
+
+```tsx
+const collection = createTreeCollection<Node>({
+  nodeToValue: (n) => n.id,
+  nodeToString: (n) => n.name,
+  rootNode: { id: "ROOT", name: "", children: [...] },
+});
+
+<TreeView.Root collection={collection}>
+  <TreeView.Label />
+  <TreeView.Tree>
+    {/* 再帰 render */}
+  </TreeView.Tree>
+</TreeView.Root>;
+```
+
+## Checkbox tree
+
+selectionMode=multiple + NodeCheckbox で permission UI 風に。 親は子の選択状態に応じて自動で checked / indeterminate / unchecked を切替。
+
+<Example code={treeViewCheckboxTree.code} html={treeViewCheckboxTree.html}>
+  <TreeViewCheckboxTreeDemo />
+</Example>
+
+## Sidebar nav
+
+ItemIndicator を leaf の右端に置くと、 selected な行に dot が出る。 Item を justify-between にして label と Indicator を両端配置。
+
+<Example code={treeViewSidebarNav.code} html={treeViewSidebarNav.html}>
+  <TreeViewSidebarNavDemo />
+</Example>
+
+## Anatomy
+
+render 関数を 1 つ書いて、 children を再帰呼び出しするのが基本パターン。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "collection",
+      type: "TreeCollection<T>",
+      description:
+        "createTreeCollection({ nodeToValue, nodeToString, rootNode }) で作る tree データ。 これが必須。",
+    },
+    {
+      name: "selectionMode",
+      type: '"single" | "multiple"',
+      default: '"single"',
+      description:
+        "leaf を 1 つだけ選ぶか、 NodeCheckbox で複数選ぶか。",
+    },
+    {
+      name: "defaultExpandedValue",
+      type: "string[]",
+      default: "[]",
+      description: "初期表示で開いておく branch の value。",
+    },
+    {
+      name: "defaultSelectedValue",
+      type: "string[]",
+      default: "[]",
+      description: "初期 selected の node value。",
+    },
+    {
+      name: "expandOnClick",
+      type: "boolean",
+      default: "true",
+      description:
+        "BranchControl 全体をクリックで expand。 false で BranchIndicator だけ反応にも。",
+    },
+  ]}
+/>

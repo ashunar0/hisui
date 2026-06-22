@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar } from "@/components/ui/avatar";
 
 const SIZES = ["xs", "sm", "md", "lg", "xl", "2xl"] as const;

@@ -1,3 +1,5 @@
+"use client";
+
 import { FileText, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/ui/file-upload";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Download, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QrCode } from "@/components/ui/qr-code";

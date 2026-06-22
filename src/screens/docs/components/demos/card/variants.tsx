@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 
 const VARIANTS = ["elevated", "outline", "subtle"] as const;

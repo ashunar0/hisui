@@ -1,3 +1,5 @@
+"use client";
+
 import { AlignCenter, AlignLeft, AlignRight } from "lucide-react";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 

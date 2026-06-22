@@ -1,3 +1,5 @@
+"use client";
+
 import { Pagination } from "@/components/ui/pagination";
 
 function Row({ siblingCount }: { siblingCount: number }) {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Clipboard } from "@/components/ui/clipboard";
 
 export default function ClipboardInlineShareUrlDemo() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Table } from "@/components/ui/table";
 
 const ROWS = Array.from({ length: 30 }, (_, i) => ({

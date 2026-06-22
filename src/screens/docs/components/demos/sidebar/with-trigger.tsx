@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronsLeftRight, Star } from "lucide-react";
 import { Sidebar } from "@/components/ui/sidebar";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Minus, Plus } from "lucide-react";
 import { NumberInput } from "@/components/ui/number-input";
 

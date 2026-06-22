@@ -1,3 +1,5 @@
+"use client";
+
 const SCALE = [
   { name: "0", rem: "0", px: "0px" },
   { name: "0.5", rem: "0.125rem", px: "2px" },

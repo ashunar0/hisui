@@ -1,3 +1,5 @@
+"use client";
+
 type Token = { name: string; varName: string; border?: boolean };
 
 const TOKENS: Record<string, Token[]> = {

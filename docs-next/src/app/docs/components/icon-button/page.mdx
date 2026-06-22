@@ -1,0 +1,134 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import IconButtonColorPalettesDemo from "@hisui/screens/docs/components/demos/icon-button/color-palettes";
+import IconButtonDestructiveDemo from "@hisui/screens/docs/components/demos/icon-button/destructive";
+import IconButtonLoadingDemo from "@hisui/screens/docs/components/demos/icon-button/loading";
+import IconButtonSizesDemo from "@hisui/screens/docs/components/demos/icon-button/sizes";
+import IconButtonToolbarDemo from "@hisui/screens/docs/components/demos/icon-button/toolbar";
+import IconButtonUsageDemo from "@hisui/screens/docs/components/demos/icon-button/usage";
+import IconButtonVariantsDemo from "@hisui/screens/docs/components/demos/icon-button/variants";
+import { loadDemo } from "@/lib/read-source";
+
+export const iconButtonColorPalettes = await loadDemo("icon-button/color-palettes.tsx");
+export const iconButtonDestructive = await loadDemo("icon-button/destructive.tsx");
+export const iconButtonLoading = await loadDemo("icon-button/loading.tsx");
+export const iconButtonSizes = await loadDemo("icon-button/sizes.tsx");
+export const iconButtonToolbar = await loadDemo("icon-button/toolbar.tsx");
+export const iconButtonUsage = await loadDemo("icon-button/usage.tsx");
+export const iconButtonVariants = await loadDemo("icon-button/variants.tsx");
+export const metadata = { title: "IconButton | Hisui UI" };
+
+# IconButton
+
+icon だけを置く正方形ボタン。 toolbar / nav header / list row の action で使う。 Button と同じ variant × colorPalette × size の 3 軸で、 default variant だけ `ghost` (並列に置く前提)。
+
+## Usage
+
+default は ghost / neutral / md。 aria-label が必須。
+
+<Example code={iconButtonUsage.code} html={iconButtonUsage.html}>
+  <IconButtonUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { IconButton } from "@/components/ui/icon-button";
+```
+
+```tsx
+<IconButton aria-label="Add">
+  <Plus className="size-4" />
+</IconButton>
+```
+
+## Variants
+
+6 種。 Button と同じ map。 toolbar 並列は ghost、 単発 CTA は solid / outline。
+
+<Example code={iconButtonVariants.code} html={iconButtonVariants.html}>
+  <IconButtonVariantsDemo />
+</Example>
+
+## Color palettes
+
+意味を表す 5 色。 例は subtle で比較。
+
+<Example code={iconButtonColorPalettes.code} html={iconButtonColorPalettes.html}>
+  <IconButtonColorPalettesDemo />
+</Example>
+
+## Sizes
+
+size-6 / 7 / 8 / 10。 icon は size-3.5 〜 size-5 で連動させる。
+
+<Example code={iconButtonSizes.code} html={iconButtonSizes.html}>
+  <IconButtonSizesDemo />
+</Example>
+
+## Toolbar
+
+ghost variant を横に並べる典型パターン。 Separator で group 化。
+
+<Example code={iconButtonToolbar.code} html={iconButtonToolbar.html}>
+  <IconButtonToolbarDemo />
+</Example>
+
+## Destructive
+
+削除系は colorPalette=danger + variant=ghost で row 内に控えめに置く。
+
+<Example code={iconButtonDestructive.code} html={iconButtonDestructive.html}>
+  <IconButtonDestructiveDemo />
+</Example>
+
+## Loading
+
+loading で built-in Spinner に差し替え。
+
+<Example code={iconButtonLoading.code} html={iconButtonLoading.html}>
+  <IconButtonLoadingDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "aria-label",
+      type: "string",
+      description: "必須。 視覚的に label が無いので screen reader 用に必ず指定。",
+    },
+    {
+      name: "variant",
+      type: '"solid" | "subtle" | "outline" | "ghost" | "surface" | "plain"',
+      default: '"ghost"',
+      description:
+        "見た目のスタイル。 Button と同じ map を共有。 default は ghost (toolbar 並列前提)。",
+    },
+    {
+      name: "colorPalette",
+      type: '"neutral" | "success" | "danger" | "warning" | "info"',
+      default: '"neutral"',
+      description: "意味を表す色。 semantic token に紐づき light/dark 両対応。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "正方形のサイズ。 size-6 / 7 / 8 / 10。",
+    },
+    {
+      name: "loading",
+      type: "boolean",
+      default: "false",
+      description: "Spinner を表示し disabled 化。",
+    },
+    {
+      name: "asChild",
+      type: "boolean",
+      default: "false",
+      description: "子要素にスタイルを移譲 (Link を IconButton 見た目にする)。",
+    },
+  ]}
+/>

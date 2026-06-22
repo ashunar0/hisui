@@ -1,3 +1,5 @@
+"use client";
+
 const ITEMS = [
   { title: "1. Hairline", body: "0 1px 0 で下端だけ。 床への接地感。" },
   { title: "2. Drop", body: "0 Npx Mpx で本体の落ち影。 距離感を決める層。" },

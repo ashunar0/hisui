@@ -1,0 +1,156 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import TooltipBasicDemo from "@hisui/screens/docs/components/demos/tooltip/basic";
+import TooltipDelayDemo from "@hisui/screens/docs/components/demos/tooltip/delay";
+import TooltipHelpIconDemo from "@hisui/screens/docs/components/demos/tooltip/help-icon";
+import TooltipPlacementsDemo from "@hisui/screens/docs/components/demos/tooltip/placements";
+import TooltipWithArrowDemo from "@hisui/screens/docs/components/demos/tooltip/with-arrow";
+import { loadDemo } from "@/lib/read-source";
+
+export const tooltipBasic = await loadDemo("tooltip/basic.tsx");
+export const tooltipDelay = await loadDemo("tooltip/delay.tsx");
+export const tooltipHelpIcon = await loadDemo("tooltip/help-icon.tsx");
+export const tooltipPlacements = await loadDemo("tooltip/placements.tsx");
+export const tooltipWithArrow = await loadDemo("tooltip/with-arrow.tsx");
+export const metadata = { title: "Tooltip | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Tooltip.Root",
+    description:
+      "外枠。 openDelay / closeDelay でホバー応答を制御。 default は 400ms / 100ms。",
+  },
+  {
+    name: "Tooltip.Trigger",
+    description:
+      "ホバー / focus で開くトリガー。 asChild で IconButton 等にラップ。",
+  },
+  {
+    name: "Tooltip.Content",
+    description:
+      "中身。 内部で Portal + Positioner を自動 mount。 暗い吹き出し (bg-fg / text-bg)。",
+  },
+  {
+    name: "Tooltip.Arrow",
+    description:
+      "矢印の外枠。 --arrow-size と --arrow-background で大きさ / 色を制御。",
+  },
+  {
+    name: "Tooltip.ArrowTip",
+    description: "矢印の三角。 通常 Arrow の中に空タグで置く。",
+  },
+];
+
+# Tooltip
+
+IconButton / Avatar など label 無しの UI に hover / focus で説明文を出す。 bg-fg / text-bg の暗い吹き出し + 矢印。 Portal で z-order を確実に上に。
+
+## Usage
+
+Trigger を IconButton に被せる典型例。 hover / focus で表示。
+
+<Example code={tooltipBasic.code} html={tooltipBasic.html}>
+  <TooltipBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Tooltip } from "@/components/ui/tooltip";
+```
+
+```tsx
+<Tooltip.Root>
+  <Tooltip.Trigger asChild>
+    <IconButton />
+  </Tooltip.Trigger>
+  <Tooltip.Content>...</Tooltip.Content>
+</Tooltip.Root>
+```
+
+## With arrow
+
+Arrow + ArrowTip を Content の中に置くと矢印が付く。 placement に追従して向き自動。
+
+<Example code={tooltipWithArrow.code} html={tooltipWithArrow.html}>
+  <TooltipWithArrowDemo />
+</Example>
+
+## Placements
+
+positioning.placement で 4 方向。 余白が無いと自動で flip する。
+
+<Example code={tooltipPlacements.code} html={tooltipPlacements.html}>
+  <TooltipPlacementsDemo />
+</Example>
+
+## Delay
+
+openDelay を 0 にすると即時表示、 800 にすると遅延を強める。
+
+<Example code={tooltipDelay.code} html={tooltipDelay.html}>
+  <TooltipDelayDemo />
+</Example>
+
+## On help icon
+
+form field の補足に小さな ? icon と組み合わせる定番。
+
+<Example code={tooltipHelpIcon.code} html={tooltipHelpIcon.html}>
+  <TooltipHelpIconDemo />
+</Example>
+
+## Anatomy
+
+Root 直下に Trigger と Content。 Content は中で Portal + Positioner を内蔵。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[12rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "openDelay",
+      type: "number",
+      default: "400",
+      description: "hover してから開くまでの ms。",
+    },
+    {
+      name: "closeDelay",
+      type: "number",
+      default: "100",
+      description: "leave してから閉じるまでの ms。",
+    },
+    {
+      name: "open",
+      type: "boolean",
+      description: "controlled mode の表示状態。",
+    },
+    {
+      name: "onOpenChange",
+      type: "(details: { open: boolean }) => void",
+      description: "open 状態が変わった時に呼ばれる。",
+    },
+    {
+      name: "positioning",
+      type: '{ placement?: "top" | "bottom" | "left" | "right" | ... }',
+      description: "Floating UI に渡す。 placement で出る向きを指定。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "trigger で hover しても出ない。",
+    },
+  ]}
+/>

@@ -1,0 +1,125 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import EmptyOnboardingDemo from "@hisui/screens/docs/components/demos/empty/onboarding";
+import EmptySearchZeroStateDemo from "@hisui/screens/docs/components/demos/empty/search-zero-state";
+import EmptyTitleOnlyDemo from "@hisui/screens/docs/components/demos/empty/title-only";
+import EmptyUsageDemo from "@hisui/screens/docs/components/demos/empty/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const emptyOnboarding = await loadDemo("empty/onboarding.tsx");
+export const emptySearchZeroState = await loadDemo("empty/search-zero-state.tsx");
+export const emptyTitleOnly = await loadDemo("empty/title-only.tsx");
+export const emptyUsage = await loadDemo("empty/usage.tsx");
+export const metadata = { title: "Empty | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Empty.Root",
+    description:
+      "外枠。 dashed border + center 寄せ flex の placeholder container。 p-12 で余白を確保。",
+  },
+  {
+    name: "Empty.Icon",
+    description: "丸い surface-sunken の枠に icon を入れる。 子 svg は size-6 強制。",
+  },
+  {
+    name: "Empty.Title",
+    description: "見出し。 h3 base、 font-semibold。",
+  },
+  {
+    name: "Empty.Description",
+    description: "補足。 max-w-sm で 1〜2 行に収める。 fg-muted。",
+  },
+  {
+    name: "Empty.Actions",
+    description: "下に並ぶ button 群。 flex-wrap で center 配置。",
+  },
+];
+
+# Empty
+
+データが無い時の placeholder。 dashed border の box に Icon + Title + Description + Actions を center 寄せで並べる。 list / search / inbox の zero-state、 onboarding の初手 CTA に。
+
+## Usage
+
+Icon + Title + Description + 1 CTA の典型。
+
+<Example code={emptyUsage.code} html={emptyUsage.html}>
+  <EmptyUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Empty } from "@/components/ui/empty";
+```
+
+```tsx
+<Empty.Root>
+  <Empty.Icon />
+  <Empty.Title />
+  <Empty.Description />
+  <Empty.Actions />
+</Empty.Root>
+```
+
+## Title only
+
+一番軽い形。 list 末尾の inline placeholder に。
+
+<Example code={emptyTitleOnly.code} html={emptyTitleOnly.html}>
+  <EmptyTitleOnlyDemo />
+</Example>
+
+## Search zero-state
+
+検索結果が無い時。 query を文中に出して reset を促す。
+
+<Example code={emptySearchZeroState.code} html={emptySearchZeroState.html}>
+  <EmptySearchZeroStateDemo />
+</Example>
+
+## Onboarding
+
+初回 user 向け。 primary + secondary の 2 CTA を並べる。
+
+<Example code={emptyOnboarding.code} html={emptyOnboarding.html}>
+  <EmptyOnboardingDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Icon / Title / Description / Actions を順に並べる。 全部任意 — Title だけでも成立。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "Root.className",
+      type: "string",
+      description: "padding / 背景 / 枠を上書き。 inline 用に縮めることも。",
+    },
+    {
+      name: "Icon.className",
+      type: "string",
+      description: "icon container の色 / 形状を上書き。 子 svg は自動で size-6。",
+    },
+    {
+      name: "Title / Description / Actions",
+      type: "HTMLAttributes",
+      description: "それぞれ h3 / p / div の prop を pass-through。",
+    },
+  ]}
+/>

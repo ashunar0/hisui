@@ -1,0 +1,70 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import AspectRatioCommonRatiosDemo from "@hisui/screens/docs/components/demos/aspect-ratio/common-ratios";
+import AspectRatioUsageDemo from "@hisui/screens/docs/components/demos/aspect-ratio/usage";
+import AspectRatioVideoFrameDemo from "@hisui/screens/docs/components/demos/aspect-ratio/video-frame";
+import { loadDemo } from "@/lib/read-source";
+
+export const aspectRatioCommonRatios = await loadDemo("aspect-ratio/common-ratios.tsx");
+export const aspectRatioUsage = await loadDemo("aspect-ratio/usage.tsx");
+export const aspectRatioVideoFrame = await loadDemo("aspect-ratio/video-frame.tsx");
+export const metadata = { title: "AspectRatio | Hisui UI" };
+
+# AspectRatio
+
+子要素を固定比率の box に閉じ込める単純 wrapper。 CSS の aspect-ratio property を ratio prop で受けるだけ。 中身は relative box の中に絶対配置 / 普通の flow どちらも置ける。
+
+## Usage
+
+ratio に幅÷高さを渡す。 16:9 なら 16/9、 正方形なら 1。
+
+<Example code={aspectRatioUsage.code} html={aspectRatioUsage.html}>
+  <AspectRatioUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+```
+
+```tsx
+<AspectRatio ratio={16 / 9}>...</AspectRatio>
+```
+
+## Common ratios
+
+grid で並べると同じ幅の中で高さだけ変わるのが見やすい。
+
+<Example code={aspectRatioCommonRatios.code} html={aspectRatioCommonRatios.html}>
+  <AspectRatioCommonRatiosDemo />
+</Example>
+
+## Image / video frame
+
+thumbnail を中に置き、 absolute で overlay を重ねる典型例。 box は relative なので absolute 配置がそのまま使える。
+
+<Example code={aspectRatioVideoFrame.code} html={aspectRatioVideoFrame.html}>
+  <AspectRatioVideoFrameDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "ratio",
+      type: "number",
+      default: "1",
+      description:
+        "横/縦の比。 16/9 や 4/3 のように分数で渡す。 CSS aspect-ratio に流す。",
+    },
+    {
+      name: "className",
+      type: "string",
+      default: "—",
+      description:
+        "default で relative + w-full + overflow-hidden が当たる。 重ねて rounded / border 等を追加。",
+    },
+  ]}
+/>

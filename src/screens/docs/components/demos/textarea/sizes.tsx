@@ -1,3 +1,5 @@
+"use client";
+
 import { Textarea } from "@/components/ui/textarea";
 
 const SIZES = ["xs", "sm", "md", "lg"] as const;

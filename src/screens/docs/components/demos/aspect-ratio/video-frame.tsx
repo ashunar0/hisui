@@ -1,3 +1,5 @@
+"use client";
+
 import { Play } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Table } from "@/components/ui/table";
 import { PLANS, STATUS_PALETTE } from "./data";

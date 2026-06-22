@@ -1,3 +1,5 @@
+"use client";
+
 import { Textarea } from "@/components/ui/textarea";
 
 const VARIANTS = ["outline", "subtle", "flushed"] as const;

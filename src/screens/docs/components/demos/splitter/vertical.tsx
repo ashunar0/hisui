@@ -1,3 +1,5 @@
+"use client";
+
 import { Splitter } from "@/components/ui/splitter";
 
 export default function SplitterVerticalDemo() {

@@ -1,0 +1,219 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SliderBasicDemo from "@hisui/screens/docs/components/demos/slider/basic";
+import SliderControlledDemo from "@hisui/screens/docs/components/demos/slider/controlled";
+import SliderDisabledDemo from "@hisui/screens/docs/components/demos/slider/disabled";
+import SliderMarkersDemo from "@hisui/screens/docs/components/demos/slider/markers";
+import SliderOriginCenterDemo from "@hisui/screens/docs/components/demos/slider/origin-center";
+import SliderRangeDemo from "@hisui/screens/docs/components/demos/slider/range";
+import { loadDemo } from "@/lib/read-source";
+
+export const sliderBasic = await loadDemo("slider/basic.tsx");
+export const sliderControlled = await loadDemo("slider/controlled.tsx");
+export const sliderDisabled = await loadDemo("slider/disabled.tsx");
+export const sliderMarkers = await loadDemo("slider/markers.tsx");
+export const sliderOriginCenter = await loadDemo("slider/origin-center.tsx");
+export const sliderRange = await loadDemo("slider/range.tsx");
+export const metadata = { title: "Slider | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Slider.Root",
+    description:
+      "外枠。 value / defaultValue (number[]) で thumb 位置を管理。 min / max / step で範囲。",
+  },
+  {
+    name: "Slider.Label",
+    description:
+      "見出し。 aria-labelledby に自動接続。 ValueText と横並びにする典型。",
+  },
+  {
+    name: "Slider.ValueText",
+    description: "現在値の text 表示。 children に function を渡して format 可。",
+  },
+  {
+    name: "Slider.Control",
+    description:
+      "Track + Thumb をまとめる relative container。 click / drag を受け取る。",
+  },
+  {
+    name: "Slider.Track",
+    description: "背景の溝。 sunken bg。",
+  },
+  {
+    name: "Slider.Range",
+    description: "選択範囲を塗る前景。 origin に応じて伸びる起点が変わる。",
+  },
+  {
+    name: "Slider.Thumb",
+    description:
+      "つまみ。 thumb 数 = value 配列の長さ。 内部に HiddenInput を自動 mount。",
+  },
+  {
+    name: "Slider.MarkerGroup / Marker",
+    description:
+      "目盛り。 Marker の value prop で位置指定。 data-state=under-value で色を変えられる。",
+  },
+  {
+    name: "Slider.DraggingIndicator",
+    description:
+      "drag 中だけ thumb の上に浮かぶ tooltip 風 indicator。 現在値を表示する用途。",
+  },
+];
+
+# Slider
+
+Track 上の Thumb を drag して数値を選ぶ。 単一値の連続入力 (volume / opacity) や、 2 つの Thumb で範囲指定 (price range)、 中央起点で正負の offset (EQ / bias) など 1 primitive で広く使える。
+
+## Usage
+
+uncontrolled (defaultValue) の最小例。
+
+<Example code={sliderBasic.code} html={sliderBasic.html}>
+  <SliderBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Slider } from "@/components/ui/slider";
+```
+
+```tsx
+<Slider.Root defaultValue={[40]}>
+  <Slider.Label />
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Range />
+    </Slider.Track>
+    <Slider.Thumb index={0} />
+  </Slider.Control>
+</Slider.Root>
+```
+
+## Controlled
+
+value + onValueChange で外部 state と同期。 表示は ValueText で。
+
+<Example code={sliderControlled.code} html={sliderControlled.html}>
+  <SliderControlledDemo />
+</Example>
+
+## Range
+
+Thumb を 2 つ並べて範囲指定。 minStepsBetweenThumbs で交差を防ぐ。
+
+<Example code={sliderRange.code} html={sliderRange.html}>
+  <SliderRangeDemo />
+</Example>
+
+## Step + markers
+
+step で刻み、 MarkerGroup + Marker で目盛り表示。 under-value で済んだ目盛りを濃く。
+
+<Example code={sliderMarkers.code} html={sliderMarkers.html}>
+  <SliderMarkersDemo />
+</Example>
+
+## Origin: center
+
+0 中心の正負 offset。 EQ や明るさ補正、 audio pan などに。
+
+<Example code={sliderOriginCenter.code} html={sliderOriginCenter.html}>
+  <SliderOriginCenterDemo />
+</Example>
+
+## Disabled
+
+Root に disabled。 thumb は drag 不可、 opacity 50%。
+
+<Example code={sliderDisabled.code} html={sliderDisabled.html}>
+  <SliderDisabledDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Label / ValueText / Control (Track + Range + Thumb) を並べる。 Marker / DraggingIndicator は任意。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "number[]",
+      description: "controlled mode の値。 thumb 1 つでも array で渡す。",
+    },
+    {
+      name: "defaultValue",
+      type: "number[]",
+      default: "[0]",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: number[] }) => void",
+      description: "drag / click 中 (連続) に呼ばれる。 live preview 向け。",
+    },
+    {
+      name: "onValueChangeEnd",
+      type: "(details: { value: number[] }) => void",
+      description:
+        "drag 終了時のみ呼ばれる。 API 送信など重い処理向け。",
+    },
+    {
+      name: "min",
+      type: "number",
+      default: "0",
+      description: "最小値。",
+    },
+    {
+      name: "max",
+      type: "number",
+      default: "100",
+      description: "最大値。",
+    },
+    {
+      name: "step",
+      type: "number",
+      default: "1",
+      description: "刻み幅。 keyboard 操作も step 単位。",
+    },
+    {
+      name: "minStepsBetweenThumbs",
+      type: "number",
+      default: "0",
+      description: "range slider で 2 つの thumb の最小間隔 (step 数)。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: "縦置きにする場合 vertical。",
+    },
+    {
+      name: "origin",
+      type: '"start" | "center" | "end"',
+      default: '"start"',
+      description:
+        "Range の起点。 center は 0 中心の offset 値 (温度補正など) で使う。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全 thumb 無効化。",
+    },
+  ]}
+/>

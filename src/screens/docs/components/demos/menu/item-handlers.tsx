@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDown, Copy, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "@/components/ui/menu";

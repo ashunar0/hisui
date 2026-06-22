@@ -1,3 +1,5 @@
+"use client";
+
 const SHADOW_KBD = "0 1px 0 var(--color-border)";
 
 export default function ShadowOthers() {

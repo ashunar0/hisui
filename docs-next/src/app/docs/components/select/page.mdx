@@ -1,0 +1,195 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SelectBasicDemo from "@hisui/screens/docs/components/demos/select/basic";
+import SelectClearableDemo from "@hisui/screens/docs/components/demos/select/clearable";
+import SelectDisabledItemDemo from "@hisui/screens/docs/components/demos/select/disabled-item";
+import SelectGroupsDemo from "@hisui/screens/docs/components/demos/select/groups";
+import SelectMultipleDemo from "@hisui/screens/docs/components/demos/select/multiple";
+import SelectSizesDemo from "@hisui/screens/docs/components/demos/select/sizes";
+import { loadDemo } from "@/lib/read-source";
+
+export const selectBasic = await loadDemo("select/basic.tsx");
+export const selectClearable = await loadDemo("select/clearable.tsx");
+export const selectDisabledItem = await loadDemo("select/disabled-item.tsx");
+export const selectGroups = await loadDemo("select/groups.tsx");
+export const selectMultiple = await loadDemo("select/multiple.tsx");
+export const selectSizes = await loadDemo("select/sizes.tsx");
+export const metadata = { title: "Select | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Select.Root",
+    description:
+      "外枠。 collection (createListCollection で作る) と value で選択を管理。 multiple で複数選択。",
+  },
+  {
+    name: "Select.Label",
+    description: "フィールドの label。 a11y 連動。",
+  },
+  {
+    name: "Select.Control",
+    description: "Trigger と ClearTrigger を並べる行。 relative + inline-flex。",
+  },
+  {
+    name: "Select.Trigger",
+    description: "開閉ボタン。 中に ValueText + Indicator を置く。",
+  },
+  {
+    name: "Select.ValueText",
+    description: "選択中の表示。 placeholder prop で未選択時の文言。",
+  },
+  {
+    name: "Select.Indicator",
+    description: "chevron。 開閉で rotate。",
+  },
+  {
+    name: "Select.ClearTrigger",
+    description: "選択クリアボタン。 値があるときだけ表示。",
+  },
+  {
+    name: "Select.Content / List / Item",
+    description:
+      "Content が floating panel、 中の List に Item を並べる。 内部で Portal + Positioner。",
+  },
+];
+
+# Select
+
+ドロップダウンの選択肢。 createListCollection で items を型安全に渡し、 value array で選択を制御する。 single / multiple、 group 化、 clear、 disabled item に対応。 form の単純な native select 代替に使う。
+
+## Usage
+
+createListCollection で items を作り、 Root に渡す。 controlled で value array を管理。
+
+<Example code={selectBasic.code} html={selectBasic.html}>
+  <SelectBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Select, createListCollection } from "@/components/ui/select";
+```
+
+```tsx
+<Select.Root collection={collection} value={value} onValueChange={...}>
+  <Select.Label />
+  <Select.Control>
+    <Select.Trigger>
+      <Select.ValueText />
+      <Select.Indicator />
+    </Select.Trigger>
+  </Select.Control>
+  <Select.Content>
+    <Select.List>
+      <Select.Item item={item}>
+        <Select.ItemText />
+        <Select.ItemIndicator />
+      </Select.Item>
+    </Select.List>
+  </Select.Content>
+</Select.Root>
+```
+
+## Sizes
+
+Root の size で xs / sm / md / lg。 Context で Trigger に流れる。 Input と同じ scale。
+
+<Example code={selectSizes.code} html={selectSizes.html}>
+  <SelectSizesDemo />
+</Example>
+
+## Multiple
+
+multiple で複数選択可。 closeOnSelect が default false に変わるので連続選択しやすい。
+
+<Example code={selectMultiple.code} html={selectMultiple.html}>
+  <SelectMultipleDemo />
+</Example>
+
+## Disabled item
+
+collection の item に disabled: true を含めると個別に無効化。
+
+<Example code={selectDisabledItem.code} html={selectDisabledItem.html}>
+  <SelectDisabledItemDemo />
+</Example>
+
+## Clearable
+
+ClearTrigger を Indicator と swap して 値が入ってる時だけ × を出すパターン。
+
+<Example code={selectClearable.code} html={selectClearable.html}>
+  <SelectClearableDemo />
+</Example>
+
+## Groups
+
+ItemGroup + ItemGroupLabel で section 分け。 items の category 属性で filter する。
+
+<Example code={selectGroups.code} html={selectGroups.html}>
+  <SelectGroupsDemo />
+</Example>
+
+## Anatomy
+
+Root → (Label + Control(Trigger + Indicator) + Content(List + Item))。 ItemText / ItemIndicator は Item の中に。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "collection",
+      type: "ListCollection",
+      description:
+        "createListCollection({ items, itemToString?, itemToValue? }) で作る。 type-safe な item array。",
+    },
+    {
+      name: "value",
+      type: "string[]",
+      description:
+        "controlled mode の選択値。 single でも array で受ける ([] or [val])。",
+    },
+    {
+      name: "defaultValue",
+      type: "string[]",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string[], items: Item[] }) => void",
+      description: "選択が変わった時に呼ばれる。",
+    },
+    {
+      name: "multiple",
+      type: "boolean",
+      default: "false",
+      description: "複数選択モード。 closeOnSelect が default false に。",
+    },
+    {
+      name: "positioning",
+      type: "{ placement?, sameWidth?, ... }",
+      description:
+        "Floating UI 設定。 sameWidth=true (default) で Trigger 幅と揃える。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description:
+        "Trigger の高さ・padding・font-size を Input と同じ scale に揃える。 Context 経由で Trigger に流れる。",
+    },
+  ]}
+/>

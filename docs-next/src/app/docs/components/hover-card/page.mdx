@@ -1,0 +1,129 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import HoverCardCustomDelayDemo from "@hisui/screens/docs/components/demos/hover-card/custom-delay";
+import HoverCardUsageDemo from "@hisui/screens/docs/components/demos/hover-card/usage";
+import HoverCardWithArrowDemo from "@hisui/screens/docs/components/demos/hover-card/with-arrow";
+import { loadDemo } from "@/lib/read-source";
+
+export const hoverCardCustomDelay = await loadDemo("hover-card/custom-delay.tsx");
+export const hoverCardUsage = await loadDemo("hover-card/usage.tsx");
+export const hoverCardWithArrow = await loadDemo("hover-card/with-arrow.tsx");
+export const metadata = { title: "HoverCard | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "HoverCard.Root",
+    description:
+      "外枠。 openDelay / closeDelay で hover の遅延。 ui-lab default は 150ms。",
+  },
+  {
+    name: "HoverCard.Trigger",
+    description: "hover の起点。 asChild で link / avatar 等にラップ。 keyboard は focus で発火。",
+  },
+  {
+    name: "HoverCard.Content",
+    description:
+      "中身。 内部で Portal + Positioner + animation を自動 mount。 shadow + border の floating surface。",
+  },
+  {
+    name: "HoverCard.Arrow / ArrowTip",
+    description:
+      "矢印。 placement に追従して向きが変わる。 surface 同色の塗りつぶし三角。",
+  },
+];
+
+# HoverCard
+
+hover で開く preview panel。 user mention / link / item の補足情報を click せずに見せる。 Tooltip より中身を自由に組めて、 Popover と違い click 不要なので軽い browsing 向き。
+
+## Usage
+
+Trigger に asChild で任意の inline element (link / mention 等)、 Content に Avatar + name + bio を並べる典型。 hover で開く。
+
+<Example code={hoverCardUsage.code} html={hoverCardUsage.html}>
+  <HoverCardUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { HoverCard } from "@/components/ui/hover-card";
+```
+
+```tsx
+<HoverCard.Root>
+  <HoverCard.Trigger asChild>...</HoverCard.Trigger>
+  <HoverCard.Content>...</HoverCard.Content>
+</HoverCard.Root>
+```
+
+## With arrow
+
+Content に Arrow + ArrowTip を入れると向き付き。 placement 追従。
+
+<Example code={hoverCardWithArrow.code} html={hoverCardWithArrow.html}>
+  <HoverCardWithArrowDemo />
+</Example>
+
+## Custom delay
+
+openDelay / closeDelay でタイミング調整。 link rich preview は少し長めの方が誤発火しない。
+
+<Example code={hoverCardCustomDelay.code} html={hoverCardCustomDelay.html}>
+  <HoverCardCustomDelayDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Trigger と Content。 Content は内部で Portal + Positioner を内蔵。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "openDelay",
+      type: "number",
+      default: "150",
+      description: "hover してから開くまでの ms。 短すぎると hover で出やすく、 長すぎると遅く感じる。",
+    },
+    {
+      name: "closeDelay",
+      type: "number",
+      default: "150",
+      description: "離れてから閉じるまでの ms。 Trigger → Content への移動猶予に使う。",
+    },
+    {
+      name: "open",
+      type: "boolean",
+      description: "controlled mode の表示状態。",
+    },
+    {
+      name: "defaultOpen",
+      type: "boolean",
+      default: "false",
+      description: "uncontrolled mode の初期表示。",
+    },
+    {
+      name: "onOpenChange",
+      type: "(details: { open: boolean }) => void",
+      description: "open 状態が変わった時に呼ばれる。",
+    },
+    {
+      name: "positioning",
+      type: '{ placement?: "top" | "bottom" | "left" | "right" | ... }',
+      description: "Floating UI 設定。 placement / gutter / offset 等を渡す。",
+    },
+  ]}
+/>

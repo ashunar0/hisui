@@ -1,3 +1,5 @@
+"use client";
+
 import { RatingGroup } from "@/components/ui/rating-group";
 
 export default function RatingGroupAllowHalfDemo() {

@@ -1,3 +1,5 @@
+"use client";
+
 import { Listbox, createListCollection } from "@/components/ui/listbox";
 
 const COUNTRIES = [

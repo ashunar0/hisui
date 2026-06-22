@@ -1,3 +1,5 @@
+"use client";
+
 import { RadioGroup } from "@/components/ui/radio-group";
 
 const PLANS = [

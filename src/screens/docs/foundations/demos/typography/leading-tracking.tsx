@@ -1,3 +1,5 @@
+"use client";
+
 export default function TypographyLeadingTracking() {
   return (
     <div className="grid gap-4 md:grid-cols-2">

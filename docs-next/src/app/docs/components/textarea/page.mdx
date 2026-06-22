@@ -1,0 +1,105 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import TextareaDisabledDemo from "@hisui/screens/docs/components/demos/textarea/disabled";
+import TextareaFixedRowsDemo from "@hisui/screens/docs/components/demos/textarea/fixed-rows";
+import TextareaInvalidDemo from "@hisui/screens/docs/components/demos/textarea/invalid";
+import TextareaSizesDemo from "@hisui/screens/docs/components/demos/textarea/sizes";
+import TextareaUsageDemo from "@hisui/screens/docs/components/demos/textarea/usage";
+import TextareaVariantsDemo from "@hisui/screens/docs/components/demos/textarea/variants";
+import { loadDemo } from "@/lib/read-source";
+
+export const textareaDisabled = await loadDemo("textarea/disabled.tsx");
+export const textareaFixedRows = await loadDemo("textarea/fixed-rows.tsx");
+export const textareaInvalid = await loadDemo("textarea/invalid.tsx");
+export const textareaSizes = await loadDemo("textarea/sizes.tsx");
+export const textareaUsage = await loadDemo("textarea/usage.tsx");
+export const textareaVariants = await loadDemo("textarea/variants.tsx");
+export const metadata = { title: "Textarea | Hisui UI" };
+
+# Textarea
+
+multi-line の text input。 Input と prop API を揃え、 min-height + 縦 resize 対応。 default は outline / md。
+
+## Usage
+
+default は outline / md。
+
+<Example code={textareaUsage.code} html={textareaUsage.html}>
+  <TextareaUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Textarea } from "@/components/ui/textarea";
+```
+
+```tsx
+<Textarea placeholder="..." />
+```
+
+## Variants
+
+Input と同じ 3 種。 form の周囲レイアウトに合わせて選ぶ。
+
+<Example code={textareaVariants.code} html={textareaVariants.html}>
+  <TextareaVariantsDemo />
+</Example>
+
+## Sizes
+
+xs / sm / md / lg の 4 段階。 min-height が変わる。
+
+<Example code={textareaSizes.code} html={textareaSizes.html}>
+  <TextareaSizesDemo />
+</Example>
+
+## Invalid
+
+invalid で aria-invalid + 各 variant の error スタイル。
+
+<Example code={textareaInvalid.code} html={textareaInvalid.html}>
+  <TextareaInvalidDemo />
+</Example>
+
+## Disabled
+
+disabled で opacity 50% + cursor-not-allowed。
+
+<Example code={textareaDisabled.code} html={textareaDisabled.html}>
+  <TextareaDisabledDemo />
+</Example>
+
+## Fixed rows
+
+rows 属性で初期高さを直接指定。 resize-y で範囲広げ可能。
+
+<Example code={textareaFixedRows.code} html={textareaFixedRows.html}>
+  <TextareaFixedRowsDemo />
+</Example>
+
+## Props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"outline" | "subtle" | "flushed"',
+      default: '"outline"',
+      description:
+        "Input と同じ 3 種。 outline = border、 subtle = 塗り、 flushed = 下線のみ。",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "min-height と font-size を連動。 ユーザーは縦に resize 可能。",
+    },
+    {
+      name: "invalid",
+      type: "boolean",
+      default: "false",
+      description: "aria-invalid + danger token に切替。",
+    },
+  ]}
+/>

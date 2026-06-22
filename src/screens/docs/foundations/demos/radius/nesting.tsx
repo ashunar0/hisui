@@ -1,3 +1,5 @@
+"use client";
+
 export default function RadiusNesting() {
   return (
     <div className="grid gap-4 md:grid-cols-2">

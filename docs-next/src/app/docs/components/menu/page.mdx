@@ -1,0 +1,159 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import MenuBasicDemo from "@hisui/screens/docs/components/demos/menu/basic";
+import MenuCheckboxDemo from "@hisui/screens/docs/components/demos/menu/checkbox";
+import MenuGroupsDemo from "@hisui/screens/docs/components/demos/menu/groups";
+import MenuItemHandlersDemo from "@hisui/screens/docs/components/demos/menu/item-handlers";
+import MenuRadioDemo from "@hisui/screens/docs/components/demos/menu/radio";
+import { loadDemo } from "@/lib/read-source";
+
+export const menuBasic = await loadDemo("menu/basic.tsx");
+export const menuCheckbox = await loadDemo("menu/checkbox.tsx");
+export const menuGroups = await loadDemo("menu/groups.tsx");
+export const menuItemHandlers = await loadDemo("menu/item-handlers.tsx");
+export const menuRadio = await loadDemo("menu/radio.tsx");
+export const metadata = { title: "Menu | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Menu.Root",
+    description:
+      "外枠。 onSelect で item 選択を拾う。 controlled には open / onOpenChange。",
+  },
+  {
+    name: "Menu.Trigger",
+    description: "開閉ボタン。 asChild で Button / IconButton 等にラップ。",
+  },
+  {
+    name: "Menu.Content",
+    description:
+      "中身。 内部で Portal + Positioner を自動 mount。 floating surface (multi-layer shadow)。",
+  },
+  {
+    name: "Menu.Item",
+    description: "1 つの選択肢。 value 必須。 onSelect / disabled 個別指定可。",
+  },
+  {
+    name: "Menu.ItemGroup / ItemGroupLabel",
+    description: "items を group 化して group label を出す。",
+  },
+  {
+    name: "Menu.CheckboxItem",
+    description: "trail に check が立つ item。 checked / onCheckedChange で個別管理。",
+  },
+  {
+    name: "Menu.RadioItemGroup / RadioItem",
+    description: "排他 group。 value + onValueChange で string を管理。",
+  },
+  {
+    name: "Menu.Separator",
+    description: "item 群の区切り線。 my-1 border-t border-border-muted。",
+  },
+];
+
+# Menu
+
+click で開く dropdown menu。 floating な Content 上に Item を縦に並べる。 Group / Checkbox / Radio / Separator / Shortcut 等の sub-component を組み合わせて context menu / app menu / settings menu を組む。
+
+## Usage
+
+Trigger を Button、 Item に icon + Text + Kbd を並べる典型 dropdown。
+
+<Example code={menuBasic.code} html={menuBasic.html}>
+  <MenuBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Menu } from "@/components/ui/menu";
+```
+
+```tsx
+<Menu.Root>
+  <Menu.Trigger asChild>
+    <Button />
+  </Menu.Trigger>
+  <Menu.Content>
+    <Menu.Item value="...">
+      <Menu.ItemText />
+    </Menu.Item>
+    <Menu.Separator />
+  </Menu.Content>
+</Menu.Root>
+```
+
+## Groups
+
+ItemGroup + ItemGroupLabel で見出し付きの section を作る。
+
+<Example code={menuGroups.code} html={menuGroups.html}>
+  <MenuGroupsDemo />
+</Example>
+
+## Checkbox items
+
+trail に check が立つ多選択。 closeOnSelect=false で連続 toggle 可能に。
+
+<Example code={menuCheckbox.code} html={menuCheckbox.html}>
+  <MenuCheckboxDemo />
+</Example>
+
+## Radio items
+
+排他 group。 RadioItemGroup の value + onValueChange で 1 つだけ選ばせる。
+
+<Example code={menuRadio.code} html={menuRadio.html}>
+  <MenuRadioDemo />
+</Example>
+
+## Item handlers
+
+onSelect は Root に 1 つ置く方法と、 Item 個別の 2 通り。 個別の方が明示的で読みやすい。
+
+<Example code={menuItemHandlers.code} html={menuItemHandlers.html}>
+  <MenuItemHandlersDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Trigger と Content。 Content に Item 群を並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "onSelect",
+      type: "(details: { value: string }) => void",
+      description: "Item の value を選択した時。 Menu 全体で 1 つの handler。",
+    },
+    {
+      name: "open / onOpenChange",
+      type: "boolean / (d: { open: boolean }) => void",
+      description: "controlled mode の表示状態。",
+    },
+    {
+      name: "positioning",
+      type: "{ placement?: Placement, gutter?: number, ... }",
+      description: "Floating UI に渡す。 placement で出る向き、 gutter で距離。",
+    },
+    {
+      name: "closeOnSelect",
+      type: "boolean",
+      default: "true",
+      description: "item 選択時に閉じるか。 CheckboxItem では false 推奨。",
+    },
+  ]}
+/>

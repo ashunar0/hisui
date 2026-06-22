@@ -1,0 +1,92 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ToolbarRichTextEditorDemo from "@hisui/screens/docs/components/demos/toolbar/rich-text-editor";
+import ToolbarViewSwitcherDemo from "@hisui/screens/docs/components/demos/toolbar/view-switcher";
+import { loadDemo } from "@/lib/read-source";
+
+export const toolbarRichTextEditor = await loadDemo("toolbar/rich-text-editor.tsx");
+export const toolbarViewSwitcher = await loadDemo("toolbar/view-switcher.tsx");
+export const metadata = { title: "Toolbar | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Toolbar.Root",
+    description:
+      "role=toolbar の bordered container。 inline-flex + gap-1 + p-1 で button が並ぶ rail。 orientation=vertical で縦にも。",
+  },
+  {
+    name: "Toolbar.Separator",
+    description:
+      "vertical Separator + h-5 + mx-1 を当てた group 区切り。 plain 1px line で 2 group を分ける。",
+  },
+];
+
+# Toolbar
+
+IconButton / ToggleGroup / button 等を 1 列に並べる bordered rail。 zag-js は使わず plain HTML + role=toolbar の単純 wrapper。 group の区切りには Toolbar.Separator を挟む。
+
+## Usage
+
+IconButton + ToggleGroup を Separator で区切る rich text editor の典型例。 a11y のために Toolbar.Root に aria-label を必ず付ける。
+
+<Example code={toolbarRichTextEditor.code} html={toolbarRichTextEditor.html}>
+  <ToolbarRichTextEditorDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Toolbar } from "@/components/ui/toolbar";
+```
+
+```tsx
+<Toolbar.Root aria-label="...">
+  ...buttons / ToggleGroup
+  <Toolbar.Separator />
+  ...
+</Toolbar.Root>
+```
+
+## View switcher
+
+ToggleGroup single で view を切替 + 普通の button を Separator で分ける。 dashboard 上部に置く想定。
+
+<Example code={toolbarViewSwitcher.code} html={toolbarViewSwitcher.html}>
+  <ToolbarViewSwitcherDemo />
+</Example>
+
+## Anatomy
+
+中身は何でも置ける。 IconButton と ToggleGroup を組み合わせるのが定型。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[12rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description:
+        "横並び (default) か縦並び。 aria-orientation も自動で同期。",
+    },
+    {
+      name: "aria-label",
+      type: "string",
+      default: "—",
+      description:
+        "toolbar の用途を screen reader に伝える。 Text formatting 等。",
+    },
+  ]}
+/>

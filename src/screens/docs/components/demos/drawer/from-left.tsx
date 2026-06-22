@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu } from "lucide-react";
 import { Drawer } from "@/components/ui/drawer";
 import { IconButton } from "@/components/ui/icon-button";

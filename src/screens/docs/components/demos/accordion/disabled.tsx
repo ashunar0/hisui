@@ -1,3 +1,5 @@
+"use client";
+
 import { Accordion } from "@/components/ui/accordion";
 
 export default function AccordionDisabledDemo() {

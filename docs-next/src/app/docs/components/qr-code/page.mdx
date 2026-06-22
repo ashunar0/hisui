@@ -1,0 +1,127 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import QrCodeInlineTicketDemo from "@hisui/screens/docs/components/demos/qr-code/inline-ticket";
+import QrCodeLogoOverlayDemo from "@hisui/screens/docs/components/demos/qr-code/logo-overlay";
+import QrCodeUsageDemo from "@hisui/screens/docs/components/demos/qr-code/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const qrCodeInlineTicket = await loadDemo("qr-code/inline-ticket.tsx");
+export const qrCodeLogoOverlay = await loadDemo("qr-code/logo-overlay.tsx");
+export const qrCodeUsage = await loadDemo("qr-code/usage.tsx");
+export const metadata = { title: "QR Code | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "QrCode.Root",
+    description:
+      "外枠。 value を受けて QR を生成。 default は flex flex-col + bordered card。",
+  },
+  {
+    name: "QrCode.Center",
+    description:
+      "Frame + Overlay の center 配置専用 wrapper (relative box)。 Ark の Overlay は Root center に absolute するので、 DownloadTrigger 等が同居すると center がずれるため必須。",
+  },
+  {
+    name: "QrCode.Frame",
+    description: "SVG container。 size-N で物理サイズ、 中の Pattern が paint。",
+  },
+  {
+    name: "QrCode.Pattern",
+    description: "実際の QR pattern。 fill-current で text 色を継承。",
+  },
+  {
+    name: "QrCode.Overlay",
+    description:
+      "中央に重ねる logo / icon box。 ecc=H と組み合わせて誤り訂正で読み取り可能性を担保。",
+  },
+  {
+    name: "QrCode.DownloadTrigger",
+    description:
+      "PNG / SVG として download する button。 fileName / mimeType を渡す。 asChild で Button に差し替え可。",
+  },
+];
+
+# QR Code
+
+Ark UI ベースの QR code generator。 value を渡せば SVG pattern を描画。 中央に logo を重ねたい時は Overlay と encoding.ecc=H をセットで。 Center wrapper で Frame と Overlay の center を保つのが落とし穴。
+
+## Usage
+
+value に URL を渡すだけの最小例。 Root の card layout で枠と padding を付ける。
+
+<Example code={qrCodeUsage.code} html={qrCodeUsage.html}>
+  <QrCodeUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { QrCode } from "@/components/ui/qr-code";
+```
+
+```tsx
+<QrCode.Root value="...">
+  <QrCode.Center>
+    <QrCode.Frame>
+      <QrCode.Pattern />
+    </QrCode.Frame>
+  </QrCode.Center>
+</QrCode.Root>
+```
+
+## Logo overlay + download
+
+Overlay で中央に icon を重ねる時は encoding.ecc=H で誤り訂正を最大に。 DownloadTrigger は asChild で Button に差し替えて見た目を合わせる。
+
+<Example code={qrCodeLogoOverlay.code} html={qrCodeLogoOverlay.html}>
+  <QrCodeLogoOverlayDemo />
+</Example>
+
+## Compact inline ticket
+
+Root を flex-row + 小さい Frame にすると ticket / chit-style に。
+
+<Example code={qrCodeInlineTicket.code} html={qrCodeInlineTicket.html}>
+  <QrCodeInlineTicketDemo />
+</Example>
+
+## Anatomy
+
+Center は ui-lab 独自の relative wrapper。 Frame だけなら Center は省略可だが、 Overlay や DownloadTrigger を併用する時は必須。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string",
+      default: "—",
+      description: "encode する文字列。 URL / OTP auth / plain text 何でも可。",
+    },
+    {
+      name: "encoding",
+      type: '{ ecc?: "L" | "M" | "Q" | "H" }',
+      default: '{ ecc: "L" }',
+      description:
+        "誤り訂正レベル。 L (低) → H (高)。 Overlay で中央を隠す時は H を推奨。",
+    },
+    {
+      name: "pixelSize",
+      type: "number",
+      default: "—",
+      description: "1 cell の px。 通常は Frame size-N に合わせて自動 fit。",
+    },
+  ]}
+/>

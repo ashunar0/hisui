@@ -1,0 +1,164 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import PaginationBasicDemo from "@hisui/screens/docs/components/demos/pagination/basic";
+import PaginationCompactDemo from "@hisui/screens/docs/components/demos/pagination/compact";
+import PaginationFirstLastDemo from "@hisui/screens/docs/components/demos/pagination/first-last";
+import PaginationSiblingCountDemo from "@hisui/screens/docs/components/demos/pagination/sibling-count";
+import { loadDemo } from "@/lib/read-source";
+
+export const paginationBasic = await loadDemo("pagination/basic.tsx");
+export const paginationCompact = await loadDemo("pagination/compact.tsx");
+export const paginationFirstLast = await loadDemo("pagination/first-last.tsx");
+export const paginationSiblingCount = await loadDemo("pagination/sibling-count.tsx");
+export const metadata = { title: "Pagination | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Pagination.Root",
+    description:
+      "外枠。 count (全件) と pageSize (1 page 件数) で totalPages を自動計算。 page / onPageChange で制御。",
+  },
+  {
+    name: "Pagination.PrevTrigger / NextTrigger",
+    description:
+      "前 / 次 page button。 端で自動 disabled。 default は ChevronLeft / Right icon。",
+  },
+  {
+    name: "Pagination.FirstTrigger / LastTrigger",
+    description:
+      "先頭 / 末尾 jump。 ChevronsLeft / Right icon が default。 大量 page の時に置く。",
+  },
+  {
+    name: "Pagination.Context",
+    description:
+      "render-prop で pages array や api (page / totalPages / count) を取得。 ループ render の起点。",
+  },
+  {
+    name: "Pagination.Item",
+    description:
+      "1 つの page 番号 button。 Context.pages の page.value を中身に。 data-selected で現在 page を強調。",
+  },
+  {
+    name: "Pagination.Ellipsis",
+    description:
+      "省略表記 (…)。 Context.pages の type='ellipsis' の位置に置く。 click 不可。",
+  },
+];
+
+# Pagination
+
+list / table の page 切替 control。 count + pageSize から totalPages を自動計算し、 siblingCount + Ellipsis で番号の表示量を絞る。 table footer の compact 版 (Prev / Next + 件数表示) も Context render-prop で組める。
+
+## Usage
+
+count=100 / pageSize=10 で 10 page。 siblingCount=1 で current の左右 1 つずつ + Ellipsis。
+
+<Example code={paginationBasic.code} html={paginationBasic.html}>
+  <PaginationBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Pagination } from "@/components/ui/pagination";
+```
+
+```tsx
+<Pagination.Root count={count} pageSize={10}>
+  <Pagination.PrevTrigger />
+  <Pagination.Context>
+    {({ pages }) =>
+      pages.map((page, index) =>
+        page.type === "page" ? (
+          <Pagination.Item key={index} {...page}>
+            {page.value}
+          </Pagination.Item>
+        ) : (
+          <Pagination.Ellipsis key={index} index={index} />
+        ),
+      )
+    }
+  </Pagination.Context>
+  <Pagination.NextTrigger />
+</Pagination.Root>
+```
+
+## With First / Last
+
+大量 page の dataset。 端へ即 jump できると操作が早い。
+
+<Example code={paginationFirstLast.code} html={paginationFirstLast.html}>
+  <PaginationFirstLastDemo />
+</Example>
+
+## Compact (table footer)
+
+番号を出さず、 件数表示 + Prev / Next だけ。 table の bottom bar に。
+
+<Example code={paginationCompact.code} html={paginationCompact.html}>
+  <PaginationCompactDemo />
+</Example>
+
+## Sibling count
+
+siblingCount を変えると番号の表示量が変わる。 0 で current のみ、 2 で current ± 2。
+
+<Example code={paginationSiblingCount.code} html={paginationSiblingCount.html}>
+  <PaginationSiblingCountDemo />
+</Example>
+
+## Anatomy
+
+Root の中に PrevTrigger / Context (pages.map で Item / Ellipsis) / NextTrigger。 First / LastTrigger は任意。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "count",
+      type: "number",
+      description: "必須。 全件数。 pageSize で割って totalPages を計算。",
+    },
+    {
+      name: "pageSize",
+      type: "number",
+      default: "10",
+      description: "1 page あたりの件数。",
+    },
+    {
+      name: "siblingCount",
+      type: "number",
+      default: "1",
+      description:
+        "current page の左右に出す番号数。 1 で current ± 1 まで、 2 で ± 2 まで。",
+    },
+    {
+      name: "page",
+      type: "number",
+      description: "controlled mode の現在 page (1-indexed)。",
+    },
+    {
+      name: "defaultPage",
+      type: "number",
+      default: "1",
+      description: "uncontrolled mode の初期 page。",
+    },
+    {
+      name: "onPageChange",
+      type: "(details: { page: number }) => void",
+      description: "page が変わった時に呼ばれる。",
+    },
+  ]}
+/>

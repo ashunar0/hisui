@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 
 const PALETTES = ["neutral", "success", "danger", "warning", "info"] as const;

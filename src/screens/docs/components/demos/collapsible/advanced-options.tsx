@@ -1,3 +1,5 @@
+"use client";
+
 import { Collapsible } from "@/components/ui/collapsible";
 
 export default function CollapsibleAdvancedOptionsDemo() {

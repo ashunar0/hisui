@@ -1,0 +1,147 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import TableSizesDemo from "@hisui/screens/docs/components/demos/table/sizes";
+import TableSortableDemo from "@hisui/screens/docs/components/demos/table/sortable";
+import TableStickyHeaderDemo from "@hisui/screens/docs/components/demos/table/sticky-header";
+import TableVariantsDemo from "@hisui/screens/docs/components/demos/table/variants";
+import { loadDemo } from "@/lib/read-source";
+
+export const tableSizes = await loadDemo("table/sizes.tsx");
+export const tableSortable = await loadDemo("table/sortable.tsx");
+export const tableStickyHeader = await loadDemo("table/sticky-header.tsx");
+export const tableVariants = await loadDemo("table/variants.tsx");
+export const metadata = { title: "Table | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Table.Root",
+    description:
+      "外枠。 variant / size / stickyHeader / interactive を Context で全 part に流す。 内部で w-full overflow-x-auto の div + table。",
+  },
+  {
+    name: "Table.Header / Body / Footer",
+    description:
+      "thead / tbody / tfoot の薄 wrapper。 variant で border / divide / striped を切替。 Footer は bg-surface-sunken + font-medium で合計行向け。",
+  },
+  {
+    name: "Table.Row",
+    description:
+      "tr。 interactive (default true) で hover:bg-hover。 striped variant では even row が tinted。",
+  },
+  {
+    name: "Table.Head / Cell",
+    description:
+      "th / td。 size に応じて padding / height を Context から受ける。",
+  },
+  {
+    name: "Table.SortableHead",
+    description:
+      "ソート可能な th。 active / direction / onToggle を渡すと chevron icon を切替表示。 useTableSort と組み合わせる。",
+  },
+];
+
+# Table
+
+plain HTML table 上に variant / size / interactive / stickyHeader を Context で配る compound。 ソート用に useTableSort hook + SortableHead も同梱。 Chakra v3 と part 名互換 (Root / Header / Body / Footer / Row / Head / Cell)。
+
+## Usage
+
+line (default) / outline / striped の 3 variant。 layout は同じで枠と背景だけ切替。
+
+<Example code={tableVariants.code} html={tableVariants.html}>
+  <TableVariantsDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Table, useTableSort } from "@/components/ui/table";
+```
+
+```tsx
+<Table.Root variant="outline" size="md">
+  <Table.Header>
+    <Table.Row>
+      <Table.Head>Name</Table.Head>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>Acme</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table.Root>
+```
+
+## Sizes
+
+sm / md / lg の 3 段階。 Head height と Cell padding が連動。
+
+<Example code={tableSizes.code} html={tableSizes.html}>
+  <TableSizesDemo />
+</Example>
+
+## Sortable with footer
+
+SortableHead + useTableSort で header click ソート。 Footer は合計行に使うのが定番。
+
+<Example code={tableSortable.code} html={tableSortable.html}>
+  <TableSortableDemo />
+</Example>
+
+## Sticky header
+
+stickyHeader を true にすると thead が scroll 時に固定。 親に max-h + overflow-y-auto が必要。
+
+<Example code={tableStickyHeader.code} html={tableStickyHeader.html}>
+  <TableStickyHeaderDemo />
+</Example>
+
+## Anatomy
+
+Header + Body + Footer の 3 段構造。 Row / Head / Cell を中に並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"line" | "outline" | "striped"',
+      default: '"line"',
+      description:
+        "line = 行間 border のみ、 outline = 全体を border で囲む、 striped = even row 塗り。",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+      description:
+        "Head height と Cell padding を Context で全 part にスケール。",
+    },
+    {
+      name: "stickyHeader",
+      type: "boolean",
+      default: "false",
+      description:
+        "thead に sticky top-0 を当てる。 親に max-h + overflow-y-auto 必須。",
+    },
+    {
+      name: "interactive",
+      type: "boolean",
+      default: "true",
+      description: "false で行 hover を切る。 read-only な data 表示に。",
+    },
+  ]}
+/>

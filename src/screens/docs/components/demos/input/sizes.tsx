@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 
 const SIZES = ["xs", "sm", "md", "lg"] as const;

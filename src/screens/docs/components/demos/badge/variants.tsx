@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 
 const VARIANTS = ["solid", "subtle", "outline", "surface", "plain"] as const;

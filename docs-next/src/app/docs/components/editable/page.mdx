@@ -1,0 +1,193 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import EditableBasicDemo from "@hisui/screens/docs/components/demos/editable/basic";
+import EditableDblclickDemo from "@hisui/screens/docs/components/demos/editable/dblclick";
+import EditablePlaceholderDemo from "@hisui/screens/docs/components/demos/editable/placeholder";
+import EditableSubmitModeDemo from "@hisui/screens/docs/components/demos/editable/submit-mode";
+import { loadDemo } from "@/lib/read-source";
+
+export const editableBasic = await loadDemo("editable/basic.tsx");
+export const editableDblclick = await loadDemo("editable/dblclick.tsx");
+export const editablePlaceholder = await loadDemo("editable/placeholder.tsx");
+export const editableSubmitMode = await loadDemo("editable/submit-mode.tsx");
+export const metadata = { title: "Editable | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Editable.Root",
+    description:
+      "外枠。 value / onValueChange で文字列を管理。 edit / onEditChange で edit mode を制御。",
+  },
+  {
+    name: "Editable.Label",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "Editable.Area",
+    description: "Preview と Input を切替表示する枠。 中の片方だけ visible。",
+  },
+  {
+    name: "Editable.Preview",
+    description:
+      "表示 mode の text。 dblclick で edit mode 入り。 hover で薄く背景。",
+  },
+  {
+    name: "Editable.Input",
+    description:
+      "edit mode の input。 Enter で submit、 Esc で cancel が default。",
+  },
+  {
+    name: "Editable.Control",
+    description:
+      "Edit / Submit / Cancel button を並べる枠。 表示 / edit で出る button が切り替わる。",
+  },
+  {
+    name: "Editable.EditTrigger",
+    description: "表示 mode で出る pencil button。 click で edit mode 入り。",
+  },
+  {
+    name: "Editable.SubmitTrigger / CancelTrigger",
+    description:
+      "edit mode で出る check / × button。 click / Enter / Esc で値確定 / 破棄。",
+  },
+];
+
+# Editable
+
+inline で text を直接編集する compound。 表示 mode と edit mode を 1 場所で切替えるので、 別 modal を開かずに名前 / title / 短い設定値をさっと書き換えできる。 Notion / Linear の inline rename 風。
+
+## Usage
+
+Preview text を dblclick (default は focus 系) で edit mode 入り。 Enter で確定、 Esc で破棄。
+
+<Example code={editableBasic.code} html={editableBasic.html}>
+  <EditableBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Editable } from "@/components/ui/editable";
+```
+
+```tsx
+<Editable.Root defaultValue="...">
+  <Editable.Label />
+  <Editable.Area>
+    <Editable.Preview />
+    <Editable.Input />
+  </Editable.Area>
+  <Editable.Control>
+    <Editable.EditTrigger />
+    <Editable.SubmitTrigger />
+    <Editable.CancelTrigger />
+  </Editable.Control>
+</Editable.Root>
+```
+
+## Placeholder
+
+defaultValue 無しなら placeholder が薄い色で出る。 click で edit mode。
+
+<Example code={editablePlaceholder.code} html={editablePlaceholder.html}>
+  <EditablePlaceholderDemo />
+</Example>
+
+## Activation mode: dblclick
+
+activationMode=dblclick で 2 回 click したときだけ edit mode に。 誤入り防止。
+
+<Example code={editableDblclick.code} html={editableDblclick.html}>
+  <EditableDblclickDemo />
+</Example>
+
+## Submit mode
+
+submitMode=enter で blur では確定せず、 Enter のみで commit。 form の submit 風挙動に合わせたい時。
+
+<Example code={editableSubmitMode.code} html={editableSubmitMode.html}>
+  <EditableSubmitModeDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Label / Area (Preview と Input)、 Control (EditTrigger / SubmitTrigger / CancelTrigger)。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string",
+      description: "controlled mode の値。",
+    },
+    {
+      name: "defaultValue",
+      type: "string",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string }) => void",
+      description: "edit 中の入力毎に呼ばれる。",
+    },
+    {
+      name: "onValueCommit",
+      type: "(details: { value: string }) => void",
+      description:
+        "submit (Enter / SubmitTrigger) 時のみ呼ばれる。 永続化はここで。",
+    },
+    {
+      name: "onValueRevert",
+      type: "(details: { value: string }) => void",
+      description: "cancel (Esc / CancelTrigger) 時に呼ばれる。",
+    },
+    {
+      name: "placeholder",
+      type: "string",
+      description: "空時の表示。 Preview に出る (text-fg-subtle)。",
+    },
+    {
+      name: "edit",
+      type: "boolean",
+      description: "controlled mode の edit 状態。",
+    },
+    {
+      name: "defaultEdit",
+      type: "boolean",
+      default: "false",
+      description: "uncontrolled mode の初期 edit 状態。",
+    },
+    {
+      name: "activationMode",
+      type: '"focus" | "dblclick" | "click" | "none"',
+      default: '"focus"',
+      description:
+        "Preview からどう edit mode 入りするか。 focus = Tab focus でも入る。",
+    },
+    {
+      name: "submitMode",
+      type: '"enter" | "blur" | "both" | "none"',
+      default: '"both"',
+      description: "どの操作で commit するか。 both = Enter + blur 両方。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全体無効化。 edit mode に入れなくなる。",
+    },
+  ]}
+/>

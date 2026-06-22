@@ -1,3 +1,5 @@
+"use client";
+
 import { Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Select, createListCollection } from "@/components/ui/select";

@@ -1,0 +1,148 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import DialogNonModalDemo from "@hisui/screens/docs/components/demos/dialog/non-modal";
+import DialogUsageDemo from "@hisui/screens/docs/components/demos/dialog/usage";
+import DialogWithFormDemo from "@hisui/screens/docs/components/demos/dialog/with-form";
+import { loadDemo } from "@/lib/read-source";
+
+export const dialogNonModal = await loadDemo("dialog/non-modal.tsx");
+export const dialogUsage = await loadDemo("dialog/usage.tsx");
+export const dialogWithForm = await loadDemo("dialog/with-form.tsx");
+export const metadata = { title: "Dialog | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Dialog.Root",
+    description:
+      "外枠。 open / onOpenChange で開閉を制御。 children に Trigger + Content を並べる。",
+  },
+  {
+    name: "Dialog.Trigger",
+    description:
+      "開閉ボタン。 asChild で別 component (Button 等) に差し替え可能。",
+  },
+  {
+    name: "Dialog.Content",
+    description:
+      "中身。 内部で Portal + Backdrop + Positioner を自動 mount するので、 中身だけ書けば OK。",
+  },
+  {
+    name: "Dialog.Title",
+    description: "見出し。 a11y のため aria-labelledby に自動接続。",
+  },
+  {
+    name: "Dialog.Description",
+    description: "補足。 aria-describedby に自動接続。",
+  },
+  {
+    name: "Dialog.CloseTrigger",
+    description:
+      "閉じるボタン。 asChild で IconButton や Button に変更。 Esc / backdrop click でも閉じる。",
+  },
+];
+
+# Dialog
+
+中央 modal。 Title / Description / 任意の中身 / 確定キャンセル button を組み合わせる。 Portal + Backdrop + Positioner は Content 内部で自動 mount。 multi-layer shadow + rounded-lg の floating surface 標準。
+
+## Usage
+
+Trigger (asChild で Button) + Title + Description + Footer の最小 modal。
+
+<Example code={dialogUsage.code} html={dialogUsage.html}>
+  <DialogUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Dialog } from "@/components/ui/dialog";
+```
+
+```tsx
+<Dialog.Root>
+  <Dialog.Trigger asChild>
+    <Button>...</Button>
+  </Dialog.Trigger>
+  <Dialog.Content>
+    <Dialog.Title />
+    <Dialog.Description />
+    <Dialog.CloseTrigger asChild>
+      <Button />
+    </Dialog.CloseTrigger>
+  </Dialog.Content>
+</Dialog.Root>
+```
+
+## With form
+
+中身は任意。 Input を並べて確定 / キャンセル の典型 form modal。
+
+<Example code={dialogWithForm.code} html={dialogWithForm.html}>
+  <DialogWithFormDemo />
+</Example>
+
+## Non-modal
+
+modal=false で背景操作可能。 後ろの UI と並行に作業させる時に。
+
+<Example code={dialogNonModal.code} html={dialogNonModal.html}>
+  <DialogNonModalDemo />
+</Example>
+
+## Anatomy
+
+Root の直下に Trigger と Content を置くだけ。 Backdrop / Positioner は Content が内蔵する。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[12rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "open",
+      type: "boolean",
+      description: "controlled mode の表示状態。",
+    },
+    {
+      name: "defaultOpen",
+      type: "boolean",
+      default: "false",
+      description: "uncontrolled mode の初期表示状態。",
+    },
+    {
+      name: "onOpenChange",
+      type: "(details: { open: boolean }) => void",
+      description: "open 状態が変わった時に呼ばれる。 controlled mode で必須。",
+    },
+    {
+      name: "modal",
+      type: "boolean",
+      default: "true",
+      description:
+        "true で背景操作不可 (focus trap + body lock)、 false で非モーダル。",
+    },
+    {
+      name: "closeOnInteractOutside",
+      type: "boolean",
+      default: "true",
+      description: "backdrop クリックで閉じるか。",
+    },
+    {
+      name: "closeOnEscape",
+      type: "boolean",
+      default: "true",
+      description: "Esc キーで閉じるか。",
+    },
+  ]}
+/>

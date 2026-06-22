@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 
 const SIZES = ["sm", "md", "lg"] as const;

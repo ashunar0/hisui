@@ -1,0 +1,151 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import RatingGroupAllowHalfDemo from "@hisui/screens/docs/components/demos/rating-group/allow-half";
+import RatingGroupInteractiveDemo from "@hisui/screens/docs/components/demos/rating-group/interactive";
+import RatingGroupReadonlyDisabledDemo from "@hisui/screens/docs/components/demos/rating-group/readonly-disabled";
+import { loadDemo } from "@/lib/read-source";
+
+export const ratingGroupAllowHalf = await loadDemo("rating-group/allow-half.tsx");
+export const ratingGroupInteractive = await loadDemo("rating-group/interactive.tsx");
+export const ratingGroupReadonlyDisabled = await loadDemo("rating-group/readonly-disabled.tsx");
+export const metadata = { title: "RatingGroup | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "RatingGroup.Root",
+    description:
+      "外枠。 value / defaultValue / count / allowHalf / readOnly / disabled を受ける。 flex flex-col gap-1.5 が default。",
+  },
+  {
+    name: "RatingGroup.Label",
+    description: "見出し text。 text-sm + font-medium。",
+  },
+  {
+    name: "RatingGroup.Control",
+    description:
+      "star 列の wrapper。 flex + gap で間隔調整。 data-disabled で opacity-50。",
+  },
+  {
+    name: "RatingGroup.Item",
+    description:
+      "1 つの star。 background 用 + foreground 用の Star を 2 つ重ね、 group-data-highlighted で foreground を opacity 0→1 に。 group-data-half で clip-path で半分塗り。",
+  },
+  {
+    name: "RatingGroup.Context",
+    description:
+      "render-prop で api を取り出す。 api.items を map して Item を render するのが基本 pattern。 api.value で現在値も読める。",
+  },
+  {
+    name: "RatingGroup.HiddenInput",
+    description:
+      "form value を提出する hidden input。 form 連携が必要なら Control 内に置く。",
+  },
+];
+
+# RatingGroup
+
+星評価 UI。 count で星の数、 value で現在値を持つ。 allowHalf で 0.5 単位の表現に対応。 Item は半透明の outline star と塗り潰し star を重ねる構造で、 highlighted / half の data 属性で foreground を出し分け。
+
+## Usage
+
+defaultValue + count で開始。 Context render-prop で現在値を text 表示する pattern が定型。
+
+<Example code={ratingGroupInteractive.code} html={ratingGroupInteractive.html}>
+  <RatingGroupInteractiveDemo />
+</Example>
+
+## Import
+
+```tsx
+import { RatingGroup } from "@/components/ui/rating-group";
+```
+
+```tsx
+<RatingGroup.Root defaultValue={3} count={5}>
+  <RatingGroup.Label />
+  <RatingGroup.Control>
+    <RatingGroup.Context>
+      {(api) =>
+        api.items.map((index) => (
+          <RatingGroup.Item key={index} index={index} />
+        ))
+      }
+    </RatingGroup.Context>
+    <RatingGroup.HiddenInput />
+  </RatingGroup.Control>
+</RatingGroup.Root>
+```
+
+## Allow half + larger
+
+allowHalf を渡すと 0.5 単位で選べる。 Item の className で svg サイズを上書きすれば大きく見せられる。
+
+<Example code={ratingGroupAllowHalf.code} html={ratingGroupAllowHalf.html}>
+  <RatingGroupAllowHalfDemo />
+</Example>
+
+## Read only / disabled
+
+readOnly はクリック不可だが見た目は通常 (review 表示)。 disabled は + opacity-50 で「触れない」感を出す。
+
+<Example code={ratingGroupReadonlyDisabled.code} html={ratingGroupReadonlyDisabled.html}>
+  <RatingGroupReadonlyDisabledDemo />
+</Example>
+
+## Anatomy
+
+Control の中で Context render-prop を回して Item を並べるのが基本契約。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "number",
+      description: "controlled。 onValueChange とセットで使う。",
+    },
+    {
+      name: "defaultValue",
+      type: "number",
+      default: "0",
+      description: "uncontrolled 初期値。 allowHalf なら 0.5 単位も可。",
+    },
+    {
+      name: "count",
+      type: "number",
+      default: "5",
+      description: "総 star 数。",
+    },
+    {
+      name: "allowHalf",
+      type: "boolean",
+      default: "false",
+      description:
+        "0.5 刻みで選べるように。 half 状態は clip-path で半分塗り。",
+    },
+    {
+      name: "readOnly",
+      type: "boolean",
+      default: "false",
+      description: "クリック不可だが見た目は通常 (review 表示など)。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "クリック不可 + opacity-50。 form 入力を完全に止めたい時。",
+    },
+  ]}
+/>

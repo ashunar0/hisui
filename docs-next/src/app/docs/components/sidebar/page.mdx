@@ -1,0 +1,159 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SidebarBasicDemo from "@hisui/screens/docs/components/demos/sidebar/basic";
+import SidebarMenuActionDemo from "@hisui/screens/docs/components/demos/sidebar/menu-action";
+import SidebarWithTriggerDemo from "@hisui/screens/docs/components/demos/sidebar/with-trigger";
+import { loadDemo } from "@/lib/read-source";
+
+export const sidebarBasic = await loadDemo("sidebar/basic.tsx");
+export const sidebarMenuAction = await loadDemo("sidebar/menu-action.tsx");
+export const sidebarWithTrigger = await loadDemo("sidebar/with-trigger.tsx");
+export const metadata = { title: "Sidebar | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Sidebar.Provider",
+    description:
+      "open / setOpen / toggle を Context で配る。 default は viewport ≥ 1024px で open。 必ず Root を含む木構造の上に置く。",
+  },
+  {
+    name: "Sidebar.Root",
+    description:
+      '<aside>。 width / closed margin は CSS 変数 --sidebar-w (default 16rem) 連動。 幅を変えたい時は className="[--sidebar-w:12rem]" のように Tailwind の arbitrary property 記法で上書き。',
+  },
+  {
+    name: "Sidebar.Trigger",
+    description:
+      "open/close toggle button。 PanelLeft icon。 main area の header に置く想定。",
+  },
+  {
+    name: "Sidebar.Header / Footer",
+    description:
+      "上下の固定エリア。 p-3 だけ当たってる。 ロゴや user menu を置く。",
+  },
+  {
+    name: "Sidebar.Content",
+    description:
+      "<nav>。 flex-1 + min-h-0 で残りスペースを埋め、 中身が溢れたら scroll。",
+  },
+  {
+    name: "Sidebar.Group",
+    description:
+      "Group label + MenuItem 群。 label prop で「Pinned」「Channels」等の小見出し。",
+  },
+  {
+    name: "Sidebar.MenuItem / MenuButton / MenuAction",
+    description:
+      "1 つの nav 行。 MenuButton が link、 MenuAction が右端 absolute の kebab 等。 MenuItem に group/menu-item class で hover 時 MenuAction を opacity-100 に。",
+  },
+];
+
+# Sidebar
+
+ui-lab 独自の app shell サイドバー。 Ark UI / Chakra UI には同名 primitive が無いので shadcn 風に自作。 Provider が open 状態を保持、 viewport ≥ 1024px で auto-open。 Trigger で手動 toggle、 MenuItem + MenuAction の hover-revealed kebab pattern もサポート。
+
+## Usage
+
+Provider + Root + Header / Content / Footer + Group + MenuButton の最小 compose。
+
+<Example code={sidebarBasic.code} html={sidebarBasic.html}>
+  <SidebarBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Sidebar } from "@/components/ui/sidebar";
+```
+
+```tsx
+<Sidebar.Provider>
+  <div className="flex h-full">
+    <Sidebar.Root>
+      <Sidebar.Header />
+      <Sidebar.Content>
+        <Sidebar.Group label="...">
+          <Sidebar.MenuItem>
+            <Sidebar.MenuButton active href="...">
+              ...
+            </Sidebar.MenuButton>
+          </Sidebar.MenuItem>
+        </Sidebar.Group>
+      </Sidebar.Content>
+      <Sidebar.Footer />
+    </Sidebar.Root>
+    <main>...</main>
+  </div>
+</Sidebar.Provider>
+```
+
+## With toggle trigger
+
+Trigger を main area header に置いて開閉。 default は viewport ≥ 1024px で open。 PanelLeft icon を click で toggle。
+
+<Example code={sidebarWithTrigger.code} html={sidebarWithTrigger.html}>
+  <SidebarWithTriggerDemo />
+</Example>
+
+## MenuAction with Menu
+
+MenuItem 内に MenuAction を置くと右端に hover で出る kebab に。 Menu.Trigger asChild で Sidebar.MenuAction に Menu を接続できる。
+
+<Example code={sidebarMenuAction.code} html={sidebarMenuAction.html}>
+  <SidebarMenuActionDemo />
+</Example>
+
+## Anatomy
+
+Provider が必須。 中で Root + main を flex 並列に置き、 main 側に Trigger を置く構成が定型。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[16rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Notable props
+
+<PropsTable
+  rows={[
+    {
+      name: "Provider",
+      type: "—",
+      description:
+        "useState + matchMedia で開閉状態を持つ。 useSidebar() で外から取れる。",
+    },
+    {
+      name: "Root --sidebar-w",
+      type: "CSS length",
+      default: '"16rem"',
+      description:
+        'サイドバー幅 + 閉じ時の margin-left の元値。 className の w-N で直接 width を変えると closed margin と非同期になるので、 className="[--sidebar-w:12rem]" のように Tailwind arbitrary property で CSS 変数を上書きする。',
+    },
+    {
+      name: "MenuButton.active",
+      type: "boolean",
+      default: "false",
+      description:
+        "active=true で bg-surface-sunken + font-semibold + 強い icon stroke。",
+    },
+    {
+      name: "MenuButton.asChild",
+      type: "boolean",
+      default: "false",
+      description: "Slot で別 component (router Link 等) に差し替え。",
+    },
+    {
+      name: "MenuAction.asChild",
+      type: "boolean",
+      default: "false",
+      description:
+        "Menu.Trigger を Slot で MenuAction に差し替えるパターンで使う。",
+    },
+  ]}
+/>

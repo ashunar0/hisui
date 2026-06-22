@@ -1,3 +1,5 @@
+"use client";
+
 import { Wifi } from "lucide-react";
 import { Toggle } from "@/components/ui/toggle";
 

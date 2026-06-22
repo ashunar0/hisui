@@ -1,3 +1,5 @@
+"use client";
+
 import { Slash } from "lucide-react";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 

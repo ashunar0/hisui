@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 
 const PALETTES = ["neutral", "success", "danger", "warning", "info"] as const;

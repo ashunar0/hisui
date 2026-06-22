@@ -1,0 +1,128 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SwitchControlledDemo from "@hisui/screens/docs/components/demos/switch/controlled";
+import SwitchDisabledDemo from "@hisui/screens/docs/components/demos/switch/disabled";
+import SwitchSettingsListDemo from "@hisui/screens/docs/components/demos/switch/settings-list";
+import SwitchUsageDemo from "@hisui/screens/docs/components/demos/switch/usage";
+import { loadDemo } from "@/lib/read-source";
+
+export const switchControlled = await loadDemo("switch/controlled.tsx");
+export const switchDisabled = await loadDemo("switch/disabled.tsx");
+export const switchSettingsList = await loadDemo("switch/settings-list.tsx");
+export const switchUsage = await loadDemo("switch/usage.tsx");
+export const metadata = { title: "Switch | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Switch.Root",
+    description:
+      "外枠。 inline-flex で Control と Label を gap-2 で並べる。 HiddenInput は自動 mount。",
+  },
+  {
+    name: "Switch.Control",
+    description: "track 部分。 h-5 w-9 rounded-full。 checked で bg-fg。",
+  },
+  {
+    name: "Switch.Thumb",
+    description:
+      "丸い動く部分。 translate-x で位置切替、 transition-transform で滑らかに。",
+  },
+  {
+    name: "Switch.Label",
+    description: "右の text。 クリックで toggle される (Label が trigger 化)。",
+  },
+];
+
+# Switch
+
+on / off の 2 状態を持つ form control。 Checkbox と機能は同じだが、 即時反映する設定 (notification、 dark mode、 feature toggle) に使う。
+
+## Usage
+
+uncontrolled (defaultChecked) の最小例。
+
+<Example code={switchUsage.code} html={switchUsage.html}>
+  <SwitchUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Switch } from "@/components/ui/switch";
+```
+
+```tsx
+<Switch.Root>
+  <Switch.Control>
+    <Switch.Thumb />
+  </Switch.Control>
+  <Switch.Label>...</Switch.Label>
+</Switch.Root>
+```
+
+## Controlled
+
+checked + onCheckedChange で値を制御。
+
+<Example code={switchControlled.code} html={switchControlled.html}>
+  <SwitchControlledDemo />
+</Example>
+
+## Disabled
+
+disabled で操作不可 + opacity-50。
+
+<Example code={switchDisabled.code} html={switchDisabled.html}>
+  <SwitchDisabledDemo />
+</Example>
+
+## Settings list pattern
+
+設定画面の典型。 Label を左、 Control を右に配置 (justify-between + w-full)。
+
+<Example code={switchSettingsList.code} html={switchSettingsList.html}>
+  <SwitchSettingsListDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Control (中に Thumb) と Label を並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[10rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "checked",
+      type: "boolean",
+      description: "controlled mode の値。",
+    },
+    {
+      name: "defaultChecked",
+      type: "boolean",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onCheckedChange",
+      type: "(details: { checked: boolean }) => void",
+      description: "値が変わった時に呼ばれる。 controlled mode で必須。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "操作不可。 opacity-50 + cursor-not-allowed。",
+    },
+  ]}
+/>

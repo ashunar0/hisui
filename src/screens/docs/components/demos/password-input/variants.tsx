@@ -1,3 +1,5 @@
+"use client";
+
 import { PasswordInput } from "@/components/ui/password-input";
 
 const VARIANTS = ["outline", "subtle", "flushed"] as const;

@@ -1,0 +1,124 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ScrollAreaBothAxesDemo from "@hisui/screens/docs/components/demos/scroll-area/both-axes";
+import ScrollAreaHorizontalDemo from "@hisui/screens/docs/components/demos/scroll-area/horizontal";
+import ScrollAreaVerticalDemo from "@hisui/screens/docs/components/demos/scroll-area/vertical";
+import { loadDemo } from "@/lib/read-source";
+
+export const scrollAreaBothAxes = await loadDemo("scroll-area/both-axes.tsx");
+export const scrollAreaHorizontal = await loadDemo("scroll-area/horizontal.tsx");
+export const scrollAreaVertical = await loadDemo("scroll-area/vertical.tsx");
+export const metadata = { title: "ScrollArea | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "ScrollArea.Root",
+    description:
+      "外枠。 relative + overflow-hidden で、 中の Viewport を切り抜く。 height / width はここに当てる。",
+  },
+  {
+    name: "ScrollArea.Viewport",
+    description:
+      "実際に scroll する box。 native scrollbar は CSS で hide、 Scrollbar primitive が代わりに描画。",
+  },
+  {
+    name: "ScrollArea.Content",
+    description:
+      "Viewport 内の中身 wrapper。 plain div として扱える。",
+  },
+  {
+    name: "ScrollArea.Scrollbar",
+    description:
+      "vertical / horizontal を orientation で切替。 scroll 中だけ opacity-100、 普段は 0 で fade。",
+  },
+  {
+    name: "ScrollArea.Thumb",
+    description:
+      "Scrollbar の中で動く塊。 hover / dragging で色濃く。",
+  },
+  {
+    name: "ScrollArea.Corner",
+    description:
+      "v / h 両方の Scrollbar 交差点 (右下) を埋める塗り。 両軸 scroll の時のみ必要。",
+  },
+];
+
+# ScrollArea
+
+custom scrollbar をかぶせるための wrapper。 native scrollbar を hide して Thumb を上書き描画するので、 OS によらず統一された見た目になる。 Root に高さを与えるのが基本。
+
+## Usage
+
+Root に h-N で高さを当てて、 中身が溢れた分だけ vertical scroll。
+
+<Example code={scrollAreaVertical.code} html={scrollAreaVertical.html}>
+  <ScrollAreaVerticalDemo />
+</Example>
+
+## Import
+
+```tsx
+import { ScrollArea } from "@/components/ui/scroll-area";
+```
+
+```tsx
+<ScrollArea.Root>
+  <ScrollArea.Viewport>
+    <ScrollArea.Content>...</ScrollArea.Content>
+  </ScrollArea.Viewport>
+  <ScrollArea.Scrollbar orientation="vertical">
+    <ScrollArea.Thumb />
+  </ScrollArea.Scrollbar>
+</ScrollArea.Root>
+```
+
+## Horizontal
+
+Content を w-max + flex-row にして横に伸ばす。 Scrollbar orientation=horizontal。
+
+<Example code={scrollAreaHorizontal.code} html={scrollAreaHorizontal.html}>
+  <ScrollAreaHorizontalDemo />
+</Example>
+
+## Both axes
+
+Scrollbar を 2 つ + Corner を置くと両軸 scroll の右下が綺麗に埋まる。 大きい table に。
+
+<Example code={scrollAreaBothAxes.code} html={scrollAreaBothAxes.html}>
+  <ScrollAreaBothAxesDemo />
+</Example>
+
+## Anatomy
+
+Root → Viewport → Content の入れ子と、 Scrollbar + Thumb の組み合わせが必須。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "type",
+      type: '"hover" | "scroll" | "always" | "auto"',
+      default: '"hover"',
+      description:
+        "Scrollbar の出現タイミング。 hover = カーソル乗ってる時、 scroll = scroll 中、 always = 常時、 auto = OS native の挙動。",
+    },
+    {
+      name: "scrollHideDelay",
+      type: "number",
+      default: "600",
+      description: "scroll 停止後 Scrollbar が消えるまでの ms。",
+    },
+  ]}
+/>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Row } from "./row";
 
 const SIZES = [

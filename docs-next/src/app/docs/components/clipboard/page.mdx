@@ -1,0 +1,139 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ClipboardCodeSnippetDemo from "@hisui/screens/docs/components/demos/clipboard/code-snippet";
+import ClipboardInlineShareUrlDemo from "@hisui/screens/docs/components/demos/clipboard/inline-share-url";
+import ClipboardInstallCommandDemo from "@hisui/screens/docs/components/demos/clipboard/install-command";
+import { loadDemo } from "@/lib/read-source";
+
+export const clipboardCodeSnippet = await loadDemo("clipboard/code-snippet.tsx");
+export const clipboardInlineShareUrl = await loadDemo("clipboard/inline-share-url.tsx");
+export const clipboardInstallCommand = await loadDemo("clipboard/install-command.tsx");
+export const metadata = { title: "Clipboard | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Clipboard.Root",
+    description:
+      "外枠。 value / defaultValue / timeout を受ける。 Indicator の copied 状態を管理。",
+  },
+  {
+    name: "Clipboard.Label",
+    description: "見出し。 text-sm + font-medium。",
+  },
+  {
+    name: "Clipboard.Control",
+    description: "Input + Trigger を flex row で並べる行。",
+  },
+  {
+    name: "Clipboard.Input",
+    description:
+      "Input 風の readonly text field。 copy 対象の文字列を表示。",
+  },
+  {
+    name: "Clipboard.ValueText",
+    description:
+      "value をそのまま render する span。 Input じゃなく code block 内に表示したい時に。",
+  },
+  {
+    name: "Clipboard.Trigger",
+    description: "copy 実行 button。 Indicator を child に置く。",
+  },
+  {
+    name: "Clipboard.Indicator",
+    description:
+      "コピー前/後で children と copied prop を swap。 default は Copy ↔ Check。",
+  },
+];
+
+# Clipboard
+
+clipboard API を使った copy 動作を内蔵した primitive。 Trigger を押すと value がコピーされ、 Indicator が一定時間 Check icon に切替わる。 Input / ValueText を組み替えれば install command / share URL / code snippet どのレイアウトにも乗せられる。
+
+## Usage
+
+Label + Input + Trigger の定番 layout。 Input readonly で編集不可に。 install command の典型。
+
+<Example code={clipboardInstallCommand.code} html={clipboardInstallCommand.html}>
+  <ClipboardInstallCommandDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Clipboard } from "@/components/ui/clipboard";
+```
+
+```tsx
+<Clipboard.Root defaultValue="...">
+  <Clipboard.Label />
+  <Clipboard.Control>
+    <Clipboard.Input readOnly />
+    <Clipboard.Trigger>
+      <Clipboard.Indicator />
+    </Clipboard.Trigger>
+  </Clipboard.Control>
+</Clipboard.Root>
+```
+
+## Inline share URL
+
+pill 風に丸めて URL の右端に小さな copy button を貼る。 share UI に便利。
+
+<Example code={clipboardInlineShareUrl.code} html={clipboardInlineShareUrl.html}>
+  <ClipboardInlineShareUrlDemo />
+</Example>
+
+## Code snippet
+
+ValueText を使うと plain span として render される。 code block に流したい時に。
+
+<Example code={clipboardCodeSnippet.code} html={clipboardCodeSnippet.html}>
+  <ClipboardCodeSnippetDemo />
+</Example>
+
+## Anatomy
+
+Input は readonly text field、 ValueText は plain span。 必要な方を選ぶ。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[14rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string",
+      default: "—",
+      description: "コピー対象。 controlled。",
+    },
+    {
+      name: "defaultValue",
+      type: "string",
+      default: "—",
+      description: "uncontrolled 初期値。",
+    },
+    {
+      name: "timeout",
+      type: "number",
+      default: "3000",
+      description:
+        "copied 状態が継続する ms。 経過後 Indicator が元の icon に戻る。",
+    },
+    {
+      name: "onStatusChange",
+      type: "(details: { copied: boolean }) => void",
+      default: "—",
+      description: "copied 状態が変化した時の callback。",
+    },
+  ]}
+/>

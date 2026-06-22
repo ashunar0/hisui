@@ -1,3 +1,5 @@
+"use client";
+
 import { Slider } from "@/components/ui/slider";
 
 const MARKS = [0, 20, 40, 60, 80, 100];

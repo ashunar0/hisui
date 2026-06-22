@@ -1,3 +1,5 @@
+"use client";
+
 import { Bold, Italic, Underline } from "lucide-react";
 import { ToggleGroup } from "@/components/ui/toggle-group";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export default function BreadcrumbCollapsedDemo() {

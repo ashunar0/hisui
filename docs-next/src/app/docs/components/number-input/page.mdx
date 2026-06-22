@@ -1,0 +1,189 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import NumberInputBasicDemo from "@hisui/screens/docs/components/demos/number-input/basic";
+import NumberInputCartDemo from "@hisui/screens/docs/components/demos/number-input/cart";
+import NumberInputCurrencyDemo from "@hisui/screens/docs/components/demos/number-input/currency";
+import NumberInputRangeStepDemo from "@hisui/screens/docs/components/demos/number-input/range-step";
+import NumberInputScrubbableDemo from "@hisui/screens/docs/components/demos/number-input/scrubbable";
+import { loadDemo } from "@/lib/read-source";
+
+export const numberInputBasic = await loadDemo("number-input/basic.tsx");
+export const numberInputCart = await loadDemo("number-input/cart.tsx");
+export const numberInputCurrency = await loadDemo("number-input/currency.tsx");
+export const numberInputRangeStep = await loadDemo("number-input/range-step.tsx");
+export const numberInputScrubbable = await loadDemo("number-input/scrubbable.tsx");
+export const metadata = { title: "NumberInput | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "NumberInput.Root",
+    description:
+      "外枠。 value / defaultValue で値、 min / max / step で範囲、 formatOptions で表示 format。",
+  },
+  {
+    name: "NumberInput.Label",
+    description: "見出し。 aria-labelledby に自動接続。",
+  },
+  {
+    name: "NumberInput.Control",
+    description:
+      "Input + Stepper を並べる枠。 border + rounded の inline container。 focus-within で ring。",
+  },
+  {
+    name: "NumberInput.Input",
+    description:
+      "数値 text 入力。 tabular-nums で桁揃え。 invalid な文字は弾く。 keyboard ↑↓ で step。",
+  },
+  {
+    name: "NumberInput.IncrementTrigger / DecrementTrigger",
+    description:
+      "+ / − の押下 button。 端 (min/max) で自動 disabled。 長押しで連続増減。",
+  },
+  {
+    name: "NumberInput.Stepper",
+    description:
+      "+ / − を縦並びで内蔵した helper component (ui-lab 独自)。 default の右端表示用。",
+  },
+  {
+    name: "NumberInput.Scrubber",
+    description:
+      "Label 等に被せると drag で値変更 (Figma / Photoshop 風)。 cursor=ew-resize。",
+  },
+  {
+    name: "NumberInput.ValueText",
+    description:
+      "現在値の text 表示。 format された string をそのまま出す。",
+  },
+];
+
+# NumberInput
+
+数値専用の text input。 keyboard ↑↓ / Stepper button / Scrubber drag / mouse wheel で値変更。 min / max / step で範囲を制約、 formatOptions で通貨 / 単位 / 小数桁の format。
+
+## Usage
+
+default の vertical stepper。 Stepper は + / − を内蔵した helper。
+
+<Example code={numberInputBasic.code} html={numberInputBasic.html}>
+  <NumberInputBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { NumberInput } from "@/components/ui/number-input";
+```
+
+```tsx
+<NumberInput.Root defaultValue="1">
+  <NumberInput.Label />
+  <NumberInput.Control>
+    <NumberInput.Input />
+    <NumberInput.Stepper />
+  </NumberInput.Control>
+</NumberInput.Root>
+```
+
+## Range + step
+
+min / max / step で値の範囲と刻みを制御。 端で Stepper が自動 disabled。
+
+<Example code={numberInputRangeStep.code} html={numberInputRangeStep.html}>
+  <NumberInputRangeStepDemo />
+</Example>
+
+## Cart style
+
+− Input + を横並び。 IncrementTrigger / DecrementTrigger を Control の両端に直接配置。 EC の数量調整 UI。
+
+<Example code={numberInputCart.code} html={numberInputCart.html}>
+  <NumberInputCartDemo />
+</Example>
+
+## Scrubbable label
+
+Scrubber で Label を wrap、 drag で値変更。 Figma / Photoshop の数値 input 風。 ValueText で current 表示。
+
+<Example code={numberInputScrubbable.code} html={numberInputScrubbable.html}>
+  <NumberInputScrubbableDemo />
+</Example>
+
+## Currency format
+
+formatOptions で通貨 / 単位 / 小数桁を整形。 keyboard 入力中は raw、 blur で format される。
+
+<Example code={numberInputCurrency.code} html={numberInputCurrency.html}>
+  <NumberInputCurrencyDemo />
+</Example>
+
+## Anatomy
+
+Root の中に Label / Control。 Control の中に Input と Stepper (+ / −) を並べる。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "value",
+      type: "string",
+      description: "controlled mode の値 (string で持つ)。",
+    },
+    {
+      name: "defaultValue",
+      type: "string",
+      description: "uncontrolled mode の初期値。",
+    },
+    {
+      name: "onValueChange",
+      type: "(details: { value: string; valueAsNumber: number }) => void",
+      description: "入力 / step 毎に呼ばれる。",
+    },
+    {
+      name: "min",
+      type: "number",
+      description: "最小値。 < min は弾く。",
+    },
+    {
+      name: "max",
+      type: "number",
+      description: "最大値。 > max は弾く。",
+    },
+    {
+      name: "step",
+      type: "number",
+      default: "1",
+      description: "刻み幅。 ↑↓ / Stepper / Scrubber 全てで使う。",
+    },
+    {
+      name: "allowMouseWheel",
+      type: "boolean",
+      default: "false",
+      description:
+        "true で focus 中の mouse wheel で step。 誤操作防ぐため default は false。",
+    },
+    {
+      name: "formatOptions",
+      type: "Intl.NumberFormatOptions",
+      description:
+        "通貨 / 単位 / 小数桁等。 例: { style: 'currency', currency: 'USD' }。",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "全体無効化。",
+    },
+  ]}
+/>

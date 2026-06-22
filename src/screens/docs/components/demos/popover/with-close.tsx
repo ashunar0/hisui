@@ -1,3 +1,5 @@
+"use client";
+
 import { Bell, X } from "lucide-react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Popover } from "@/components/ui/popover";

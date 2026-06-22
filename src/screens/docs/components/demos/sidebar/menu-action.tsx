@@ -1,3 +1,5 @@
+"use client";
+
 import { MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 import { Menu } from "@/components/ui/menu";

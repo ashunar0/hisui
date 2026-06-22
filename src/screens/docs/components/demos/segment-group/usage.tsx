@@ -1,3 +1,5 @@
+"use client";
+
 import { SegmentGroup } from "@/components/ui/segment-group";
 
 export default function SegmentGroupUsageDemo() {

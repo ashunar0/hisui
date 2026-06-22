@@ -1,3 +1,5 @@
+"use client";
+
 import { HelpCircle } from "lucide-react";
 import { IconButton } from "@/components/ui/icon-button";
 import { Popover } from "@/components/ui/popover";

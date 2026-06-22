@@ -1,0 +1,138 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import SplitterBasicDemo from "@hisui/screens/docs/components/demos/splitter/basic";
+import SplitterCollapsibleDemo from "@hisui/screens/docs/components/demos/splitter/collapsible";
+import SplitterVerticalDemo from "@hisui/screens/docs/components/demos/splitter/vertical";
+import { loadDemo } from "@/lib/read-source";
+
+export const splitterBasic = await loadDemo("splitter/basic.tsx");
+export const splitterCollapsible = await loadDemo("splitter/collapsible.tsx");
+export const splitterVertical = await loadDemo("splitter/vertical.tsx");
+export const metadata = { title: "Splitter | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Splitter.Root",
+    description:
+      "外枠。 panels prop で各 panel の id / min / max を宣言、 defaultSize で初期 % 配分。 orientation で horizontal / vertical。 親に高さ必須。",
+  },
+  {
+    name: "Splitter.Panel",
+    description:
+      "1 panel。 panels の id と一致させる。 overflow:auto で中身が長くなった時 scroll。",
+  },
+  {
+    name: "Splitter.ResizeTrigger",
+    description:
+      'panel 間の resize bar。 id は "left:right" 形式で接続する 2 panel を指定。 hover / drag で目立つ色に変化。',
+  },
+  {
+    name: "Splitter.ResizeTriggerIndicator",
+    description:
+      "trigger 中央に出る pill 状の grabber。 hover / drag で fade-in して掴める位置を可視化。",
+  },
+];
+
+# Splitter
+
+resize 可能な分割 panel。 sidebar + main、 editor + preview + console、 3 column workspace 等。 panels prop で min / max を宣言、 ResizeTrigger を panel 間に挟むだけ。 親要素に明示的な高さが必須 (内部 inline style で height:100% を強制するため)。
+
+## Usage
+
+sidebar (15-40%) + main の 2 panel。 親に h-48 を当てて高さを与える。
+
+<Example code={splitterBasic.code} html={splitterBasic.html}>
+  <SplitterBasicDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Splitter } from "@/components/ui/splitter";
+```
+
+```tsx
+<div className="h-48">
+  <Splitter.Root
+    panels={[{ id: "a" }, { id: "b" }]}
+    defaultSize={[50, 50]}
+  >
+    <Splitter.Panel id="a" />
+    <Splitter.ResizeTrigger id="a:b">
+      <Splitter.ResizeTriggerIndicator />
+    </Splitter.ResizeTrigger>
+    <Splitter.Panel id="b" />
+  </Splitter.Root>
+</div>
+```
+
+## 3 panels (vertical)
+
+orientation=vertical で縦並び。 editor + preview + console の典型 layout。
+
+<Example code={splitterVertical.code} html={splitterVertical.html}>
+  <SplitterVerticalDemo />
+</Example>
+
+## Collapsible
+
+panel に collapsible:true を渡すと 0% まで畳める。 chat の右 detail pane や設定 inspector に。
+
+<Example code={splitterCollapsible.code} html={splitterCollapsible.html}>
+  <SplitterCollapsibleDemo />
+</Example>
+
+## Anatomy
+
+Root に panels を宣言し、 中に Panel と ResizeTrigger を交互に並べる。 trigger の id は隣接 panel を colon で繋ぐ。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[18rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "panels",
+      type: "{ id: string; minSize?: number; maxSize?: number; collapsible?: boolean }[]",
+      description:
+        "panel 定義 (順番が描画順)。 min / max は %。 collapsible:true で 0% に畳める。",
+    },
+    {
+      name: "size",
+      type: "{ id: string; size: number }[]",
+      description: "controlled mode の現在 size。 % で渡す。",
+    },
+    {
+      name: "defaultSize",
+      type: "number[]",
+      description: "uncontrolled の初期 %。 panels と同順で全 panel 分。",
+    },
+    {
+      name: "onSizeChange",
+      type: "(details: { size: { id: string; size: number }[] }) => void",
+      description: "drag 中に呼ばれる。",
+    },
+    {
+      name: "onSizeChangeEnd",
+      type: "(details) => void",
+      description: "drag 終了時のみ呼ばれる。 永続化に向く。",
+    },
+    {
+      name: "orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description:
+        "panel の並ぶ方向。 trigger の cursor も自動切替 (col-resize / row-resize)。",
+    },
+  ]}
+/>

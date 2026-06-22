@@ -1,3 +1,5 @@
+"use client";
+
 type Layer = { offset: string; blur: string; color: string; role: string };
 
 const SHADOWS = {

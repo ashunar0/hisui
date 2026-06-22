@@ -1,0 +1,143 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import CardAsChildDemo from "@hisui/screens/docs/components/demos/card/as-child";
+import CardHeaderOnlyDemo from "@hisui/screens/docs/components/demos/card/header-only";
+import CardSizesDemo from "@hisui/screens/docs/components/demos/card/sizes";
+import CardUsageDemo from "@hisui/screens/docs/components/demos/card/usage";
+import CardVariantsDemo from "@hisui/screens/docs/components/demos/card/variants";
+import { loadDemo } from "@/lib/read-source";
+
+export const cardAsChild = await loadDemo("card/as-child.tsx");
+export const cardHeaderOnly = await loadDemo("card/header-only.tsx");
+export const cardSizes = await loadDemo("card/sizes.tsx");
+export const cardUsage = await loadDemo("card/usage.tsx");
+export const cardVariants = await loadDemo("card/variants.tsx");
+export const metadata = { title: "Card | Hisui UI" };
+
+export const PARTS = [
+  {
+    name: "Card.Root",
+    description:
+      "外枠。 variant / size を受け、 子に Context で size を流す。 asChild 対応。",
+  },
+  {
+    name: "Card.Header",
+    description: "Title / Description を縦積みで置く。 size 連動 padding。",
+  },
+  {
+    name: "Card.Title",
+    description: "h3 + text-lg + font-semibold + text-fg-soft。",
+  },
+  {
+    name: "Card.Description",
+    description: "p + text-sm + text-fg-muted。",
+  },
+  {
+    name: "Card.Body",
+    description: "Header と Footer の間の本文領域。 size 連動 padding。",
+  },
+  {
+    name: "Card.Footer",
+    description:
+      "下端の action 行。 flex + items-center + justify-end + gap-2 が default (primary action を右寄せの慣習)。",
+  },
+];
+
+# Card
+
+compound primitive。 Root に variant / size を渡し、 中身は Header / Title / Description / Body / Footer を必要分だけ組み合わせる。 size は Context で全 part に流れる。
+
+## Usage
+
+default は outline / md。 Header + Body + Footer の典型 layout。
+
+<Example code={cardUsage.code} html={cardUsage.html}>
+  <CardUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { Card } from "@/components/ui/card";
+```
+
+```tsx
+<Card.Root>
+  <Card.Header />
+  <Card.Body />
+  <Card.Footer />
+</Card.Root>
+```
+
+## Variants
+
+3 種。 elevated = 多層 shadow で浮き、 outline = border のみ、 subtle = 背景塗り。
+
+<Example code={cardVariants.code} html={cardVariants.html}>
+  <CardVariantsDemo />
+</Example>
+
+## Sizes
+
+sm / md / lg の 3 段階。 Header / Body / Footer の padding が連動。
+
+<Example code={cardSizes.code} html={cardSizes.html}>
+  <CardSizesDemo />
+</Example>
+
+## Header only
+
+Title + Description だけで成立。 Body / Footer は不要なら省く。
+
+<Example code={cardHeaderOnly.code} html={cardHeaderOnly.html}>
+  <CardHeaderOnlyDemo />
+</Example>
+
+## As child (clickable card)
+
+asChild で Root を Link や button に差し替えると hover / focus が乗る。
+
+<Example code={cardAsChild.code} html={cardAsChild.html}>
+  <CardAsChildDemo />
+</Example>
+
+## Anatomy
+
+どの part も任意。 最小は Root だけでも成立する。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  {PARTS.map((p) => (
+    <li key={p.name} className="grid grid-cols-[10rem_1fr] gap-3">
+      <span className="font-mono text-fg text-xs">{p.name}</span>
+      <span className="text-fg-muted text-xs leading-relaxed">
+        {p.description}
+      </span>
+    </li>
+  ))}
+</ul>
+
+## Root props
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: '"elevated" | "outline" | "subtle"',
+      default: '"outline"',
+      description:
+        "elevated は多層 shadow、 outline は border のみ、 subtle は muted 塗りつぶし。",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+      description: "padding をスケール。 Header / Body / Footer に Context で流す。",
+    },
+    {
+      name: "asChild",
+      type: "boolean",
+      default: "false",
+      description: "子要素にスタイルを移譲 (Link を Card にしたい時)。",
+    },
+  ]}
+/>

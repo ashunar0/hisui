@@ -1,3 +1,5 @@
+"use client";
+
 import { Trash2 } from "lucide-react";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";

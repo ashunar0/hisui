@@ -1,3 +1,5 @@
+"use client";
+
 import { CalendarDays } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { HoverCard } from "@/components/ui/hover-card";

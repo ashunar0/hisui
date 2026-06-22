@@ -1,3 +1,5 @@
+"use client";
+
 import { PinInput } from "@/components/ui/pin-input";
 
 export default function PinInputUsageDemo() {

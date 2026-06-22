@@ -1,3 +1,5 @@
+"use client";
+
 import { PasswordInput } from "@/components/ui/password-input";
 
 const SIZES = ["xs", "sm", "md", "lg"] as const;

@@ -1,3 +1,5 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
