@@ -8,7 +8,7 @@ import { stdin as input, stdout as output } from "node:process";
 
 const REGISTRY_BASE =
   process.env.HISUI_REGISTRY ??
-  "https://raw.githubusercontent.com/Ashunar0/hisui/main";
+  "https://raw.githubusercontent.com/ashunar0/hisui/main";
 
 const CONFIG_FILE = "hisui.json";
 const TOKEN_MARKER_START = "/* hisui-ui:tokens:start */";
