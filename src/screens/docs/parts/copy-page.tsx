@@ -19,9 +19,7 @@ function sourceUrlFromPath(pathname: string): string | null {
   if (!m) return null;
   const [, section, slug] = m;
   const name = toPascal(slug);
-  const ext =
-    section === "components" || section === "foundations" ? "mdx" : "tsx";
-  return `${SOURCE_BASE}/${section}/${name}.${ext}`;
+  return `${SOURCE_BASE}/${section}/${name}.mdx`;
 }
 
 export function CopyPage() {

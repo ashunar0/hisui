@@ -1,0 +1,85 @@
+import { Example } from "@/screens/docs/parts/example";
+import { PropsTable } from "@/screens/docs/parts/props-table";
+import ChartAreaDemo from "./demos/chart/area";
+import ChartAreaSource from "./demos/chart/area?raw";
+import ChartBarDemo from "./demos/chart/bar";
+import ChartBarSource from "./demos/chart/bar?raw";
+import ChartLineMultiDemo from "./demos/chart/line-multi";
+import ChartLineMultiSource from "./demos/chart/line-multi?raw";
+import ChartPieDemo from "./demos/chart/pie";
+import ChartPieSource from "./demos/chart/pie?raw";
+
+# Chart
+
+recharts ベースのデータ可視化 wrapper。 ui-lab 独自の薄 wrap は Container (ResponsiveContainer + aspect) と Tooltip (token 色に揃えた cursor + content) の 2 つだけで、 中の chart 本体は recharts の AreaChart / LineChart / BarChart / PieChart 等をそのまま使う。 軸 / grid / 色は CSS 変数 (`--color-fg-muted` / `--color-border` / 等) で token と同期させる。
+
+## Anatomy
+
+2 part だけ。 残りは recharts の API そのまま。
+
+<ul className="flex flex-col gap-2 rounded-md border border-border p-4">
+  <li className="grid grid-cols-[14rem_1fr] gap-3">
+    <span className="font-mono text-fg text-xs">Chart.Container</span>
+    <span className="text-fg-muted text-xs leading-relaxed">
+      recharts の ResponsiveContainer 薄 wrap。 aspect prop で aspect-ratio、 width=100%。 中の AreaChart / LineChart 等を 1 つ child として渡す。
+    </span>
+  </li>
+  <li className="grid grid-cols-[14rem_1fr] gap-3">
+    <span className="font-mono text-fg text-xs">Chart.Tooltip</span>
+    <span className="text-fg-muted text-xs leading-relaxed">
+      recharts Tooltip の薄 wrap。 cursor=dashed line、 content は ui-lab token に合わせた自作 (icon swatch + name + value)。 series が複数あれば自動で全部 list。
+    </span>
+  </li>
+</ul>
+
+## Area chart
+
+revenue 推移の定番。 stroke + fill + fillOpacity で線と塗りを分離。 axisLine / tickLine を false にして minimal 寄りに。
+
+<Example code={ChartAreaSource}>
+  <ChartAreaDemo />
+</Example>
+
+## Line chart (multi series)
+
+同じ Chart.Container の中に Line を 2 本。 Tooltip は 2 entry 自動表示。 secondary は strokeDasharray で破線に。
+
+<Example code={ChartLineMultiSource}>
+  <ChartLineMultiDemo />
+</Example>
+
+## Bar chart
+
+channel 別の breakdown。 radius で top-left/right だけ丸める (bar の上端を rounded)。
+
+<Example code={ChartBarSource}>
+  <ChartBarDemo />
+</Example>
+
+## Pie chart with legend
+
+各 slice の色は Cell に直接渡す。 凡例は recharts の Legend を使わず、 横に手書きの list を並べると token と整合させやすい。
+
+<Example code={ChartPieSource}>
+  <ChartPieDemo />
+</Example>
+
+## Container props
+
+<PropsTable
+  rows={[
+    {
+      name: "aspect",
+      type: "number",
+      default: "16 / 9",
+      description: "幅÷高さ。 横長は 16/6、 正方形 (pie) は 1。",
+    },
+    {
+      name: "children",
+      type: "ReactElement",
+      default: "—",
+      description:
+        "recharts の <AreaChart> / <LineChart> / <BarChart> / <PieChart> を 1 つだけ渡す。",
+    },
+  ]}
+/>

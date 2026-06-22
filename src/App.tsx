@@ -66,7 +66,7 @@ import ToggleGroupDoc from "@/screens/docs/components/ToggleGroup.mdx";
 import ToolbarDoc from "@/screens/docs/components/Toolbar.mdx";
 import TooltipDoc from "@/screens/docs/components/Tooltip.mdx";
 import TreeViewDoc from "@/screens/docs/components/TreeView.mdx";
-import { ChartDoc } from "@/screens/docs/data-viz/Chart";
+import ChartDoc from "@/screens/docs/data-viz/Chart.mdx";
 import { DocsLayout } from "@/screens/docs/DocsLayout";
 import Colors from "@/screens/docs/foundations/Colors.mdx";
 import Radius from "@/screens/docs/foundations/Radius.mdx";
