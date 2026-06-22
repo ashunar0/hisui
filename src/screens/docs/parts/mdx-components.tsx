@@ -8,6 +8,7 @@ import type { BundledLanguage } from "shiki";
 import { Heading } from "@/components/ui/heading";
 import { cn } from "@/lib/utils";
 import { CodeBlock, InlineCode } from "./code";
+import { CopyPage } from "./copy-page";
 import { slugify } from "./slugify";
 
 function textOf(node: ReactNode): string {
@@ -17,8 +18,13 @@ function textOf(node: ReactNode): string {
 }
 
 const mdxComponents = {
-  wrapper: (props: ComponentPropsWithoutRef<"div">) => (
-    <div {...props} className={cn("docs-prose", props.className)} />
+  wrapper: ({ children, ...props }: ComponentPropsWithoutRef<"div">) => (
+    <div {...props} className={cn("docs-prose relative", props.className)}>
+      <div className="absolute right-0 top-1">
+        <CopyPage />
+      </div>
+      {children}
+    </div>
   ),
   h1: ({ children, ...props }: ComponentPropsWithoutRef<"h1">) => (
     <Heading as="h1" size="2xl" {...props}>

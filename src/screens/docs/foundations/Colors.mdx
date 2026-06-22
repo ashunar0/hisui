@@ -1,0 +1,30 @@
+import ColorsTokenGrid from "./demos/colors/token-grid";
+import ColorsAccents from "./demos/colors/accents";
+
+# Colors
+
+色は raw な Tailwind palette を直接使わず、 用途を表す semantic token に必ず通す。 token は index.css の `@theme` と `.dark` に定義され、 light / dark の切替は token の値だけが入れ替わる。
+
+## Surfaces
+
+背景の階層。 bg < canvas で奥行き、 surface 系がカードや panel、 hover / active は interaction state。
+
+<ColorsTokenGrid group="surfaces" />
+
+## Foreground
+
+テキストの強さ。 fg が本文、 soft / muted / subtle と弱くなる。
+
+<ColorsTokenGrid group="foregrounds" />
+
+## Borders
+
+区切り線。 border が標準、 muted はより控えめな分割に。
+
+<ColorsTokenGrid group="borders" />
+
+## Accents
+
+success / danger / warning / info × subtle / border / fg / solid / solid-fg の 4 × 5。 light は 50/200/700/600/white、 dark は 950/900/400/500/50 で contrast を確保。
+
+<ColorsAccents />

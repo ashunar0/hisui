@@ -1,0 +1,25 @@
+import SpacingScale from "./demos/spacing/scale";
+import SpacingStackGap from "./demos/spacing/stack-gap";
+import SpacingConventions from "./demos/spacing/conventions";
+
+# Spacing
+
+spacing は Tailwind default の 4px grid をそのまま使う。 padding / margin / gap / size すべて同じ scale。 Stack primitive だけは semantic gap enum を経由する。
+
+## Scale
+
+Tailwind の spacing scale。 4px grid を基本に padding / margin / gap / size に使う。 1 = 0.25rem = 4px。
+
+<SpacingScale />
+
+## Stack gap
+
+Stack primitive の gap prop。 semantic enum で 6 段階、 Tailwind static map に固定。 default は md。
+
+<SpacingStackGap />
+
+## Conventions
+
+迷ったらこれを叩き台にしよう。
+
+<SpacingConventions />

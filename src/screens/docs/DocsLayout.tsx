@@ -75,7 +75,7 @@ export function DocsLayout() {
             </Sidebar.Content>
           </Sidebar.Root>
           <main ref={mainRef} className="scrollbar-soft flex-1 overflow-y-auto">
-            <div className="mx-auto flex max-w-6xl gap-10 px-6 py-12">
+            <div className="mx-auto flex max-w-6xl gap-10 px-6 pt-4 pb-16">
               <div className="mx-auto w-full min-w-0 max-w-3xl flex-1">
                 <MDXProvider components={mdxComponents}>
                   <Outlet />

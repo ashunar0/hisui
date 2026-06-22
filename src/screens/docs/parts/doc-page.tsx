@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Heading } from "@/components/ui/heading";
+import { CopyPage } from "./copy-page";
 import { slugify } from "./slugify";
 
 /** component doc ページ共通の枠 (h1 + lead) */
@@ -11,10 +12,13 @@ export function DocHeader({
   children: ReactNode;
 }) {
   return (
-    <header className="flex flex-col gap-2">
-      <Heading as="h1" size="2xl">
-        {title}
-      </Heading>
+    <header className="flex flex-col gap-4">
+      <div className="flex items-center justify-between gap-3">
+        <Heading as="h1" size="2xl">
+          {title}
+        </Heading>
+        <CopyPage />
+      </div>
       <p className="text-fg-muted text-sm leading-relaxed">{children}</p>
     </header>
   );

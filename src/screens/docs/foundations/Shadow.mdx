@@ -1,0 +1,38 @@
+import ShadowPhilosophy from "./demos/shadow/philosophy";
+import ShadowElevation from "./demos/shadow/elevation";
+import ShadowDarkMode from "./demos/shadow/dark-mode";
+import ShadowOthers from "./demos/shadow/others";
+
+# Shadow
+
+ui-lab の shadow は多層 (hairline + drop + halo) を基本にする。 浮き具合は drop 層の offset / blur だけ差し替えて mid / high の 2 段階。 dark mode は alpha を強めて上書きする。
+
+## Philosophy
+
+単発の落ち影ではなく、 hairline + drop + halo の 3 層で重ねるのが ui-lab の標準。 軽くて自然な浮遊感が出る。
+
+<ShadowPhilosophy />
+
+## Elevation: mid
+
+Card / Tabs / RadioGroup / SegmentGroup / Toast (inline) の標準。 静的に置かれる surface 用。
+
+<ShadowElevation level="mid" label="mid elevation" />
+
+## Elevation: high
+
+Popover / Menu / Dialog / Drawer / Combobox / Date-picker / Hover-card / Navigation-menu。 floating な surface 用。
+
+<ShadowElevation level="high" label="high elevation" />
+
+## Dark mode
+
+dark では alpha を強める。 light の 0.04 / 0.06 / 0.03 → dark で 0.4 / 0.4 / 0.2 まで上げる。 `dark:shadow-[…]` で上書き。
+
+<ShadowDarkMode />
+
+## Other shadows
+
+多層を使わない例外。
+
+<ShadowOthers />
