@@ -1,0 +1,14 @@
+{
+  "name": "toolbar",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/toolbar.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "separator"
+  ]
+}

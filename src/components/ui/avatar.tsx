@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar as ArkAvatar } from "@ark-ui/react/avatar";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

@@ -1,3 +1,5 @@
+"use client";
+
 import { Steps as ArkSteps } from "@ark-ui/react/steps";
 import { Check } from "lucide-react";
 import type { ComponentProps } from "react";

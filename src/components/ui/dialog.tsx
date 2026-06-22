@@ -1,3 +1,5 @@
+"use client";
+
 import { Dialog as ArkDialog } from "@ark-ui/react/dialog";
 import { Portal } from "@ark-ui/react/portal";
 import type { ComponentProps } from "react";

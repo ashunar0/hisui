@@ -1,0 +1,14 @@
+{
+  "name": "color-picker",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/color-picker.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

@@ -1,0 +1,15 @@
+{
+  "name": "tags-input",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/tags-input.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": []
+}

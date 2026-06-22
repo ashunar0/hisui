@@ -1,0 +1,14 @@
+{
+  "name": "popover",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/popover.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

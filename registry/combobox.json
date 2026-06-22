@@ -1,0 +1,14 @@
+{
+  "name": "combobox",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/combobox.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

@@ -1,0 +1,14 @@
+{
+  "name": "qr-code",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/qr-code.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

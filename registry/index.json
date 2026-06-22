@@ -1,0 +1,446 @@
+{
+  "name": "hisui",
+  "items": [
+    {
+      "name": "accordion",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "alert-dialog",
+      "dependencies": [],
+      "registryDependencies": [
+        "dialog"
+      ]
+    },
+    {
+      "name": "alert",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "aspect-ratio",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "avatar",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "badge",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "breadcrumb",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "button",
+      "dependencies": [],
+      "registryDependencies": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "card",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "carousel",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "chart",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "checkbox",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "clipboard",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "collapsible",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "color-picker",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "combobox",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "command",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "dialog",
+        "listbox"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "dialog",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "drawer",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "editable",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "empty",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "field",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "fieldset",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "file-upload",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "heading",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "hover-card",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "icon-button",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "spinner"
+      ]
+    },
+    {
+      "name": "input",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "kbd",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "listbox",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "menu",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "number-input",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "pagination",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "password-input",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "pin-input",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "popover",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "progress",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "qr-code",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "radio-group",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "rating-group",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "segment-group",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "select",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "separator",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "sidebar",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "icon-button"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "slider",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "spinner",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "splitter",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "stack",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "steps",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "switch",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "table",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tabs",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tags-input",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "textarea",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "toast",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle-group",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toolbar",
+      "dependencies": [],
+      "registryDependencies": [
+        "separator"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "dependencies": [
+        "@ark-ui/react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "tree-view",
+      "dependencies": [
+        "@ark-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    }
+  ]
+}

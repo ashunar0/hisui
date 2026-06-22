@@ -1,0 +1,16 @@
+{
+  "name": "sidebar",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/sidebar.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "icon-button"
+  ]
+}

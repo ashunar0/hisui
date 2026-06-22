@@ -1,3 +1,5 @@
+"use client";
+
 import { Fieldset as ArkFieldset } from "@ark-ui/react/fieldset";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

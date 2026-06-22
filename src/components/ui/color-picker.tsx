@@ -1,3 +1,5 @@
+"use client";
+
 import { ColorPicker as ArkColorPicker } from "@ark-ui/react/color-picker";
 import { Portal } from "@ark-ui/react/portal";
 import type { ComponentProps } from "react";

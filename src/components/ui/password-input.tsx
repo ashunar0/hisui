@@ -1,3 +1,5 @@
+"use client";
+
 import { PasswordInput as ArkPasswordInput } from "@ark-ui/react/password-input";
 import { Eye, EyeOff } from "lucide-react";
 import { createContext, useContext, type ComponentProps } from "react";

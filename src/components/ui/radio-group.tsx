@@ -1,3 +1,5 @@
+"use client";
+
 import { RadioGroup as ArkRadioGroup } from "@ark-ui/react/radio-group";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

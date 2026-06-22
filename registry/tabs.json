@@ -1,0 +1,14 @@
+{
+  "name": "tabs",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/tabs.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

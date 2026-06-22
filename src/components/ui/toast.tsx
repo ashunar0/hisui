@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Toast as ArkToast,
   Toaster as ArkToaster,

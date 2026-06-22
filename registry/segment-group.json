@@ -1,0 +1,14 @@
+{
+  "name": "segment-group",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/segment-group.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

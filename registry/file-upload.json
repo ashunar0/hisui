@@ -1,0 +1,14 @@
+{
+  "name": "file-upload",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/file-upload.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

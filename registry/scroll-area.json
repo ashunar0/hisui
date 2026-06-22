@@ -1,0 +1,14 @@
+{
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/scroll-area.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

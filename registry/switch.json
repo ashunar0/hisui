@@ -1,0 +1,14 @@
+{
+  "name": "switch",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/switch.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

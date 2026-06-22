@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import {
   createContext,

@@ -1,3 +1,5 @@
+"use client";
+
 import { Pagination as ArkPagination } from "@ark-ui/react/pagination";
 import {
   ChevronLeft,

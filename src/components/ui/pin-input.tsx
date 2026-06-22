@@ -1,3 +1,5 @@
+"use client";
+
 import { PinInput as ArkPinInput } from "@ark-ui/react/pin-input";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

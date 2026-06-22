@@ -1,3 +1,5 @@
+"use client";
+
 import { Carousel as ArkCarousel } from "@ark-ui/react/carousel";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import type { ComponentProps } from "react";

@@ -1,3 +1,5 @@
+"use client";
+
 import { DatePicker as ArkDatePicker } from "@ark-ui/react/date-picker";
 import { Portal } from "@ark-ui/react/portal";
 import { ChevronLeft, ChevronRight } from "lucide-react";

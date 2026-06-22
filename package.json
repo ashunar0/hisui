@@ -1,13 +1,17 @@
 {
-  "name": "ui-lab",
+  "name": "hisui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "bin": {
+    "hisui": "./bin/hisui.mjs"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:registry": "node scripts/inject-use-client.mjs && node scripts/build-registry.mjs"
   },
   "dependencies": {
     "@ark-ui/react": "^5.37.2",

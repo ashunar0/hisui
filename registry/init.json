@@ -1,0 +1,23 @@
+{
+  "name": "init",
+  "type": "registry:base",
+  "files": [
+    {
+      "path": "src/lib/utils.ts"
+    },
+    {
+      "path": "src/lib/slot.ts"
+    },
+    {
+      "path": "src/index.css"
+    }
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge",
+    "tailwindcss",
+    "@tailwindcss/vite",
+    "@fontsource-variable/wix-madefor-text"
+  ],
+  "registryDependencies": []
+}

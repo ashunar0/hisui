@@ -1,3 +1,5 @@
+"use client";
+
 import { Tabs as ArkTabs } from "@ark-ui/react/tabs";
 import { type ComponentProps, createContext, useContext } from "react";
 import { cn } from "@/lib/utils";

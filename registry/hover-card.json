@@ -1,0 +1,14 @@
+{
+  "name": "hover-card",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/hover-card.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

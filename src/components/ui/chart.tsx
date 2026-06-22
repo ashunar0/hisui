@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentProps, HTMLAttributes, ReactElement } from "react";
 import {
   ResponsiveContainer,

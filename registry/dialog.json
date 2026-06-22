@@ -1,0 +1,14 @@
+{
+  "name": "dialog",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/dialog.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

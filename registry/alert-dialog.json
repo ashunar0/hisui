@@ -1,0 +1,14 @@
+{
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/alert-dialog.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": [
+    "dialog"
+  ]
+}

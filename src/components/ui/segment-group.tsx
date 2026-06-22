@@ -1,3 +1,5 @@
+"use client";
+
 import { SegmentGroup as ArkSegmentGroup } from "@ark-ui/react/segment-group";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

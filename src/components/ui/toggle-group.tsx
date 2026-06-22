@@ -1,3 +1,5 @@
+"use client";
+
 import { ToggleGroup as ArkToggleGroup } from "@ark-ui/react/toggle-group";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

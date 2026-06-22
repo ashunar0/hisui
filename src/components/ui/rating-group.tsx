@@ -1,3 +1,5 @@
+"use client";
+
 import { RatingGroup as ArkRatingGroup } from "@ark-ui/react/rating-group";
 import { Star } from "lucide-react";
 import type { ComponentProps } from "react";

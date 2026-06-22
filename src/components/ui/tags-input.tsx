@@ -1,3 +1,5 @@
+"use client";
+
 import { TagsInput as ArkTagsInput } from "@ark-ui/react/tags-input";
 import { X } from "lucide-react";
 import type { ComponentProps } from "react";

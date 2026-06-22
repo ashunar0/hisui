@@ -1,3 +1,5 @@
+"use client";
+
 import { Editable as ArkEditable } from "@ark-ui/react/editable";
 import { Check, Pencil, X } from "lucide-react";
 import type { ComponentProps } from "react";

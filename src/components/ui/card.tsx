@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, type HTMLAttributes, useContext } from "react";
 import { Slot } from "@/lib/slot";
 import { cn } from "@/lib/utils";

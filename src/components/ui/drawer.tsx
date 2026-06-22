@@ -1,3 +1,5 @@
+"use client";
+
 import { Drawer as ArkDrawer } from "@ark-ui/react/drawer";
 import { Portal } from "@ark-ui/react/portal";
 import type { ComponentProps } from "react";

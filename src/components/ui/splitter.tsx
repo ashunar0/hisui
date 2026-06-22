@@ -1,3 +1,5 @@
+"use client";
+
 import { Splitter as ArkSplitter } from "@ark-ui/react/splitter";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

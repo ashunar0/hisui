@@ -1,3 +1,5 @@
+"use client";
+
 import { Portal } from "@ark-ui/react/portal";
 import {
   Select as ArkSelect,

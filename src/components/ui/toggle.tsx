@@ -1,3 +1,5 @@
+"use client";
+
 import { Toggle as ArkToggle } from "@ark-ui/react/toggle";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

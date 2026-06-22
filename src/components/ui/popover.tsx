@@ -1,3 +1,5 @@
+"use client";
+
 import { Popover as ArkPopover } from "@ark-ui/react/popover";
 import { Portal } from "@ark-ui/react/portal";
 import type { ComponentProps } from "react";

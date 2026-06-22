@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu as ArkMenu } from "@ark-ui/react/menu";
 import { Portal } from "@ark-ui/react/portal";
 import { Check } from "lucide-react";

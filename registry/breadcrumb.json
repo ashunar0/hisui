@@ -1,0 +1,14 @@
+{
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/breadcrumb.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": []
+}

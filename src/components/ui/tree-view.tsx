@@ -1,3 +1,5 @@
+"use client";
+
 import {
   TreeView as ArkTreeView,
   type TreeNode,

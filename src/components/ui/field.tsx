@@ -1,3 +1,5 @@
+"use client";
+
 import { Field as ArkField } from "@ark-ui/react/field";
 import { ChevronDown } from "lucide-react";
 import type { ComponentProps } from "react";

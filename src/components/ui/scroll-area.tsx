@@ -1,3 +1,5 @@
+"use client";
+
 import { ScrollArea as ArkScrollArea } from "@ark-ui/react/scroll-area";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";

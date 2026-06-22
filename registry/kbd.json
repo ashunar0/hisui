@@ -1,0 +1,12 @@
+{
+  "name": "kbd",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/kbd.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}

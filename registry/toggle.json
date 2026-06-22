@@ -1,0 +1,14 @@
+{
+  "name": "toggle",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/toggle.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}

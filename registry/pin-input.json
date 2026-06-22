@@ -1,0 +1,14 @@
+{
+  "name": "pin-input",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/pin-input.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [
+    "@ark-ui/react"
+  ],
+  "registryDependencies": []
+}
