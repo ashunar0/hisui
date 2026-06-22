@@ -8,8 +8,8 @@ import {
   Ruler,
   Type,
 } from "lucide-react";
-import { Link } from "react-router";
-import { Card } from "@/components/ui/card";
+import Link from "next/link";
+import { Card } from "@hisui/components/ui/card";
 
 const NEXT = [
   {
@@ -48,7 +48,7 @@ export default function OverviewNextCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {NEXT.map(({ to, icon: Icon, title, description }) => (
-        <Link key={to} to={to} className="group">
+        <Link key={to} href={to} className="group">
           <Card.Root
             variant="outline"
             className="h-full group-hover:border-fg-subtle"

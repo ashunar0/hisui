@@ -1,7 +1,7 @@
 "use client";
 
 import { Boxes } from "lucide-react";
-import { Link } from "react-router";
+import Link from "next/link";
 
 export default function OverviewFooter() {
   return (
@@ -9,7 +9,7 @@ export default function OverviewFooter() {
       <Boxes className="size-3.5" />
       <span>
         開発用の playground は{" "}
-        <Link to="/dev" className="underline hover:text-fg">
+        <Link href="/dev" className="underline hover:text-fg">
           Dev sandbox
         </Link>{" "}
         にある。
