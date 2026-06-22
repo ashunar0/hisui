@@ -13,6 +13,8 @@ export function DocsLayout() {
   const mainRef = useRef<HTMLElement>(null);
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0 });
+    const item = DOCS_NAV.flatMap((g) => g.items).find((i) => i.to === pathname);
+    document.title = item ? `${item.label} | Hisui UI` : "Hisui UI";
   }, [pathname]);
   return (
     <Sidebar.Provider>
