@@ -42,6 +42,11 @@ export function DocsLayout() {
                       key={to}
                       asChild
                       active={pathname === to}
+                      className={
+                        pathname === to
+                          ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                          : undefined
+                      }
                     >
                       <NavLink to={to}>{label}</NavLink>
                     </Sidebar.MenuButton>
