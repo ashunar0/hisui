@@ -208,6 +208,11 @@
       "registryDependencies": []
     },
     {
+      "name": "list",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
       "name": "listbox",
       "dependencies": [
         "@ark-ui/react",

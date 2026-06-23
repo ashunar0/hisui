@@ -1,0 +1,114 @@
+import { Example } from "@hisui/screens/docs/parts/example";
+import { PropsTable } from "@hisui/screens/docs/parts/props-table";
+import ListUsageDemo from "@hisui/screens/docs/components/demos/list/usage";
+import ListOrderedDemo from "@hisui/screens/docs/components/demos/list/ordered";
+import ListWithIndicatorDemo from "@hisui/screens/docs/components/demos/list/with-indicator";
+import { loadDemo } from "@/lib/read-source";
+
+export const listUsage = await loadDemo("list/usage.tsx");
+export const listOrdered = await loadDemo("list/ordered.tsx");
+export const listWithIndicator = await loadDemo("list/with-indicator.tsx");
+export const metadata = { title: "List | Hisui UI" };
+
+# List
+
+native の ul / ol を装飾する primitive。 marker variant で bullet / decimal、 plain variant で marker を消して Indicator slot に icon を入れる用途に切り替わる。 prose の中の箇条書きから check list / feature list まで一枚で。
+
+## Usage
+
+default は ul + marker。 children に Item を並べるだけ。
+
+<Example code={listUsage.code} html={listUsage.html}>
+  <ListUsageDemo />
+</Example>
+
+## Import
+
+```tsx
+import { List } from "@/components/ui/list";
+```
+
+```tsx
+<List.Root>
+  <List.Item>...</List.Item>
+</List.Root>
+```
+
+## Ordered
+
+as=ol で番号付きリストに。 marker は decimal。
+
+<Example code={listOrdered.code} html={listOrdered.html}>
+  <ListOrderedDemo />
+</Example>
+
+## With indicator
+
+variant=plain で native marker を消し、 Item の先頭に Indicator で icon を置く。 feature / check list に。
+
+<Example code={listWithIndicator.code} html={listWithIndicator.html}>
+  <ListWithIndicatorDemo />
+</Example>
+
+## Props
+
+### List.Root
+
+<PropsTable
+  rows={[
+    {
+      name: "variant",
+      type: "'marker' | 'plain'",
+      default: "marker",
+      description:
+        "marker は native の bullet / decimal を表示。 plain は marker を消して Indicator slot を使う用途に。",
+    },
+    {
+      name: "as",
+      type: "'ul' | 'ol'",
+      default: "ul",
+      description: "render する tag。 ol に切り替えると marker が decimal に。",
+    },
+    {
+      name: "className",
+      type: "string",
+      description: "gap / padding / text 色等を上書き。",
+    },
+  ]}
+/>
+
+### List.Item
+
+<PropsTable
+  rows={[
+    {
+      name: "className",
+      type: "string",
+      description: "leading / gap / alignment を上書き。",
+    },
+    {
+      name: "...HTMLAttributes",
+      type: "—",
+      description: "li タグの prop を pass-through。",
+    },
+  ]}
+/>
+
+### List.Indicator
+
+<PropsTable
+  rows={[
+    {
+      name: "className",
+      type: "string",
+      description:
+        "icon の色 / size を上書き。 default は size-4 / text-fg-muted。",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      description:
+        "icon を入れる slot。 svg は自動で size-4 に揃う。",
+    },
+  ]}
+/>

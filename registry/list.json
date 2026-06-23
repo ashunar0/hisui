@@ -1,0 +1,12 @@
+{
+  "name": "list",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "src/components/ui/list.tsx",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": [],
+  "registryDependencies": []
+}
