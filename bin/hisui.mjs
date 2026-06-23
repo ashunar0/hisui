@@ -344,6 +344,24 @@ async function cmdAdd(names) {
   ok("add complete");
 }
 
+async function cmdList(args) {
+  const index = await fetchJSON(`${REGISTRY_BASE}/registry/index.json`);
+  if (args.includes("--json")) {
+    log(JSON.stringify(index, null, 2));
+    return;
+  }
+  const verbose = args.includes("--verbose") || args.includes("-v");
+  for (const item of index.items) {
+    if (verbose) {
+      const deps = (item.dependencies ?? []).join(", ") || "-";
+      const regDeps = (item.registryDependencies ?? []).join(", ") || "-";
+      log(`${item.name}\tdeps: ${deps}\tregistry: ${regDeps}`);
+    } else {
+      log(item.name);
+    }
+  }
+}
+
 // ---------- entry ----------
 
 async function main() {
@@ -354,6 +372,9 @@ usage:
   hisui init                 setup hisui.json + base files + tokens
   hisui add <name...>        add primitives (deps auto-resolved)
   hisui add --all            add all primitives
+  hisui list                 list all available primitives (one per line)
+  hisui list --verbose       include dependencies and registry deps
+  hisui list --json          print the full registry index as JSON
 env:
   HISUI_REGISTRY             override registry base URL
 `);
@@ -361,6 +382,7 @@ env:
   }
   if (cmd === "init") return cmdInit();
   if (cmd === "add") return cmdAdd(rest);
+  if (cmd === "list" || cmd === "ls") return cmdList(rest);
   err(`unknown command: ${cmd}`);
   process.exit(1);
 }
