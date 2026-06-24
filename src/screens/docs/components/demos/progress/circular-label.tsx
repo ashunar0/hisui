@@ -8,7 +8,7 @@ export default function ProgressCircularLabelDemo() {
       {[25, 50, 75, 100].map((value) => (
         <div key={value} className="relative">
           <Progress.Root value={value}>
-            <Progress.Circle className="size-20 [--size:80px] [--thickness:6px]">
+            <Progress.Circle size={80} thickness={6}>
               <Progress.CircleTrack />
               <Progress.CircleRange />
             </Progress.Circle>

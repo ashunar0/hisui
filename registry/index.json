@@ -266,9 +266,7 @@
     },
     {
       "name": "progress",
-      "dependencies": [
-        "@ark-ui/react"
-      ],
+      "dependencies": [],
       "registryDependencies": []
     },
     {

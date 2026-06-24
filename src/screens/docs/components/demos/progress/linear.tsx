@@ -15,7 +15,7 @@ export default function ProgressLinearDemo() {
         <Progress.Root key={item.label} value={item.value}>
           <div className="flex items-center justify-between">
             <Progress.Label>{item.label}</Progress.Label>
-            <Progress.ValueText />
+            <Progress.ValueText>{item.value}%</Progress.ValueText>
           </div>
           <Progress.Track>
             <Progress.Range />

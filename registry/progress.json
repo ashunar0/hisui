@@ -7,8 +7,6 @@
       "type": "registry:ui"
     }
   ],
-  "dependencies": [
-    "@ark-ui/react"
-  ],
+  "dependencies": [],
   "registryDependencies": []
 }
