@@ -28,9 +28,7 @@
     },
     {
       "name": "avatar",
-      "dependencies": [
-        "@ark-ui/react"
-      ],
+      "dependencies": [],
       "registryDependencies": []
     },
     {

@@ -1,7 +1,4 @@
-"use client";
-
-import { Avatar as ArkAvatar } from "@ark-ui/react/avatar";
-import type { ComponentProps } from "react";
+import type { HTMLAttributes, ImgHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
@@ -22,7 +19,7 @@ const shapeClasses: Record<AvatarShape, string> = {
   square: "rounded-none",
 };
 
-type RootProps = ComponentProps<typeof ArkAvatar.Root> & {
+type RootProps = HTMLAttributes<HTMLSpanElement> & {
   size?: AvatarSize;
   shape?: AvatarShape;
 };
@@ -34,9 +31,9 @@ function Root({
   ...props
 }: RootProps) {
   return (
-    <ArkAvatar.Root
+    <span
       className={cn(
-        "inline-flex items-center justify-center overflow-hidden bg-active font-medium text-fg-soft select-none",
+        "relative inline-flex shrink-0 items-center justify-center overflow-hidden bg-active font-medium text-fg-soft select-none",
         sizeClasses[size],
         shapeClasses[shape],
         className,
@@ -48,17 +45,22 @@ function Root({
 
 function Image({
   className,
+  alt = "",
   ...props
-}: ComponentProps<typeof ArkAvatar.Image>) {
+}: ImgHTMLAttributes<HTMLImageElement>) {
   return (
-    <ArkAvatar.Image
-      className={cn("size-full object-cover", className)}
+    <img
+      alt={alt}
+      className={cn(
+        "absolute inset-0 size-full object-cover",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-type FallbackProps = ComponentProps<typeof ArkAvatar.Fallback> & {
+type FallbackProps = HTMLAttributes<HTMLSpanElement> & {
   name?: string;
 };
 
@@ -74,19 +76,20 @@ function getInitials(name: string): string {
 
 function Fallback({ name, children, className, ...props }: FallbackProps) {
   return (
-    <ArkAvatar.Fallback className={cn(className)} {...props}>
+    <span
+      className={cn(
+        "absolute inset-0 flex items-center justify-center",
+        className,
+      )}
+      {...props}
+    >
       {children ?? (name ? getInitials(name) : null)}
-    </ArkAvatar.Fallback>
+    </span>
   );
 }
 
-const Context = ArkAvatar.Context;
-const RootProvider = ArkAvatar.RootProvider;
-
 export const Avatar = {
   Root,
-  RootProvider,
   Image,
   Fallback,
-  Context,
 };
